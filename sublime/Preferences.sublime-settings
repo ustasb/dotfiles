@@ -1,13 +1,20 @@
 // Brian Ustas's ST2 Preferences
 // Last Updated: 12/03/12
 
-// Setup
+// ** Setup **
+
 // 1. Place this file into */Sublime Text 2/Packages/User
-// 2. If on OS X Lion, enable key repeating at the terminal (for Vintage mode):
-//    defaults write com.sublimetext.2 ApplePressAndHoldEnabled -bool false
-// 3. View -> Hide Minimap
-// 4. Package Control: http://wbond.net/sublime_packages/package_control
-// 5. Soda Theme (via Package Control or https://github.com/buymeasoda/soda-theme)
+// 2. View -> Hide Minimap
+// 3. Package Control: http://wbond.net/sublime_packages/package_control
+// 4. Soda Theme (via Package Control or https://github.com/buymeasoda/soda-theme)
+
+// OS X Specific:
+// Enable command line support:
+//     ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+// Add the below to your .bashrc:
+//     export EDITOR='subl -w'
+// Enable key repeating at the terminal (for Vintage mode):
+//     defaults write com.sublimetext.2 ApplePressAndHoldEnabled -bool false
 
 {
     "theme": "Soda Dark.sublime-theme",
