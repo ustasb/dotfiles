@@ -3,11 +3,6 @@
 
 // ** Setup **
 
-// 1. Place this file into */Sublime Text 2/Packages/User
-// 2. View -> Hide Minimap
-// 3. Package Control: http://wbond.net/sublime_packages/package_control
-// 4. Soda Theme (via Package Control or https://github.com/buymeasoda/soda-theme)
-
 // OS X Specific:
 // Enable command line support:
 //     ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
@@ -15,6 +10,13 @@
 //     export EDITOR='subl -w'
 // Enable key repeating at the terminal (for Vintage mode):
 //     defaults write com.sublimetext.2 ApplePressAndHoldEnabled -bool false
+
+// 1. Install Package Control: http://wbond.net/sublime_packages/package_control
+// 2. Via Package Control, install:
+//        * Soda Theme
+//        * VintageEx
+// 3. Place this file into */Sublime Text 2/Packages/User
+// 4. View -> Hide Minimap
 
 {
     "theme": "Soda Dark.sublime-theme",

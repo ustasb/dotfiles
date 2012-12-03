@@ -1,6 +1,6 @@
 " Brian Ustas's .vimrc
 " Last Updated: 12/3/12
-" Tested with v7.3.633
+" Tested with v7.2.411
 "
 "    Enhancements
 "    Color Scheme: http://ethanschoonover.com/solarized
