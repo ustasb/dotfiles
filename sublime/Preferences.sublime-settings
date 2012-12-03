@@ -1,0 +1,34 @@
+// Brian Ustas's ST2 Preferences
+// Last Updated: 12/03/12
+
+// Setup
+// 1. Place this file into */Sublime Text 2/Packages/User
+// 2. If on OS X Lion, enable key repeating at the terminal (for Vintage mode):
+//    defaults write com.sublimetext.2 ApplePressAndHoldEnabled -bool false
+// 3. View -> Hide Minimap
+// 4. Package Control: http://wbond.net/sublime_packages/package_control
+// 5. Soda Theme (via Package Control or https://github.com/buymeasoda/soda-theme)
+
+{
+    "theme": "Soda Dark.sublime-theme",
+    "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+
+    "find_selected_text": true,
+
+    // Affects the window's title
+    "show_full_path": true,
+
+    // A ruler at 80 characters
+    "rulers": [80],
+
+    "draw_white_space": "all",
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+
+    "trim_trailing_white_space_on_save": true,
+    "ensure_newline_at_eof_on_save": true,
+
+    // Enable Vintage mode
+    "ignored_packages": [],
+    "vintage_start_in_command_mode": true
+}
