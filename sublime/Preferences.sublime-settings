@@ -8,13 +8,14 @@
 //     ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 // Add the below to your .bashrc:
 //     export EDITOR='subl -w'
-// Enable key repeating at the terminal (for Vintage mode):
+// Enable key repeating (for Vintage mode):
 //     defaults write com.sublimetext.2 ApplePressAndHoldEnabled -bool false
 
 // 1. Install Package Control: http://wbond.net/sublime_packages/package_control
 // 2. Via Package Control, install:
 //        * Soda Theme
 //        * VintageEx
+//        * SublimeBlockCursor
 // 3. Place this file into */Sublime Text 2/Packages/User
 // 4. View -> Hide Minimap
 

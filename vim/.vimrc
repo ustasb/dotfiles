@@ -1,6 +1,6 @@
 " Brian Ustas's .vimrc
-" Last Updated: 12/3/12
-" Tested with v7.2.411
+" Last Updated: 12/03/12
+" Tested with Vim v7.2.411
 "
 "    Enhancements
 "    Color Scheme: http://ethanschoonover.com/solarized
@@ -29,7 +29,8 @@
 "-- UI
     syntax enable           " Enable syntax highlighting.
     try
-        colorscheme wombat
+        set background=dark
+        colorscheme solarized
     catch
         colorscheme torte
     endtry
