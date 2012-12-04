@@ -31,7 +31,7 @@
     // A ruler at 80 characters
     "rulers": [80],
 
-    "draw_white_space": "all",
+    "draw_white_space": "selection",
     "tab_size": 4,
     "translate_tabs_to_spaces": true,
 
