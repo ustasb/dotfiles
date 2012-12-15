@@ -20,6 +20,8 @@
 // 4. View -> Hide Minimap
 
 {
+    "default_encoding": "UTF-8",
+
     "theme": "Soda Dark.sublime-theme",
     "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
 
