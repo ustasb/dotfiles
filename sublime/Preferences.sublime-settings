@@ -1,10 +1,10 @@
 // Brian Ustas's ST2 Preferences
-// Last Updated: 12/03/12
+// Last Updated: 12/20/12
 
 // ** Setup **
 
 // OS X Specific:
-// Enable command line support:
+// Enable command line support via 'subl':
 //     ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 // Add the below to your .bashrc:
 //     export EDITOR='subl -w'
@@ -14,6 +14,7 @@
 // 1. Install Package Control: http://wbond.net/sublime_packages/package_control
 // 2. Via Package Control, install:
 //        * Soda Theme
+//        * Solarized Color Scheme
 //        * VintageEx
 //        * SublimeBlockCursor
 //        * AdvancedNewFile
@@ -26,7 +27,7 @@
     "margin": 0,
 
     "theme": "Soda Dark.sublime-theme",
-    "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+    "color_scheme": "Packages/Solarized Color Scheme/Solarized (dark).tmTheme",
 
     "auto_complete": false,
     "auto_complete_commit_on_tab": true,
