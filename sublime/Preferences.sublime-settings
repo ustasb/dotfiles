@@ -22,8 +22,13 @@
 {
     "default_encoding": "UTF-8",
 
+    "margin": 0,
+
     "theme": "Soda Dark.sublime-theme",
     "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+
+    "auto_complete": false,
+    "auto_complete_commit_on_tab": true,
 
     "find_selected_text": true,
 
