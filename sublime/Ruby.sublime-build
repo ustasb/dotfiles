@@ -1,0 +1,10 @@
+// Use the Ruby version specified in a .rvmrc.
+
+{
+    "env":{
+        "PATH":"${HOME}/.rvm/bin:${PATH}"
+    },
+    "cmd": ["rvm-auto-ruby", "$file"],
+    "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+    "selector": "source.ruby"
+}
