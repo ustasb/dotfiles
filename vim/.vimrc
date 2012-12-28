@@ -1,10 +1,18 @@
 " Brian Ustas's .vimrc
-" Last Updated: 12/03/12
+" Last Updated: 12/28/12
 " Tested with Vim v7.2.411
 "
+" MacVim > Preferences > 'in the current window with a tab for each file'
+" Add this to your .bashrc to open multiple files in tabs: alias mvim='open -a MacVim'
+"
 "    Enhancements
-"    Color Scheme: http://ethanschoonover.com/solarized
+"    Pathogen: https://github.com/tpope/vim-pathogen
+"    Surround: https://github.com/tpope/vim-surround
+"    Color Scheme: https://github.com/altercation/vim-colors-solarized
 "    JavaScript Syntax: http://www.vim.org/scripts/script.php?script_id=1491
+
+"-- Plugins
+    call pathogen#infect()
 
 "-- General
     filetype on             " Autodetect the file type which is useful for syntax highlighting.
@@ -28,25 +36,25 @@
 
 "-- UI
     syntax enable           " Enable syntax highlighting.
-    try
-        set background=dark
+    set background=dark
+    if has("gui_macvim")
         colorscheme solarized
-    catch
+    else
         colorscheme torte
-    endtry
+    end
 
     " Visually define an 80 character limit.
     if exists('+colorcolumn')
         set colorcolumn=81
-        highlight ColorColumn ctermbg=Black guibg=#000000
+        highlight ColorColumn ctermbg=Black guibg=#073642
     else
         au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81.\+', -1)
     endif
 
     set number              " Line numbering
     set expandtab           " Insert spaces instead of tabs.
-    set shiftwidth=4        " Sets the indentation width for < and >.
-    set softtabstop=4       " Make 4 spaces behave like a tab.
+    set shiftwidth=2        " Sets the indentation width for < and >.
+    set softtabstop=2       " Make 2 spaces behave like a tab.
     set autoindent          " Copies the indentation from the previous line.
     set incsearch           " Start searching while the search string is being typed.
 
@@ -78,7 +86,5 @@
 
         " Python smart indentation.
         autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-        " Ruby two space indentation support.
-        autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
+        autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
     endif
