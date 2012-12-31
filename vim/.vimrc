@@ -1,90 +1,133 @@
 " Brian Ustas's .vimrc
-" Last Updated: 12/28/12
-" Tested with Vim v7.2.411
 "
 " MacVim > Preferences > 'in the current window with a tab for each file'
 " Add this to your .bashrc to open multiple files in tabs: alias mvim='open -a MacVim'
 "
-"    Enhancements
-"    Pathogen: https://github.com/tpope/vim-pathogen
-"    Surround: https://github.com/tpope/vim-surround
-"    Color Scheme: https://github.com/altercation/vim-colors-solarized
-"    JavaScript Syntax: http://www.vim.org/scripts/script.php?script_id=1491
+"  Enhancements
+"  Pathogen: https://github.com/tpope/vim-pathogen
+"  Solarized: https://github.com/altercation/vim-colors-solarized
+"  Surround: https://github.com/tpope/vim-surround
+"  NERDTree: https://github.com/scrooloose/nerdtree
+"  SuperTab: https://github.com/ervandew/supertab
+"  CommandT: https://github.com/wincent/Command-T
+"  JavaScript Syntax: http://www.vim.org/scripts/script.php?script_id=1491
 
-"-- Plugins
+"-- Pathogen
+  if has('pathogen')
     call pathogen#infect()
+  endif
 
 "-- General
-    filetype on             " Autodetect the file type which is useful for syntax highlighting.
-    filetype plugin indent on
+  filetype plugin indent on
 
-    set mouse=a             " Enable mouse support in the terminal for all modes.
-    set backspace=2         " Enable backspace in gVim.
-    set nocompatible        " Don't start Vim in vi-compatibility mode.
-    set autochdir           " Automatically set the working directory to the file being edited.
-    set ffs=unix,dos,mac    " File Format (Relevant to line ending type)
-    set encoding=utf-8      " Character encoding
+  set nocompatible                " Don't start Vim in vi-compatibility mode
+  set encoding=utf-8              " Set default encoding to UTF-8
+  set ffs=unix,dos,mac            " File Format (Relevant to line ending type)
+  syntax enable                   " Enable syntax highlighting
+  set mouse=a                     " Enable mouse support for all modes
+  set backspace=indent,eol,start  " Make backspace work like most other apps
+  set history=100	                " Keep 100 lines of command line history
+  set showcmd		                  " Display incomplete commands
 
-    " Disable all error bells.
-    set noeb vb t_vb=
-    au GUIEnter * set vb t_vb=
+  " Disable all error whistles
+  set noerrorbells visualbell t_vb=
+  if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+  endif
 
-    " I don't need this clutter.
-    set nobackup
-    set nowritebackup
-    set noswapfile
+  set backupdir^=~/.vim/_backup//    " Where to put backup files
+  set directory^=~/.vim/_temp//      " Where to put swap files
+
+" -- Wild Mode (command line completion)
+  set wildmenu
+  set wildmode=list:longest,full
+  " Disable output and VCS files
+  set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+  " Disable archive files
+  set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+  " Ignore bundler and SASS cache
+  set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+  " Disable temp and backup files
+  set wildignore+=*.swp,*~,._*
 
 "-- UI
-    syntax enable           " Enable syntax highlighting.
+  set number                  " Line numbering
+  set laststatus=2            " Always show a status line
+  set statusline=%f\ %m\ %r   " file path, modified status, readonly status
+  set statusline+=Line:%l/%L  " current line / all lines
+  set statusline+=\ Buf:%n    " buffer number
+
+  if has('gui_running')
+    set guifont=Menlo:h13,Consolas:h11
+    set lines=45 columns=175    " Default window size
+    set guioptions-=m           " Removes menubar
+    set guioptions-=T           " Removes toolbar
+
+    " Automatically resize splits when resizing window
+    if has('autocmd')
+      autocmd VimResized * wincmd =
+    endif
+  endif
+
+  if has('solarized')
     set background=dark
-    if has("gui_macvim")
-        colorscheme solarized
-    else
-        colorscheme torte
-    end
+    colorscheme solarized
+  else
+    colorscheme torte
+  endif
 
-    " Visually define an 80 character limit.
-    if exists('+colorcolumn')
-        set colorcolumn=81
-        highlight ColorColumn ctermbg=Black guibg=#073642
-    else
-        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81.\+', -1)
-    endif
+  " Visually define an 80 character limit
+  if exists('+colorcolumn')
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=Red guibg=#073642
+  else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+  endif
 
-    set number              " Line numbering
-    set expandtab           " Insert spaces instead of tabs.
-    set shiftwidth=2        " Sets the indentation width for < and >.
-    set softtabstop=2       " Make 2 spaces behave like a tab.
-    set autoindent          " Copies the indentation from the previous line.
-    set incsearch           " Start searching while the search string is being typed.
+"-- Search
+  set hlsearch        " Highlight matches
+  set incsearch       " Incremental searching
+  set ignorecase      " Searches are case insensitive...
+  set smartcase       " ...unless they contain at least one capital letter
 
-"-- GUI specific
-    if has('gui_running')
-        set guifont=Menlo:h13,Consolas:h11
-        set lines=45 columns=175    " Default window size
-        set guioptions-=m           " Removes menubar
-        set guioptions-=T           " Removes toolbar
-    endif
+"-- Whitespace
+  set nowrap          " Don't wrap lines
+  set expandtab       " Insert spaces instead of tabs when Tab is pressed
+  set shiftwidth=2    " Sets the indentation width for < and >
+  set tabstop=2       " Make 2 spaces behave like a tab
+  set softtabstop=2
 
 "-- Auto Commands
-    if has('autocmd')
-        " Save the code folds and cursor position automatically.
-        au BufWinLeave ?* mkview
-        au BufWinEnter ?* silent loadview
+  if has('autocmd')
+    " For all text files wrap lines at 80 characters.
+    autocmd FileType text setlocal textwidth=80
 
-        " Turn off visual bells in gVim.
-        autocmd GUIEnter * set visualbell t_vb=
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g`\"" |
+      \ endif
 
-        " Remove whitespace at the end of lines.
-        fun! <SID>StripTrailingWhitespaces()
-            let l = line('.')
-            let c = col('.')
-            %s/\s\+$//e
-            call cursor(l, c)
-        endfun
-        autocmd FileType * autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+    " Remove whitespace at the end of lines while maintaining cursor position.
+    fun! <SID>StripTrailingWhitespaces()
+      let l = line('.')
+      let c = col('.')
+      %s/\s\+$//e
+      call cursor(l, c)
+    endfun
+    autocmd FileType * autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-        " Python smart indentation.
-        autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-        autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
-    endif
+    " Treat all Markdown files the same
+    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+
+    " Treat the following as Ruby files
+    au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set ft=ruby
+
+    " Treat JSON files like JavaScript
+    au BufNewFile,BufRead *.json set ft=javascript
+
+    " Python PEP8 4 space indent
+    au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+  endif
