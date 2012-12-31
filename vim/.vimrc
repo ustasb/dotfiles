@@ -104,7 +104,7 @@
 "-- Auto Commands
   if has('autocmd')
     "Wrap lines at 80 characters for all text files
-    autocmd FileType text setlocal textwidth=80
+    autocmd FileType text,markdown setlocal textwidth=80
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
