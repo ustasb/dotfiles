@@ -46,11 +46,11 @@
   set directory^=~/.vim/_temp//      " Where to put swap files
 
 "-- UI
-  set number                  " Line numbering
-  set laststatus=2            " Always show a status line
-  set statusline=%f\ %m\ %r   " file path, modified status, readonly status
-  set statusline+=Line:%l/%L  " current line / all lines
-  set statusline+=\ Buf:%n    " buffer number
+  set number                    " Line numbering
+  set laststatus=2              " Always show a status line
+  set statusline=%f\ %m\ %r     " file path, modified status, readonly status
+  set statusline+=\ Line:%l/%L  " current line / all lines
+  set statusline+=\ Buf:%n      " buffer number
   set background=dark
 
   if has('gui_running')
