@@ -1,7 +1,6 @@
 " Brian Ustas's .vimrc
 "
-" Setup:
-"
+" ** Setup **
 " Use Janus (recommended):
 "   - github.com/carlhuda/janus
 "   - This file should become ~/.vimrc.after
@@ -60,11 +59,6 @@
     set guioptions-=m           " Removes menubar
     set guioptions-=T           " Removes toolbar
 
-    " Automatically resize splits when resizing window
-    if has('autocmd')
-      autocmd VimResized * wincmd =
-    endif
-
     try
       colorscheme solarized
     catch
@@ -83,7 +77,7 @@
   endif
 
 "-- Search
-  set hlsearch        " Highlight matches
+  set nohlsearch      " Turn off highlight matching
   set incsearch       " Incremental searching
   set ignorecase      " Searches are case insensitive...
   set smartcase       " ...unless they contain at least one capital letter
@@ -119,6 +113,9 @@
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
+
+    " Automatically resize splits when resizing window
+    autocmd VimResized * wincmd =
 
     " Remove whitespace at the end of lines while maintaining cursor position
     fun! <SID>StripTrailingWhitespaces()
