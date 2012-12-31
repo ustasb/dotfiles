@@ -52,6 +52,7 @@
   set statusline=%f\ %m\ %r   " file path, modified status, readonly status
   set statusline+=Line:%l/%L  " current line / all lines
   set statusline+=\ Buf:%n    " buffer number
+  set background=dark
 
   if has('gui_running')
     set guifont=Menlo:h13,Consolas:h11
@@ -63,14 +64,15 @@
     if has('autocmd')
       autocmd VimResized * wincmd =
     endif
-  endif
 
-  set background=dark
-  try
-    colorscheme solarized
-  catch
+    try
+      colorscheme solarized
+    catch
+      colorscheme torte
+    endtry
+  else "running in the terminal...
     colorscheme torte
-  endtry
+  endif
 
   " Visually define an 80 character limit
   if exists('+colorcolumn')
