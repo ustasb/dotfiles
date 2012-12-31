@@ -13,9 +13,9 @@
 "  JavaScript Syntax: http://www.vim.org/scripts/script.php?script_id=1491
 
 "-- Pathogen
-  if has('pathogen')
+  try
     call pathogen#infect()
-  endif
+  endtry
 
 "-- General
   filetype plugin indent on
@@ -69,12 +69,12 @@
     endif
   endif
 
-  if has('solarized')
-    set background=dark
+  set background=dark
+  try
     colorscheme solarized
-  else
+  catch
     colorscheme torte
-  endif
+  endtry
 
   " Visually define an 80 character limit
   if exists('+colorcolumn')
@@ -99,7 +99,7 @@
 
 "-- Auto Commands
   if has('autocmd')
-    " For all text files wrap lines at 80 characters.
+    "Wrap lines at 80 characters for all text files
     autocmd FileType text setlocal textwidth=80
 
     " When editing a file, always jump to the last known cursor position.
@@ -110,7 +110,7 @@
       \   exe "normal g`\"" |
       \ endif
 
-    " Remove whitespace at the end of lines while maintaining cursor position.
+    " Remove whitespace at the end of lines while maintaining cursor position
     fun! <SID>StripTrailingWhitespaces()
       let l = line('.')
       let c = col('.')
