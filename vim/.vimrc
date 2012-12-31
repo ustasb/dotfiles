@@ -15,6 +15,7 @@
 "-- Pathogen
   try
     call pathogen#infect()
+  catch
   endtry
 
 "-- General
