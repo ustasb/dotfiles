@@ -1,21 +1,27 @@
 " Brian Ustas's .vimrc
 "
+" Setup:
+"
+" Use Janus (recommended):
+"   - github.com/carlhuda/janus
+"   - This file should become ~/.vimrc.after
+" or manually install:
+"   - Pathogen (used to load below plugins): github.com/tpope/vim-pathogen
+"   - Solarized: github.com/altercation/vim-colors-solarized
+"   - Surround: github.com/tpope/vim-surround
+"   - NERDTree: github.com/scrooloose/nerdtree
+"   - SuperTab: github.com/ervandew/supertab
+"   - CommandT: github.com/wincent/Command-T
+"   - JavaScript Syntax: www.vim.org/scripts/script.php?script_id=1491
+"
 " MacVim > Preferences > 'in the current window with a tab for each file'
 " Add this to your .bashrc to open multiple files in tabs: alias mvim='open -a MacVim'
-"
-"  Enhancements
-"  Pathogen: https://github.com/tpope/vim-pathogen
-"  Solarized: https://github.com/altercation/vim-colors-solarized
-"  Surround: https://github.com/tpope/vim-surround
-"  NERDTree: https://github.com/scrooloose/nerdtree
-"  SuperTab: https://github.com/ervandew/supertab
-"  CommandT: https://github.com/wincent/Command-T
-"  JavaScript Syntax: http://www.vim.org/scripts/script.php?script_id=1491
 
 "-- Pathogen
   try
     call pathogen#infect()
   catch
+    " Do nothing...
   endtry
 
 "-- General
@@ -38,18 +44,6 @@
 
   set backupdir^=~/.vim/_backup//    " Where to put backup files
   set directory^=~/.vim/_temp//      " Where to put swap files
-
-" -- Wild Mode (command line completion)
-  set wildmenu
-  set wildmode=list:longest,full
-  " Disable output and VCS files
-  set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-  " Disable archive files
-  set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-  " Ignore bundler and SASS cache
-  set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-  " Disable temp and backup files
-  set wildignore+=*.swp,*~,._*
 
 "-- UI
   set number                  " Line numbering
@@ -97,6 +91,18 @@
   set shiftwidth=2    " Sets the indentation width for < and >
   set tabstop=2       " Make 2 spaces behave like a tab
   set softtabstop=2
+
+" -- Wild Mode (command line completion)
+  set wildmenu
+  set wildmode=list:longest,full
+  " Disable output and VCS files
+  set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+  " Disable archive files
+  set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+  " Ignore bundler and SASS cache
+  set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+  " Disable temp and backup files
+  set wildignore+=*.swp,*~,._*
 
 "-- Auto Commands
   if has('autocmd')
