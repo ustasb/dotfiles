@@ -5,6 +5,7 @@
 " Use Janus (recommended):
 "   - github.com/carlhuda/janus
 "   - This file should become ~/.vimrc.after
+"   - Solarized: github.com/altercation/vim-colors-solarized
 " or manually install:
 "   - Pathogen (used to load below plugins): github.com/tpope/vim-pathogen
 "   - Solarized: github.com/altercation/vim-colors-solarized
