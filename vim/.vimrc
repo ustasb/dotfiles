@@ -26,8 +26,8 @@
   syntax enable                   " Enable syntax highlighting
   set mouse=a                     " Enable mouse support for all modes
   set backspace=indent,eol,start  " Make backspace work like most other apps
-  set history=100	                " Keep 100 lines of command line history
-  set showcmd		                  " Display incomplete commands
+  set history=100                 " Keep 100 lines of command line history
+  set showcmd                     " Display incomplete commands
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
