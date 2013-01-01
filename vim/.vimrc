@@ -15,7 +15,7 @@
 "   - JavaScript Syntax: www.vim.org/scripts/script.php?script_id=1491
 "
 " MacVim > Preferences > 'in the current window with a tab for each file'
-" Add this to your .bashrc to open multiple files in tabs: alias mvim='open -a MacVim'
+" Add this to your .bashrc to open multiple files in tabs: alias mvim='mvim --remote-tab-silent'
 
 "-- Pathogen
   try

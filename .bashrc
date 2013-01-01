@@ -23,4 +23,5 @@ PATH=$PATH:$HOME/.rvm/bin
 source $HOME/.rvm/scripts/rvm
 
 # MacVim is the default editor
+alias mvim='mvim --remote-tab-silent'
 export EDITOR='mvim -f'
