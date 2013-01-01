@@ -2,7 +2,8 @@
 # .bashrc is used when the shell is not a login shell.
 # My .bash_profile sources from this file.
 
-# Git
+# PS1
+# Validate with: github.com/ustasb/ps1_lint
 GIT_PROMPT_PATH=/usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-prompt.sh
 if [ -f $GIT_PROMPT_PATH ]; then
   source $GIT_PROMPT_PATH
