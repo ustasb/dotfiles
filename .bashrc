@@ -7,6 +7,8 @@
 GIT_PROMPT_PATH=/usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-prompt.sh
 if [ -f $GIT_PROMPT_PATH ]; then
   source $GIT_PROMPT_PATH
+  GIT_PS1_SHOWDIRTYSTATE=true  # staged (+) vs unstaged (*)
+  GIT_PS1_SHOWUNTRACKEDFILES=true  # shown by: %
   export PS1='\[\e[0;32m\]\u:\[\e[0;35m\] \w\[\e[0;36m\]$(__git_ps1 " (%s)")\n\[\e[0;32m\]\$\[\e[0m\] '
 else
   export PS1='\[\e[0;32m\]\u:\[\e[0;35m\] \w\n\[\e[0;32m\]\$\[\e[0m\] '
