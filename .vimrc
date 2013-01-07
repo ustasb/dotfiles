@@ -1,19 +1,13 @@
 " Brian Ustas's .vimrc
 "
-" ** Setup **
-" Use Janus (recommended):
-"   - github.com/carlhuda/janus
-"   - This file should become ~/.vimrc.after
-"   - Solarized: github.com/altercation/vim-colors-solarized
-" or manually install:
+" ** Plugins **
 "   - Pathogen (used to load below plugins): github.com/tpope/vim-pathogen
 "   - Solarized: github.com/altercation/vim-colors-solarized
 "   - Surround: github.com/tpope/vim-surround
-"   - NERDTree: github.com/scrooloose/nerdtree
 "   - SuperTab: github.com/ervandew/supertab
 "   - CommandT: github.com/wincent/Command-T
-"   - JavaScript Syntax: www.vim.org/scripts/script.php?script_id=1491
 "
+" If using MacVim:
 " MacVim > Preferences > 'in the current window with a tab for each file'
 " Add this to your .bashrc to open multiple files in tabs: alias mvim='mvim --remote-tab-silent'
 
@@ -24,13 +18,17 @@
     " Do nothing...
   endtry
 
-"-- General
-  filetype plugin indent on
-
   set nocompatible                " Don't start Vim in vi-compatibility mode
   set encoding=utf-8              " Set default encoding to UTF-8
+"-- General
+  if has('autocmd')
+    filetype plugin indent on
+  endif
+  if has('syntax') && !exists('g:syntax_on')
+    syntax enable
+  endif
+
   set ffs=unix,dos,mac            " File Format (Relevant to line ending type)
-  syntax enable                   " Enable syntax highlighting
   set mouse=a                     " Enable mouse support for all modes
   set backspace=indent,eol,start  " Make backspace work like most other apps
   set history=100                 " Keep 100 lines of command line history
