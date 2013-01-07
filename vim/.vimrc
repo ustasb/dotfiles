@@ -19,7 +19,7 @@
 
 "-- Pathogen
   try
-    call pathogen#infect()
+    execute pathogen#infect()
   catch
     " Do nothing...
   endtry
