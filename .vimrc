@@ -68,9 +68,7 @@
   " Visually define an 80 character limit
   if exists('+colorcolumn')
     set colorcolumn=80
-    highlight ColorColumn ctermbg=Red guibg=#073642
-  else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    highlight ColorColumn ctermbg=Black guibg=#202020
   endif
 
 "-- Search
