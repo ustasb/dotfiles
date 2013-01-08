@@ -63,7 +63,13 @@
       colorscheme torte
     endtry
   else "running in the terminal...
-    colorscheme torte
+    try
+      let g:solarized_termtrans=1
+      let g:solarized_termcolors=16
+      colorscheme solarized
+    catch
+      colorscheme torte
+    endtry
   endif
 
   " Visually define an 80 character limit

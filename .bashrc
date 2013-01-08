@@ -23,5 +23,7 @@ PATH=$PATH:$HOME/.rvm/bin
 source $HOME/.rvm/scripts/rvm
 
 # Make MacVim the default editor
-alias mvim='mvim --remote-tab-silent'
+alias sysvim='/usr/bin/vim'
+alias vi='mvim -v'
+alias vim='mvim -v'
 export EDITOR='mvim -f'
