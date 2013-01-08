@@ -34,6 +34,9 @@
   set backspace=indent,eol,start  " Make backspace work like most other apps
   set history=100                 " Keep 100 lines of command line history
   set showcmd                     " Display incomplete commands
+  set title                       " Change the title of the terminal/tab with the file name
+  set hidden                      " Allow unsaved background buffers and remember marks/undo for them
+  set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
@@ -78,11 +81,18 @@
   set smartcase       " ...unless they contain at least one capital letter
 
 "-- Whitespace
+  set autoindent      " Turn on autoindenting
   set nowrap          " Don't wrap lines
   set expandtab       " Insert spaces instead of tabs when Tab is pressed
   set shiftwidth=2    " Sets the indentation width for < and >
   set tabstop=2       " Make 2 spaces behave like a tab
   set softtabstop=2
+
+"-- Key Mappings
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
 
 " -- Wild Mode (command line completion)
   set wildmenu

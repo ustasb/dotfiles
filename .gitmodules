@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/Command-T"]
-	path = .vim/bundle/Command-T
-	url = https://github.com/wincent/Command-T.git
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -22,3 +19,9 @@
 [submodule ".vim/bundle/ir_black"]
 	path = .vim/bundle/ir_black
 	url = https://github.com/twerth/ir_black.git
+[submodule ".vim/bundle/html5-syntax.vim"]
+	path = .vim/bundle/html5-syntax.vim
+	url = https://github.com/othree/html5-syntax.vim.git
+[submodule ".vim/bundle/ctrl-p"]
+	path = .vim/bundle/ctrl-p
+	url = https://github.com/kien/ctrlp.vim.git
