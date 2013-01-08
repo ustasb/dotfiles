@@ -59,7 +59,7 @@
   endtry
 
   if has('gui_running')
-    set guifont=Menlo:h13,Consolas:h11
+    set guifont=Menlo:h14,Consolas:h11
     set lines=35 columns=135    " Default window size
     set guioptions-=m           " Removes menubar
     set guioptions-=T           " Removes toolbar
