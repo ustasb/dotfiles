@@ -13,13 +13,12 @@
 
 "-- Pathogen
   try
+    runtime bundle/vim-pathogen/autoload/pathogen.vim
     execute pathogen#infect()
   catch
     " Do nothing...
   endtry
 
-  set nocompatible                " Don't start Vim in vi-compatibility mode
-  set encoding=utf-8              " Set default encoding to UTF-8
 "-- General
   if has('autocmd')
     filetype plugin indent on
@@ -28,6 +27,8 @@
     syntax enable
   endif
 
+  set nocompatible                " Don't start Vim in vi-compatibility mode
+  set encoding=utf-8              " Set default encoding to UTF-8
   set ffs=unix,dos,mac            " File Format (Relevant to line ending type)
   set mouse=a                     " Enable mouse support for all modes
   set backspace=indent,eol,start  " Make backspace work like most other apps
@@ -51,25 +52,17 @@
   set statusline+=\ Buf:%n      " buffer number
   set background=dark
 
+  try
+    colorscheme ir_black
+  catch
+    colorscheme torte
+  endtry
+
   if has('gui_running')
-    set guifont=Menlo:h14,Consolas:h11
+    set guifont=Menlo:h13,Consolas:h11
     set lines=35 columns=135    " Default window size
     set guioptions-=m           " Removes menubar
     set guioptions-=T           " Removes toolbar
-
-    try
-      colorscheme solarized
-    catch
-      colorscheme torte
-    endtry
-  else "running in the terminal...
-    try
-      let g:solarized_termtrans=1
-      let g:solarized_termcolors=16
-      colorscheme solarized
-    catch
-      colorscheme torte
-    endtry
   endif
 
   " Visually define an 80 character limit
