@@ -1,19 +1,8 @@
 " Brian Ustas's .vimrc
-"
-" ** Plugins **
-"   - Pathogen (used to load below plugins): github.com/tpope/vim-pathogen
-"   - Solarized: github.com/altercation/vim-colors-solarized
-"   - Surround: github.com/tpope/vim-surround
-"   - SuperTab: github.com/ervandew/supertab
-"   - CommandT: github.com/wincent/Command-T
-"
-" If using MacVim:
-" MacVim > Preferences > 'in the current window with a tab for each file'
-" Add this to your .bashrc to open multiple files in tabs: alias mvim='mvim --remote-tab-silent'
 
 "-- Pathogen
   try
-    runtime bundle/vim-pathogen/autoload/pathogen.vim
+    runtime bundle/pathogen/autoload/pathogen.vim
     execute pathogen#infect()
   catch
     " Do nothing...
