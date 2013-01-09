@@ -83,7 +83,7 @@
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 
-" -- Wild Mode (command line completion)
+"-- Wild Mode (command line completion)
   set wildmenu
   set wildmode=list:longest,full
   " Disable output and VCS files

@@ -24,6 +24,6 @@ source $HOME/.rvm/scripts/rvm
 
 # Make MacVim the default editor
 alias sysvim='/usr/bin/vim'
-alias vi='mvim -v'
+alias vi='mvim -v'  # Run MacVim in the Terminal
 alias vim='mvim -v'
 export EDITOR='mvim -f'
