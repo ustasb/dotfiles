@@ -131,4 +131,7 @@
 
     " Python PEP8 4 space indent
     au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+
+    " Enter Normal mode if Insert mode is idle for 4 seconds
+    "au CursorHoldI * stopinsert
   endif
