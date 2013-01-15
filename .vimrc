@@ -8,13 +8,15 @@
     " Do nothing...
   endtry
 
+"-- Plugin Globals
+  " Andy Wokula's HTML Indent -- part of javascript_syntax/
+  let g:html_indent_inctags = "html,body,head,tbody"
+  let g:html_indent_script1 = "inc"
+  let g:html_indent_style1 = "inc"
+
 "-- General
-  if has('autocmd')
-    filetype plugin indent on
-  endif
-  if has('syntax') && !exists('g:syntax_on')
-    syntax enable
-  endif
+  filetype plugin indent on
+  syntax enable
 
   set nocompatible                " Don't start Vim in vi-compatibility mode
   set encoding=utf-8              " Set default encoding to UTF-8
