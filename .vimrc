@@ -25,6 +25,7 @@
   set showcmd                     " Display incomplete commands
   set title                       " Change the title of the terminal/tab with the file name
   set hidden                      " Allow unsaved background buffers and remember marks/undo for them
+  set ttimeoutlen=100             " Prevent Shift-O delay in terminal
   set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
 
   " Disable all error whistles
