@@ -29,6 +29,7 @@
   set hidden                      " Allow unsaved background buffers and remember marks/undo for them
   set ttimeoutlen=100             " Prevent Shift-O delay in terminal
   set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
+  set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
@@ -81,10 +82,23 @@
   set softtabstop=2
 
 "-- Key Mappings
+  " Change the mapleader from \ to ,
+  let mapleader=','
+
   map <C-h> <C-w>h
   map <C-j> <C-w>j
   map <C-k> <C-w>k
   map <C-l> <C-w>l
+  map <C-x> <C-w>x
+
+  " cd to the directory containing the file in the buffer
+  nmap <silent> <leader>cd :lcd %:h<CR>
+
+  " Swap two words
+  nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
+
+  " Toggle Tagbar
+  map <silent> <leader>rt :TagbarToggle<CR>
 
 "-- Wild Mode (command line completion)
   set wildmenu
