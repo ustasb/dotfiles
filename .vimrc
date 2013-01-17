@@ -100,7 +100,7 @@
   " Toggle Tagbar
   map <silent> <leader>rt :TagbarToggle<CR>
 
-"-- Wild Mode (command line completion)
+"-- Wild Mode (command line completion, also used by CtrlP to ignore files)
   set wildmenu
   set wildmode=list:longest,full
   " Disable output and VCS files
