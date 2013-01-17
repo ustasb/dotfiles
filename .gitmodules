@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/javascript_syntax"]
 	path = .vim/bundle/javascript_syntax
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
