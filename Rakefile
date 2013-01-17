@@ -19,3 +19,4 @@ task :update_sys_bashrc do
 end
 
 task :update_sys => [:update_sys_bashrc, :update_sys_vim, :update_sys_vimrc]
+task :default => :update_sys
