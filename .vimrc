@@ -98,6 +98,10 @@
   map <C-l> <C-w>l
   map <C-x> <C-w>x
 
+  " Reselect visual block after indent/outdent
+  vnoremap < <gv
+  vnoremap > >gv
+
   " cd to the directory containing the file in the buffer
   nnoremap <silent> <leader>cd :lcd %:h<CR>
 
