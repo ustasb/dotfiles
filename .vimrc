@@ -90,13 +90,13 @@
   " Change the mapleader from \ to ,
   let mapleader=','
 
-  inoremap jk <Esc>
-
   map <C-h> <C-w>h
   map <C-j> <C-w>j
   map <C-k> <C-w>k
   map <C-l> <C-w>l
   map <C-x> <C-w>x
+
+  inoremap jk <Esc>
 
   " Reselect visual block after indent/outdent
   vnoremap < <gv
