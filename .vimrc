@@ -41,7 +41,7 @@
   set directory^=~/.vim/_temp//      " Where to put swap files
 
 "-- UI
-  set number                    " Line numbering
+ "set number                    " Line numbering
   set laststatus=2              " Always show a status line
   set statusline=%f\ %m\ %r     " file path, modified status, readonly status
   set statusline+=\ Line:%l/%L  " current line / all lines
@@ -85,6 +85,8 @@
   " Change the mapleader from \ to ,
   let mapleader=','
 
+  inoremap jk <Esc>
+
   map <C-h> <C-w>h
   map <C-j> <C-w>j
   map <C-k> <C-w>k
@@ -92,13 +94,13 @@
   map <C-x> <C-w>x
 
   " cd to the directory containing the file in the buffer
-  nmap <silent> <leader>cd :lcd %:h<CR>
+  nnoremap <silent> <leader>cd :lcd %:h<CR>
 
   " Swap two words
-  nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
+  nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
   " Toggle Tagbar
-  map <silent> <leader>rt :TagbarToggle<CR>
+  nnoremap <silent> <leader>rt :TagbarToggle<CR>
 
 "-- Wild Mode (command line completion, also used by CtrlP to ignore files)
   set wildmenu
