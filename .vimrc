@@ -37,8 +37,13 @@
     autocmd GUIEnter * set visualbell t_vb=
   endif
 
-  set backupdir=$HOME/.vim/.backup_files//    " Where to put backup files
-  set directory=$HOME/.vim/.swap_files//      " Where to put swap files
+  " Create backup directory if not present
+  if isdirectory($HOME . '/.vim/backup') == 0
+    :silent !mkdir -p ~/.vim/backup > /dev/null 2>&1
+  endif
+  set directory=~/.vim/backup//      " Where to put swap files
+  set backupdir=~/.vim/backup//      " Where to put backup files
+  set backup
 
 "-- UI
  "set number                    " Line numbering
