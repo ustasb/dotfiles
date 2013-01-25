@@ -104,6 +104,9 @@
   vnoremap < <gv
   vnoremap > >gv
 
+  " Background Vim with ,z (bring back to foreground with fg)
+  nnoremap <leader>z <C-z>
+
   " cd to the directory containing the file in the buffer
   nnoremap <silent> <leader>cd :lcd %:h<CR>
 
