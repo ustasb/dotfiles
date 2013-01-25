@@ -96,7 +96,9 @@
   map <C-l> <C-w>l
   map <C-x> <C-w>x
 
+  " Use jk instead of <Esc> to enter Normal mode
   inoremap jk <Esc>
+  inoremap <Esc> <nop>
 
   " Reselect visual block after indent/outdent
   vnoremap < <gv
