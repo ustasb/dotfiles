@@ -125,6 +125,9 @@
 
 "-- Auto Commands
   if has('autocmd')
+    " Disable paste mode when leaving Insert Mode
+    au InsertLeave * set nopaste
+
     "Wrap lines at 80 characters for all text files
     autocmd FileType text,markdown setlocal textwidth=80
 
