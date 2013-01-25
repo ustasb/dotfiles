@@ -125,7 +125,7 @@
 
 "-- Auto Commands
   if has('autocmd')
-    " Disable paste mode when leaving Insert Mode
+    " Disable paste mode when leaving Insert mode
     au InsertLeave * set nopaste
 
     "Wrap lines at 80 characters for all text files
