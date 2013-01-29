@@ -54,7 +54,7 @@
   set background=dark
 
   try
-    colorscheme ir_black
+    colorscheme jellybeans
   catch
     colorscheme torte
   endtry
