@@ -62,8 +62,8 @@
   if has('gui_running')
     set guifont=Menlo:h14,Consolas:h11
     set lines=35 columns=135    " Default window size
-    set guioptions-=m           " Removes menubar
-    set guioptions-=T           " Removes toolbar
+    set guioptions-=m           " Remove menubar
+    set guioptions-=T           " Remove toolbar
   endif
 
   " Visually define an 80 character limit
@@ -81,8 +81,8 @@
 "-- Whitespace
   set autoindent      " Turn on autoindenting
   set nowrap          " Don't wrap lines
-  set expandtab       " Insert spaces instead of tabs when Tab is pressed
-  set shiftwidth=2    " Sets the indentation width for < and >
+  set expandtab       " Insert spaces instead of tabs when <Tab> is pressed
+  set shiftwidth=2    " Set the indentation width for < and >
   set tabstop=2       " Make 2 spaces behave like a tab
   set softtabstop=2
 
@@ -98,7 +98,6 @@
 
   " Use jk instead of <Esc> to enter Normal mode
   inoremap jk <Esc>
-  inoremap <Esc> <nop>
 
   " Reselect visual block after indent/outdent
   vnoremap < <gv
