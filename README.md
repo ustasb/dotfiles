@@ -7,7 +7,7 @@ the home directory.
 It will overwrite any equivalents!
 
 ## OS X
-Import the solarized_dark.terminal theme into Terminal. It's based off [this](1)
+Import the solarized_dark.terminal theme into Terminal. It's based off [this][1]
 and has only been tested on Mountain Lion.
 
 [1]: https://github.com/tomislav/osx-lion-terminal.app-colors-solarized.git
