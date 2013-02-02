@@ -20,13 +20,13 @@
 
   set nocompatible                " Don't start Vim in vi-compatibility mode
   set encoding=utf-8              " Set default encoding to UTF-8
-  set ffs=unix,dos,mac            " File Format (Relevant to line ending type)
+  set ffs=unix,dos,mac            " File Format (relevant to line ending type)
   set mouse=a                     " Enable mouse support for all modes
   set backspace=indent,eol,start  " Make backspace work like most other apps
   set history=100                 " Keep 100 lines of command line history
   set showcmd                     " Display incomplete commands
   set title                       " Change the title of the terminal/tab with the file name
-  set hidden                      " Allow unsaved background buffers and remember marks/undo for them
+  set hidden                      " Allow unsaved background buffers and remember marks/undos for them
   set ttimeoutlen=100             " Prevent Shift-O delay in terminal
   set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
   set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
@@ -48,13 +48,13 @@
 "-- UI
  "set number                    " Line numbering
   set laststatus=2              " Always show a status line
-  set statusline=%f\ %m\ %r     " file path, modified status, readonly status
+  set statusline=%f\ %m\ %r     " file path, modified status, read-only status
   set statusline+=\ Line:%l/%L  " current line / all lines
   set statusline+=\ Buf:%n      " buffer number
   set background=dark
 
   try
-    colorscheme jellybeans
+    colorscheme solarized
   catch
     colorscheme torte
   endtry
@@ -87,7 +87,7 @@
   set softtabstop=2
 
 "-- Key Mappings
-  " Change the mapleader from \ to ,
+  " Change the leader key from \ to ,
   let mapleader=','
 
   map <C-h> <C-w>h
@@ -157,7 +157,7 @@
     autocmd FileType * autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
     " Treat all Markdown files the same
-    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set ft=markdown
 
     " Treat the following as Ruby files
     au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set ft=ruby
