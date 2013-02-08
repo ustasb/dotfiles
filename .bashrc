@@ -15,8 +15,9 @@ else
 fi
 
 # Homebrew
-# /usr/local/bin should take precedence
 export PATH=/usr/local/bin:$PATH
+# NPM
+export PATH=/usr/local/share/npm/bin:$PATH
 
 # RVM
 PATH=$PATH:$HOME/.rvm/bin
