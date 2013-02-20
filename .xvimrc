@@ -1,0 +1,9 @@
+" Brian Ustas's .xvimrc
+" XVim for Xcode
+
+"-- Key Mappings
+  " Change the leader key from \ to ,
+  let mapleader=','
+
+  " Use jk instead of <Esc> to enter Normal mode
+  imap jk <Esc>
