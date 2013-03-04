@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule ".vim/bundle/ir_black"]
-	path = .vim/bundle/ir_black
-	url = https://github.com/twerth/ir_black.git
 [submodule ".vim/bundle/ctrl_p"]
 	path = .vim/bundle/ctrl_p
 	url = https://github.com/kien/ctrlp.vim.git
