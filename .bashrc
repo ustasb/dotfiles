@@ -18,13 +18,12 @@ fi
 export PATH=/usr/local/bin:$PATH
 # NPM
 export PATH=/usr/local/share/npm/bin:$PATH
-
 # RVM
 PATH=$PATH:$HOME/.rvm/bin
 source $HOME/.rvm/scripts/rvm
 
 # Make MacVim the default editor
 alias sysvim='/usr/bin/vim'
-alias vi='mvim -v'  # Run MacVim in the Terminal
+alias vi='mvim -v'  # Run MacVim in the terminal.
 alias vim='mvim -v'
 export EDITOR='mvim -f'
