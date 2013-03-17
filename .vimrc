@@ -90,6 +90,9 @@
   " Change the leader key from \ to ,
   let mapleader=','
 
+  " Make shift-k do nothing
+  map <S-k> <Nop>
+
   map <C-h> <C-w>h
   map <C-j> <C-w>j
   map <C-k> <C-w>k
