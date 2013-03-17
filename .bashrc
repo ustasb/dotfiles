@@ -4,7 +4,8 @@
 
 # PS1
 # Validate with: github.com/ustasb/ps1_lint
-GIT_PROMPT_PATH=/usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-prompt.sh
+# Assumes Git was installed via Homebrew.
+GIT_PROMPT_PATH=/usr/local/Cellar/git/*/etc/bash_completion.d/git-prompt.sh
 if [ -f $GIT_PROMPT_PATH ]; then
   GIT_PS1_SHOWDIRTYSTATE=true  # staged (+) vs unstaged (*)
   GIT_PS1_SHOWUNTRACKEDFILES=true  # shown by: %
@@ -22,7 +23,7 @@ export PATH=/usr/local/share/npm/bin:$PATH
 PATH=$PATH:$HOME/.rvm/bin
 source $HOME/.rvm/scripts/rvm
 
-# Make MacVim the default editor
+# Make MacVim the default editor.
 alias sysvim='/usr/bin/vim'
 alias vi='mvim -v'  # Run MacVim in the terminal.
 alias vim='mvim -v'
