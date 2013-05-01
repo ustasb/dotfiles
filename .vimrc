@@ -14,6 +14,11 @@
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
 
+  " Syntastic settings -- enable C++11 support
+  let g:syntastic_cpp_checkers = ['gcc']
+  let g:syntastic_cpp_compiler = 'g++-4.8'
+  let g:syntastic_cpp_compiler_options = '-std=c++11'
+
 "-- General
   filetype plugin indent on
   syntax enable
