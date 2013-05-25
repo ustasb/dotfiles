@@ -19,6 +19,9 @@
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
 
+  " CtrlP
+  let g:ctrlp_custom_ignore = 'node_modules'
+
 "-- General
   filetype plugin indent on
   syntax enable
