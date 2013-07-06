@@ -19,9 +19,6 @@
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
 
-  " CtrlP
-  let g:ctrlp_custom_ignore = 'node_modules'
-
 "-- General
   filetype plugin indent on
   syntax enable
@@ -38,6 +35,7 @@
   set ttimeoutlen=100             " Prevent Shift-O delay in terminal
   set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
   set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
+  set clipboard=unnamed           " Merge Vim and OS clipboard
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
@@ -59,8 +57,8 @@
   set statusline=%f\ %m\ %r     " file path, modified status, read-only status
   set statusline+=\ Line:%l/%L  " current line / all lines
   set statusline+=\ Buf:%n      " buffer number
-  set background=dark
 
+  set background=dark
   try
     colorscheme solarized
   catch
@@ -132,6 +130,8 @@
   set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
   " Ignore bundler and SASS cache
   set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+  " Ignore node.js modules
+  set wildignore+=*/node_modules/*
   " Disable temp and backup files
   set wildignore+=*.swp,*~,._*
 
