@@ -130,7 +130,7 @@
   " Disable archive files
   set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
   " Ignore bundler and SASS cache
-  set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+  set wildignore+=*/vendor/gems/*,*/vendor/bundle/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
   " Ignore node.js modules
   set wildignore+=*/node_modules/*
   " Disable temp and backup files
