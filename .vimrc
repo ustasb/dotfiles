@@ -130,11 +130,11 @@
   vnoremap < <gv
   vnoremap > >gv
 
-  " Background Vim with <leader>z (bring back into foreground with fg)
-  nnoremap <leader>z <C-z>
+  " Background Vim with <Leader>z (bring back into foreground with fg)
+  nnoremap <Leader>z <C-z>
 
   " cd to the directory containing the file in the buffer
-  nnoremap <silent> <leader>cd :lcd %:h<CR>
+  nnoremap <silent> <Leader>cd :lcd %:h<CR>
 
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
