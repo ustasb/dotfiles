@@ -1,9 +1,26 @@
 " Brian Ustas's .vimrc
 
-"-- Pathogen
+"-- Vundle
   try
-    runtime bundle/pathogen/autoload/pathogen.vim
-    execute pathogen#infect()
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    Bundle 'gmarik/vundle'
+
+    Bundle 'ervandew/supertab'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'scrooloose/syntastic'
+
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'nanotech/jellybeans.vim'
+
+    Bundle 'othree/html5-syntax.vim'
+    Bundle 'pangloss/vim-javascript'
+    Bundle 'kchmck/vim-coffee-script'
+
+    Bundle 'vim-ruby/vim-ruby'
+    Bundle 'tpope/vim-rails'
+    "Bundle 'thoughtbot/vim-rspec'
   catch
     " Do nothing...
   endtry
