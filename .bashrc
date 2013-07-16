@@ -2,9 +2,14 @@
 # .bashrc is used when the shell is not a login shell.
 # My .bash_profile sources from this file.
 
+# Assumes Git was installed via Homebrew.
+GIT_COMPLETION_PATH=/usr/local/Cellar/git/*/etc/bash_completion.d/git-completion.bash
+if [ -f $GIT_COMPLETION_PATH ]; then
+  source $GIT_COMPLETION_PATH
+fi
+
 # PS1
 # Validate with: github.com/ustasb/ps1_lint
-# Assumes Git was installed via Homebrew.
 GIT_PROMPT_PATH=/usr/local/Cellar/git/*/etc/bash_completion.d/git-prompt.sh
 if [ -f $GIT_PROMPT_PATH ]; then
   GIT_PS1_SHOWDIRTYSTATE=true  # staged (+) vs unstaged (*)
