@@ -20,7 +20,7 @@
 
     Bundle 'vim-ruby/vim-ruby'
     Bundle 'tpope/vim-rails'
-    "Bundle 'thoughtbot/vim-rspec'
+    Bundle 'thoughtbot/vim-rspec'
   catch
     " Do nothing...
   endtry
@@ -138,6 +138,12 @@
 
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
+
+  " Rspec.vim mappings
+  map <Leader>t :call RunCurrentSpecFile()<CR>
+  map <Leader>s :call RunNearestSpec()<CR>
+  map <Leader>l :call RunLastSpec()<CR>
+  map <Leader>a :call RunAllSpecs()<CR>
 
 "-- Wild Mode (command line completion, also used by CtrlP to ignore files)
   set wildmenu
