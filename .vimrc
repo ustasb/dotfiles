@@ -10,6 +10,7 @@
     Bundle 'kien/ctrlp.vim'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'scrooloose/syntastic'
+    Bundle 'mileszs/ack.vim'
 
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'nanotech/jellybeans.vim'
