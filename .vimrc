@@ -13,6 +13,7 @@
 
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'nanotech/jellybeans.vim'
+    Bundle 'tomasr/molokai'
 
     Bundle 'othree/html5-syntax.vim'
     Bundle 'pangloss/vim-javascript'
@@ -30,6 +31,12 @@
   let g:html_indent_inctags = "html,body,head,tbody"
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
+
+  " Molokai Color Scheme
+  let g:molokai_original = 1
+  if !has('gui_running')
+    let g:rehash256 = 1
+  endif
 
   " Syntastic settings -- enable C++11 support
   let g:syntastic_cpp_checkers = ['gcc']
@@ -78,7 +85,7 @@
 
   set background=dark
   try
-    colorscheme solarized
+    colorscheme molokai
   catch
     colorscheme torte
   endtry
