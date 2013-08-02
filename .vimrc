@@ -60,7 +60,7 @@
   set ttimeoutlen=100             " Prevent Shift-O delay in terminal
   set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
   set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
-  "set clipboard=unnamed           " Merge Vim and OS clipboard
+  set clipboard=unnamed           " Merge Vim and OS clipboard
   set tags=./tags;                " Set the tag file search order (used by Ctags)
 
   " Disable all error whistles
@@ -86,13 +86,15 @@
 
   set background=dark
   try
-    colorscheme molokai
+    colorscheme jellybeans
   catch
     colorscheme torte
   endtry
 
   if has('gui_running')
-    set guifont=Menlo:h14,Consolas:h11
+    " http://files.ax86.net/terminus-ttf/
+    set guifont=Terminus\ (TTF):h16
+    set noantialias
     set lines=35 columns=135    " Default window size
     set guioptions-=m           " Remove menubar
     set guioptions-=T           " Remove toolbar
@@ -101,7 +103,7 @@
   " Visually define an 80 character limit
   if exists('+colorcolumn')
     set colorcolumn=80
-    highlight ColorColumn ctermbg=Black guibg=#202020
+    highlight ColorColumn ctermbg=234 guibg=#232323
   endif
 
 "-- Search
@@ -203,6 +205,12 @@
 
     " Treat JSON files like JavaScript
     au BufNewFile,BufRead *.json set ft=javascript
+
+    " Treat Handlebars files as HTML
+    au BufNewFile,BufRead *.handlebars set filetype=html.js
+
+    " Treat LESS files as CSS
+    au BufNewFile,BufRead *.less set filetype=css
 
     " Python PEP8 4 space indent
     au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
