@@ -30,8 +30,8 @@ eval "$(rbenv init -)"
 # Make MacVim the default editor.
 alias sysvim='/usr/bin/vim'
 alias vi='mvim -v'  # Run MacVim in the terminal.
-alias vim='mvim -v'
-export EDITOR='mvim -f'
+alias vim='vi'
+export EDITOR='vi'
 
 alias g+='g++-4.8 -std=c++11'
 
