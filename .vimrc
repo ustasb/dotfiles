@@ -28,7 +28,7 @@
   endtry
 
 "-- Plugin Globals
-  " Andy Wokula's HTML Indent -- part of the javascript_syntax/ plugin.
+  " Andy Wokula's HTML Indent
   let g:html_indent_inctags = "html,body,head,tbody"
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
@@ -39,13 +39,16 @@
     let g:rehash256 = 1
   endif
 
-  " Syntastic settings -- enable C++11 support
+  " Syntastic -- enable C++11 support
   let g:syntastic_cpp_checkers = ['gcc']
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
 
   " CtrlP
   let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root.
+
+  " vim-javascript
+  let g:javascript_ignore_javaScriptdoc = 1
 
 "-- General
   filetype plugin indent on
