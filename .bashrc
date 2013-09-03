@@ -37,3 +37,6 @@ alias g+='g++-4.8 -std=c++11'
 
 # Prevent bold font in Vim within tmux.
 [ -n "$TMUX" ] && export TERM=screen-256color
+
+# Aliases
+alias be='bundle exec'
