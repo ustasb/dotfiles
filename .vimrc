@@ -23,6 +23,7 @@
     Bundle 'vim-ruby/vim-ruby'
     Bundle 'tpope/vim-rails'
     Bundle 'thoughtbot/vim-rspec'
+    Bundle 'scrooloose/nerdtree'
   catch
     " Do nothing...
   endtry
