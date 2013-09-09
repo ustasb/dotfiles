@@ -40,3 +40,4 @@ alias g+='g++-4.8 -std=c++11'
 
 # Aliases
 alias be='bundle exec'
+alias gs='git status'
