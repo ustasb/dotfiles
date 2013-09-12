@@ -20,24 +20,21 @@ else
   export PS1='\[\e[0;34m\]\u:\[\e[0;36m\] \w\n\[\e[0;34m\]\$\[\e[0m\] '
 fi
 
-# Homebrew
-export PATH=/usr/local/bin:$PATH
 # NPM
 export PATH=/usr/local/share/npm/bin:$PATH
+# Homebrew
+export PATH=/usr/local/bin:$PATH
 # rbenv
 eval "$(rbenv init -)"
 
-# Make MacVim the default editor.
-alias sysvim='/usr/bin/vim'
-alias vi='mvim -v'  # Run MacVim in the terminal.
-alias vim='vi'
-export EDITOR='vi'
-
-alias g+='g++-4.8 -std=c++11'
-
-# Prevent bold font in Vim within tmux.
+# Make Vim look proper within tmux.
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # Aliases
 alias be='bundle exec'
-alias gs='git status'
+alias g+='g++-4.8 -std=c++11'
+
+alias sysvim='/usr/bin/vim'
+alias vi='mvim -v'  # Run MacVim in the terminal.
+alias vim='vi'
+export EDITOR='vi'
