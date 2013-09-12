@@ -6,15 +6,14 @@
     call vundle#rc()
     Bundle 'gmarik/vundle'
 
-    Bundle 'ervandew/supertab'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'scrooloose/nerdtree'
     Bundle 'scrooloose/nerdcommenter'
+    Bundle 'ervandew/supertab'
     Bundle 'scrooloose/syntastic'
     Bundle 'mileszs/ack.vim'
 
-    Bundle 'altercation/vim-colors-solarized'
     Bundle 'nanotech/jellybeans.vim'
-    Bundle 'tomasr/molokai'
 
     Bundle 'othree/html5-syntax.vim'
     Bundle 'pangloss/vim-javascript'
@@ -23,9 +22,7 @@
     Bundle 'vim-ruby/vim-ruby'
     Bundle 'tpope/vim-rails'
     Bundle 'thoughtbot/vim-rspec'
-    Bundle 'scrooloose/nerdtree'
   catch
-    " Do nothing...
   endtry
 
 "-- Plugin Globals
@@ -34,19 +31,13 @@
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
 
-  " Molokai Color Scheme
-  let g:molokai_original = 1
-  if !has('gui_running')
-    let g:rehash256 = 1
-  endif
-
   " Syntastic -- enable C++11 support
   let g:syntastic_cpp_checkers = ['gcc']
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
 
   " CtrlP
-  let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root.
+  let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
@@ -65,7 +56,6 @@
   set title                       " Change the title of the terminal/tab with the file name
   set hidden                      " Allow unsaved background buffers and remember marks/undos for them
   set ttimeoutlen=100             " Prevent Shift-O delay in terminal
-  set pastetoggle=<F2>            " When toggled, Vim's autoindent won't interfere with pasting content normally
   set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
   set clipboard=unnamed           " Merge Vim and OS clipboard
   set tags=./tags;                " Set the tag file search order (used by Ctags)
@@ -80,12 +70,11 @@
   if isdirectory($HOME . '/.vim/backup') == 0
     :silent !mkdir -p ~/.vim/backup > /dev/null 2>&1
   endif
-  set directory=~/.vim/backup//      " Where to put swap files
-  set backupdir=~/.vim/backup//      " Where to put backup files
+  set directory=~/.vim/backup//  " Where to put swap files
+  set backupdir=~/.vim/backup//  " Where to put backup files
   set backup
 
 "-- UI
- "set number                    " Line numbering
   set laststatus=2              " Always show a status line
   set statusline=%f\ %m\ %r     " file path, modified status, read-only status
   set statusline+=\ Line:%l/%L  " current line / all lines
@@ -99,12 +88,11 @@
   endtry
 
   if has('gui_running')
-    " http://files.ax86.net/terminus-ttf/
-    set guifont=Terminus\ (TTF):h16
+    set guifont=Terminus\ (TTF):h16  " http://files.ax86.net/terminus-ttf/
     set noantialias
-    set lines=35 columns=135    " Default window size
-    set guioptions-=m           " Remove menubar
-    set guioptions-=T           " Remove toolbar
+    set lines=35 columns=135         " Default window size
+    set guioptions-=m                " Remove menubar
+    set guioptions-=T                " Remove toolbar
   endif
 
   " Visually define an 80 character limit
@@ -147,7 +135,7 @@
   vnoremap < <gv
   vnoremap > >gv
 
-  " Background Vim with <Leader>z (bring back into foreground with fg)
+  " Background Vim with <Leader>z (bring back into foreground with `fg`)
   nnoremap <Leader>z <C-z>
 
   " cd to the directory containing the file in the buffer
@@ -178,9 +166,6 @@
 
 "-- Auto Commands
   if has('autocmd')
-    " Disable paste mode when leaving Insert mode
-    au InsertLeave * set nopaste
-
     "Wrap lines at 80 characters for all text files
     autocmd FileType text,markdown setlocal textwidth=80
 
@@ -214,16 +199,13 @@
     au BufNewFile,BufRead *.json set ft=javascript
 
     " Treat Handlebars files as HTML
-    au BufNewFile,BufRead *.handlebars set filetype=html.js
+    au BufNewFile,BufRead *{.handlebars,hbs} set filetype=html.js
 
     " Treat LESS files as CSS
     au BufNewFile,BufRead *.less set filetype=css
 
     " Python PEP8 4 space indent
     au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-
-    " Enter Normal mode if Insert mode is idle for 4 seconds
-    "au CursorHoldI * stopinsert
   endif
 
 "-- Helper Functions
