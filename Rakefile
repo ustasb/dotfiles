@@ -21,12 +21,11 @@ desc 'Put .bashrc and .bash_profile into $HOME'
 task :update_sys_bashrc do
   FileUtils.cp('.bash_profile', HOME_DIR + '/.bash_profile')
   FileUtils.cp('.bashrc', HOME_DIR + '/.bashrc')
-  puts 'To apply the new .bashrc settings, execute: source ~/.bashrc'
+  puts 'To apply the new .bashrc settings, execute `source ~/.bashrc`'
 end
 
 task :update_sys => [:update_sys_bashrc, :update_vim_settings]
 
 task :default do
-  puts 'Run rake -T for commands.'
+  puts 'Run rake -T for options.'
 end
-
