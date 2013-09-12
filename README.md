@@ -1,12 +1,10 @@
 # Brian Ustas's Dot/Configuration Files
 
-## Installing Dotfiles
-Use the Rakefile to distribute the .bashrc, .bash_profile, .vimrc and .vim/ into
-the home directory.
+* Font: [Terminus Medium 4.38](http://files.ax86.net/terminus-ttf/)
+* Theme: [JellyBeans](https://github.com/nanotech/jellybeans.vim)
+* Terminal: [iTerm2](http://www.iterm2.com/)
+* Editor: Terminal [MacVim](https://code.google.com/p/macvim/)
 
-See `rake -T` for commands.
+## Installing
 
-## OS X
-Import the custom solarized_dark.terminal theme into Terminal.app. It's based off [this][1] and has only been tested on Mountain Lion.
-
-[1]: https://github.com/tomislav/osx-lion-terminal.app-colors-solarized.git
+See `rake -T` for options.
