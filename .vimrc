@@ -58,7 +58,7 @@
   set ttimeoutlen=100             " Prevent Shift-O delay in terminal
   set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
   set clipboard=unnamed           " Merge Vim and OS clipboard
-  set tags=./tags;                " Set the tag file search order (used by Ctags)
+  set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
