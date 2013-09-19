@@ -42,6 +42,9 @@
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
 
+  " vim-coffee-script
+  hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
+
 "-- General
   filetype plugin indent on
   syntax enable
@@ -59,6 +62,7 @@
   set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
   set clipboard=unnamed           " Merge Vim and OS clipboard
   set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
+  set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
