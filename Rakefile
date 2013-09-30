@@ -1,30 +1,43 @@
 require 'fileutils'
 
 HOME_DIR = File.expand_path('~')
+CONFIG_FILES = [
+  '.bash_profile',
+  '.bashrc',
+  '.tmux.conf',
+  '.vimrc',
+  '.xvimrc'
+]
 
-desc 'Install Vim preferences'
-task :update_vim_settings do
-  FileUtils.cp('.vimrc', HOME_DIR + '/.vimrc')
-  FileUtils.rm_rf(HOME_DIR + '/.vim')
+desc 'Install Vim plugins'
+task :install_vim_plugins => [:install_config_files] do
+  FileUtils.rm_rf("#{HOME_DIR}/.vim")
 
-  # Install Vundle + Vim plugins
   puts "\nInstalling Vundle..."
   `git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
 
   puts "\nInstalling Vim plugins..."
   `vim +BundleInstall +qall`
 
-  puts "\nDone installing Vim settings!"
+  puts "\nDone installing Vim plugins!"
 end
 
-desc 'Put .bashrc and .bash_profile into $HOME'
-task :update_sys_bashrc do
-  FileUtils.cp('.bash_profile', HOME_DIR + '/.bash_profile')
-  FileUtils.cp('.bashrc', HOME_DIR + '/.bashrc')
+desc 'Place all config files into the home directory'
+task :install_config_files do
+  CONFIG_FILES.each do |filename|
+    dest_path = "#{HOME_DIR}/#{filename}"
+
+    if File.exist?(dest_path)
+      FileUtils.mv(dest_path, "#{dest_path}.original")
+    end
+
+    FileUtils.cp(filename, dest_path)
+  end
+
   puts 'To apply the new .bashrc settings, execute `source ~/.bashrc`'
 end
 
-task :update_sys => [:update_sys_bashrc, :update_vim_settings]
+task :update_sys => [:install_config_files, :install_vim_plugins]
 
 task :default do
   puts 'Run rake -T for options.'
