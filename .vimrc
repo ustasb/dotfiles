@@ -12,7 +12,9 @@
     Bundle 'ervandew/supertab'
     Bundle 'scrooloose/syntastic'
     Bundle 'mileszs/ack.vim'
+
     Bundle 'benmills/vimux'
+    Bundle 'christoomey/vim-tmux-navigator'
 
     Bundle 'nanotech/jellybeans.vim'
 
