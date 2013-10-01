@@ -31,10 +31,11 @@ eval "$(rbenv init -)"
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # Aliases
+alias ls='ls -p' # Append / to directories
 alias be='bundle exec'
 alias g+='g++-4.8 -std=c++11'
 
 alias sysvim='/usr/bin/vim'
-alias vi='mvim -v'  # Run MacVim in the terminal.
+alias vi='mvim -v'  # Run MacVim in the terminal
 alias vim='vi'
 export EDITOR='vim'
