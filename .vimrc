@@ -12,6 +12,7 @@
     Bundle 'ervandew/supertab'
     Bundle 'scrooloose/syntastic'
     Bundle 'mileszs/ack.vim'
+    Bundle 'benmills/vimux'
 
     Bundle 'nanotech/jellybeans.vim'
 
@@ -27,9 +28,9 @@
 
 "-- Plugin Globals
   " Andy Wokula's HTML Indent
-  let g:html_indent_inctags = "html,body,head,tbody"
-  let g:html_indent_script1 = "inc"
-  let g:html_indent_style1 = "inc"
+  let g:html_indent_inctags = 'html,body,head,tbody'
+  let g:html_indent_script1 = 'inc'
+  let g:html_indent_style1 = 'inc'
 
   " Syntastic -- enable C++11 support
   let g:syntastic_cpp_checkers = ['gcc']
@@ -44,6 +45,9 @@
 
   " vim-coffee-script
   hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
+
+  " RSpec.vim
+  let g:rspec_command = 'call VimuxRunCommand("rspec {spec}")'
 
 "-- General
   filetype plugin indent on
