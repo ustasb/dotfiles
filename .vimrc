@@ -51,6 +51,9 @@
   " RSpec.vim
   let g:rspec_command = 'call VimuxRunCommand("rspec {spec}")'
 
+  " Vimux
+  map <Leader>rb :call VimuxRunCommand('clear; ruby ' . bufname('%'))<CR>
+
 "-- General
   filetype plugin indent on
   syntax enable
