@@ -1,34 +1,189 @@
 " Brian Ustas's .vimrc
 
+"-- Basic
+  filetype plugin indent on
+  syntax enable
+
+  set nocompatible                " Don't start Vim in vi-compatibility mode
+  set encoding=utf-8              " Set default encoding to UTF-8
+  set ffs=unix,dos,mac            " File Format (relevant to line ending type)
+  set mouse=a                     " Enable mouse support for all modes
+  set backspace=indent,eol,start  " Make backspace work like most other apps
+  set history=100                 " Keep 100 lines of command-line history
+  set showcmd                     " Display incomplete commands
+  set title                       " Change the title of the terminal/tab with the file name
+  set hidden                      " Allow unsaved background buffers
+  set ttimeoutlen=100             " Prevent Shift-O delay in terminal
+  set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
+  set clipboard=unnamed           " Merge Vim and OS clipboard
+  set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
+  set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
+
+  " Disable all error whistles
+  set noerrorbells visualbell t_vb=
+
+  " Backups
+  set backup
+  set backupdir=/var/tmp//,/tmp//,.
+  set noswapfile
+
+  " Resize splits when Vim is resized
+  au VimResized * wincmd =
+
+"-- UI
+  " Status Line
+  set laststatus=2              " Always show a status line
+  set statusline=%f\ %m\ %r     " file path, modified status, read-only status
+  set statusline+=\ Line:%l/%L  " current line / all lines
+  set statusline+=\ Buf:%n      " buffer number
+
+  " GUI
+  if has('gui_running')
+    set guifont=Terminus\ (TTF):h16  " http://files.ax86.net/terminus-ttf/
+    set noantialias
+    set lines=35 columns=135         " Default window size
+    set guioptions-=m                " Remove menubar
+    set guioptions-=T                " Remove toolbar
+  endif
+
+  " Visually define an 80 character limit
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=234 guibg=#232323
+
+"-- Search
+  set nohlsearch      " Turn off highlight matching
+  set incsearch       " Incremental searching
+  set ignorecase      " Searches are case insensitive...
+  set smartcase       " ...unless they contain at least one capital letter
+
+"-- Whitespace
+  set autoindent      " Turn on autoindenting
+  set nowrap          " Don't wrap lines
+  set expandtab       " Insert spaces instead of tabs when <Tab> is pressed
+  set shiftwidth=2    " Set the indentation width for < and >
+  set tabstop=2       " Make 2 spaces behave like a tab
+  set softtabstop=2
+
+"-- Key Mappings
+  " Change the leader key from \ to ,
+  let mapleader=','
+
+  " Enter Ex mode with :
+  map ; :
+
+  " Use jk instead of <Esc> to enter Normal mode
+  inoremap jk <Esc>
+
+  " Make shift-k do nothing
+  nnoremap <S-k> <Nop>
+
+  " Split navigation
+  nnoremap <C-h> <C-w>h
+  nnoremap <C-j> <C-w>j
+  nnoremap <C-k> <C-w>k
+  nnoremap <C-l> <C-w>l
+  nnoremap <C-x> <C-w>x
+
+  " Reselect visual block after indent/outdent
+  vnoremap < <gv
+  vnoremap > >gv
+
+  " Background Vim with <Leader>z (bring back into foreground with `fg`)
+  nnoremap <Leader>z <C-z>
+
+  " cd into the directory containing the file in the buffer
+  nnoremap <silent> <Leader>cd :lcd %:h<CR>
+
+  " Swap two words
+  nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
+
+"-- Wild Mode (command-line completion, also used by CtrlP to ignore files)
+  set wildmenu
+  set wildmode=list:longest,full
+  set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+  " Ignore archive files
+  set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+  " Ignore Bundler and SASS cache
+  set wildignore+=*/vendor/gems/*,*/vendor/bundle/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+  " Ignore node.js modules
+  set wildignore+=*/node_modules/*
+  " Ignore temp and backup files
+  set wildignore+=*.swp,*~,._*
+
+"-- Files
+  " Markdown files
+  au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
+  " Ruby files
+  au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set filetype=ruby
+  " Treat JSON files as JavaScript
+  au BufNewFile,BufRead *.json set filetype=javascript
+  " Treat Handlebars files as HTML
+  au BufNewFile,BufRead *{.handlebars,hbs} set filetype=html.js
+  " Treat LESS files as CSS
+  au BufNewFile,BufRead *.less set filetype=css
+  " Python PEP8 4 space indent
+  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+
+"-- Misc
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " Remove whitespace at the end of lines while maintaining cursor position
+  fun! <SID>StripTrailingWhitespaces()
+    let l = line('.')
+    let c = col('.')
+    %s/\s\+$//e
+    call cursor(l, c)
+  endfun
+  au FileType * au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+  " Rename the current file (credit: Gary Bernhardt)
+  function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+      exec ':saveas ' . new_name
+      exec ':silent !rm ' . old_name
+      redraw!
+    endif
+  endfunction
+  map <Leader>rn :call RenameFile()<cr>
+
 "-- Vundle
-  try
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+  Bundle 'gmarik/vundle'
 
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'scrooloose/nerdcommenter'
-    Bundle 'ervandew/supertab'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'mileszs/ack.vim'
+  Bundle 'kien/ctrlp.vim'
+  Bundle 'scrooloose/nerdtree'
+  Bundle 'scrooloose/nerdcommenter'
+  Bundle 'ervandew/supertab'
+  Bundle 'scrooloose/syntastic'
+  Bundle 'mileszs/ack.vim'
 
-    Bundle 'benmills/vimux'
-    Bundle 'christoomey/vim-tmux-navigator'
+  Bundle 'benmills/vimux'
+  Bundle 'christoomey/vim-tmux-navigator'
 
-    Bundle 'nanotech/jellybeans.vim'
+  Bundle 'nanotech/jellybeans.vim'
 
-    Bundle 'othree/html5-syntax.vim'
-    Bundle 'pangloss/vim-javascript'
-    Bundle 'kchmck/vim-coffee-script'
+  Bundle 'othree/html5-syntax.vim'
+  Bundle 'pangloss/vim-javascript'
+  Bundle 'kchmck/vim-coffee-script'
 
-    Bundle 'vim-ruby/vim-ruby'
-    Bundle 'tpope/vim-rails'
-    Bundle 'thoughtbot/vim-rspec'
-  catch
-  endtry
+  Bundle 'vim-ruby/vim-ruby'
+  Bundle 'thoughtbot/vim-rspec'
 
 "-- Plugin Globals
+  " Jellybeans
+  set background=dark
+  set t_Co=256
+  silent! colorscheme jellybeans
+
   " Andy Wokula's HTML Indent
   let g:html_indent_inctags = 'html,body,head,tbody'
   let g:html_indent_script1 = 'inc'
@@ -49,188 +204,16 @@
   hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
 
   " RSpec.vim
-  let g:rspec_command = 'call VimuxRunCommand("rspec {spec}")'
+  noremap <Leader>t :call RunCurrentSpecFile()<CR>
+  noremap <Leader>s :call RunNearestSpec()<CR>
 
   " Vimux
-  map <Leader>rb :call VimuxRunCommand('clear; ruby ' . bufname('%'))<CR>
+  let g:rspec_command = 'call VimuxRunCommand("rspec {spec}")'
+  noremap <Leader>rb :call VimuxRunCommand('clear; ruby ' . bufname('%'))<CR>
 
-"-- General
-  filetype plugin indent on
-  syntax enable
-
-  set nocompatible                " Don't start Vim in vi-compatibility mode
-  set encoding=utf-8              " Set default encoding to UTF-8
-  set ffs=unix,dos,mac            " File Format (relevant to line ending type)
-  set mouse=a                     " Enable mouse support for all modes
-  set backspace=indent,eol,start  " Make backspace work like most other apps
-  set history=100                 " Keep 100 lines of command line history
-  set showcmd                     " Display incomplete commands
-  set title                       " Change the title of the terminal/tab with the file name
-  set hidden                      " Allow unsaved background buffers and remember marks/undos for them
-  set ttimeoutlen=100             " Prevent Shift-O delay in terminal
-  set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
-  set clipboard=unnamed           " Merge Vim and OS clipboard
-  set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
-  set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
-
-  " Disable all error whistles
-  set noerrorbells visualbell t_vb=
-  if has('autocmd')
-    autocmd GUIEnter * set visualbell t_vb=
-  endif
-
-  " Create backup directory if not present
-  if isdirectory($HOME . '/.vim/backup') == 0
-    :silent !mkdir -p ~/.vim/backup > /dev/null 2>&1
-  endif
-  set directory=~/.vim/backup//  " Where to put swap files
-  set backupdir=~/.vim/backup//  " Where to put backup files
-  set backup
-
-"-- UI
-  set laststatus=2              " Always show a status line
-  set statusline=%f\ %m\ %r     " file path, modified status, read-only status
-  set statusline+=\ Line:%l/%L  " current line / all lines
-  set statusline+=\ Buf:%n      " buffer number
-
-  set background=dark
-  try
-    colorscheme jellybeans
-  catch
-    colorscheme torte
-  endtry
-
-  if has('gui_running')
-    set guifont=Terminus\ (TTF):h16  " http://files.ax86.net/terminus-ttf/
-    set noantialias
-    set lines=35 columns=135         " Default window size
-    set guioptions-=m                " Remove menubar
-    set guioptions-=T                " Remove toolbar
-  endif
-
-  " Visually define an 80 character limit
-  if exists('+colorcolumn')
-    set colorcolumn=80
-    highlight ColorColumn ctermbg=234 guibg=#232323
-  endif
-
-"-- Search
-  set nohlsearch      " Turn off highlight matching
-  set incsearch       " Incremental searching
-  set ignorecase      " Searches are case insensitive...
-  set smartcase       " ...unless they contain at least one capital letter
-
-"-- Whitespace
-  set autoindent      " Turn on autoindenting
-  set nowrap          " Don't wrap lines
-  set expandtab       " Insert spaces instead of tabs when <Tab> is pressed
-  set shiftwidth=2    " Set the indentation width for < and >
-  set tabstop=2       " Make 2 spaces behave like a tab
-  set softtabstop=2
-
-"-- Key Mappings
-  " Change the leader key from \ to ,
-  let mapleader=','
-
-  " Make shift-k do nothing
-  map <S-k> <Nop>
-
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
-  map <C-x> <C-w>x
-
-  " Use jk instead of <Esc> to enter Normal mode
-  inoremap jk <Esc>
-
-  " Reselect visual block after indent/outdent
-  vnoremap < <gv
-  vnoremap > >gv
-
-  " Background Vim with <Leader>z (bring back into foreground with `fg`)
-  nnoremap <Leader>z <C-z>
-
-  " cd to the directory containing the file in the buffer
-  nnoremap <silent> <Leader>cd :lcd %:h<CR>
-
-  " Swap two words
-  nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
-
-  " Rspec.vim mappings
-  map <Leader>t :call RunCurrentSpecFile()<CR>
-  map <Leader>s :call RunNearestSpec()<CR>
-  map <Leader>l :call RunLastSpec()<CR>
-  map <Leader>a :call RunAllSpecs()<CR>
-
-"-- Wild Mode (command line completion, also used by CtrlP to ignore files)
-  set wildmenu
-  set wildmode=list:longest,full
-  " Disable output and VCS files
-  set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-  " Disable archive files
-  set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-  " Ignore bundler and SASS cache
-  set wildignore+=*/vendor/gems/*,*/vendor/bundle/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-  " Ignore node.js modules
-  set wildignore+=*/node_modules/*
-  " Disable temp and backup files
-  set wildignore+=*.swp,*~,._*
-
-"-- Auto Commands
-  if has('autocmd')
-    "Wrap lines at 80 characters for all text files
-    autocmd FileType text,markdown setlocal textwidth=80
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal g`\"" |
-      \ endif
-
-    " Automatically resize splits when resizing window
-    autocmd VimResized * wincmd =
-
-    " Remove whitespace at the end of lines while maintaining cursor position
-    fun! <SID>StripTrailingWhitespaces()
-      let l = line('.')
-      let c = col('.')
-      %s/\s\+$//e
-      call cursor(l, c)
-    endfun
-    autocmd FileType * autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-    " Treat all Markdown files the same
-    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set ft=markdown
-
-    " Treat the following as Ruby files
-    au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set ft=ruby
-
-    " Treat JSON files like JavaScript
-    au BufNewFile,BufRead *.json set ft=javascript
-
-    " Treat Handlebars files as HTML
-    au BufNewFile,BufRead *{.handlebars,hbs} set filetype=html.js
-
-    " Treat LESS files as CSS
-    au BufNewFile,BufRead *.less set filetype=css
-
-    " Python PEP8 4 space indent
-    au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-  endif
-
-"-- Helper Functions
-
-  " Rename the current file (credit: Gary Bernhardt)
-  function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-      exec ':saveas ' . new_name
-      exec ':silent !rm ' . old_name
-      redraw!
-    endif
-  endfunction
-  map <Leader>n :call RenameFile()<cr>
+  " NERDTree
+  map <C-n> :NERDTreeToggle<CR>
+  " Open NERDTree automatically when Vim starts up if no files were specified
+  au vimenter * if !argc() | NERDTree | endif
+  " Close Vim if the only window left open is a NERDTree
+  au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
