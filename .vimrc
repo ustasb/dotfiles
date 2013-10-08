@@ -18,6 +18,7 @@
   set clipboard=unnamed           " Merge Vim and OS clipboard
   set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
   set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
+  set formatoptions-=cro          " Don't auto-comment the next line
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
@@ -213,7 +214,3 @@
 
   " NERDTree
   map <C-n> :NERDTreeToggle<CR>
-  " Open NERDTree automatically when Vim starts up if no files were specified
-  au vimenter * if !argc() | NERDTree | endif
-  " Close Vim if the only window left open is a NERDTree
-  au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
