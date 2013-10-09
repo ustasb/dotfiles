@@ -1,9 +1,6 @@
 " Brian Ustas's .vimrc
 
 "-- Basic
-  filetype plugin indent on
-  syntax enable
-
   set nocompatible                " Don't start Vim in vi-compatibility mode
   set encoding=utf-8              " Set default encoding to UTF-8
   set ffs=unix,dos,mac            " File Format (relevant to line ending type)
@@ -156,6 +153,8 @@
   map <Leader>rn :call RenameFile()<cr>
 
 "-- Vundle
+  filetype off
+
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
   Bundle 'gmarik/vundle'
@@ -178,6 +177,9 @@
 
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'thoughtbot/vim-rspec'
+
+  filetype plugin indent on
+  syntax enable
 
 "-- Plugin Globals
   " Jellybeans
