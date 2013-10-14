@@ -37,8 +37,7 @@
 
   " GUI
   if has('gui_running')
-    set guifont=Terminus\ (TTF):h16  " http://files.ax86.net/terminus-ttf/
-    set noantialias
+    set guifont=Source\ Code\ Pro\ Light:h13  " github.com/adobe/source-code-pro/downloads
     set lines=35 columns=135         " Default window size
     set guioptions-=m                " Remove menubar
     set guioptions-=T                " Remove toolbar
