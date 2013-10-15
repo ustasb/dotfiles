@@ -37,5 +37,5 @@ alias g+='g++-4.8 -std=c++11'
 
 alias sysvim='/usr/bin/vim'
 alias vi='mvim -v'  # Run MacVim in the terminal
-alias vim='vi'
+alias vim='mvim -v'
 export EDITOR='vim'
