@@ -1,6 +1,6 @@
 # Brian Ustas's Dot/Configuration Files
 
-* Font: [Terminus Medium 4.38](http://files.ax86.net/terminus-ttf/)
+* Font: [Source Code Pro Light](https://github.com/adobe/source-code-pro)
 * Theme: [JellyBeans](https://github.com/nanotech/jellybeans.vim)
 * Terminal: [iTerm2](http://www.iterm2.com/)
 * Editor: Terminal [MacVim](https://code.google.com/p/macvim/)
