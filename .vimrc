@@ -152,8 +152,8 @@
   map <Leader>rn :call RenameFile()<cr>
 
 "-- Vundle
-  filetype on  " Calling off when already off raises an error.
-  filetype off
+  filetype on  " Calling off when already off raises an error
+  filetype off  " Required by Vundle
 
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
