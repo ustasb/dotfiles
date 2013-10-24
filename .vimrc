@@ -164,7 +164,9 @@
   Bundle 'scrooloose/nerdcommenter'
   Bundle 'ervandew/supertab'
   Bundle 'scrooloose/syntastic'
-  Bundle 'mileszs/ack.vim'
+
+  " brew install the_silver_searcher
+  Bundle 'rking/ag.vim'
 
   Bundle 'benmills/vimux'
   Bundle 'christoomey/vim-tmux-navigator'
