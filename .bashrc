@@ -27,9 +27,6 @@ export PATH=/usr/local/bin:$PATH
 # rbenv
 eval "$(rbenv init -)"
 
-# Make Vim look proper within tmux.
-[ -n "$TMUX" ] && export TERM=screen-256color
-
 # Aliases
 alias ls='ls -p' # Append / to directories
 alias be='bundle exec'
