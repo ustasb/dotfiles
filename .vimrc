@@ -16,6 +16,7 @@
   set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
   set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
   set formatoptions-=cro          " Don't auto-comment the next line
+  set shortmess=I                 " Don't show Vim's welcome message
 
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
