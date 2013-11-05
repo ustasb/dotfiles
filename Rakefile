@@ -6,7 +6,8 @@ CONFIG_FILES = [
   '.bashrc',
   '.tmux.conf',
   '.vimrc',
-  '.xvimrc'
+  '.xvimrc',
+  '.agignore'
 ]
 
 desc 'Install Vim plugins'
