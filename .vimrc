@@ -18,6 +18,10 @@
   set formatoptions-=cro          " Don't auto-comment the next line
   set shortmess=I                 " Don't show Vim's welcome message
 
+  " Open new split panes to the bottom and right
+  set splitbelow
+  set splitright
+
   " Disable all error whistles
   set noerrorbells visualbell t_vb=
 
@@ -202,6 +206,16 @@
 
   " CtrlP
   let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root
+  if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+  endif
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
