@@ -2,12 +2,11 @@ require 'fileutils'
 
 HOME_DIR = File.expand_path('~')
 CONFIG_FILES = [
-  '.bash_profile',
-  '.bashrc',
+  '.zshrc',
   '.tmux.conf',
   '.vimrc',
   '.xvimrc',
-  '.agignore'
+  '.agignore',
 ]
 
 desc 'Install Vim plugins'
@@ -35,7 +34,7 @@ task :install_config_files do
     FileUtils.cp(filename, dest_path)
   end
 
-  puts 'To apply the new .bashrc settings, execute `source ~/.bashrc`'
+  puts 'To apply the new .zshrc settings, execute `source ~/.zshrc`'
 end
 
 task :update_sys => [:install_config_files, :install_vim_plugins]
