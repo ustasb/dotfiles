@@ -9,10 +9,6 @@
   # Automatically enter directories without cd
   setopt auto_cd
 
-  # Use vim as the visual editor
-  export VISUAL=vim
-  export EDITOR=$VISUAL
-
   # vi prompt mode
   bindkey -v
   bindkey jk vi-cmd-mode
@@ -68,6 +64,10 @@
 
 #=== ENVS
 
+  # Use Vim as the visual editor
+  export VISUAL=vim
+  export EDITOR=$VISUAL
+
   # NPM
   export PATH=/usr/local/share/npm/bin:$PATH
   # Homebrew
@@ -82,6 +82,11 @@
   alias ...='../..'
   alias l='ls'
   alias ll='ls -alh'
+
+  MY_VIM='mvim -v'
+  alias sysvim='/usr/bin/vim'
+  alias vi=$MY_VIM
+  alias vim=$MY_VIM
 
   # Bundler
   alias be='bundle exec'
