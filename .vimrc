@@ -44,6 +44,7 @@
   let g:html_indent_style1 = 'inc'
 
   " Syntastic -- enable C++11 support
+  let g:syntastic_check_on_open=1
   let g:syntastic_cpp_checkers = ['gcc']
   let g:syntastic_cpp_compiler = 'g++-4.9'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
