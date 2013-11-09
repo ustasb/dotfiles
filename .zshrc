@@ -32,9 +32,6 @@
   setopt auto_pushd
   export dirstacksize=5
 
-  # Try to correct command line spelling
-  setopt CORRECT CORRECT_ALL
-
   # Enable extended globbing
   setopt EXTENDED_GLOB
 
