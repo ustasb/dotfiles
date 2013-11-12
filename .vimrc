@@ -1,8 +1,8 @@
 " Brian Ustas's .vimrc
 
 "=== Vundle
-  filetype on  " Calling off when already off raises an error
-  filetype off  " Required by Vundle
+  set nocompatible
+  filetype off
 
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
@@ -30,57 +30,9 @@
   Bundle 'thoughtbot/vim-rspec'
 
   filetype plugin indent on
-  syntax enable
-
-"=== Plugin Globals
-  " Jellybeans
-  set background=dark
-  set t_Co=256
-  silent! colorscheme jellybeans
-
-  " Andy Wokula's HTML Indent
-  let g:html_indent_inctags = 'html,body,head,tbody'
-  let g:html_indent_script1 = 'inc'
-  let g:html_indent_style1 = 'inc'
-
-  " Syntastic -- enable C++11 support
-  let g:syntastic_check_on_open=1
-  let g:syntastic_cpp_checkers = ['gcc']
-  let g:syntastic_cpp_compiler = 'g++-4.9'
-  let g:syntastic_cpp_compiler_options = '-std=c++11'
-
-  " CtrlP
-  let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root
-  if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-  endif
-
-  " vim-javascript
-  let g:javascript_ignore_javaScriptdoc = 1
-
-  " vim-coffee-script
-  hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
-
-  " RSpec.vim
-  noremap <Leader>t :call RunCurrentSpecFile()<CR>
-  noremap <Leader>s :call RunNearestSpec()<CR>
-
-  " Vimux
-  let g:rspec_command = 'call VimuxRunCommand("rspec {spec}")'
-  noremap <Leader>rb :call VimuxRunCommand('clear; ruby ' . bufname('%'))<CR>
-
-  " NERDTree
-  map <C-n> :NERDTreeToggle<CR>
 
 "=== Basic
-  set nocompatible                " Don't start Vim in vi-compatibility mode
+  syntax enable
   set encoding=utf-8              " Set default encoding to UTF-8
   set ffs=unix,dos,mac            " File Format (relevant to line ending type)
   set mouse=a                     " Enable mouse support for all modes
@@ -234,3 +186,51 @@
     endif
   endfunction
   map <Leader>rn :call RenameFile()<cr>
+
+"=== Plugin Globals
+  " Jellybeans
+  set background=dark
+  set t_Co=256
+  silent! colorscheme jellybeans
+
+  " Andy Wokula's HTML Indent
+  let g:html_indent_inctags = 'html,body,head,tbody'
+  let g:html_indent_script1 = 'inc'
+  let g:html_indent_style1 = 'inc'
+
+  " Syntastic -- enable C++11 support
+  "let g:syntastic_check_on_open=1
+  let g:syntastic_cpp_checkers = ['gcc']
+  let g:syntastic_cpp_compiler = 'g++-4.9'
+  let g:syntastic_cpp_compiler_options = '-std=c++11'
+
+  " CtrlP
+  nnoremap <C-G> :CtrlPBuffer<CR>
+  let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root
+  if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+  endif
+
+  " vim-javascript
+  let g:javascript_ignore_javaScriptdoc = 1
+
+  " vim-coffee-script
+  hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
+
+  " RSpec.vim
+  nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+  nnoremap <Leader>s :call RunNearestSpec()<CR>
+
+  " Vimux
+  let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
+  nnoremap <Leader>rb :call VimuxRunCommand('clear; ruby ' . bufname('%'))<CR>
+
+  " NERDTree
+  map <C-n> :NERDTreeToggle<CR>
