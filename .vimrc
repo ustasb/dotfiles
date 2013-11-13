@@ -188,7 +188,7 @@
   endfunction
   map <Leader>rn :call RenameFile()<cr>
 
-"=== Plugin Globals
+"=== Plugin Settings
   " Jellybeans
   set background=dark
   set t_Co=256
