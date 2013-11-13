@@ -1,8 +1,9 @@
 " Brian Ustas's .vimrc
 
 "=== Vundle
+  filetype on   " Prevents Vim from having an issue with the next line if
+  filetype off  " filetype is already off.
   set nocompatible
-  filetype off
 
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
