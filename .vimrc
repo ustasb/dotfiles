@@ -188,7 +188,7 @@
   endfunction
   map <Leader>rn :call RenameFile()<cr>
 
-"=== Plugin Globals
+"=== Plugin Settings
   " Jellybeans
   set background=dark
   set t_Co=256
@@ -206,7 +206,7 @@
   let g:syntastic_cpp_compiler_options = '-std=c++11'
 
   " CtrlP
-  nnoremap <C-G> :CtrlPBuffer<CR>
+  nnoremap <C-g> :CtrlPBuffer<CR>
   let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root
   if executable('ag')
     " Use Ag over Grep
