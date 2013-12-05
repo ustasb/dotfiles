@@ -231,7 +231,7 @@
 
   " Vimux
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
-  nnoremap <Leader>rb :call VimuxRunCommand('clear; ruby ' . bufname('%'))<CR>
+  nnoremap <Leader>rb :call VimuxRunCommand('clear; ruby ' . expand('%:p'))<CR>
 
   " NERDTree
   map <C-n> :NERDTreeToggle<CR>
