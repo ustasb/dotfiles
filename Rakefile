@@ -23,7 +23,7 @@ task :install_vim_plugins => [:install_config_files] do
 end
 
 desc 'Place all config files into the home directory'
-task :install_config_files do
+task :install_config_files => [:install_pure_prompt] do
   CONFIG_FILES.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
 
@@ -35,6 +35,13 @@ task :install_config_files do
   end
 
   puts 'To apply the new .zshrc settings, execute `source ~/.zshrc`'
+end
+
+desc 'Install Pure prompt'
+task :install_pure_prompt do
+  puts 'Installing Pure prompt...'
+  `curl 'https://raw.github.com/sindresorhus/pure/master/pure.zsh' \
+   -o /usr/local/share/zsh/site-functions/prompt_pure_setup`
 end
 
 task :update_sys => [:install_config_files, :install_vim_plugins]
