@@ -2,13 +2,13 @@
 
 #== Detect OS
 
-platform='unknown'
-unamestr=$(uname)
-if [[ "$unamestr" == 'Darwin' ]]; then
-   platform='mac'
-elif [[ "$unamestr" == 'Linux' ]]; then
-   platform='linux'
-fi
+  platform='unknown'
+  unamestr=$(uname)
+  if [[ "$unamestr" == 'Darwin' ]]; then
+     platform='mac'
+  elif [[ "$unamestr" == 'Linux' ]]; then
+     platform='linux'
+  fi
 
 #=== zsh Settings
 
@@ -100,8 +100,8 @@ fi
 
 #=== Prompt
 
-autoload -U promptinit && promptinit
+  autoload -U promptinit && promptinit
 
-PURE_CMD_MAX_EXEC_TIME=10
+  PURE_CMD_MAX_EXEC_TIME=10
 
-prompt pure
+  prompt pure
