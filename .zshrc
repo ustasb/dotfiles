@@ -1,5 +1,15 @@
 # Brian Ustas's .zshrc
 
+#== Detect OS
+
+platform='unknown'
+unamestr=$(uname)
+if [[ "$unamestr" == 'Darwin' ]]; then
+   platform='mac'
+elif [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+fi
+
 #=== zsh Settings
 
   # Completion
@@ -57,10 +67,15 @@
   alias l='ls'
   alias ll='ls -alh'
 
-  MY_VIM='mvim -v'
-  alias sysvim='/usr/bin/vim'
+  # Vim aliases
+  if [[ $platform == 'mac' ]]; then
+    MY_VIM='mvim -v' # terminal MacVim
+    alias sysvim='/usr/bin/vim'
+    alias vim=$MY_VIM
+  elif [[ $platform == 'linux' ]]; then
+    MY_VIM='vim'
+  fi
   alias vi=$MY_VIM
-  alias vim=$MY_VIM
 
   # Bundler
   alias be='bundle exec'
