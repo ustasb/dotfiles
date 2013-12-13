@@ -67,6 +67,10 @@ fi
   alias l='ls'
   alias ll='ls -alh'
 
+  if ! type "$g++-4.9" > /dev/null; then
+    alias g++="g++-4.9 -std=c++11"
+  fi
+
   # Vim aliases
   if [[ $platform == 'mac' ]]; then
     MY_VIM='mvim -v' # terminal MacVim
