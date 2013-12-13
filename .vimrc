@@ -14,6 +14,7 @@
   Bundle 'scrooloose/nerdcommenter'
   Bundle 'ervandew/supertab'
   Bundle 'scrooloose/syntastic'
+  Bundle 'airblade/vim-gitgutter'
 
   " brew install the_silver_searcher
   Bundle 'rking/ag.vim'
@@ -238,3 +239,7 @@
   " NERDTree
   map <C-n> :NERDTreeToggle<CR>
   nmap <Leader>n :NERDTreeFind<CR>
+
+  " GitGutter
+  let g:gitgutter_realtime = 0  " Only run on read and write
+  let g:gitgutter_eager = 0     " ^^
