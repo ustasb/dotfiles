@@ -40,8 +40,12 @@ end
 desc 'Install Pure prompt'
 task :install_pure_prompt do
   puts 'Installing Pure prompt...'
+
+  zfunc_path = "#{HOME_DIR}/.zfunctions"
+  FileUtils.mkdir(zfunc_path) unless File.directory?(zfunc_path)
+
   `curl 'https://raw.github.com/sindresorhus/pure/master/pure.zsh' \
-   -o /usr/local/share/zsh/site-functions/prompt_pure_setup`
+   -o #{HOME_DIR}/.zfunctions/prompt_pure_setup`
 end
 
 task :update_sys => [:install_config_files, :install_vim_plugins]

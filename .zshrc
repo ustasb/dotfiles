@@ -59,6 +59,9 @@
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - zsh)"
 
+  # To hold zsh functions
+  fpath=( "$HOME/.zfunctions" $fpath )
+
 #=== Aliases
 
   alias mkdir='mkdir -p'
