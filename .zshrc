@@ -19,6 +19,10 @@
   # Automatically enter directories without cd
   setopt auto_cd
 
+  # Makes keys work within tmux...
+  bindkey "^P" up-line-or-search
+  bindkey "^R" history-incremental-search-backward
+
   # Keep lots of history
   export HISTSIZE=1000
   export SAVEHIST=1000
