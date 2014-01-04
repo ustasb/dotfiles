@@ -74,8 +74,8 @@
   alias l='ls'
   alias ll='ls -alh'
 
-  if ! type "$g++-4.9" > /dev/null; then
-    alias g++="g++-4.9 -std=c++11"
+  if ! type "$g++-4.8" > /dev/null; then
+    alias g++="g++-4.8 -std=c++11"
   fi
 
   # Vim aliases
