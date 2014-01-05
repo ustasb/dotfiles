@@ -64,7 +64,7 @@
   eval "$(rbenv init - zsh)"
 
   # To hold zsh functions
-  fpath=( "$HOME/.zfunctions" $fpath )
+  fpath=("$HOME/.zfunctions" $fpath)
 
 #=== Aliases
 
@@ -87,6 +87,7 @@
     MY_VIM='vim'
   fi
   alias vi=$MY_VIM
+  alias v=$MY_VIM
 
   # Bundler
   alias be='bundle exec'
