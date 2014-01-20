@@ -8,6 +8,7 @@ CONFIG_FILES = [
   '.xvimrc',
   '.agignore',
   '.gitconfig',
+  '.gemrc',
 ]
 
 desc 'Install Vim plugins'
