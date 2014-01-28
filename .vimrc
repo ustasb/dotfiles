@@ -16,6 +16,8 @@
   Bundle 'scrooloose/syntastic'
   Bundle 'airblade/vim-gitgutter'
 
+  Bundle 'tikhomirov/vim-glsl'
+
   " brew install the_silver_searcher
   Bundle 'rking/ag.vim'
 
