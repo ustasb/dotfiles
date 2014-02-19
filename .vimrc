@@ -16,6 +16,9 @@
   Bundle 'scrooloose/syntastic'
   Bundle 'airblade/vim-gitgutter'
 
+  " brew install ctags
+  Bundle 'majutsushi/tagbar'
+
   Bundle 'tikhomirov/vim-glsl'
 
   " brew install the_silver_searcher
@@ -249,3 +252,6 @@
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
   let g:gitgutter_eager = 0     " ^^
+
+  " Tagbar
+  nmap <C-t> :Tagbar<CR>
