@@ -28,11 +28,6 @@ desc 'Place all config files into the home directory'
 task :install_config_files => [:install_pure_prompt] do
   CONFIG_FILES.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
-
-    if File.exist?(dest_path)
-      FileUtils.mv(dest_path, "#{dest_path}.original")
-    end
-
     FileUtils.cp(filename, dest_path)
   end
 
