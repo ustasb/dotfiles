@@ -36,6 +36,10 @@
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'thoughtbot/vim-rspec'
 
+  " Vim Notes plugin
+  Bundle 'xolox/vim-misc'
+  Bundle 'xolox/vim-notes'
+
   filetype plugin indent on
 
 "=== Basic
@@ -255,3 +259,7 @@
 
   " Tagbar
   nmap <C-t> :Tagbar<CR>
+
+  " Vim Notes
+  let g:notes_directories = ['~/Google Drive/vim_notes']
+  let g:notes_suffix = '.txt'
