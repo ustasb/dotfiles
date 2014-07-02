@@ -30,6 +30,7 @@
   Bundle 'nanotech/jellybeans.vim'
 
   Bundle 'othree/html5-syntax.vim'
+  Bundle 'mattn/emmet-vim'
   Bundle 'pangloss/vim-javascript'
   Bundle 'kchmck/vim-coffee-script'
 
