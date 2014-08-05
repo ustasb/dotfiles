@@ -3,3 +3,5 @@
 	email = brianustas@gmail.com
 [core]
 	editor = vim
+[github]
+	user = ustasb
