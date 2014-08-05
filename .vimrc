@@ -265,3 +265,5 @@
   let g:notes_directories = ['~/Google Drive/vim_notes']
   let g:notes_suffix = '.txt'
   let g:notes_smart_quotes = 0
+  let g:notes_tab_indents = 0
+  let g:notes_alt_indents = 0
