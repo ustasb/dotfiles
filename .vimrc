@@ -262,7 +262,7 @@
   nmap <C-t> :Tagbar<CR>
 
   " Vim Notes
-  let g:notes_directories = ['~/Google Drive/vim_notes']
+  let g:notes_directories = ['~/Google Drive/documents/notes/vim_notes']
   let g:notes_suffix = '.txt'
   let g:notes_smart_quotes = 0
   let g:notes_tab_indents = 0
