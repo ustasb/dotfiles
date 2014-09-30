@@ -5,42 +5,45 @@
   filetype off  " filetype is already off.
   set nocompatible
 
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-  Bundle 'gmarik/vundle'
+  " Set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'scrooloose/nerdtree'
-  Bundle 'scrooloose/nerdcommenter'
-  Bundle 'ervandew/supertab'
-  Bundle 'scrooloose/syntastic'
-  Bundle 'airblade/vim-gitgutter'
+  Plugin 'gmarik/Vundle.vim'
+
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'ervandew/supertab'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'airblade/vim-gitgutter'
 
   " brew install ctags
-  Bundle 'majutsushi/tagbar'
+  Plugin 'majutsushi/tagbar'
 
-  Bundle 'tikhomirov/vim-glsl'
+  Plugin 'tikhomirov/vim-glsl'
 
   " brew install the_silver_searcher
-  Bundle 'rking/ag.vim'
+  Plugin 'rking/ag.vim'
 
-  Bundle 'benmills/vimux'
-  Bundle 'christoomey/vim-tmux-navigator'
+  Plugin 'benmills/vimux'
+  Plugin 'christoomey/vim-tmux-navigator'
 
-  Bundle 'nanotech/jellybeans.vim'
+  Plugin 'nanotech/jellybeans.vim'
 
-  Bundle 'othree/html5-syntax.vim'
-  Bundle 'mattn/emmet-vim'
-  Bundle 'pangloss/vim-javascript'
-  Bundle 'kchmck/vim-coffee-script'
+  Plugin 'othree/html5-syntax.vim'
+  Plugin 'mattn/emmet-vim'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'kchmck/vim-coffee-script'
 
-  Bundle 'vim-ruby/vim-ruby'
-  Bundle 'thoughtbot/vim-rspec'
+  Plugin 'vim-ruby/vim-ruby'
+  Plugin 'thoughtbot/vim-rspec'
 
   " Vim Notes plugin
-  Bundle 'xolox/vim-misc'
-  Bundle 'xolox/vim-notes'
+  Plugin 'xolox/vim-misc'
+  Plugin 'xolox/vim-notes'
 
+  call vundle#end()
   filetype plugin indent on
 
 "=== Basic

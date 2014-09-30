@@ -16,10 +16,10 @@ task :install_vim_plugins => [:install_config_files] do
   FileUtils.rm_rf("#{HOME_DIR}/.vim")
 
   puts "\nInstalling Vundle..."
-  `git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+  `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 
   puts "\nInstalling Vim plugins..."
-  `vim +BundleInstall +qall`
+  `vim +PluginInstall +qall`
 
   puts "\nDone installing Vim plugins!"
 end
