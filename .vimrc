@@ -29,7 +29,7 @@
   Plugin 'benmills/vimux'
   Plugin 'christoomey/vim-tmux-navigator'
 
-  Plugin 'nanotech/jellybeans.vim'
+  Plugin 'chriskempson/base16-vim'
 
   Plugin 'othree/html5-syntax.vim'
   Plugin 'mattn/emmet-vim'
@@ -206,10 +206,9 @@
   map <Leader>rn :call RenameFile()<cr>
 
 "=== Plugin Settings
-  " Jellybeans
+  " Tomorrow-Night
   set background=dark
-  set t_Co=256
-  silent! colorscheme jellybeans
+  silent! colorscheme base16-tomorrow
 
   " Andy Wokula's HTML Indent
   let g:html_indent_inctags = 'html,body,head,tbody'
