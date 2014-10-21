@@ -71,6 +71,7 @@
   set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
   set formatoptions-=cro          " Don't auto-comment the next line
   set shortmess=I                 " Don't show Vim's welcome message
+  set nofoldenable                " No text folding.
 
   " Open new split panes to the bottom and right
   set splitbelow
