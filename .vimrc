@@ -43,6 +43,10 @@
   Plugin 'xolox/vim-misc'
   Plugin 'xolox/vim-notes'
 
+  " Vim Instant Markdown
+  " Required: sudo chmod ugo-x /usr/libexec/path_helper
+  Plugin 'suan/vim-instant-markdown'
+
   call vundle#end()
   filetype plugin indent on
 
@@ -265,7 +269,7 @@
 
   " Vim Notes
   let g:notes_directories = ['~/Google Drive/documents/notes/vim_notes']
-  let g:notes_suffix = '.txt'
+  let g:notes_suffix = '.md'
   let g:notes_smart_quotes = 0
   let g:notes_tab_indents = 0
   let g:notes_alt_indents = 0
