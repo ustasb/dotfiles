@@ -43,6 +43,10 @@
   Plugin 'xolox/vim-misc'
   Plugin 'xolox/vim-notes'
 
+  " vim-markdown
+  Plugin 'godlygeek/tabular'
+  Plugin 'plasticboy/vim-markdown'
+
   " Vim Instant Markdown
   " Required: sudo chmod ugo-x /usr/libexec/path_helper
   Plugin 'suan/vim-instant-markdown'
@@ -273,3 +277,10 @@
   let g:notes_smart_quotes = 0
   let g:notes_tab_indents = 0
   let g:notes_alt_indents = 0
+
+  " Vim Markdown
+  let g:vim_markdown_folding_disabled=1
+  let g:vim_markdown_no_default_key_mappings=1
+
+  " Vim Instant Markdown
+  let g:instant_markdown_slow = 1
