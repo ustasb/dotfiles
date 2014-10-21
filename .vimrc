@@ -40,8 +40,8 @@
   Plugin 'thoughtbot/vim-rspec'
 
   " Vim Notes plugin
-  Plugin 'xolox/vim-misc'
-  Plugin 'xolox/vim-notes'
+  " Plugin 'xolox/vim-misc'
+  " Plugin 'xolox/vim-notes'
 
   " vim-markdown
   Plugin 'godlygeek/tabular'
@@ -274,11 +274,11 @@
   nmap <C-t> :Tagbar<CR>
 
   " Vim Notes
-  let g:notes_directories = ['~/Google Drive/documents/notes/notes']
-  let g:notes_suffix = '.md'
-  let g:notes_smart_quotes = 0
-  let g:notes_tab_indents = 0
-  let g:notes_alt_indents = 0
+  " let g:notes_directories = ['~/Google Drive/documents/notes/notes']
+  " let g:notes_suffix = '.md'
+  " let g:notes_smart_quotes = 0
+  " let g:notes_tab_indents = 0
+  " let g:notes_alt_indents = 0
 
   " Vim Markdown
   let g:vim_markdown_folding_disabled=1
