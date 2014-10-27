@@ -182,8 +182,11 @@
   au BufNewFile,BufRead *{.handlebars,hbs} set filetype=html.js
   " Treat LESS files as CSS
   au BufNewFile,BufRead *.less set filetype=css
+
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+  " Markdown text width of 80 characters
+  au Filetype markdown setlocal textwidth=80
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
