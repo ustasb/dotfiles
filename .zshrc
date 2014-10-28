@@ -19,9 +19,8 @@
   # Automatically enter directories without cd
   setopt auto_cd
 
-  # Makes keys work within tmux...
-  bindkey "^P" up-line-or-search
-  bindkey "^R" history-incremental-search-backward
+  # Use Emacs as the command line editor. Makes some keys work within tmux...
+  bindkey -e
 
   # Keep lots of history
   export HISTSIZE=1000
