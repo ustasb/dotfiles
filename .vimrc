@@ -2,15 +2,15 @@
 
 "=== Vundle
   filetype on   " Prevents Vim from having an issue with the next line if
-  filetype off  " filetype is already off.
+  filetype off  " filetype is already off
   set nocompatible
 
   " Set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
-
   Plugin 'gmarik/Vundle.vim'
 
+  " Misc
   Plugin 'kien/ctrlp.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
@@ -21,21 +21,24 @@
   " brew install ctags
   Plugin 'majutsushi/tagbar'
 
-  Plugin 'tikhomirov/vim-glsl'
-
   " brew install the_silver_searcher
   Plugin 'rking/ag.vim'
 
+  " tmux
   Plugin 'benmills/vimux'
   Plugin 'christoomey/vim-tmux-navigator'
 
+  " Color scheme
   Plugin 'chriskempson/base16-vim'
 
+  " Syntax
   Plugin 'othree/html5-syntax.vim'
   Plugin 'mattn/emmet-vim'
   Plugin 'pangloss/vim-javascript'
   Plugin 'kchmck/vim-coffee-script'
+  Plugin 'tikhomirov/vim-glsl'
 
+  " Ruby
   Plugin 'vim-ruby/vim-ruby'
   Plugin 'thoughtbot/vim-rspec'
 
