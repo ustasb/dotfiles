@@ -144,9 +144,6 @@
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
-  " Redraw the Vim view
-  nnoremap <Leader>l :redraw!<CR>
-
 "=== Wild Mode (command-line completion, also used by CtrlP to ignore files)
   set wildmenu
   set wildmode=list:longest,full
