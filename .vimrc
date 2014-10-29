@@ -33,7 +33,6 @@
 
   " Syntax
   Plugin 'othree/html5-syntax.vim'
-  Plugin 'mattn/emmet-vim'
   Plugin 'pangloss/vim-javascript'
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'tikhomirov/vim-glsl'
