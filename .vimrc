@@ -184,12 +184,12 @@
     \ endif
 
   " Remove whitespace at the end of lines while maintaining cursor position
-  fun! <SID>StripTrailingWhitespaces()
+  function! <SID>StripTrailingWhitespaces()
     let l = line('.')
     let c = col('.')
     %s/\s\+$//e
     call cursor(l, c)
-  endfun
+  endfunction
   au FileType * au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
   " Rename the current file (credit: Gary Bernhardt)
@@ -203,6 +203,13 @@
     endif
   endfunction
   map <Leader>rn :call RenameFile()<cr>
+
+  " Open a file in Google Chrome - OS X only
+  function! OpenFileInChrome()
+    exec 'silent !open -a "Google Chrome" "%"'
+    redraw!
+  endfunction
+  command Chrome call OpenFileInChrome()
 
   " Don't auto-comment the next line on Enter
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
