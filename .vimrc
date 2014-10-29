@@ -263,6 +263,8 @@
   map <C-n> :NERDTreeToggle<CR>
   nmap <Leader>n :NERDTreeFind<CR>
   let NERDTreeIgnore=['\.o$']
+  let NERDTreeShowHidden=1
+  let NERDTreeShowBookmarks=1
 
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
