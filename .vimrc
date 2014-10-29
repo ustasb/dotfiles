@@ -41,6 +41,10 @@
   Plugin 'vim-ruby/vim-ruby'
   Plugin 'thoughtbot/vim-rspec'
 
+  " Vim Instant Markdown
+  " Required: sudo chmod ugo-x /usr/libexec/path_helper
+  Plugin 'suan/vim-instant-markdown'
+
   call vundle#end()
   filetype plugin indent on
 
