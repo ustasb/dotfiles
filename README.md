@@ -6,6 +6,7 @@
   - [Xcode theme](https://github.com/joedynamite/base16-xcode4/blob/master/base16-tomorrow.dark.dvtcolortheme)
 * Editor: Terminal [MacVim](https://code.google.com/p/macvim/)
 * Terminal: [iTerm2](http://www.iterm2.com/)
+* Markdown Preview: [Markdown Preview](https://github.com/borismus/markdown-preview) (Chrome Extension)
 
 ## Installing
 
