@@ -59,7 +59,6 @@
   set clipboard=unnamed           " Merge Vim and OS clipboard
   set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
   set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
-  set formatoptions-=cro          " Don't auto-comment the next line
   set shortmess=I                 " Don't show Vim's welcome message
   set nofoldenable                " No text folding
   set shortmess=a                 " Make the save message shorter. Helps avoid the "Hit ENTER to continue" message
@@ -207,6 +206,9 @@
     endif
   endfunction
   map <Leader>rn :call RenameFile()<cr>
+
+  " Don't auto-comment the next line on Enter
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "=== Plugin Settings
   " Tomorrow-Night
