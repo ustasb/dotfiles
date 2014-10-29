@@ -209,7 +209,7 @@
     exec 'silent !open -a "Google Chrome" "%"'
     redraw!
   endfunction
-  command Chrome call OpenFileInChrome()
+  command! Chrome call OpenFileInChrome()
 
   " Don't auto-comment the next line on Enter
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
