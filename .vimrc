@@ -175,8 +175,8 @@
 
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-  " 80 character line wrap for markdown and text files
-  au Filetype {text,markdown} setlocal textwidth=80
+  " 80 character line wrap for markdown and text files. Turn spell checking on
+  au Filetype {text,markdown} setlocal textwidth=80 spell
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
