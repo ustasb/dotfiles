@@ -63,9 +63,9 @@
   set clipboard=unnamed           " Merge Vim and OS clipboard
   set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
   set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
-  set shortmess=I                 " Don't show Vim's welcome message
   set nofoldenable                " No text folding
-  set shortmess=a                 " Make the save message shorter. Helps avoid the "Hit ENTER to continue" message
+  set shortmess=I                 " Don't show Vim's welcome message
+  set shortmess+=a                " Make the save message shorter. Helps avoid the "Hit ENTER to continue" message
 
   " Open new split panes to the bottom and right
   set splitbelow
