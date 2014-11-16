@@ -232,6 +232,7 @@
   let g:syntastic_cpp_checkers = ['gcc']
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
+  " For JavaScript linting, install JSHint: `npm install -g jshint`
 
   " CtrlP
   nnoremap <C-g> :CtrlPBuffer<CR>
