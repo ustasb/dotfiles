@@ -1,14 +1,18 @@
 require 'fileutils'
 
 HOME_DIR = File.expand_path('~')
+
 CONFIG_FILES = [
   '.zshrc',
   '.tmux.conf',
   '.vimrc',
-  '.xvimrc',
   '.agignore',
   '.gitconfig',
   '.gemrc',
+]
+
+OSX_CONFIG_FILES = [
+  '.xvimrc'
 ]
 
 desc 'Install Vim plugins'
@@ -26,7 +30,13 @@ end
 
 desc 'Place all config files into the home directory'
 task :install_config_files => [:install_pure_prompt] do
-  CONFIG_FILES.each do |filename|
+  config_files = CONFIG_FILES
+
+  if /darwin/ =~ RUBY_PLATFORM
+    config_files += OSX_CONFIG_FILES
+  end
+
+  config_files.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
     FileUtils.cp(filename, dest_path)
   end
