@@ -35,7 +35,7 @@ git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git check
 source ~/.nvm/nvm.sh
 # Install a Node.js version
 nvm install $node_version
-nvm use $node_version
+nvm alias default $node_version
 
 # Make zsh the default shell
 sudo chsh -s $(which zsh) $(whoami)
