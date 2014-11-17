@@ -51,7 +51,7 @@ task :install_pure_prompt do
   zfunc_path = "#{HOME_DIR}/.zfunctions"
   FileUtils.mkdir(zfunc_path) unless File.directory?(zfunc_path)
 
-  `curl 'https://raw.github.com/sindresorhus/pure/master/pure.zsh' \
+  `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/pure.zsh' \
    -o #{HOME_DIR}/.zfunctions/prompt_pure_setup`
 end
 
