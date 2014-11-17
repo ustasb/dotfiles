@@ -16,8 +16,12 @@ See `rake -T` for options.
 
 *Tested with Ubuntu 14.04 x64 and 14.10 x64*
 
-Log into the server as root and execute:
+Log into the server as root and execute ([Don't Pipe to your Shell](http://blog.seancassidy.me/dont-pipe-to-your-shell.html)):
 
-    curl https://raw.githubusercontent.com/ustasb/dotfiles/master/ubuntu_server_setup.sh | bash
+    curl -O https://raw.githubusercontent.com/ustasb/dotfiles/master/ubuntu_server_setup.sh; \
+    bash ubuntu_server_setup.sh; \
+    rm ubuntu_server_setup.sh;
 
 Do **not** execute the script twice!
+
+After, log into the server as the newly created user.
