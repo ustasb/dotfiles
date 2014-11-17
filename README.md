@@ -14,15 +14,8 @@ See `rake -T` for options.
 
 ## Ubuntu Server Setup
 
-Log into the server and execute:
+Log into the server as root and execute:
 
-    curl https://raw.githubusercontent.com/ustasb/dotfiles/master/root_ubuntu_server_setup.sh | bash
+    curl https://raw.githubusercontent.com/ustasb/dotfiles/master/ubuntu_server_setup.sh | bash
 
-Then log into the user (the `-` creates a new environment with the user's
-settings):
-
-    su - ustasb
-
-Then execute:
-
-    curl https://raw.githubusercontent.com/ustasb/dotfiles/master/user_ubuntu_server_setup.sh | bash
+Do **not** execute the script twice!
