@@ -48,7 +48,7 @@
   # Enable colored output from `ls`
   export CLICOLOR=1
 
-#=== ENVS
+#=== Environment Variables
 
   # Use Vim as the visual editor
   export VISUAL=vim
@@ -114,3 +114,5 @@
   PURE_CMD_MAX_EXEC_TIME=10
 
   prompt pure
+
+#=== Sensitive Environment Variables
