@@ -54,13 +54,15 @@
   export VISUAL=vim
   export EDITOR=$VISUAL
 
-  # NPM
-  export PATH=/usr/local/share/npm/bin:$PATH
   # Homebrew
   export PATH=/usr/local/bin:$PATH
   # rbenv
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - zsh)"
+  # NVM
+  source ~/.nvm/nvm.sh
+  # NPM
+  export PATH=/usr/local/share/npm/bin:$PATH
 
   # To hold zsh functions
   fpath=("$HOME/.zfunctions" $fpath)
