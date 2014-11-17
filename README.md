@@ -14,6 +14,8 @@ See `rake -T` for options.
 
 ## Ubuntu Server Setup
 
+*Tested with Ubuntu 14.04 x64 and 14.10 x64*
+
 Log into the server as root and execute:
 
     curl https://raw.githubusercontent.com/ustasb/dotfiles/master/ubuntu_server_setup.sh | bash
