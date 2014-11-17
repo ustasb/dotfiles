@@ -7,7 +7,7 @@ apt-get update
 apt-get -y upgrade
 
 # Install programs
-apt-get -y install zsh git tmux
+apt-get -y install zsh git tmux silversearcher-ag
 # Ruby dependencies (recommended by sstephenson/ruby-build)
 apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev
 
