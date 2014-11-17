@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ssh_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDULY4HUA3rOoi3btSe3JtjlnOdec8hVB0adgFwcFp5sJJCdyVxCw5C5ec9UMSU88SPECncRLQLBDS9cz0kIaJcrWJfCBbZsLYLpC3kQ3LiuXAOngDwX5mbO41AzNq3pTeYC5Ou7fbYaXimszOkSFd+N9owEcDkcgg+l23vGfbR5wYZ+jvkjcoSQ1RTi1GjQ2JaepJGo8a36PBt8TDw85Gvarhgqkdwgp/4jjfsfYE0HP3tGXhIkQXa7fjzrmauWxtWIqnLJfqb/aPHJJcpyCCWIu6CHnKyvL3zwwN0K5I+90OEcGf7EJNW9FvCMJh3kt9jDHM6ovD+BhqF8MLaEtr brianustas@gmail.com"
+ssh_key="$(curl https://raw.githubusercontent.com/ustasb/dotfiles/master/id_rsa.pub)"
 ruby_version="2.1.5"
 node_version="v0.10.33"
 
@@ -39,4 +39,3 @@ nvm alias default $node_version
 
 # Make zsh the default shell
 sudo chsh -s $(which zsh) $(whoami)
-

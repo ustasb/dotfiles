@@ -8,7 +8,7 @@ apt-get -y upgrade
 
 # Install programs
 apt-get -y install zsh git tmux
-# Needed to compile Ruby (recommended by sstephenson/ruby-build)
+# Ruby dependencies (recommended by sstephenson/ruby-build)
 apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev
 
 # Create the user
@@ -17,5 +17,5 @@ apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libread
 adduser --disabled-password --gecos "" $username
 
 # Give the user sudo privilege
-# Do not require a password (the user has none)
+# Do not require a password (the user has none!)
 echo "$username  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
