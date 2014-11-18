@@ -67,6 +67,11 @@
   # To hold zsh functions
   fpath=("$HOME/.zfunctions" $fpath)
 
+  # Sensitive environment variables
+  if [ -f "$HOME/.env_secrets" ]; then
+    source "$HOME/.env_secrets"
+  fi
+
 #=== Aliases
 
   alias mkdir='mkdir -p'
@@ -114,5 +119,3 @@
   PURE_CMD_MAX_EXEC_TIME=10
 
   prompt pure
-
-#=== Sensitive Environment Variables
