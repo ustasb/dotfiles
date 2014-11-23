@@ -60,7 +60,12 @@
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - zsh)"
   # NVM
-  source ~/.nvm/nvm.sh
+  if [[ $platform == 'mac' ]]; then
+    source $(brew --prefix nvm)/nvm.sh
+  else
+    source ~/.nvm/nvm.sh
+  fi
+  export NVM_DIR=~/.nvm
   # NPM
   export PATH=/usr/local/share/npm/bin:$PATH
 
