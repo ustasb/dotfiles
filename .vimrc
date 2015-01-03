@@ -10,6 +10,7 @@
 " - tmux (http://tmux.sourceforge.net)
 " - ag (https://github.com/ggreer/the_silver_searcher)
 " - ctags (http://ctags.sourceforge.net/)
+" - Dash.app (http://kapeli.com/dash)
 "
 """ Plugins Requiring Additional Manual Installs
 "
@@ -60,6 +61,9 @@
   " Vim Instant Markdown
   " Required on OS X: sudo chmod ugo-x /usr/libexec/path_helper
   Plugin 'suan/vim-instant-markdown'
+
+  " Dash documentation (only works on OS X)
+  Plugin 'rizzatti/dash.vim'
 
   call vundle#end()
   filetype plugin indent on
@@ -293,3 +297,6 @@
 
   " Tagbar
   nmap <C-t> :Tagbar<CR>
+
+  " Dash
+  nmap <Leader>d :Dash<CR>
