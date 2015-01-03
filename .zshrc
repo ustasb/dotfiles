@@ -16,9 +16,6 @@
   autoload -U compinit
   compinit
 
-  # Automatically enter directories without cd
-  setopt auto_cd
-
   # Use Emacs as the command line editor. Makes some keys work within tmux...
   bindkey -e
 
@@ -88,15 +85,10 @@
 
 #=== Aliases
 
-  alias mkdir='mkdir -p'
   alias ...='../..'
   alias c='clear'
   alias l='ls'
   alias ll='ls -alh'
-
-  if ! type "$g++-4.8" > /dev/null; then
-    alias g++="g++-4.8 -std=c++11"
-  fi
 
   # Vim aliases
   if [[ $platform == 'mac' ]]; then
