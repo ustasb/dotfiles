@@ -1,4 +1,20 @@
 " Brian Ustas's .vimrc
+"
+" Supports OS X and Linux (tested with Yosemite and Ubuntu 14.04).
+"
+""" Expected Installs
+"
+" - Git
+" - Ruby and RSpec
+" - GCC 4.8 Compiler
+" - tmux (http://tmux.sourceforge.net)
+" - ag (https://github.com/ggreer/the_silver_searcher)
+" - ctags (http://ctags.sourceforge.net/)
+"
+""" Plugins Requiring Additional Manual Installs
+"
+" - See suan/vim-instant-markdown
+" - See 'Plugin Settings' for Syntastic (install JSHint)
 
 "=== Vundle
   filetype on   " Prevents Vim from having an issue with the next line if
@@ -18,10 +34,10 @@
   Plugin 'scrooloose/syntastic'
   Plugin 'airblade/vim-gitgutter'
 
-  " brew install ctags
+  " Requires ctags
   Plugin 'majutsushi/tagbar'
 
-  " brew install the_silver_searcher
+  " Requires ag (the silver searcher)
   Plugin 'rking/ag.vim'
 
   " tmux
@@ -42,7 +58,7 @@
   Plugin 'thoughtbot/vim-rspec'
 
   " Vim Instant Markdown
-  " Required: sudo chmod ugo-x /usr/libexec/path_helper
+  " Required on OS X: sudo chmod ugo-x /usr/libexec/path_helper
   Plugin 'suan/vim-instant-markdown'
 
   call vundle#end()
