@@ -1,4 +1,20 @@
 # Brian Ustas's .zshrc
+#
+# Supports OS X and Linux (tested with Yosemite and Ubuntu 14.04).
+#
+### Expected Installs
+#
+# General:
+# - Vim
+# - Git
+# - rbenv and a Ruby version (https://github.com/sstephenson/rbenv)
+# - nvm and a Node.js version (https://github.com/creationix/nvm)
+# - npm (https://www.npmjs.com/)
+# - Pure Prompt (https://github.com/sindresorhus/pure)
+#
+# Mac Specific:
+# - Homebrew
+# - Boot2Docker
 
 #== Detect OS
 
@@ -36,7 +52,7 @@
   setopt auto_pushd
   export dirstacksize=5
 
-  # Enable extended globbing
+  # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation
   setopt EXTENDED_GLOB
 
   # If a pattern for filename generation has no matches, print an error
@@ -52,20 +68,22 @@
   export EDITOR=$VISUAL
 
   # Homebrew
-  export PATH=/usr/local/bin:$PATH
+  if [[ $platform == 'mac' ]]; then
+    export PATH=/usr/local/bin:$PATH
+  fi
 
   # rbenv
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - zsh)"
 
-  # NVM
+  # nvm
   if [[ $platform == 'mac' ]]; then
     source $(brew --prefix nvm)/nvm.sh
   else
     source ~/.nvm/nvm.sh
   fi
 
-  # NPM
+  # npm
   export PATH=/usr/local/share/npm/bin:$PATH
 
   # To hold zsh functions
