@@ -9,6 +9,7 @@ CONFIG_FILES = [
   '.agignore',
   '.gitconfig',
   '.gemrc',
+  '.ctags',
 ]
 
 OSX_CONFIG_FILES = [

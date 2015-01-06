@@ -168,6 +168,9 @@
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
+  " Browse Ctags via CtrlP
+  nnoremap <leader>. :CtrlPTag<cr>
+
 "=== Wild Mode (command-line completion, also used by CtrlP to ignore files)
   set wildmenu
   set wildmode=list:longest,full
@@ -238,6 +241,13 @@
   " Don't auto-comment the next line on Enter
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+  " Create a tags file
+  function! CreateCtagsFile()
+    exec 'silent !ctags -R .'
+    redraw!
+  endfunction
+  command! Ctags call CreateCtagsFile()
+
 "=== Plugin Settings
   " Tomorrow-Night
   set background=dark
@@ -296,7 +306,7 @@
   let g:gitgutter_eager = 0     " ^^
 
   " Tagbar
-  nmap <C-t> :Tagbar<CR>
+  nnoremap <Leader>b :Tagbar<CR>
 
   " Dash
   nmap <Leader>d :Dash<CR>
