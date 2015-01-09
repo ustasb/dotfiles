@@ -16,6 +16,10 @@
 "
 " - See suan/vim-instant-markdown
 " - See 'Plugin Settings' for Syntastic (install JSHint)
+"
+""" Nice to Have
+"
+" - brew install rbenv-ctags (tags the Ruby standard library)
 
 "=== Vundle
   filetype on   " Prevents Vim from having an issue with the next line if
