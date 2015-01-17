@@ -13,6 +13,10 @@
 
 See `rake -T` for options.
 
+Any matching dotfile in `$HOME` suffixed with `.local` will be appended to any newly
+installed dotfile. For example, `.vimrc.local` will be appended to a newly
+installed `.vimrc`.
+
 ## Ubuntu Server Setup
 
 *Tested with Ubuntu 14.04 x64 and 14.10 x64*

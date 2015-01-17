@@ -40,6 +40,11 @@ task :install_config_files => [:install_pure_prompt] do
   config_files.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
     FileUtils.cp(filename, dest_path)
+
+    local_customizations = "#{dest_path}.local"
+    open(dest_path, 'a') do |f|
+      f.puts "\n" + File.read(local_customizations)
+    end if File.exist?(local_customizations)
   end
 
   puts 'To apply the new .zshrc settings, execute `source ~/.zshrc`'

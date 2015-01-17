@@ -15,7 +15,6 @@
 #
 # Mac Specific:
 # - Homebrew
-# - Boot2Docker
 
 #== Detect OS
 
@@ -89,18 +88,6 @@
 
   # To hold zsh functions
   fpath=("$HOME/.zfunctions" $fpath)
-
-  # Sensitive environment variables
-  if [ -f "$HOME/.env_secrets" ]; then
-    source "$HOME/.env_secrets"
-  fi
-
-  # Boot2Docker
-  if [[ $platform == 'mac' ]]; then
-    export DOCKER_CERT_PATH=/Users/ustasb/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
-    export DOCKER_HOST=tcp://192.168.59.103:2376
-  fi
 
 #=== Aliases
 
