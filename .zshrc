@@ -95,6 +95,7 @@
   alias c='clear'
   alias l='ls'
   alias ll='ls -alh'
+  alias cdd='cd ~/Desktop'
 
   # GCC 4.8 Compiler
   if ! type "$g++-4.8" > /dev/null; then
