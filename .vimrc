@@ -313,8 +313,6 @@
   " NERD Tree
   map <C-n> :NERDTreeToggle<CR>
   nmap <Leader>n :NERDTreeFind<CR>
-  " Close Vim when only NERD Tree is open
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
   let NERDTreeIgnore=['\.o$']
   let NERDTreeShowHidden=1
   let NERDTreeShowBookmarks=1
@@ -328,3 +326,8 @@
 
   " Dash
   nmap <Leader>d :Dash<CR>
+
+  " Vim Toggle Cursor
+  let g:togglecursor_default = 'block'
+  let g:togglecursor_insert = 'line'
+  let g:togglecursor_leave = 'line'
