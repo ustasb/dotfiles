@@ -116,6 +116,9 @@
   # Bundler
   alias be='bundle exec'
 
+  # Open my personal notes in Vim
+  alias notes='mvim +Notes'
+
 #=== Functions
 
   # No arguments: `git status`

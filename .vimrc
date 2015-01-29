@@ -252,6 +252,12 @@
   endfunction
   command! Ctags call CreateCtagsFile()
 
+  " Open notes in NERD Tree
+  function! OpenNotesInNERDTree()
+    exec ':NERDTreeFromBookmark notes'
+  endfunction
+  command! Notes call OpenNotesInNERDTree()
+
 "=== Plugin Settings
   " Tomorrow-Night
   set background=dark
