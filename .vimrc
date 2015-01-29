@@ -115,7 +115,6 @@
 
   " GUI
   if has('gui_running')
-    set guifont=Source\ Code\ Pro\ Light:h13  " github.com/adobe/source-code-pro/downloads
     set lines=35 columns=135         " Default window size
     set guioptions-=m                " Remove menubar
     set guioptions-=T                " Remove toolbar
@@ -259,9 +258,15 @@
   command! Notes call OpenNotesInNERDTree()
 
 "=== Plugin Settings
-  " Tomorrow-Night
-  set background=dark
-  silent! colorscheme base16-tomorrow
+  " Base16 color schemes
+  if has('gui_running')
+    set guifont=Source\ Code\ Pro:h13  " github.com/adobe/source-code-pro/downloads
+    set background=light
+    silent! colorscheme base16-google
+  else
+    set background=dark
+    silent! colorscheme base16-tomorrow
+  endif
 
   " Andy Wokula's HTML Indent
   let g:html_indent_inctags = 'html,body,head,tbody'
