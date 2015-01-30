@@ -119,6 +119,7 @@
     set lines=35 columns=135         " Default window size
     set guioptions-=m                " Remove menubar
     set guioptions-=T                " Remove toolbar
+    set guicursor+=a:blinkon0        " Disable cursor blinking
   endif
 
   " Visually define an 80 character limit
