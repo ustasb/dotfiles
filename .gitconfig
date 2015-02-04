@@ -1,7 +1,9 @@
 [user]
-	name = Brian Ustas
-	email = brianustas@gmail.com
+  name = Brian Ustas
+  email = brianustas@gmail.com
 [core]
-	editor = vim
+  editor = vim
 [github]
-	user = ustasb
+  user = ustasb
+[alias]
+  co = checkout
