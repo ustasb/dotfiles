@@ -38,6 +38,7 @@
   Plugin 'ervandew/supertab'
   Plugin 'scrooloose/syntastic'
   Plugin 'airblade/vim-gitgutter'
+  Plugin 'tpope/vim-fugitive'
   Plugin 'jszakmeister/vim-togglecursor'
 
   " Requires ctags
