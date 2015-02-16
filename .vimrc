@@ -35,12 +35,14 @@
   Plugin 'kien/ctrlp.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
-  Plugin 'ervandew/supertab'
   Plugin 'scrooloose/syntastic'
   Plugin 'airblade/vim-gitgutter'
   Plugin 'tpope/vim-fugitive'
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'Raimondi/delimitMate'
+
+  " Requires a compile step
+  Plugin 'Valloric/YouCompleteMe'
 
   " Requires ctags
   Plugin 'majutsushi/tagbar'
