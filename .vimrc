@@ -44,9 +44,6 @@
   " Requires a compile step
   Plugin 'Valloric/YouCompleteMe'
 
-  " Requires ctags
-  Plugin 'majutsushi/tagbar'
-
   " Requires ag (the silver searcher)
   Plugin 'rking/ag.vim'
 
@@ -325,9 +322,6 @@
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
   let g:gitgutter_eager = 0     " ^^
-
-  " Tagbar
-  nnoremap <Leader>b :Tagbar<CR>
 
   " Dash
   nmap <Leader>d :Dash<CR>
