@@ -40,6 +40,7 @@
   Plugin 'airblade/vim-gitgutter'
   Plugin 'tpope/vim-fugitive'
   Plugin 'jszakmeister/vim-togglecursor'
+  Plugin 'Raimondi/delimitMate'
 
   " Requires ctags
   Plugin 'majutsushi/tagbar'
