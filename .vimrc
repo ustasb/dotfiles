@@ -270,7 +270,6 @@
   command! Ctags call CreateCtagsFile()
 
 "=== Unite.vim
-
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   call unite#filters#sorter_default#use(['sorter_rank'])
 
@@ -283,6 +282,7 @@
   let g:unite_force_overwrite_statusline = 0  " Use Vim's default statusline
   let g:unite_source_file_mru_limit = 100
   let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
+  let g:unite_abbr_highlight = 'Normal'  " Needed by unite-outline
 
   if executable('ag')
     let g:unite_source_grep_command = 'ag'
