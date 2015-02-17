@@ -32,7 +32,6 @@
   Plugin 'gmarik/Vundle.vim'
 
   " Miscellaneous
-  Plugin 'kien/ctrlp.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/syntastic'
@@ -188,10 +187,7 @@
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
-  " Browse Ctags via CtrlP
-  nnoremap <leader>. :CtrlPTag<cr>
-
-"=== Wild Mode (command-line completion, also used by CtrlP to ignore files)
+"=== Wild Mode (command-line completion)
   set wildmenu
   set wildmode=list:longest,full
   set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -295,20 +291,6 @@
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
   " For JavaScript linting, install JSHint: `npm install -g jshint`
-
-  " CtrlP
-  nnoremap <C-g> :CtrlPBuffer<CR>
-  let g:ctrlp_working_path_mode = 0  " Use Vim's current working directory as the search root
-  if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-  endif
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
