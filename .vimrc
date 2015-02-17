@@ -38,7 +38,7 @@
   Plugin 'h1mesuke/unite-outline'
 
   " Miscellaneous
-  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'tpope/vim-commentary'
   Plugin 'scrooloose/syntastic'
   Plugin 'airblade/vim-gitgutter'
   Plugin 'tpope/vim-fugitive'
