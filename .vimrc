@@ -32,7 +32,6 @@
   Plugin 'gmarik/Vundle.vim'
 
   " Miscellaneous
-  Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/syntastic'
   Plugin 'airblade/vim-gitgutter'
@@ -264,11 +263,7 @@
   endfunction
   command! Ctags call CreateCtagsFile()
 
-  " Open notes in NERD Tree
-  function! OpenNotesInNERDTree()
-    exec ':NERDTreeFromBookmark notes'
   endfunction
-  command! Notes call OpenNotesInNERDTree()
 
 "=== Plugin Settings
   " Base16 color schemes
@@ -307,13 +302,6 @@
   " REPL commands
   nnoremap <Leader>rr :call VimuxRunCommand('clear; ruby ' . expand('%:p'))<CR>
   nnoremap <Leader>rc :call VimuxRunCommand('clear; g++ -o /tmp/a.out ' . expand('%:p') . '; /tmp/a.out')<CR>
-
-  " NERD Tree
-  map <C-n> :NERDTreeToggle<CR>
-  nmap <Leader>n :NERDTreeFind<CR>
-  let NERDTreeIgnore=['\.o$']
-  let NERDTreeShowHidden=1
-  let NERDTreeShowBookmarks=1
 
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
