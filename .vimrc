@@ -157,6 +157,7 @@
 
   " Use jk instead of <Esc> to enter Normal mode
   inoremap jk <Esc>
+  inoremap kj <Esc>
 
   " Make shift-k do nothing
   nnoremap <S-k> <Nop>
