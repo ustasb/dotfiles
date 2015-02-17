@@ -331,15 +331,14 @@
     nmap <buffer> <ESC> <Plug>(unite_exit)
     imap <buffer> <ESC> <Plug>(unite_exit)
 
-    " Ctrl jk mappings
-    imap <buffer> <c-j> <Plug>(unite_insert_leave)
-    imap <buffer> <c-k> <Plug>(unite_insert_leave)
-    nmap <buffer> <c-j> <Plug>(unite_loop_cursor_down)
-    nmap <buffer> <c-k> <Plug>(unite_loop_cursor_up)
-
     " qq to exit
     imap <buffer> qq <Plug>(unite_exit)
 
+    " Navigate candidates with Ctrl j and k
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+
+    " Ctrl-r to refresh the buffer
     nmap <buffer> <C-r> <Plug>(unite_redraw)
     imap <buffer> <C-r> <Plug>(unite_redraw)
   endfunction
