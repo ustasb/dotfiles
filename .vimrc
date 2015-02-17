@@ -31,6 +31,12 @@
   call vundle#begin()
   Plugin 'gmarik/Vundle.vim'
 
+  " Unite.vim
+  Plugin 'Shougo/vimproc.vim'
+  Plugin 'Shougo/unite.vim'
+  Plugin 'Shougo/neomru.vim'
+  Plugin 'h1mesuke/unite-outline'
+
   " Miscellaneous
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/syntastic'
@@ -263,6 +269,79 @@
   endfunction
   command! Ctags call CreateCtagsFile()
 
+"=== Unite.vim
+
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+
+  let g:unite_prompt = '❯ '
+  let g:unite_winheight = 30
+  let g:unite_data_directory='~/.vim/.cache/unite'
+  let g:unite_enable_start_insert = 1  " Start in Insert mode
+  let g:unite_enable_short_source_names = 1
+  let g:unite_source_history_yank_enable = 1
+  let g:unite_force_overwrite_statusline = 0  " Use Vim's default statusline
+  let g:unite_source_file_mru_limit = 100
+  let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
+
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+
+  " Try to keep in sync with Wildignore
+  call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+    \ 'ignore_pattern', join([
+    \ '\.git/',
+    \ 'tmp/',
+    \ 'node_modules/',
+    \ 'vendor/',
+    \ 'plugins/',
+    \ 'bower_components/',
+    \ '.sass-cache/',
+    \ 'spec/cassettes/',
+    \ ], '\|'))
+
+  " No prefix for Unite
+  nnoremap [unite] <Nop>
+  " Search through directories and files
+  nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=all file file_rec/async:!<CR>
+  " MRU
+  nnoremap <silent> <leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
+  " Open buffers
+  nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
+  " File outline
+  nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=outline outline<CR>
+  " Grep
+  nnoremap <silent> <leader>/ :<C-u>UniteWithCursorWord -buffer-name=search grep:.<cr>
+  " Notes
+  nnoremap <silent> <leader>n :<C-u>Unite -buffer-name=notes -path=/Users/ustasb/notes file_rec<CR>
+  " Yank history
+  nnoremap <silent> <leader>y :<C-u>Unite -buffer-name=yanks history/yank<CR>
+  " Vim commands
+  nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
+  " Vim mappings
+  nnoremap <silent> <leader>k :<C-u>Unite -buffer-name=mappings mapping<cr>
+
+  " Unite buffer settings
+  autocmd FileType unite call s:unite_settings()
+  function! s:unite_settings()
+    " Exit with ESC
+    nmap <buffer> <ESC> <Plug>(unite_exit)
+    imap <buffer> <ESC> <Plug>(unite_exit)
+
+    " Ctrl jk mappings
+    imap <buffer> <c-j> <Plug>(unite_insert_leave)
+    imap <buffer> <c-k> <Plug>(unite_insert_leave)
+    nmap <buffer> <c-j> <Plug>(unite_loop_cursor_down)
+    nmap <buffer> <c-k> <Plug>(unite_loop_cursor_up)
+
+    " qq to exit
+    imap <buffer> qq <Plug>(unite_exit)
+
+    nmap <buffer> <C-r> <Plug>(unite_redraw)
+    imap <buffer> <C-r> <Plug>(unite_redraw)
   endfunction
 
 "=== Plugin Settings

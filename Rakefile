@@ -26,6 +26,9 @@ task :install_vim_plugins => [:install_config_files] do
   puts "\nInstalling Vim plugins..."
   `vim +PluginInstall +qall`
 
+  puts "\nBuilding vimproc"
+  `cd ~/.vim/bundle/vimproc.vim; make; cd -;`
+
   puts "\nCompiling YouCompleteMe..."
   `~/.vim/bundle/YouCompleteMe/install.sh`
 
