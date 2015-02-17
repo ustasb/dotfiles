@@ -161,6 +161,12 @@
   nnoremap <C-l> <C-w>l
   nnoremap <C-x> <C-w>x
 
+  " Remap arrow keys to navigate buffers and tabs
+  nnoremap <left> :bprev<CR>
+  nnoremap <right> :bnext<CR>
+  nnoremap <up> :tabnext<CR>
+  nnoremap <down> :tabprev<CR>
+
   " Reselect visual block after indent/outdent
   vnoremap < <gv
   vnoremap > >gv
