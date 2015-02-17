@@ -133,6 +133,13 @@
   set ignorecase      " Searches are case insensitive...
   set smartcase       " ...unless they contain at least one capital letter
 
+  " Sane regex (enable 'very magic' mode)
+  nnoremap / /\v
+  vnoremap / /\v
+  nnoremap ? ?\v
+  vnoremap ? ?\v
+  nnoremap :s/ :s/\v
+
 "=== Whitespace
   set autoindent      " Turn on autoindenting
   set nowrap          " Don't wrap lines
