@@ -44,6 +44,7 @@
   Plugin 'tpope/vim-fugitive'
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'Raimondi/delimitMate'
+  Plugin 'justinmk/vim-sneak'
 
   " Requires a compile step
   Plugin 'Valloric/YouCompleteMe'
@@ -149,9 +150,6 @@
 "=== Key Mappings
   " Change the leader key from \ to ,
   let mapleader=','
-
-  " Enter Ex mode with :
-  map ; :
 
   " Use jk instead of <Esc> to enter Normal mode
   inoremap jk <Esc>
@@ -389,3 +387,6 @@
   let g:togglecursor_default = 'block'
   let g:togglecursor_insert = 'line'
   let g:togglecursor_leave = 'line'
+
+  " Sneak.vim
+  let g:sneak#streak = 1  " Behave like EasyMotion
