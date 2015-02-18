@@ -264,6 +264,7 @@
   command! Ctags call CreateCtagsFile()
 
 "=== Unite.vim
+
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   call unite#filters#sorter_default#use(['sorter_rank'])
 
@@ -277,12 +278,6 @@
   let g:unite_source_file_mru_limit = 100
   let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
   let g:unite_abbr_highlight = 'Normal'  " Needed by unite-outline
-
-  if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
-    let g:unite_source_grep_recursive_opt = ''
-  endif
 
   " Try to keep in sync with Wildignore
   call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
@@ -307,8 +302,6 @@
   nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
   " File outline
   nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=outline outline<CR>
-  " Grep
-  nnoremap <silent> <leader>/ :<C-u>UniteWithCursorWord -buffer-name=search grep:.<cr>
   " Notes
   nnoremap <silent> <leader>n :<C-u>Unite -buffer-name=notes -path=/Users/ustasb/notes file_rec<CR>
   " Yank history
@@ -316,7 +309,15 @@
   " Vim commands
   nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
   " Vim mappings
-  nnoremap <silent> <leader>k :<C-u>Unite -buffer-name=mappings mapping<cr>
+  nnoremap <silent> <leader>k :<C-u>Unite -buffer-name=mappings mapping<CR>
+
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+  " Grep - NOTE: Prefer Ag.vim right now
+  " nnoremap <silent> <leader>/ :<C-u>UniteWithCursorWord -buffer-name=search grep:.<CR>
 
   " Unite buffer settings
   autocmd FileType unite call s:unite_settings()
