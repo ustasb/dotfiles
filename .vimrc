@@ -295,22 +295,20 @@
   nnoremap [unite] <Nop>
   " Search through all files recursively
   nnoremap <silent> <c-p> :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
-  " Search through files in the cwd
-  nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=file file<CR>
   " MRU
-  nnoremap <silent> <leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
+  nnoremap <silent> <Leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
   " Open buffers
-  nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
+  nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
   " File outline
-  nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=outline outline<CR>
+  nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<CR>
   " Notes
-  nnoremap <silent> <leader>n :<C-u>Unite -buffer-name=notes -path=/Users/ustasb/notes file_rec<CR>
+  nnoremap <silent> <Leader>n :<C-u>Unite -buffer-name=notes -path=/Users/ustasb/notes file_rec<CR>
   " Yank history
-  nnoremap <silent> <leader>y :<C-u>Unite -buffer-name=yanks history/yank<CR>
+  nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yanks history/yank<CR>
   " Vim commands
-  nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
+  nnoremap <silent> <Leader>c :<C-u>Unite -buffer-name=commands command<CR>
   " Vim mappings
-  nnoremap <silent> <leader>k :<C-u>Unite -buffer-name=mappings mapping<CR>
+  nnoremap <silent> <Leader>k :<C-u>Unite -buffer-name=mappings mapping<CR>
 
   if executable('ag')
     let g:unite_source_grep_command = 'ag'
@@ -318,7 +316,7 @@
     let g:unite_source_grep_recursive_opt = ''
   endif
   " Grep - NOTE: Prefer Ag.vim right now
-  " nnoremap <silent> <leader>/ :<C-u>UniteWithCursorWord -buffer-name=search grep:.<CR>
+  " nnoremap <silent> <Leader>/ :<C-u>UniteWithCursorWord -buffer-name=search grep:.<CR>
 
   " Unite buffer settings
   autocmd FileType unite call s:unite_settings()
@@ -380,6 +378,7 @@
   " NERD Tree
   map <C-n> :NERDTreeToggle<CR>
   let NERDTreeIgnore=['\.o$']
+  nmap <Leader>f :NERDTreeFind<CR>
   let NERDTreeShowHidden=1
   let NERDTreeShowBookmarks=1
 
