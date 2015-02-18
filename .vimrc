@@ -294,8 +294,10 @@
 
   " No prefix for Unite
   nnoremap [unite] <Nop>
-  " Search through directories and files
-  nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=all file file_rec/async:!<CR>
+  " Search through all files recursively
+  nnoremap <silent> <c-p> :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
+  " Search through files in the cwd
+  nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=file file<CR>
   " MRU
   nnoremap <silent> <leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
   " Open buffers
