@@ -253,7 +253,6 @@
   command! Ctags call CreateCtagsFile()
 
 "=== Unite.vim
-
   let g:unite_prompt = '❯ '
   let g:unite_winheight = 30
   let g:unite_data_directory='~/.vim/.cache/unite'
