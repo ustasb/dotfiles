@@ -265,9 +265,9 @@
   let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
   let g:unite_abbr_highlight = 'Normal'  " Needed by unite-outline
 
-  " Check to see if Unite is installed before calling on it.
-  " Prevents errors when plugins are being installed for the first time.
-  if exists('g:loaded_unite')
+  " Prevents errors when plugins are being installed for the first time and
+  " don't yet exist
+  try
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
 
@@ -283,7 +283,8 @@
       \ '.sass-cache/',
       \ 'spec/cassettes/',
       \ ], '\|'))
-  endif
+  catch
+  endtry
 
   " No prefix for Unite
   nnoremap [unite] <Nop>
