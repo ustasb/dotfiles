@@ -7,3 +7,9 @@
   user = ustasb
 [alias]
   co = checkout
+
+# Get the name of the current branch
+branch-name = "!git rev-parse --abbrev-ref HEAD"
+
+# Push the current branch to origin
+publish = "!git push -u origin $(git branch-name)"
