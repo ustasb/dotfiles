@@ -20,9 +20,12 @@ def is_osx?
   /darwin/ =~ RUBY_PLATFORM
 end
 
+def get_vim
+  is_osx? ? 'mvim -v' : 'vim'
+end
+
 def vim_execute(options)
-  vim = is_osx? ? 'mvim -v' : 'vim'
-  system("#{vim} #{options}", out: $stdout, err: :out)
+  system("#{get_vim} #{options}", out: $stdout, err: :out)
 end
 
 desc 'Install Vim plugins'
@@ -63,6 +66,9 @@ task :install_config_files => [:install_pure_prompt] do
       f.puts "\n" + File.read(local_customizations)
     end if File.exist?(local_customizations)
   end
+
+  # Configure the git editor
+  `git config --global core.editor "#{get_vim}"`
 
   puts 'To apply the new .zshrc settings, execute `source ~/.zshrc`'
 end
