@@ -289,7 +289,7 @@
   " No prefix for Unite
   nnoremap [unite] <Nop>
   " Search through all files recursively
-  nnoremap <silent> <c-p> :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
+  nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
   " MRU
   nnoremap <silent> <Leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
   " Open buffers
@@ -373,7 +373,7 @@
   " NERD Tree
   map <C-n> :NERDTreeToggle<CR>
   let NERDTreeIgnore=['\.o$']
-  nmap <Leader>f :NERDTreeFind<CR>
+  nmap <Leader>g :NERDTreeFind<CR>
   let NERDTreeShowHidden=1
   let NERDTreeShowBookmarks=1
 
