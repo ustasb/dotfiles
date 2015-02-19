@@ -28,6 +28,16 @@ def vim_execute(options)
   system("#{get_vim} #{options}", out: $stdout, err: :out)
 end
 
+def customize_vim_colorscheme
+  old_color = "call <sid>hi(\"StatusLine\",    s:gui04, s:gui02, s:cterm04, s:cterm02, \"none\")"
+  new_color = "call <sid>hi(\"StatusLine\",    s:gui04, s:gui00, s:cterm04, s:cterm00, \"\")"
+  cs_file_path = "#{HOME_DIR}/.vim/plugged/base16-vim/colors/base16-tomorrow.vim"
+  cs_file = IO.read(cs_file_path)
+  return unless cs_file.index(new_color).nil?
+  cs_file.sub!(old_color, new_color)
+  File.write(cs_file_path, cs_file)
+end
+
 desc 'Install Vim plugins'
 task :install_vim_plugins => [:install_config_files] do
   FileUtils.rm_rf("#{HOME_DIR}/.vim")
@@ -38,6 +48,8 @@ task :install_vim_plugins => [:install_config_files] do
   puts "\nInstalling Vim plugins..."
   vim_execute('+PlugInstall +qall')
 
+  customize_vim_colorscheme
+
   puts "\nDone installing Vim plugins!"
 end
 
@@ -45,6 +57,8 @@ desc 'Update Vim plugins'
 task :update_vim_plugins => [:install_config_files] do
   puts "\nUpdating Vim plugins..."
   vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
+
+  customize_vim_colorscheme
 
   puts "\nDone updating Vim plugins!"
 end
