@@ -21,67 +21,57 @@
 "
 " - brew install rbenv-ctags (tags the Ruby standard library)
 
-"=== Vundle
-  filetype on   " Prevents Vim from having an issue with the next line if
-  filetype off  " filetype is already off
-  set nocompatible
+"=== Vim-Plug
+  call plug#begin('~/.vim/plugged')
+    " Unite.vim
+    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+    Plug 'Shougo/unite.vim'
+    Plug 'Shougo/neomru.vim'
+    Plug 'h1mesuke/unite-outline'
 
-  " Set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-  Plugin 'gmarik/Vundle.vim'
+    " Miscellaneous
+    Plug 'tpope/vim-commentary'
+    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/syntastic'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'jszakmeister/vim-togglecursor'
+    Plug 'Raimondi/delimitMate'
+    Plug 'justinmk/vim-sneak'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 
-  " Unite.vim
-  Plugin 'Shougo/vimproc.vim'
-  Plugin 'Shougo/unite.vim'
-  Plugin 'Shougo/neomru.vim'
-  Plugin 'h1mesuke/unite-outline'
+    " Requires ag (the silver searcher)
+    Plug 'rking/ag.vim'
 
-  " Miscellaneous
-  Plugin 'tpope/vim-commentary'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'scrooloose/syntastic'
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'jszakmeister/vim-togglecursor'
-  Plugin 'Raimondi/delimitMate'
-  Plugin 'justinmk/vim-sneak'
+    " tmux
+    Plug 'benmills/vimux'
+    Plug 'christoomey/vim-tmux-navigator'
 
-  " Requires a compile step
-  Plugin 'Valloric/YouCompleteMe'
+    " Color scheme
+    Plug 'chriskempson/base16-vim'
 
-  " Requires ag (the silver searcher)
-  Plugin 'rking/ag.vim'
+    " Syntax
+    Plug 'othree/html5-syntax.vim'
+    Plug 'pangloss/vim-javascript'
+    Plug 'kchmck/vim-coffee-script'
+    Plug 'tikhomirov/vim-glsl'
 
-  " tmux
-  Plugin 'benmills/vimux'
-  Plugin 'christoomey/vim-tmux-navigator'
+    " Ruby
+    Plug 'vim-ruby/vim-ruby'
+    Plug 'thoughtbot/vim-rspec'
 
-  " Color scheme
-  Plugin 'chriskempson/base16-vim'
+    " Vim Instant Markdown
+    " Required on OS X: sudo chmod ugo-x /usr/libexec/path_helper
+    Plug 'suan/vim-instant-markdown'
 
-  " Syntax
-  Plugin 'othree/html5-syntax.vim'
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'tikhomirov/vim-glsl'
-
-  " Ruby
-  Plugin 'vim-ruby/vim-ruby'
-  Plugin 'thoughtbot/vim-rspec'
-
-  " Vim Instant Markdown
-  " Required on OS X: sudo chmod ugo-x /usr/libexec/path_helper
-  Plugin 'suan/vim-instant-markdown'
-
-  " Dash documentation (only works on OS X)
-  Plugin 'rizzatti/dash.vim'
-
-  call vundle#end()
-  filetype plugin indent on
+    " Dash documentation (only works on OS X)
+    Plug 'rizzatti/dash.vim'
+  call plug#end()
 
 "=== Basic
+  filetype plugin indent on
   syntax enable
+
   set encoding=utf-8              " Set default encoding to UTF-8
   set ffs=unix,dos,mac            " File Format (relevant to line ending type)
   set mouse=a                     " Enable mouse support for all modes
@@ -264,9 +254,6 @@
 
 "=== Unite.vim
 
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-
   let g:unite_prompt = '❯ '
   let g:unite_winheight = 30
   let g:unite_data_directory='~/.vim/.cache/unite'
@@ -278,18 +265,25 @@
   let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
   let g:unite_abbr_highlight = 'Normal'  " Needed by unite-outline
 
-  " Try to keep in sync with Wildignore
-  call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-    \ 'ignore_pattern', join([
-    \ '\.git/',
-    \ 'tmp/',
-    \ 'node_modules/',
-    \ 'vendor/',
-    \ 'plugins/',
-    \ 'bower_components/',
-    \ '.sass-cache/',
-    \ 'spec/cassettes/',
-    \ ], '\|'))
+  " Check to see if Unite is installed before calling on it.
+  " Prevents errors when plugins are being installed for the first time.
+  if exists('g:loaded_unite')
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
+
+    " Try to keep in sync with Wildignore
+    call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ 'tmp/',
+      \ 'node_modules/',
+      \ 'vendor/',
+      \ 'plugins/',
+      \ 'bower_components/',
+      \ '.sass-cache/',
+      \ 'spec/cassettes/',
+      \ ], '\|'))
+  endif
 
   " No prefix for Unite
   nnoremap [unite] <Nop>

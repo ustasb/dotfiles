@@ -28,7 +28,7 @@ rbenv global $ruby_version
 # Install dotfiles
 git clone https://github.com/ustasb/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-rake update_sys
+rake install
 
 # Install NVM
 git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`

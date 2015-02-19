@@ -16,30 +16,41 @@ OSX_CONFIG_FILES = [
   '.xvimrc'
 ]
 
+def is_osx?
+  /darwin/ =~ RUBY_PLATFORM
+end
+
+def vim_execute(options)
+  vim = is_osx? ? 'mvim -v' : 'vim'
+  system("#{vim} #{options}", out: $stdout, err: :out)
+end
+
 desc 'Install Vim plugins'
 task :install_vim_plugins => [:install_config_files] do
   FileUtils.rm_rf("#{HOME_DIR}/.vim")
 
-  puts "\nInstalling Vundle..."
-  `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+  puts "\nInstalling Vim-Plug..."
+  `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 
   puts "\nInstalling Vim plugins..."
-  `vim +PluginInstall +qall`
-
-  puts "\nBuilding vimproc"
-  `cd ~/.vim/bundle/vimproc.vim; make; cd -;`
-
-  puts "\nCompiling YouCompleteMe..."
-  `~/.vim/bundle/YouCompleteMe/install.sh`
+  vim_execute('+PlugInstall +qall')
 
   puts "\nDone installing Vim plugins!"
+end
+
+desc 'Update Vim plugins'
+task :update_vim_plugins => [:install_config_files] do
+  puts "\nUpdating Vim plugins..."
+  vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
+
+  puts "\nDone updating Vim plugins!"
 end
 
 desc 'Place all config files into the home directory'
 task :install_config_files => [:install_pure_prompt] do
   config_files = CONFIG_FILES
 
-  if /darwin/ =~ RUBY_PLATFORM
+  if is_osx?
     config_files += OSX_CONFIG_FILES
   end
 
@@ -67,7 +78,8 @@ task :install_pure_prompt do
    -o #{HOME_DIR}/.zfunctions/prompt_pure_setup`
 end
 
-task :update_sys => [:install_config_files, :install_vim_plugins]
+task :install => [:install_config_files, :install_vim_plugins]
+task :update => [:install_config_files, :update_vim_plugins]
 
 task :default do
   puts 'Run rake -T for options.'
