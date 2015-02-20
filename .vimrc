@@ -128,7 +128,6 @@
   set incsearch       " Incremental searching
   set ignorecase      " Searches are case insensitive...
   set smartcase       " ...unless they contain at least one capital letter
-  set nomagic         " Treat search characters literally
 
 "=== Whitespace
   set autoindent      " Turn on autoindenting
