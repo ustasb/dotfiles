@@ -16,6 +16,10 @@ OSX_CONFIG_FILES = [
   '.xvimrc'
 ]
 
+def log(msg)
+  puts "===> #{msg}"
+end
+
 def is_osx?
   /darwin/ =~ RUBY_PLATFORM
 end
@@ -42,25 +46,25 @@ desc 'Install Vim plugins'
 task :install_vim_plugins => [:install_config_files] do
   FileUtils.rm_rf("#{HOME_DIR}/.vim")
 
-  puts "\nInstalling Vim-Plug..."
+  log "Installing Vim-Plug..."
   `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 
-  puts "\nInstalling Vim plugins..."
+  log "Installing Vim plugins..."
   vim_execute('+PlugInstall +qall')
 
   customize_vim_colorscheme
 
-  puts "\nDone installing Vim plugins!"
+  log "Done installing Vim plugins!"
 end
 
 desc 'Update Vim plugins'
 task :update_vim_plugins => [:install_config_files] do
-  puts "\nUpdating Vim plugins..."
+  log "Updating Vim plugins..."
   vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
 
   customize_vim_colorscheme
 
-  puts "\nDone updating Vim plugins!"
+  log "Done updating Vim plugins!"
 end
 
 desc 'Place all config files into the home directory'
@@ -84,12 +88,12 @@ task :install_config_files => [:install_pure_prompt] do
   # Configure the git editor
   `git config --global core.editor "#{get_vim}"`
 
-  puts 'To apply the new .zshrc settings, execute `source ~/.zshrc`'
+  log "To apply the new .zshrc settings, execute `source ~/.zshrc`"
 end
 
 desc 'Install Pure prompt'
 task :install_pure_prompt do
-  puts 'Installing Pure prompt...'
+  log "Installing Pure prompt..."
 
   zfunc_path = "#{HOME_DIR}/.zfunctions"
   FileUtils.mkdir(zfunc_path) unless File.directory?(zfunc_path)
