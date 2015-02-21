@@ -9,3 +9,5 @@
   branch-name = "!git rev-parse --abbrev-ref HEAD"
   # Push the current branch to origin
   publish = "!git push -u origin $(git branch-name)"
+  # Pretty graph log (credit: http://fredkschott.com/post/2014/02/git-log-is-so-2005)
+  lg = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%C(blue) <%an>%Creset' --abbrev-commit
