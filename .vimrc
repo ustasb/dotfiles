@@ -145,8 +145,14 @@
   inoremap jk <Esc>
   inoremap kj <Esc>
 
-  " Make shift-k do nothing
+  " Typos
+  " Never open `man` documentation for a word
   nnoremap <S-k> <Nop>
+  " Never enter Ex mode
+  nnoremap Q <Nop>
+  " Never browse command history
+  nnoremap q: <Nop>
+  vnoremap q: <Nop>
 
   " Split navigation
   nnoremap <C-h> <C-w>h
