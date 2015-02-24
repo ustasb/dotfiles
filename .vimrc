@@ -339,7 +339,7 @@
 "=== Plugin Settings
   " Base16 color schemes
   if has('gui_running')
-    set guifont=Source\ Code\ Pro:h13  " github.com/adobe/source-code-pro/downloads
+    set guifont=Source\ Code\ Pro:h11  " github.com/adobe/source-code-pro/downloads
     set background=light
     silent! colorscheme base16-google
   else
