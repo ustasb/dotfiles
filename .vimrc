@@ -315,10 +315,6 @@
     " qq to exit
     imap <buffer> qq <Plug>(unite_exit)
 
-    " Navigate candidates with Ctrl j and k
-    imap <buffer> <C-j> <Plug>(unite_select_next_line)
-    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-
     " Ctrl-r to refresh the buffer
     nmap <buffer> <C-r> <Plug>(unite_redraw)
     imap <buffer> <C-r> <Plug>(unite_redraw)
