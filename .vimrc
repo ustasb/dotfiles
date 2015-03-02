@@ -143,7 +143,6 @@
 
   " Use jk instead of <Esc> to enter Normal mode
   inoremap jk <Esc>
-  inoremap kj <Esc>
 
   " Typos
   " Never open `man` documentation for a word
