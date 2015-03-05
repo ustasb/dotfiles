@@ -359,9 +359,9 @@
   nnoremap <Leader>rc :call VimuxRunCommand('clear; g++ -o /tmp/a.out ' . expand('%:p') . '; /tmp/a.out')<CR>
 
   " NERD Tree
-  map <C-n> :NERDTreeToggle<CR>
+  nnoremap <C-n> :NERDTreeToggle<CR>
   let NERDTreeIgnore=['\.o$']
-  nmap <Leader>g :NERDTreeFind<CR>
+  nnoremap <Leader>g :NERDTreeFind<CR>
   let NERDTreeShowHidden=1
   let NERDTreeShowBookmarks=1
 
@@ -370,7 +370,7 @@
   let g:gitgutter_eager = 0     " ^^
 
   " Dash
-  nmap <Leader>d :Dash<CR>
+  nnoremap <Leader>d :Dash<CR>
 
   " Vim Toggle Cursor
   let g:togglecursor_default = 'block'
