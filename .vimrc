@@ -38,6 +38,7 @@
     Plug 'jszakmeister/vim-togglecursor'
     Plug 'Raimondi/delimitMate'
     Plug 'justinmk/vim-sneak'
+    Plug 'szw/vim-maximizer'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 
     " Requires ag (the silver searcher)
@@ -378,3 +379,10 @@
 
   " Sneak.vim
   let g:sneak#streak = 1  " Behave like EasyMotion
+
+  " Vim Maximizer
+  let g:maximizer_default_mapping_key = '<C-W>o'
+  " Override the default and remap recursively
+  nmap <C-W><C-O> <C-W>o
+  vmap <C-W><C-O> <C-W>o
+  imap <C-W><C-O> <C-W>o
