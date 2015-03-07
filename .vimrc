@@ -240,7 +240,7 @@
 
   " Create a tags file
   function! CreateCtagsFile()
-    exec 'silent !ctags -R .'
+    exec 'silent !ctags .'
     redraw!
   endfunction
   command! Ctags call CreateCtagsFile()
