@@ -3,6 +3,7 @@
 --fields=+l
 --exclude=.git
 --exclude=log
+--exclude=tmp
 --exclude=db/migrate
 --exclude=vendor/assets
 --exclude=lib/assets
