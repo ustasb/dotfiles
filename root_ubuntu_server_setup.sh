@@ -9,7 +9,9 @@ apt-get -y upgrade
 # Install programs
 apt-get -y install zsh git tmux silversearcher-ag tree exuberant-ctags
 # Ruby dependencies (recommended by sstephenson/ruby-build)
-apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev cmake python-dev
+apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev
+# Needed for the Vim plugin, YouCompleteMe
+apt-get -y install cmake python-dev
 
 # Install Docker
 curl -sSL https://get.docker.com/ | sh
