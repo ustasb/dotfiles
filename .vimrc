@@ -386,3 +386,7 @@
   nmap <C-W><C-O> <C-W>o
   vmap <C-W><C-O> <C-W>o
   imap <C-W><C-O> <C-W>o
+
+  " YouCompleteMe
+  let g:ycm_collect_identifiers_from_comments_and_strings = 1
+  let g:ycm_collect_identifiers_from_tags_files = 1
