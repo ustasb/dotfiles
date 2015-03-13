@@ -33,12 +33,18 @@ def vim_execute(options)
 end
 
 def customize_vim_colorscheme
-  old_color = "call <sid>hi(\"StatusLine\",    s:gui04, s:gui02, s:cterm04, s:cterm02, \"none\")"
-  new_color = "call <sid>hi(\"StatusLine\",    s:gui04, s:gui00, s:cterm04, s:cterm00, \"\")"
+  customizations = [
+    [%q{call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm03, s:cterm0A,  "")},
+     %q{call <sid>hi("Search",        s:gui00, s:gui0A, s:cterm00, s:cterm0A,  "bold")}],
+    [%q{call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none")},
+     %q{call <sid>hi("StatusLine",    s:gui04, s:gui00, s:cterm04, s:cterm00, "")}],
+  ]
+
   cs_file_path = "#{HOME_DIR}/.vim/plugged/base16-vim/colors/base16-tomorrow.vim"
   cs_file = IO.read(cs_file_path)
-  return unless cs_file.index(new_color).nil?
-  cs_file.sub!(old_color, new_color)
+  customizations.each do |old_color, new_color|
+    cs_file.sub!(old_color, new_color)
+  end
   File.write(cs_file_path, cs_file)
 end
 
