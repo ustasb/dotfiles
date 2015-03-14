@@ -30,7 +30,6 @@
     Plug 'scrooloose/syntastic'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
-    Plug 'jszakmeister/vim-togglecursor'
     Plug 'Raimondi/delimitMate'
     Plug 'justinmk/vim-sneak'
     Plug 'szw/vim-maximizer'
@@ -348,11 +347,6 @@
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
   let g:gitgutter_eager = 0     " ^^
-
-  " Vim Toggle Cursor
-  let g:togglecursor_default = 'block'
-  let g:togglecursor_insert = 'line'
-  let g:togglecursor_leave = 'line'
 
   " Sneak.vim
   let g:sneak#streak = 1  " Behave like EasyMotion
