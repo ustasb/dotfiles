@@ -41,6 +41,7 @@
     Plug 'justinmk/vim-sneak'
     Plug 'szw/vim-maximizer'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+    Plug 'junegunn/goyo.vim'
 
     " Requires ag (the silver searcher)
     Plug 'rking/ag.vim'
@@ -171,9 +172,6 @@
   " Reselect visual block after indent/outdent
   vnoremap < <gv
   vnoremap > >gv
-
-  " Background Vim with <Leader>z (bring back into foreground with `fg`)
-  nnoremap <Leader>z <C-z>
 
   " cd into the directory containing the file in the buffer
   nnoremap <silent> <Leader>cd :lcd %:h<CR>
@@ -396,3 +394,6 @@
   " Ag.vim
   let g:ag_lhandler="topleft lopen"
   let g:ag_qhandler="topleft copen"
+
+  " Goyo.vim
+  nnoremap <leader>z :Goyo<CR>
