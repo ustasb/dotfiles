@@ -10,7 +10,6 @@
 " - tmux (http://tmux.sourceforge.net)
 " - ag (https://github.com/ggreer/the_silver_searcher)
 " - ctags (http://ctags.sourceforge.net/)
-" - Dash.app (http://kapeli.com/dash)
 "
 """ Plugins Requiring Additional Manual Installs
 "
@@ -66,9 +65,6 @@
     " Vim Instant Markdown
     " Required on OS X: sudo chmod ugo-x /usr/libexec/path_helper
     Plug 'suan/vim-instant-markdown'
-
-    " Dash documentation (only works on OS X)
-    Plug 'rizzatti/dash.vim'
   call plug#end()
 
 "=== Basic
@@ -368,9 +364,6 @@
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
   let g:gitgutter_eager = 0     " ^^
-
-  " Dash
-  nnoremap <Leader>d :Dash<CR>
 
   " Vim Toggle Cursor
   let g:togglecursor_default = 'block'
