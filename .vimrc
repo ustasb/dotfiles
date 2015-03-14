@@ -145,8 +145,6 @@
   " Typos
   " Never open `man` documentation for a word
   nnoremap <S-k> <Nop>
-  " Never enter Ex mode
-  nnoremap Q <Nop>
   " Never browse command history
   nnoremap q: <Nop>
   vnoremap q: <Nop>
@@ -172,6 +170,9 @@
 
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
+
+  " qq to record, Q to replay
+  nnoremap Q @q
 
 "=== Wild Mode (command-line completion)
   set wildmenu
