@@ -115,7 +115,6 @@
 
   " Visually define an 80 character limit
   set colorcolumn=80
-  highlight ColorColumn ctermbg=234 guibg=#232323
 
 "=== Search
   set nohlsearch      " Turn off highlight matching
@@ -152,7 +151,6 @@
   nnoremap <C-j> <C-w>j
   nnoremap <C-k> <C-w>k
   nnoremap <C-l> <C-w>l
-  nnoremap <C-x> <C-w>x
 
   " Remap arrow keys to navigate buffers and tabs
   nnoremap <left> :bprev<CR>
