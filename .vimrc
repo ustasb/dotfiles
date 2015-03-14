@@ -355,11 +355,10 @@
   nnoremap <Leader>rc :call VimuxRunCommand('clear; g++ -o /tmp/a.out ' . expand('%:p') . '; /tmp/a.out')<CR>
 
   " NERD Tree
-  nnoremap <C-n> :NERDTreeToggle<CR>
   let NERDTreeIgnore=['\.o$']
-  nnoremap <Leader>g :NERDTreeFind<CR>
   let NERDTreeShowHidden=1
-  let NERDTreeShowBookmarks=1
+  nnoremap <C-n> :NERDTreeToggle<CR>
+  nnoremap <Leader>g :NERDTreeFind<CR>
 
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write
