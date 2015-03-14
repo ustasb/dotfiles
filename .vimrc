@@ -113,8 +113,14 @@
     set guicursor+=a:blinkon0        " Disable cursor blinking
   endif
 
-  " Visually define an 80 character limit
+  " Visually define an 80 character limit for the active window
   set colorcolumn=80
+  " autocmd! - Remove all autocommands for the current group
+  augroup ColorColumnToggle
+    autocmd!
+    autocmd WinEnter * set colorcolumn=80
+    autocmd WinLeave * set colorcolumn=0
+  augroup END
 
 "=== Search
   set nohlsearch      " Turn off highlight matching
