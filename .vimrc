@@ -28,6 +28,7 @@
     Plug 'Shougo/unite.vim'
     Plug 'Shougo/neomru.vim'
     Plug 'h1mesuke/unite-outline'
+    Plug 'tsukkee/unite-tag'
 
     " Miscellaneous
     Plug 'tpope/vim-commentary'
@@ -284,6 +285,8 @@
   nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
   " MRU
   nnoremap <silent> <Leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
+  " Ctags
+  nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tags tag<CR>
   " Open buffers
   nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
   " File outline
@@ -349,7 +352,6 @@
   hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
 
   " RSpec.vim
-  nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
   nnoremap <Leader>s :call RunNearestSpec()<CR>
 
   " Vimux
