@@ -15,10 +15,6 @@
 "
 " - See suan/vim-instant-markdown
 " - See 'Plugin Settings' for Syntastic (install JSHint)
-"
-""" Nice to Have
-"
-" - brew install rbenv-ctags (tags the Ruby standard library)
 
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
@@ -26,7 +22,6 @@
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
     Plug 'Shougo/unite.vim'
     Plug 'Shougo/neomru.vim'
-    Plug 'h1mesuke/unite-outline'
     Plug 'tsukkee/unite-tag'
 
     " Miscellaneous
@@ -283,24 +278,10 @@
   nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tags tag<CR>
   " Open buffers
   nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
-  " File outline
-  nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<CR>
   " Notes
   nnoremap <silent> <Leader>n :<C-u>Unite -buffer-name=notes -path=/Users/ustasb/notes file_rec<CR>
   " Yank history
   nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yanks history/yank<CR>
-  " Vim commands
-  nnoremap <silent> <Leader>c :<C-u>Unite -buffer-name=commands command<CR>
-  " Vim mappings
-  nnoremap <silent> <Leader>k :<C-u>Unite -buffer-name=mappings mapping<CR>
-
-  if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
-    let g:unite_source_grep_recursive_opt = ''
-  endif
-  " Grep - NOTE: Prefer Ag.vim right now
-  " nnoremap <silent> <Leader>/ :<C-u>UniteWithCursorWord -buffer-name=search grep:.<CR>
 
   " Unite buffer settings
   autocmd FileType unite call s:unite_settings()
