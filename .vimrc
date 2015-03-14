@@ -246,9 +246,8 @@
   let g:unite_enable_short_source_names = 1
   let g:unite_source_history_yank_enable = 1
   let g:unite_force_overwrite_statusline = 0  " Use Vim's default statusline
-  let g:unite_source_file_mru_limit = 100
+  let g:unite_source_file_mru_limit = 150
   let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
-  let g:unite_abbr_highlight = 'Normal'  " Needed by unite-outline
 
   " Prevents errors when plugins are being installed for the first time and
   " don't yet exist
