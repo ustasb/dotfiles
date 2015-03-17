@@ -331,6 +331,7 @@
 
   " RSpec.vim
   nnoremap <Leader>s :call RunNearestSpec()<CR>
+  nnoremap <Leader>S :call RunCurrentSpecFile()<CR>
 
   " Vimux
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
