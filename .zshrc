@@ -130,6 +130,13 @@
   }
   compdef g=git  # Complete g like git
 
+  # Create a new named tmux session with my preferred layout
+  tnew() { tmux new-session -s $1 \; \
+                split-window -v -p 30 \; \
+                split-window -h -p 66 \; \
+                split-window -h -p 50 \; \
+                select-pane -t 0 }
+
 #=== Prompt
 
   autoload -U promptinit && promptinit
