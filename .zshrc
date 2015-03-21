@@ -77,6 +77,7 @@
   eval "$(rbenv init - zsh)"
 
   # nvm
+  export NVM_DIR=~/.nvm
   if [[ $platform == 'mac' ]]; then
     source $(brew --prefix nvm)/nvm.sh
   else
