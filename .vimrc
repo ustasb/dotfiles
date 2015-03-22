@@ -364,4 +364,8 @@
   let g:ag_qhandler="topleft copen"
 
   " Goyo.vim
-  nnoremap <leader>z :Goyo<CR>
+  nnoremap <Leader>z :Goyo<CR>
+
+  " Vim-Commentary
+  vnoremap <Leader>c :Commentary<CR>
+  nnoremap <Leader>c :Commentary<CR>
