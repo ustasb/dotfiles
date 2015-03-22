@@ -165,9 +165,6 @@
   vnoremap < <gv
   vnoremap > >gv
 
-  " cd into the directory containing the file in the buffer
-  nnoremap <silent> <Leader>cd :lcd %:h<CR>
-
   " Swap two words
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
