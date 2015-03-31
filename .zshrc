@@ -15,6 +15,7 @@
 #
 # Mac Specific:
 # - Homebrew
+# - Boot2Docker
 
 #== Detect OS
 
@@ -89,6 +90,11 @@
 
   # To hold zsh functions
   fpath=("$HOME/.zfunctions" $fpath)
+
+  # Boot2Docker
+  if [[ $platform == 'mac' ]]; then
+    $(boot2docker shellinit 2>/dev/null)
+  fi
 
 #=== Aliases
 
