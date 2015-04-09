@@ -148,6 +148,9 @@
   " Never browse command history
   nnoremap q: <Nop>
   vnoremap q: <Nop>
+  " Never browse search history
+  nnoremap q/ <Nop>
+  vnoremap q/ <Nop>
 
   " Split navigation
   nnoremap <C-h> <C-w>h
