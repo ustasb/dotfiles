@@ -236,6 +236,12 @@
   endfunction
   command! Ctags call CreateCtagsFile()
 
+  " Allow saving with sudo permission
+  function! SudoSaveFile()
+    exec 'silent :w !sudo tee > /dev/null %'
+  endfunction
+  command! SudoSave call SudoSaveFile()
+
 "=== Unite.vim
   let g:unite_prompt = '❯ '
   let g:unite_winheight = 30
