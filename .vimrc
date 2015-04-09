@@ -276,6 +276,8 @@
 
   " No prefix for Unite
   nnoremap [unite] <Nop>
+  " Reopen previous Unite pane
+  nnoremap <silent> <Leader>r :<C-u>UniteResume<CR>
   " Search through all files recursively
   nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
   " MRU
