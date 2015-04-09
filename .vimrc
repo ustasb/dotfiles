@@ -339,8 +339,8 @@
   " Vimux
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
   " REPL commands
-  nnoremap <Leader>rr :call VimuxRunCommand('clear; ruby ' . expand('%:p'))<CR>
-  nnoremap <Leader>rc :call VimuxRunCommand('clear; g++ -o /tmp/a.out ' . expand('%:p') . '; /tmp/a.out')<CR>
+  command! RubyRun call VimuxRunCommand('clear; ruby ' . expand('%:p'))
+  command! CppRun call VimuxRunCommand('clear; g++ -o /tmp/a.out ' . expand('%:p') . '; /tmp/a.out')
 
   " NERD Tree
   let NERDTreeIgnore=['\.o$']
