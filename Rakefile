@@ -32,7 +32,7 @@ def vim_execute(options)
   system("#{get_vim} #{options}", out: $stdout, err: :out)
 end
 
-def customize_vim_colorscheme
+def customize_tomorrow_dark_colorscheme
   customizations = [
     [%q{call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm03, s:cterm0A,  "")},
      %q{call <sid>hi("Search",        s:gui00, s:gui0A, s:cterm00, s:cterm0A,  "bold")}],
@@ -58,7 +58,7 @@ task :install_vim_plugins => [:install_config_files] do
   log "Installing Vim plugins..."
   vim_execute('+PlugInstall +qall')
 
-  customize_vim_colorscheme
+  customize_tomorrow_dark_colorscheme
 
   log "Done installing Vim plugins!"
 end
@@ -68,7 +68,7 @@ task :update_vim_plugins => [:install_config_files] do
   log "Updating Vim plugins..."
   vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
 
-  customize_vim_colorscheme
+  customize_tomorrow_dark_colorscheme
 
   log "Done updating Vim plugins!"
 end
@@ -76,10 +76,7 @@ end
 desc 'Place all config files into the home directory'
 task :install_config_files => [:install_pure_prompt] do
   config_files = CONFIG_FILES
-
-  if is_osx?
-    config_files += OSX_CONFIG_FILES
-  end
+  config_files += OSX_CONFIG_FILES if is_osx?
 
   config_files.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
