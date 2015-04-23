@@ -1971,20 +1971,20 @@
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.45882353186607361</real>
+				<real>0.89019608497619629</real>
 				<key>Green Component</key>
-				<real>0.43137255311012268</real>
+				<real>0.96470588445663452</real>
 				<key>Red Component</key>
-				<real>0.34509804844856262</real>
+				<real>0.99215686321258545</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.63137257099151611</real>
+				<real>0.59607845544815063</real>
 				<key>Green Component</key>
-				<real>0.63137257099151611</real>
+				<real>0.62745100259780884</real>
 				<key>Red Component</key>
-				<real>0.57647061347961426</real>
+				<real>0.16470588743686676</real>
 			</dict>
 			<key>Semantic History</key>
 			<dict>
