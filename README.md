@@ -26,7 +26,7 @@ light theme in bright environments so I've added support for Solarized Light.
 Themes affect iTerm2, Vim and tmux. To change themes:
 
 1. Change the iTerm2 color profile and make the selected the default. The two
-options are:
+   options are:
 - Tomorrow Night Theme
 - Solarized Light Theme
 2. In the `~/dotfiles` directory, run:
