@@ -311,10 +311,10 @@
 
 "=== Plugin Settings
   " Base16 color schemes
-  if has('gui_running')
+  if $USING_LIGHT_THEME == 'true' || has('gui_running')
     set guifont=Source\ Code\ Pro:h11  " github.com/adobe/source-code-pro/downloads
     set background=light
-    silent! colorscheme base16-google
+    silent! colorscheme base16-solarized
   else
     set background=dark
     silent! colorscheme base16-tomorrow

@@ -64,6 +64,9 @@
 
 #=== Environment Variables
 
+  # If true, Vim and tmux will use their light themes. Defaults to a dark theme.
+  # export USING_LIGHT_THEME=true
+
   # Use Vim as the visual editor
   export VISUAL=vim
   export EDITOR=$VISUAL
