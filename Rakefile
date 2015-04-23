@@ -73,7 +73,6 @@ def enable_light_theme
   File.write(zshrc_path, settings)
 end
 
-desc 'Install Vim plugins'
 task :install_vim_plugins => [:install_config_files] do
   FileUtils.rm_rf("#{HOME_DIR}/.vim")
 
@@ -89,7 +88,6 @@ task :install_vim_plugins => [:install_config_files] do
   log "Done installing Vim plugins!"
 end
 
-desc 'Update Vim plugins'
 task :update_vim_plugins => [:install_config_files] do
   log "Updating Vim plugins..."
   vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
@@ -100,7 +98,6 @@ task :update_vim_plugins => [:install_config_files] do
   log "Done updating Vim plugins!"
 end
 
-desc 'Place all config files into the home directory'
 task :install_config_files => [:install_pure_prompt] do
   config_files = CONFIG_FILES
   config_files += OSX_CONFIG_FILES if is_osx?
@@ -121,7 +118,6 @@ task :install_config_files => [:install_pure_prompt] do
   log "To apply the new .zshrc settings, execute `source ~/.zshrc`"
 end
 
-desc 'Install Pure prompt'
 task :install_pure_prompt do
   log "Installing Pure prompt..."
 
@@ -132,13 +128,17 @@ task :install_pure_prompt do
    -o #{HOME_DIR}/.zfunctions/prompt_pure_setup`
 end
 
-desc 'Enable the light theme'
 task :enable_light_theme do
   enable_light_theme
 end
 
+desc 'Install all config files to $HOME and install Vim plugins forcefully'
 task :install => [:install_config_files, :install_vim_plugins]
+
+desc 'Install all config files to $HOME and only update outdated Vim plugins'
 task :update => [:install_config_files, :update_vim_plugins]
+
+desc 'Same as `update` but enables the light theme'
 task :update_light => [:update, :enable_light_theme]
 
 task :default do

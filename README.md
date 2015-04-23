@@ -11,7 +11,9 @@
 
 ## Installing
 
-See `rake -T` for options.
+I clone this repo into my `$HOME` directory.
+
+See `rake -T` for options. You probably want to run `rake install` first.
 
 Any matching dotfile in `$HOME` suffixed with `.local` will be appended to any newly
 installed dotfile. For example, `.vimrc.local` will be appended to a newly
