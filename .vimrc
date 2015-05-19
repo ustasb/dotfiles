@@ -245,6 +245,15 @@
   endfunction
   command! SudoSave call SudoSaveFile()
 
+  " Refresh all buffers
+  function! RefreshAllBuffers()
+    set noconfirm
+    bufdo e!
+    syntax enable  " Trigger buffers to highlight syntax. `bufdo e!` apparently turns it off.
+    set confirm
+  endfunction
+  command! BufRefresh call RefreshAllBuffers()
+
 "=== Unite.vim
   let g:unite_prompt = '❯ '
   let g:unite_winheight = 30
