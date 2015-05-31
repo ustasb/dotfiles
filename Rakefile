@@ -126,6 +126,9 @@ task :install_pure_prompt do
 
   `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/pure.zsh' \
    -o #{HOME_DIR}/.zfunctions/prompt_pure_setup`
+
+  `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh' \
+   -o #{HOME_DIR}/.zfunctions/async`
 end
 
 task :enable_light_theme do
