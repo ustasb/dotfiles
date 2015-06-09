@@ -270,19 +270,6 @@
   try
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
-
-    " Try to keep in sync with Wildignore
-    call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ '\.git/',
-      \ 'tmp/',
-      \ 'node_modules/',
-      \ 'vendor/',
-      \ 'plugins/',
-      \ 'bower_components/',
-      \ '.sass-cache/',
-      \ 'spec/cassettes/',
-      \ ], '\|'))
   catch
   endtry
 
