@@ -188,17 +188,8 @@
   set wildignore+=*.swp,*~,._*
 
 "=== Files
-  " Markdown files
-  au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn} set filetype=markdown
-  " Ruby files
-  au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} set filetype=ruby
   " Treat JSON files as JavaScript
   au BufNewFile,BufRead *.json set filetype=javascript
-  " Treat Handlebars files as HTML
-  au BufNewFile,BufRead *{.handlebars,hbs} set filetype=html.js
-  " Treat LESS files as CSS
-  au BufNewFile,BufRead *.less set filetype=css
-
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
   " 80 character line wrap for markdown and text files. Turn spell checking on
