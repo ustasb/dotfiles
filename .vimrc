@@ -261,6 +261,19 @@
   try
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
+
+    " Try to keep in sync with Wildignore
+    call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ 'node_modules/',
+      \ 'bower_components/',
+      \ '.sass-cache/',
+      \ 'vendor/',
+      \ 'tmp/',
+      \ 'plugins/',
+      \ 'resources/',
+      \ 'spec/cassettes/',
+      \ ], '\|'))
   catch
   endtry
 
@@ -374,3 +387,5 @@
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
+
+let g:rspec_command = 'call VimuxRunCommand("ddo bin/rspec {spec}")'
