@@ -12,6 +12,7 @@
 # - nvm and a Node.js version (https://github.com/creationix/nvm)
 # - npm (https://www.npmjs.com/)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
+# - fzf (https://github.com/junegunn/fzf)
 #
 # Mac Specific:
 # - Homebrew
@@ -98,6 +99,9 @@
   if [[ $platform == 'mac' ]]; then
     $(boot2docker shellinit 2>/dev/null)
   fi
+
+  # fzf
+  export FZF_DEFAULT_OPTS='--reverse'
 
 #=== Aliases
 
