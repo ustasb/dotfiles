@@ -10,6 +10,7 @@
 " - tmux (http://tmux.sourceforge.net)
 " - ag (https://github.com/ggreer/the_silver_searcher)
 " - ctags (http://ctags.sourceforge.net/)
+" - fzf (https://github.com/junegunn/fzf)
 "
 """ Plugins Requiring Additional Manual Installs
 "
@@ -18,12 +19,6 @@
 
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
-    " Unite.vim
-    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-    Plug 'Shougo/unite.vim'
-    Plug 'Shougo/neomru.vim'
-    Plug 'tsukkee/unite-tag'
-
     " Miscellaneous
     Plug 'tpope/vim-commentary'
     Plug 'scrooloose/nerdtree'
@@ -38,6 +33,9 @@
 
     " Requires ag (the silver searcher)
     Plug 'rking/ag.vim'
+
+    " Super fast file fuzzy-finding
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
     " tmux
     Plug 'benmills/vimux'
@@ -245,69 +243,53 @@
   endfunction
   command! BufRefresh call RefreshAllBuffers()
 
-"=== Unite.vim
-  let g:unite_prompt = '❯ '
-  let g:unite_winheight = 30
-  let g:unite_data_directory='~/.vim/.cache/unite'
-  let g:unite_enable_start_insert = 1  " Start in Insert mode
-  let g:unite_enable_short_source_names = 1
-  let g:unite_source_history_yank_enable = 1
-  let g:unite_force_overwrite_statusline = 0  " Use Vim's default statusline
-  let g:unite_source_file_mru_limit = 150
-  let g:unite_source_file_mru_filename_format = ':~:.'  " Shorten MRU paths
-
-  " Prevents errors when plugins are being installed for the first time and
-  " don't yet exist
-  try
-    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    call unite#filters#sorter_default#use(['sorter_rank'])
-
-    " Try to keep in sync with Wildignore
-    call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ 'node_modules/',
-      \ 'bower_components/',
-      \ '.sass-cache/',
-      \ 'vendor/',
-      \ 'tmp/',
-      \ 'plugins/',
-      \ 'resources/',
-      \ 'spec/cassettes/',
-      \ ], '\|'))
-  catch
-  endtry
-
-  " No prefix for Unite
-  nnoremap [unite] <Nop>
-  " Reopen previous Unite pane
-  nnoremap <silent> <Leader>r :<C-u>UniteResume<CR>
+"=== FZF
   " Search through all files recursively
-  nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=file_rec file_rec/async:!<CR>
+  nnoremap <silent> <Leader>f :FZF! --reverse<CR>
+
   " MRU
-  nnoremap <silent> <Leader>m :<C-u>Unite -buffer-name=mru file_mru<CR>
+  " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#simple-mru-search
+  nnoremap <silent> <Leader>m :call fzf#run({
+  \   'source': v:oldfiles,
+  \   'sink' : 'e',
+  \   'options' : '--reverse',
+  \ })<CR>
+
   " Ctags
-  nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tags tag<CR>
+  " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#jump-to-tags
+  command! -bar FZFTags if !empty(tagfiles()) | call fzf#run({
+  \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
+  \   'sink': 'tag',
+  \   'options': '--reverse',
+  \ }) | else | echo 'Preparing tags' | call CreateCtagsFile() | FZFTag | endif
+  nnoremap <silent> <Leader>t :FZFTags<CR>
+
   " Open buffers
-  nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer buffer<CR>
-  " Notes
-  nnoremap <silent> <Leader>n :<C-u>Unite -buffer-name=notes -path=/Users/ustasb/notes file_rec<CR>
-  " Yank history
-  nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yanks history/yank<CR>
-
-  " Unite buffer settings
-  autocmd FileType unite call s:unite_settings()
-  function! s:unite_settings()
-    " Exit with ESC
-    nmap <buffer> <ESC> <Plug>(unite_exit)
-    imap <buffer> <ESC> <Plug>(unite_exit)
-
-    " qq to exit
-    imap <buffer> qq <Plug>(unite_exit)
-
-    " Ctrl-r to refresh the buffer
-    nmap <buffer> <C-r> <Plug>(unite_redraw)
-    imap <buffer> <C-r> <Plug>(unite_redraw)
+  " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#select-buffer
+  function! s:buflist()
+    redir => ls
+    silent ls
+    redir END
+    return split(ls, '\n')
   endfunction
+
+  function! s:bufopen(e)
+    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+  endfunction
+
+  nnoremap <silent> <Leader>b :call fzf#run({
+  \   'source': reverse(<sid>buflist()),
+  \   'sink': function('<sid>bufopen'),
+  \   'options': '--reverse',
+  \   'down': len(<sid>buflist()) + 2,
+  \ })<CR>
+
+  " Notes
+  nnoremap <silent> <Leader>n :call fzf#run({
+  \   'source': 'find ~/notes/*',
+  \   'sink' : 'e',
+  \   'options' : '--reverse',
+  \ })<CR>
 
 "=== Plugin Settings
   " Base16 color schemes
@@ -388,4 +370,4 @@
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
 
-let g:rspec_command = 'call VimuxRunCommand("ddo bin/rspec {spec}")'
+
