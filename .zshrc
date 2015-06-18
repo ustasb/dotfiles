@@ -102,6 +102,7 @@
 
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
+  export FZF_DEFAULT_COMMAND='ag -l -g ""'  # Respects .gitignore
 
 #=== Aliases
 
