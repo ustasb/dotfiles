@@ -281,7 +281,6 @@
   \   'source': reverse(<sid>buflist()),
   \   'sink': function('<sid>bufopen'),
   \   'options': '--reverse',
-  \   'down': len(<sid>buflist()) + 2,
   \ })<CR>
 
   " Notes
