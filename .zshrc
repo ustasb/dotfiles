@@ -103,6 +103,7 @@
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
   export FZF_DEFAULT_COMMAND='ag -l -g ""'  # Respects .gitignore
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
 #=== Aliases
 
