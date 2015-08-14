@@ -7,3 +7,4 @@
 --exclude=db/migrate
 --exclude=vendor/assets
 --exclude=lib/assets
+--exclude=node_modules
