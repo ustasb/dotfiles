@@ -48,6 +48,7 @@
     Plug 'othree/html5-syntax.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'kchmck/vim-coffee-script'
+    Plug 'mtscout6/vim-cjsx'
     Plug 'tikhomirov/vim-glsl'
 
     " Ruby
