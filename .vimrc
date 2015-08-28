@@ -28,7 +28,7 @@
     Plug 'Raimondi/delimitMate'
     Plug 'justinmk/vim-sneak'
     Plug 'szw/vim-maximizer'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
     Plug 'junegunn/goyo.vim'
 
     " Requires ag (the silver searcher)
