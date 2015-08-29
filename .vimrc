@@ -44,6 +44,9 @@
     " Color scheme
     Plug 'chriskempson/base16-vim'
 
+    " Snippets
+    Plug 'SirVer/ultisnips'
+
     " Syntax
     Plug 'othree/html5-syntax.vim'
     Plug 'pangloss/vim-javascript'
@@ -360,8 +363,8 @@
     \ }
 
   " Ag.vim
-  let g:ag_lhandler="topleft lopen"
-  let g:ag_qhandler="topleft copen"
+  let g:ag_lhandler = "topleft lopen"
+  let g:ag_qhandler = "topleft copen"
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
@@ -371,3 +374,11 @@
   nnoremap <Leader>c :Commentary<CR>
 
 
+  " UltiSnips
+  let g:UltiSnipsExpandTrigger = "<c-k>"
+  let g:UltiSnipsJumpForwardTrigger = "<c-k>"
+  let g:UltiSnipsJumpBackwardTrigger = "<s-c-j>"
+  let g:UltiSnipsSnippetsDir = "~/dotfiles/UltiSnips"
+  let g:UltiSnipsSnippetDirectories = [$HOME . "/dotfiles/UltiSnips"]
+  let g:UltiSnipsEditSplit = "vertical"
+  nnoremap <Leader>u :UltiSnipsEdit<CR>
