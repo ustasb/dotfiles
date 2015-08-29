@@ -52,6 +52,7 @@
     Plug 'pangloss/vim-javascript'
     Plug 'kchmck/vim-coffee-script'
     Plug 'mtscout6/vim-cjsx'
+    Plug 'mxw/vim-jsx'
     Plug 'tikhomirov/vim-glsl'
 
     " Ruby
@@ -373,6 +374,8 @@
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
 
+  " Vim-JSX
+  let g:jsx_ext_required = 0
 
   " UltiSnips
   let g:UltiSnipsExpandTrigger = "<c-k>"
