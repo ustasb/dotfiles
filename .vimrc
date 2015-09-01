@@ -30,6 +30,7 @@
     Plug 'szw/vim-maximizer'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
     Plug 'junegunn/goyo.vim'
+    Plug 'tpope/vim-surround'
 
     " Requires ag (the silver searcher)
     Plug 'rking/ag.vim'
