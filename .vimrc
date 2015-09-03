@@ -32,10 +32,10 @@
     Plug 'junegunn/goyo.vim'
     Plug 'tpope/vim-surround'
 
-    " Requires ag (the silver searcher)
+    " Requires ag (The Silver Searcher)
     Plug 'rking/ag.vim'
 
-    " Super fast file fuzzy-finding
+    " Super fast file fuzzy-finding.
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
     " tmux
@@ -69,28 +69,28 @@
   filetype plugin indent on
   syntax enable
 
-  set encoding=utf-8              " Set default encoding to UTF-8
+  set encoding=utf-8              " Set default encoding to UTF-8.
   set ffs=unix,dos,mac            " File Format (relevant to line ending type)
-  set mouse=a                     " Enable mouse support for all modes
-  set backspace=indent,eol,start  " Make backspace work like most other apps
-  set history=100                 " Keep 100 lines of command-line history
-  set showcmd                     " Display incomplete commands
-  set title                       " Change the title of the terminal/tab with the file name
-  set hidden                      " Allow unsaved background buffers
-  set ttimeoutlen=100             " Prevent Shift-O delay in terminal
-  set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries
-  set clipboard=unnamed           " Merge Vim and OS clipboard
-  set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags)
-  set complete=.,w,b,u,i          " Keyword completion (don't search the tag file)
-  set nofoldenable                " No text folding
-  set shortmess=I                 " Don't show Vim's welcome message
-  set shortmess+=a                " Make the save message shorter. Helps avoid the "Hit ENTER to continue" message
+  set mouse=a                     " Enable mouse support for all modes.
+  set backspace=indent,eol,start  " Make backspace work like most other apps.
+  set history=100                 " Keep 100 lines of command-line history.
+  set showcmd                     " Display incomplete commands.
+  set title                       " Change the title of the terminal/tab with the file name.
+  set hidden                      " Allow unsaved background buffers.
+  set ttimeoutlen=100             " Prevent Shift-O delay in terminal.
+  set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries.
+  set clipboard=unnamed           " Merge Vim and OS clipboard.
+  set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags).
+  set complete=.,w,b,u,i          " Keyword completion (don't search the tag file).
+  set nofoldenable                " No text folding.
+  set shortmess=I                 " Don't show Vim's welcome message.
+  set shortmess+=a                " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
 
-  " Open new split panes to the bottom and right
+  " Open new split panes to the bottom and right.
   set splitbelow
   set splitright
 
-  " Disable all error whistles
+  " Disable all error whistles.
   set noerrorbells visualbell t_vb=
 
   " Backups
@@ -98,27 +98,27 @@
   set backupdir=/var/tmp//,/tmp//,.
   set noswapfile
 
-  " Resize splits when Vim is resized
+  " Resize splits when Vim is resized.
   au VimResized * wincmd =
 
 "=== UI
   " Status Line
-  set laststatus=2              " Always show a status line
+  set laststatus=2              " Always show a status line.
   set statusline=%f\ %m\ %r     " file path, modified status, read-only status
   set statusline+=\ Line:%l/%L  " current line / all lines
   set statusline+=\ Buf:%n      " buffer number
 
   " GUI
   if has('gui_running')
-    set lines=35 columns=135         " Default window size
-    set guioptions-=m                " Remove menubar
-    set guioptions-=T                " Remove toolbar
-    set guicursor+=a:blinkon0        " Disable cursor blinking
+    set lines=35 columns=135    " Default window size.
+    set guioptions-=m           " Remove menubar.
+    set guioptions-=T           " Remove toolbar.
+    set guicursor+=a:blinkon0   " Disable cursor blinking.
   endif
 
-  " Visually define an 80 character limit for the active window
+  " Visually define an 80 character limit for the active window.
   set colorcolumn=80
-  " autocmd! - Remove all autocommands for the current group
+  " autocmd! - Remove all autocommands for the current group.
   augroup ColorColumnToggle
     autocmd!
     autocmd WinEnter * set colorcolumn=80
@@ -126,33 +126,33 @@
   augroup END
 
 "=== Search
-  set nohlsearch      " Turn off highlight matching
+  set nohlsearch      " Turn off highlight matching.
   set incsearch       " Incremental searching
   set ignorecase      " Searches are case insensitive...
-  set smartcase       " ...unless they contain at least one capital letter
+  set smartcase       " ...unless they contain at least one capital letter.
 
 "=== Whitespace
-  set autoindent      " Turn on autoindenting
-  set nowrap          " Don't wrap lines
-  set expandtab       " Insert spaces instead of tabs when <Tab> is pressed
-  set shiftwidth=2    " Set the indentation width for < and >
-  set tabstop=2       " Make 2 spaces behave like a tab
+  set autoindent      " Turn on autoindenting.
+  set nowrap          " Don't wrap lines.
+  set expandtab       " Insert spaces instead of tabs when <Tab> is pressed.
+  set shiftwidth=2    " Set the indentation width for < and >.
+  set tabstop=2       " Make 2 spaces behave like a tab.
   set softtabstop=2
 
 "=== Key Mappings
   " Change the leader key from \ to ,
   let mapleader=','
 
-  " Use jk instead of <Esc> to enter Normal mode
+  " Use jk instead of <Esc> to enter Normal mode.
   inoremap jk <Esc>
 
   " Typos
-  " Never open `man` documentation for a word
+  " Never open `man` documentation for a word.
   nnoremap <S-k> <Nop>
-  " Never browse command history
+  " Never browse command history.
   nnoremap q: <Nop>
   vnoremap q: <Nop>
-  " Never browse search history
+  " Never browse search history.
   nnoremap q/ <Nop>
   vnoremap q/ <Nop>
 
@@ -162,53 +162,53 @@
   nnoremap <C-k> <C-w>k
   nnoremap <C-l> <C-w>l
 
-  " Remap arrow keys to navigate buffers and tabs
+  " Remap arrow keys to navigate buffers and tabs.
   nnoremap <left> :bprev<CR>
   nnoremap <right> :bnext<CR>
   nnoremap <up> :tabnext<CR>
   nnoremap <down> :tabprev<CR>
 
-  " Reselect visual block after indent/outdent
+  " Reselect visual block after indent/outdent.
   vnoremap < <gv
   vnoremap > >gv
 
-  " Swap two words
+  " Swap two words.
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
-  " qq to record, Q to replay
+  " qq to record, Q to replay.
   nnoremap Q @q
 
 "=== Wild Mode (command-line completion)
   set wildmenu
   set wildmode=list:longest,full
   set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-  " Ignore archive files
+  " Ignore archive files.
   set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-  " Ignore Bundler and SASS cache
+  " Ignore Bundler and SASS cache.
   set wildignore+=*/vendor/gems/*,*/vendor/bundle/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-  " Ignore node.js modules
+  " Ignore node.js modules.
   set wildignore+=*/node_modules/*
-  " Ignore temp and backup files
+  " Ignore temp and backup files.
   set wildignore+=*.swp,*~,._*
 
 "=== Files
-  " Treat JSON files as JavaScript
+  " Treat JSON files as JavaScript.
   au BufNewFile,BufRead *.json set filetype=javascript
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-  " 80 character line wrap for markdown and text files. Turn spell checking on
+  " 80 character line wrap for markdown and text files. Turn spell checking on.
   au Filetype {text,markdown} setlocal textwidth=80 spell
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
+  " Don't do it when the position is invalid or when inside an event handler.
   " (happens when dropping a file on gvim).
   au BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
 
-  " Remove whitespace at the end of lines while maintaining cursor position
+  " Remove whitespace at the end of lines while maintaining cursor position.
   function! <SID>StripTrailingWhitespaces()
     let l = line('.')
     let c = col('.')
@@ -217,30 +217,30 @@
   endfunction
   au FileType * au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-  " Open a file in Google Chrome - OS X only
+  " Open a file in Google Chrome - OS X only.
   function! OpenFileInChrome()
     exec 'silent !open -a "Google Chrome" "%"'
     redraw!
   endfunction
   command! Chrome call OpenFileInChrome()
 
-  " Don't auto-comment the next line on Enter
+  " Don't auto-comment the next line on Enter.
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-  " Create a tags file
+  " Create a tags file.
   function! CreateCtagsFile()
     exec 'silent !ctags .'
     redraw!
   endfunction
   command! Ctags call CreateCtagsFile()
 
-  " Allow saving with sudo permission
+  " Allow saving with sudo permission.
   function! SudoSaveFile()
     exec 'silent :w !sudo tee > /dev/null %'
   endfunction
   command! SudoSave call SudoSaveFile()
 
-  " Refresh all buffers
+  " Refresh all buffers.
   function! RefreshAllBuffers()
     set noconfirm
     bufdo e!
@@ -250,7 +250,7 @@
   command! BufRefresh call RefreshAllBuffers()
 
 "=== FZF
-  " Search through all files recursively
+  " Search through all files recursively.
   nnoremap <silent> <Leader>f :FZF! --reverse<CR>
 
   " MRU
@@ -316,7 +316,7 @@
   let g:syntastic_cpp_checkers = ['gcc']
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
-  " For JavaScript linting, install JSHint: `npm install -g jshint`
+  " For JavaScript linting, install JSHint: `npm install -g jshint`.
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
@@ -341,22 +341,22 @@
   nnoremap <Leader>g :NERDTreeFind<CR>
 
   " GitGutter
-  let g:gitgutter_realtime = 0  " Only run on read and write
+  let g:gitgutter_realtime = 0  " Only run on read and write.
   let g:gitgutter_eager = 0     " ^^
 
   " Sneak.vim
-  let g:sneak#streak = 1  " Behave like EasyMotion
+  let g:sneak#streak = 1  " Behave like EasyMotion.
 
   " Vim Maximizer
   let g:maximizer_default_mapping_key = '<C-W>o'
-  " Override the default and remap recursively
+  " Override the default and remap recursively.
   nmap <C-W><C-O> <C-W>o
   vmap <C-W><C-O> <C-W>o
   imap <C-W><C-O> <C-W>o
 
   " YouCompleteMe
   let g:ycm_complete_in_comments = 1
-  " Turn off semantic completion
+  " Turn off semantic completion.
   let g:ycm_filetype_specific_completion_to_disable = {
     \ 'gitcommit': 1,
     \ 'ruby': 1,

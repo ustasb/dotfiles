@@ -13,7 +13,7 @@ plugins
 .png
 .pdf
 
-# Node
+# Node.js
 node_modules
 
 # Bower

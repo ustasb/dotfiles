@@ -37,30 +37,30 @@
   # Use Emacs as the command line editor. Makes some keys work within tmux...
   bindkey -e
 
-  # Keep lots of history
+  # Keep lots of history.
   export HISTSIZE=1000
   export SAVEHIST=1000
   export HISTFILE=~/.history
 
-  # Share history between terminals
+  # Share history between terminals.
   setopt inc_append_history
   setopt share_history
   setopt hist_ignore_all_dups
 
-  # No beeping
+  # No beeping.
   unsetopt beep
 
-  # Automatically pushd
+  # Automatically set pushd.
   setopt auto_pushd
   export dirstacksize=5
 
-  # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation
+  # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation.
   setopt EXTENDED_GLOB
 
-  # If a pattern for filename generation has no matches, print an error
+  # If a pattern for filename generation has no matches, print an error.
   unsetopt nomatch
 
-  # Enable colored output from `ls`
+  # Enable colored output from `ls`.
   export CLICOLOR=1
 
 #=== Environment Variables
@@ -68,7 +68,7 @@
   # If true, Vim and tmux will use their light themes. Defaults to a dark theme.
   # export USING_LIGHT_THEME=true
 
-  # Use Vim as the visual editor
+  # Use Vim as the visual editor.
   export VISUAL=vim
   export EDITOR=$VISUAL
 
@@ -92,7 +92,7 @@
   # npm
   export PATH=/usr/local/share/npm/bin:$PATH
 
-  # To hold zsh functions
+  # To hold zsh functions.
   fpath=("$HOME/.zfunctions" $fpath)
 
   # Boot2Docker
@@ -146,7 +146,7 @@
   }
   compdef g=git  # Complete g like git
 
-  # Create a new named tmux session with my preferred layout
+  # Create a new named tmux session with my preferred layout.
   tnew() { tmux new-session -s $1 \; \
                 split-window -v -p 30 \; \
                 split-window -h -p 66 \; \

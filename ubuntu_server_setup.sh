@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Exit if any errors are encountered
+# Exit if any errors are encountered.
 set -e
 
 username="ustasb"
