@@ -16,7 +16,7 @@
 #
 # Mac Specific:
 # - Homebrew
-# - Boot2Docker
+# - Docker Toolbox
 
 #== Detect OS
 
@@ -95,9 +95,9 @@
   # To hold zsh functions.
   fpath=("$HOME/.zfunctions" $fpath)
 
-  # Boot2Docker
+  # Docker Machine
   if [[ $platform == 'mac' ]]; then
-    $(boot2docker shellinit 2>/dev/null)
+    eval "$(docker-machine env default)"
   fi
 
   # fzf
@@ -144,7 +144,7 @@
       git status
     fi
   }
-  compdef g=git  # Complete g like git
+  compdef g=git  # Complete `g` like `git`
 
   # Create a new named tmux session with my preferred layout.
   tnew() { tmux new-session -s $1 \; \
