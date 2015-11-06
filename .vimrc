@@ -249,6 +249,27 @@
   endfunction
   command! BufRefresh call RefreshAllBuffers()
 
+  " Daily Journal
+  function! TodaysJournalEntry()
+    let journal_dir = "~/notes/journal/"
+    let entry_path = journal_dir . "entry_" . strftime("%m%d%y") . ".md"
+
+    " Ensure the journal directory exists.
+    exec "silent !mkdir -p " . journal_dir
+
+    exec "e " . entry_path
+
+    " Add an entry title if new.
+    if !filereadable(expand(entry_path))
+      let entry_num = system("ls -l " . journal_dir . "entry_* 2>/dev/null | wc -l | sed 's/ //g'") + 1
+      let entry_title = "# Journal Entry " . entry_num
+      call setline(line('.'), getline(line('.')) . entry_title)
+    endif
+
+    redraw!
+  endfunction
+  nnoremap <silent> <Leader>j :call TodaysJournalEntry()<CR>
+
 "=== FZF
   " Search through all files recursively.
   nnoremap <silent> <Leader>f :FZF! --reverse<CR>
