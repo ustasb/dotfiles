@@ -262,7 +262,7 @@
     " Add an entry title if new.
     if !filereadable(expand(entry_path))
       let entry_num = system("ls -l " . journal_dir . "entry_* 2>/dev/null | wc -l | sed 's/ //g'") + 1
-      let entry_title = "# Journal Entry " . entry_num
+      let entry_title = "# Journal Entry " . entry_num . " - " . strftime("%m/%d/%y")
       call setline(line('.'), getline(line('.')) . entry_title)
     endif
 
