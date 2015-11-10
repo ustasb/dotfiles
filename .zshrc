@@ -153,6 +153,14 @@
                 split-window -h -p 50 \; \
                 select-pane -t 0 }
 
+  # Checkout a Git branch with fzf.
+  fbr() {
+    local branches branch
+    branches=$(git branch) &&
+    branch=$(echo "$branches" | fzf +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //")
+  }
+
 #=== Prompt
 
   autoload -U promptinit && promptinit
