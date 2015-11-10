@@ -252,7 +252,7 @@
   " Daily Journal
   function! TodaysJournalEntry()
     let journal_dir = "~/notes/journal/"
-    let entry_path = journal_dir . "entry_" . strftime("%m%d%y") . ".md"
+    let entry_path = journal_dir . "entry_" . strftime("%y%m%d") . ".md"
 
     " Ensure the journal directory exists.
     exec "silent !mkdir -p " . journal_dir
