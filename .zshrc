@@ -16,7 +16,6 @@
 #
 # Mac Specific:
 # - Homebrew
-# - Docker Toolbox
 
 #== Detect OS
 
@@ -94,11 +93,6 @@
 
   # To hold zsh functions.
   fpath=("$HOME/.zfunctions" $fpath)
-
-  # Docker Machine
-  if [[ $platform == 'mac' ]]; then
-    eval "$(docker-machine env default)"
-  fi
 
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
