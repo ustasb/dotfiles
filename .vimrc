@@ -1,6 +1,7 @@
 " Brian Ustas's .vimrc
 "
 " Supports OS X and Linux (tested with Yosemite and Ubuntu 14.04).
+" For MacVim + Zsh, see: https://github.com/b4winckler/macvim/wiki/Troubleshooting#for-zsh-users
 "
 """ Expected Installs
 "
@@ -15,7 +16,7 @@
 """ Plugins Requiring Additional Manual Installs
 "
 " - See suan/vim-instant-markdown
-" - See 'Plugin Settings' for Syntastic (install JSHint)
+" - See 'Plugin Settings' for Syntastic
 
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
@@ -333,11 +334,24 @@
   let g:html_indent_script1 = 'inc'
   let g:html_indent_style1 = 'inc'
 
-  " Syntastic -- enable C++11 support
+  " Syntastic
+  let g:syntastic_check_on_open = 0
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_auto_loc_list = 0
+  let g:syntastic_always_populate_loc_list = 0
+  let g:syntastic_loc_list_height = 5
+  " Start in passive mode. Auto-linting is slow...
+  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+  nnoremap <Leader>l :SyntasticCheck<CR>
+  " C++ 11 support
   let g:syntastic_cpp_checkers = ['gcc']
   let g:syntastic_cpp_compiler = 'g++-4.8'
   let g:syntastic_cpp_compiler_options = '-std=c++11'
-  " For JavaScript linting, install JSHint: `npm install -g jshint`.
+  " JS support
+  let g:syntastic_javascript_checkers = ['eslint']
+  " Highlighting
+  let g:syntastic_error_symbol = '❌'
+  highlight link SyntasticErrorSign SignColumn
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1

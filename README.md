@@ -19,6 +19,8 @@ Any matching dotfile in `$HOME` suffixed with `.local` will be appended to any n
 installed dotfile. For example, `.vimrc.local` will be appended to a newly
 installed `.vimrc`.
 
+For MacVim + Zsh, see: https://github.com/b4winckler/macvim/wiki/Troubleshooting#for-zsh-users
+
 ## Color Themes
 
 The default color theme is the dark theme, Tomorrow Night. I sometimes need a
@@ -30,7 +32,7 @@ Themes affect iTerm2, Vim and tmux. To change themes:
 
   - Tomorrow Night Theme
   - Solarized Light Theme
-  
+
 2. In the `~/dotfiles` directory, run:
 
   - `rake update` for the dark theme
