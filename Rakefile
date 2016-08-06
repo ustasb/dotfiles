@@ -11,6 +11,7 @@ CONFIG_FILES = [
   '.gitconfig',
   '.gemrc',
   '.ctags',
+  '.tern-config',
 ]
 
 OSX_CONFIG_FILES = [

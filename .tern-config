@@ -1,0 +1,12 @@
+{
+  "libs": [
+    "browser",
+    "jquery",
+    "lodash"
+  ],
+  "plugins": {
+    "node": {},
+    "modules": {},
+    "es_modules": { }
+  }
+}
