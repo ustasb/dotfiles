@@ -193,8 +193,8 @@
   set wildignore+=*.swp,*~,._*
 
 "=== Files
-  " Treat JSON files as JavaScript.
-  au BufNewFile,BufRead *.json set filetype=javascript
+  " Treat ES6 files as JavaScript.
+  au BufNewFile,BufRead *.es6 set filetype=javascript
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
   " 80 character line wrap for markdown and text files. Turn spell checking on.
