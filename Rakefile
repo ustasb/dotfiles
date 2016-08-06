@@ -63,7 +63,7 @@ def customize_solarized_light_colorscheme
     [%q{call <sid>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none")},
      %q{call <sid>hi("StatusLineNC",  s:gui01, s:gui02, s:cterm01, s:cterm02, "none")}],
   ]
-  customize_colorscheme('base16-solarized.vim', customizations)
+  customize_colorscheme('base16-solarized-light.vim', customizations)
 end
 
 def enable_light_theme
