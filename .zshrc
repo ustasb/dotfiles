@@ -155,6 +155,15 @@
     git checkout $(echo "$branch" | sed "s/.* //")
   }
 
+  # Fuzzy-search for a file and open in Vim.
+  vv() {
+    IFS='
+  '
+    local declare files=($(fzf --query="$1" --select-1 --exit-0))
+    [[ -n "$files" ]] && vim "${files[@]}"
+    unset IFS
+  }
+
 #=== Prompt
 
   autoload -U promptinit && promptinit
