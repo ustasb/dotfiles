@@ -29,7 +29,7 @@
     Plug 'Raimondi/delimitMate'
     Plug 'justinmk/vim-sneak'
     Plug 'szw/vim-maximizer'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
     Plug 'junegunn/goyo.vim'
     Plug 'tpope/vim-surround'
 
