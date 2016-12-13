@@ -126,6 +126,9 @@
   # Bundler
   alias be='bundle exec'
 
+  # Scratch File
+  alias s="v ~/notes/scratch_file.txt"
+
 #=== Functions
 
   # No arguments: `git status`
