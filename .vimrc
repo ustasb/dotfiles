@@ -26,7 +26,7 @@
     Plug 'scrooloose/syntastic'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
-    Plug 'Raimondi/delimitMate'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'szw/vim-maximizer'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
     Plug 'junegunn/goyo.vim'
