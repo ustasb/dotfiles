@@ -50,7 +50,7 @@ def customize_tomorrow_dark_colorscheme
     [%q{call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none")},
      %q{call <sid>hi("StatusLine",    s:gui04, s:gui00, s:cterm04, s:cterm00, "")}],
   ]
-  customize_colorscheme('base16-tomorrow.vim', customizations)
+  customize_colorscheme('base16-tomorrow-night.vim', customizations)
 end
 
 def customize_solarized_light_colorscheme
