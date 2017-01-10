@@ -27,7 +27,6 @@
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
-    Plug 'justinmk/vim-sneak'
     Plug 'szw/vim-maximizer'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
     Plug 'junegunn/goyo.vim'
@@ -378,9 +377,6 @@
   " GitGutter
   let g:gitgutter_realtime = 0  " Only run on read and write.
   let g:gitgutter_eager = 0     " ^^
-
-  " Sneak.vim
-  let g:sneak#streak = 1  " Behave like EasyMotion.
 
   " Vim Maximizer
   let g:maximizer_default_mapping_key = '<C-W>o'
