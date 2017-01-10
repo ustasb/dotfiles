@@ -28,7 +28,7 @@
     Plug 'tpope/vim-fugitive'
     Plug 'jiangmiao/auto-pairs'
     Plug 'szw/vim-maximizer'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
     Plug 'junegunn/goyo.vim'
 
     " Requires ag (The Silver Searcher)
