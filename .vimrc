@@ -36,7 +36,7 @@
     Plug 'rking/ag.vim'
 
     " Super fast file fuzzy-finding.
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
     " tmux
     Plug 'benmills/vimux'
