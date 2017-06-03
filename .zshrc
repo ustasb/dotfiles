@@ -8,8 +8,7 @@
 # - Vim
 # - Git
 # - rbenv and a Ruby version (https://github.com/sstephenson/rbenv)
-# - nvm and a Node.js version (https://github.com/creationix/nvm)
-# - npm (https://www.npmjs.com/)
+# - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
 #
@@ -78,17 +77,6 @@
   # rbenv
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - zsh)"
-
-  # nvm
-  export NVM_DIR=~/.nvm
-  if [[ $platform == 'mac' ]]; then
-    source $(brew --prefix nvm)/nvm.sh
-  else
-    source ~/.nvm/nvm.sh
-  fi
-
-  # npm
-  export PATH=/usr/local/share/npm/bin:$PATH
 
   # To hold zsh functions.
   fpath=("$HOME/.zfunctions" $fpath)
