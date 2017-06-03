@@ -1,22 +1,16 @@
 " Brian Ustas's .vimrc
 "
-" Supports OS X and Linux (tested with Yosemite and Ubuntu 14.04).
+" Supports OS X and Linux (tested with Sierra and Ubuntu 14.04).
 " For MacVim + Zsh, see: https://github.com/b4winckler/macvim/wiki/Troubleshooting#for-zsh-users
 "
 """ Expected Installs
 "
 " - Git
 " - Ruby and RSpec
-" - GCC 4.8 Compiler
 " - tmux (http://tmux.sourceforge.net)
 " - ag (https://github.com/ggreer/the_silver_searcher)
 " - ctags (http://ctags.sourceforge.net/)
 " - fzf (https://github.com/junegunn/fzf)
-"
-""" Plugins Requiring Additional Manual Installs
-"
-" - See suan/vim-instant-markdown
-" - See 'Plugin Settings' for Syntastic
 
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
@@ -45,9 +39,6 @@
     " Color scheme
     Plug 'chriskempson/base16-vim'
 
-    " Snippets
-    Plug 'SirVer/ultisnips'
-
     " Syntax
     Plug 'othree/html5-syntax.vim'
     Plug 'pangloss/vim-javascript'
@@ -59,10 +50,6 @@
     " Ruby
     Plug 'vim-ruby/vim-ruby'
     Plug 'thoughtbot/vim-rspec'
-
-    " Vim Instant Markdown
-    " Required on OS X: sudo chmod ugo-x /usr/libexec/path_helper
-    Plug 'suan/vim-instant-markdown'
   call plug#end()
 
 "=== Basic
@@ -291,7 +278,7 @@
   \ }) | else | echo 'Preparing tags' | call CreateCtagsFile() | FZFTag | endif
   nnoremap <silent> <Leader>t :FZFTags<CR>
 
-  " Open buffers
+  " Search buffers
   " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#select-buffer
   function! s:buflist()
     redir => ls
@@ -342,10 +329,6 @@
   " Start in passive mode. Auto-linting is slow...
   let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
   nnoremap <Leader>l :SyntasticCheck<CR>
-  " C++ 11 support
-  let g:syntastic_cpp_checkers = ['gcc']
-  let g:syntastic_cpp_compiler = 'g++-4.8'
-  let g:syntastic_cpp_compiler_options = '-std=c++11'
   " JS support
   let g:syntastic_javascript_checkers = ['eslint']
   " Highlighting
@@ -364,9 +347,6 @@
 
   " Vimux
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
-  " REPL commands
-  command! RubyRun call VimuxRunCommand('clear; ruby ' . expand('%:p'))
-  command! CppRun call VimuxRunCommand('clear; g++ -o /tmp/a.out ' . expand('%:p') . '; /tmp/a.out')
 
   " NERD Tree
   let NERDTreeIgnore=['\.o$']
@@ -410,15 +390,6 @@
 
   " Vim-JSX
   let g:jsx_ext_required = 0
-
-  " UltiSnips
-  let g:UltiSnipsExpandTrigger = "<c-k>"
-  let g:UltiSnipsJumpForwardTrigger = "<c-k>"
-  let g:UltiSnipsJumpBackwardTrigger = "<s-c-j>"
-  let g:UltiSnipsSnippetsDir = "~/dotfiles/UltiSnips"
-  let g:UltiSnipsSnippetDirectories = [$HOME . "/dotfiles/UltiSnips"]
-  let g:UltiSnipsEditSplit = "vertical"
-  nnoremap <Leader>u :UltiSnipsEdit<CR>
 
   " Vim Easy Align
   " Start interactive EasyAlign in visual mode (e.g. vipga)
