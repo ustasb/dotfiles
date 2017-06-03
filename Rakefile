@@ -11,11 +11,6 @@ CONFIG_FILES = [
   '.gitconfig',
   '.gemrc',
   '.ctags',
-  '.tern-config',
-]
-
-OSX_CONFIG_FILES = [
-  '.xvimrc'
 ]
 
 def log(msg)
@@ -101,16 +96,17 @@ end
 
 task :install_config_files => [:install_pure_prompt] do
   config_files = CONFIG_FILES
-  config_files += OSX_CONFIG_FILES if is_osx?
 
   config_files.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
     FileUtils.cp(filename, dest_path)
 
     local_customizations = "#{dest_path}.local"
-    open(dest_path, 'a') do |f|
-      f.puts "\n" + File.read(local_customizations)
-    end if File.exist?(local_customizations)
+    if File.exist?(local_customizations)
+      open(dest_path, 'a') do |f|
+        f.puts "\n" + File.read(local_customizations)
+      end
+    end
   end
 
   # Configure the git editor
