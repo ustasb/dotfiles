@@ -25,6 +25,7 @@
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/vim-easy-align'
+    Plug 'metakirby5/codi.vim' " REPL
 
     " Requires ag (The Silver Searcher)
     Plug 'rking/ag.vim'
