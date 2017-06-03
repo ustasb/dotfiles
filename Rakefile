@@ -29,39 +29,6 @@ def vim_execute(options)
   system("#{get_vim} #{options}", out: $stdout, err: :out)
 end
 
-def customize_colorscheme(cs_name, customizations)
-  cs_file_path = "#{HOME_DIR}/.vim/plugged/base16-vim/colors/#{cs_name}"
-  cs_file = IO.read(cs_file_path)
-  customizations.each do |old_color, new_color|
-    cs_file.sub!(old_color, new_color)
-  end
-  File.write(cs_file_path, cs_file)
-end
-
-def customize_tomorrow_dark_colorscheme
-  customizations = [
-    [%q{call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm03, s:cterm0A,  "")},
-     %q{call <sid>hi("Search",        s:gui00, s:gui0A, s:cterm00, s:cterm0A,  "bold")}],
-    [%q{call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none")},
-     %q{call <sid>hi("StatusLine",    s:gui04, s:gui00, s:cterm04, s:cterm00, "")}],
-  ]
-  customize_colorscheme('base16-tomorrow-night.vim', customizations)
-end
-
-def customize_solarized_light_colorscheme
-  customizations = [
-    [%q{call <sid>hi("Search",        s:gui03, s:gui0A, s:cterm03, s:cterm0A,  "")},
-     %q{call <sid>hi("Search",        s:gui01, s:gui0C, s:cterm01, s:cterm0C,  "")}],
-    [%q{call <sid>hi("Visual",        "", s:gui02, "", s:cterm02, "")},
-     %q{call <sid>hi("Visual",        s:gui01, s:gui0C, s:cterm01, s:cterm0C, "")}],
-    [%q{call <sid>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none")},
-     %q{call <sid>hi("StatusLine",    s:gui01, s:gui0D, s:cterm01, s:cterm0D, "bold")}],
-    [%q{call <sid>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none")},
-     %q{call <sid>hi("StatusLineNC",  s:gui01, s:gui02, s:cterm01, s:cterm02, "none")}],
-  ]
-  customize_colorscheme('base16-solarized-light.vim', customizations)
-end
-
 def enable_light_theme
   zshrc_path = "#{HOME_DIR}/.zshrc"
   settings = File.read(zshrc_path)
@@ -78,18 +45,12 @@ task :install_vim_plugins => [:install_config_files] do
   log "Installing Vim plugins..."
   vim_execute('+PlugInstall +qall')
 
-  customize_tomorrow_dark_colorscheme
-  customize_solarized_light_colorscheme
-
   log "Done installing Vim plugins!"
 end
 
 task :update_vim_plugins => [:install_config_files] do
   log "Updating Vim plugins..."
   vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
-
-  customize_tomorrow_dark_colorscheme
-  customize_solarized_light_colorscheme
 
   log "Done updating Vim plugins!"
 end
