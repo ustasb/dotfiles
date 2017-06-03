@@ -1,13 +1,12 @@
 # Brian Ustas's .zshrc
 #
-# Supports OS X and Linux (tested with Yosemite and Ubuntu 14.04).
+# Supports OS X and Linux (tested with Sierra and Ubuntu 14.04).
 #
 ### Expected Installs
 #
 # General:
 # - Vim
 # - Git
-# - GCC 4.8 Compiler
 # - rbenv and a Ruby version (https://github.com/sstephenson/rbenv)
 # - nvm and a Node.js version (https://github.com/creationix/nvm)
 # - npm (https://www.npmjs.com/)
@@ -106,11 +105,6 @@
   alias l='ls'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
-
-  # GCC 4.8 Compiler
-  if ! type "$g++-4.8" > /dev/null; then
-    alias g++="g++-4.8 -std=c++11"
-  fi
 
   # Vim aliases
   if [[ $platform == 'mac' ]]; then
