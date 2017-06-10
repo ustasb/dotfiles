@@ -82,8 +82,24 @@
   set noerrorbells visualbell t_vb=
 
   " Backups
+  if isdirectory($HOME . '/.vim/.tmp') == 0
+    :silent !mkdir -m 700 -p ~/.vim/.tmp > /dev/null 2>&1
+  endif
   set backup
-  set backupdir=/var/tmp//,/tmp//,.
+  set backupdir=~/.vim/.tmp
+
+  " Undos
+  if exists("+undofile")
+    " Allows you to use undos after exiting and restarting Vim.
+    " NOTE: only present in 7.3+
+    if isdirectory($HOME . '/.vim/.undo') == 0
+      :silent !mkdir -m 700 -p ~/.vim/.undo > /dev/null 2>&1
+    endif
+    set undofile
+    set undodir=~/.vim/.undo
+  endif
+
+  " I never use these...
   set noswapfile
 
   " Resize splits when Vim is resized.
