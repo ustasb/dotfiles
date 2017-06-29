@@ -387,9 +387,8 @@
   " Turn off semantic completion.
   let g:ycm_filetype_specific_completion_to_disable = {
     \ 'gitcommit': 1,
-    \ 'ruby': 1,
     \ 'javascript': 1,
-    \ 'coffee': 1,
+    \ 'cpp': 1,
     \ }
 
   " Ag.vim
