@@ -111,8 +111,6 @@
   # Scratch File
   alias s="v ~/notes/scratch_file.txt"
 
-  alias brew_update="brew update && brew upgrade && brew cleanup && brew cask cleanup"
-
 #=== Functions
 
   # No arguments: `git status`
