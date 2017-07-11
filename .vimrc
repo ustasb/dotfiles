@@ -17,7 +17,6 @@
     " Miscellaneous
     Plug 'tpope/vim-commentary'
     Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/syntastic'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
@@ -325,21 +324,6 @@
   let g:html_indent_inctags = 'html,body,head,tbody'
   let g:html_indent_script1 = 'inc'
   let g:html_indent_style1 = 'inc'
-
-  " Syntastic
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_always_populate_loc_list = 0
-  let g:syntastic_loc_list_height = 5
-  " Start in passive mode. Auto-linting is slow...
-  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-  nnoremap <Leader>l :SyntasticCheck<CR>
-  " JS support
-  let g:syntastic_javascript_checkers = ['eslint']
-  " Highlighting
-  let g:syntastic_error_symbol = '❌'
-  highlight link SyntasticErrorSign SignColumn
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
