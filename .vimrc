@@ -11,6 +11,7 @@
 " - ag (https://github.com/ggreer/the_silver_searcher)
 " - ctags (http://ctags.sourceforge.net/)
 " - fzf (https://github.com/junegunn/fzf)
+" - pandoc (https://pandoc.org)
 
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
@@ -23,6 +24,12 @@
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ajh17/VimCompletesMe'
     Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
+
+    " Markdown
+    Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
+    Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+    Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
+    Plug 'vim-voom/VOoM', { 'for': 'markdown' }
 
     " Requires ag (The Silver Searcher)
     Plug 'mileszs/ack.vim', { 'on':  'Ack' }
@@ -185,8 +192,10 @@
   au BufNewFile,BufRead *.es6 set filetype=javascript
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-  " 80 character line wrap for markdown and text files. Turn spell checking on.
-  au Filetype {text,markdown} setlocal textwidth=80 spell
+  " Treat .md files as Markdown.
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  " Prose settings.
+  au Filetype {text,markdown} setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4 foldenable
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
@@ -335,7 +344,7 @@
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
 
   " NERD Tree
-  let NERDTreeIgnore=['\.o$']
+  let NERDTreeIgnore=['\.o$', '.DS_Store']
   let NERDTreeShowHidden=1
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
@@ -368,3 +377,14 @@
 
   " Vim-JSX
   let g:jsx_ext_required = 0
+
+  " Vim Markdown Preview
+  let vim_markdown_preview_pandoc = 1
+  let vim_markdown_preview_browser='Google Chrome'
+
+  " Vim Voom
+  let g:voom_python_versions = [3, 2]
+  let g:voom_tree_placement = "left"
+  let g:voom_tree_width = 40
+  let g:voom_default_mode = "markdown"
+  nnoremap <Leader>v :VoomToggle<CR>
