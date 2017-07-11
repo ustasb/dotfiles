@@ -21,7 +21,8 @@
     Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
     Plug 'szw/vim-maximizer'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    Plug 'ajh17/VimCompletesMe'
+
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/vim-easy-align'
     Plug 'metakirby5/codi.vim' " REPL
@@ -354,13 +355,6 @@
   nmap <C-W><C-O> <C-W>o
   vmap <C-W><C-O> <C-W>o
   imap <C-W><C-O> <C-W>o
-
-  " YouCompleteMe
-  let g:ycm_complete_in_comments = 1
-  " Turn off semantic completion.
-  let g:ycm_filetype_specific_completion_to_disable = {
-    \ '*': 1,
-    \ }
 
   " Ag.vim
   let g:ag_lhandler = "topleft lopen"
