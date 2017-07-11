@@ -22,10 +22,7 @@
     Plug 'Raimondi/delimitMate'
     Plug 'szw/vim-maximizer'
     Plug 'ajh17/VimCompletesMe'
-
     Plug 'junegunn/goyo.vim'
-    Plug 'junegunn/vim-easy-align'
-    Plug 'metakirby5/codi.vim' " REPL
 
     " Requires ag (The Silver Searcher)
     Plug 'rking/ag.vim'
@@ -371,9 +368,3 @@
 
   " Vim-JSX
   let g:jsx_ext_required = 0
-
-  " Vim Easy Align
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
