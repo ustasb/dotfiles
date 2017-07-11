@@ -25,7 +25,7 @@
     Plug 'junegunn/goyo.vim'
 
     " Requires ag (The Silver Searcher)
-    Plug 'rking/ag.vim'
+    Plug 'mileszs/ack.vim'
 
     " Super fast file fuzzy-finding.
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -353,9 +353,11 @@
   vmap <C-W><C-O> <C-W>o
   imap <C-W><C-O> <C-W>o
 
-  " Ag.vim
-  let g:ag_lhandler = "topleft lopen"
-  let g:ag_qhandler = "topleft copen"
+  " Ack.vim
+  let g:ackprg = 'ag --vimgrep --smart-case'
+  let g:ack_lhandler = "topleft lopen"
+  let g:ack_qhandler = "topleft copen"
+  cnoreabbrev Ag Ack
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
