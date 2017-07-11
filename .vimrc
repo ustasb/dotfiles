@@ -11,24 +11,31 @@
 " - ag (https://github.com/ggreer/the_silver_searcher)
 " - ctags (http://ctags.sourceforge.net/)
 " - fzf (https://github.com/junegunn/fzf)
+" - pandoc (https://pandoc.org)
 
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
     " Miscellaneous
-    Plug 'tpope/vim-commentary'
-    Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/syntastic'
-    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
-    Plug 'szw/vim-maximizer'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-    Plug 'junegunn/goyo.vim'
-    Plug 'junegunn/vim-easy-align'
-    Plug 'metakirby5/codi.vim' " REPL
+    Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
+    Plug 'ajh17/VimCompletesMe'
+    Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
+
+    " Markdown
+    Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
+    Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+    Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
+    Plug 'vim-voom/VOoM', { 'for': 'markdown' }
+
+    " GPG
+    Plug 'jamessan/vim-gnupg'
 
     " Requires ag (The Silver Searcher)
-    Plug 'rking/ag.vim'
+    Plug 'mileszs/ack.vim', { 'on':  'Ack' }
 
     " Super fast file fuzzy-finding.
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -37,20 +44,19 @@
     Plug 'benmills/vimux'
     Plug 'christoomey/vim-tmux-navigator'
 
-    " Color scheme
+    " Color schemes
     Plug 'chriskempson/base16-vim'
+    Plug 'reedes/vim-colors-pencil'
 
     " Syntax
-    Plug 'othree/html5-syntax.vim'
-    Plug 'pangloss/vim-javascript'
-    Plug 'kchmck/vim-coffee-script'
-    Plug 'mtscout6/vim-cjsx'
-    Plug 'mxw/vim-jsx'
-    Plug 'tikhomirov/vim-glsl'
+    Plug 'othree/html5-syntax.vim', { 'for': 'html' }
+    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+    Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+    Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
     " Ruby
-    Plug 'vim-ruby/vim-ruby'
-    Plug 'thoughtbot/vim-rspec'
+    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+    Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
   call plug#end()
 
 "=== Basic
@@ -171,6 +177,9 @@
   " qq to record, Q to replay.
   nnoremap Q @q
 
+  " Quickly reload .vimrc
+  nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
+
 "=== Wild Mode (command-line completion)
   set wildmenu
   set wildmode=list:longest,full
@@ -185,12 +194,14 @@
   set wildignore+=*.swp,*~,._*
 
 "=== Files
-  " Treat ES6 files as JavaScript.
+  " Treat .es6 files as JavaScript.
   au BufNewFile,BufRead *.es6 set filetype=javascript
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-  " 80 character line wrap for markdown and text files. Turn spell checking on.
-  au Filetype {text,markdown} setlocal textwidth=80 spell
+  " Treat .md files as Markdown.
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  " Prose settings.
+  au Filetype {text,markdown} setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4 foldenable
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
@@ -312,34 +323,30 @@
 
 "=== Plugin Settings
   " Base16 color schemes
-  if $USING_LIGHT_THEME == 'true' || has('gui_running')
-    set guifont=Source\ Code\ Pro:h11  " github.com/adobe/source-code-pro/downloads
+  if $ITERM_PROFILE == 'Pencil Light'
+    let g:pencil_gutter_color = 1
+
     set background=light
-    silent! colorscheme base16-solarized
+    silent! colorscheme pencil
+
+    " These colors are mapped to iTerm's 16 colors.
+    hi ColorColumn  ctermbg=255
+    hi StatusLine   ctermfg=15 ctermbg=4 cterm=bold " active
+    hi StatusLineNC ctermfg=8  ctermbg=7 cterm=NONE " inactive
   else
     set background=dark
     silent! colorscheme base16-tomorrow
+
+    " These colors are mapped to iTerm's 16 colors.
+    hi ColorColumn  ctermbg=10
+    hi StatusLine   ctermfg=0 ctermbg=7  cterm=bold " active
+    hi StatusLineNC ctermfg=8 ctermbg=11 cterm=NONE " inactive
   endif
 
   " Andy Wokula's HTML Indent
   let g:html_indent_inctags = 'html,body,head,tbody'
   let g:html_indent_script1 = 'inc'
   let g:html_indent_style1 = 'inc'
-
-  " Syntastic
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_always_populate_loc_list = 0
-  let g:syntastic_loc_list_height = 5
-  " Start in passive mode. Auto-linting is slow...
-  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-  nnoremap <Leader>l :SyntasticCheck<CR>
-  " JS support
-  let g:syntastic_javascript_checkers = ['eslint']
-  " Highlighting
-  let g:syntastic_error_symbol = '❌'
-  highlight link SyntasticErrorSign SignColumn
 
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
@@ -355,32 +362,27 @@
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
 
   " NERD Tree
-  let NERDTreeIgnore=['\.o$']
+  let NERDTreeIgnore=['\.o$', '.DS_Store']
   let NERDTreeShowHidden=1
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
 
-  " GitGutter
-  let g:gitgutter_realtime = 0  " Only run on read and write.
-  let g:gitgutter_eager = 0     " ^^
+  " Vim Signify
+  let g:signify_vcs_list = ['git']
+  let g:signify_realtime = 0
 
   " Vim Maximizer
-  let g:maximizer_default_mapping_key = '<C-W>o'
+  nnoremap <C-W>o :MaximizerToggle<CR>
   " Override the default and remap recursively.
   nmap <C-W><C-O> <C-W>o
   vmap <C-W><C-O> <C-W>o
   imap <C-W><C-O> <C-W>o
 
-  " YouCompleteMe
-  let g:ycm_complete_in_comments = 1
-  " Turn off semantic completion.
-  let g:ycm_filetype_specific_completion_to_disable = {
-    \ '*': 1,
-    \ }
-
-  " Ag.vim
-  let g:ag_lhandler = "topleft lopen"
-  let g:ag_qhandler = "topleft copen"
+  " Ack.vim
+  let g:ackprg = 'ag --vimgrep --smart-case'
+  let g:ack_lhandler = 'topleft lopen'
+  let g:ack_qhandler = 'topleft copen'
+  cnoreabbrev Ag Ack
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
@@ -394,8 +396,24 @@
   " Vim-JSX
   let g:jsx_ext_required = 0
 
-  " Vim Easy Align
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
+  " Vim Markdown Preview
+  let vim_markdown_preview_pandoc = 1
+  let vim_markdown_preview_browser = 'Google Chrome'
+
+  " Vim Voom
+  let g:voom_python_versions = [3, 2]
+  let g:voom_tree_placement = 'left'
+  let g:voom_tree_width = 40
+  let g:voom_default_mode = 'markdown'
+  nnoremap <Leader>o :VoomToggle<CR>
+
+  " Vim GnuPG
+  let g:GPGExecutable = 'gpg2 --trust-model always'
+  let g:GPGPreferArmor = 1
+  let g:GPGUseAgent = 1
+  let g:GPGFilePattern = '*.asc' " ASCII armored files
+  let g:GPGDefaultRecipients=[
+    \"Brian Ustas <brianustas@gmail.com>",
+  \]
+  " HACK: Without, two columns are highlighted on the second line...
+  autocmd VimEnter *.asc execute(':redraw!')

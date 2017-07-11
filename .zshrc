@@ -44,6 +44,9 @@
   setopt share_history
   setopt hist_ignore_all_dups
 
+  # Automatically cd into directories.
+  setopt autocd
+
   # No beeping.
   unsetopt beep
 
@@ -61,9 +64,6 @@
   export CLICOLOR=1
 
 #=== Environment Variables
-
-  # If true, Vim and tmux will use their light themes. Defaults to a dark theme.
-  # export USING_LIGHT_THEME=true
 
   # Use Vim as the visual editor.
   export VISUAL=vim
