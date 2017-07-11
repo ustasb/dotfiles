@@ -17,7 +17,7 @@
     " Miscellaneous
     Plug 'tpope/vim-commentary'
     Plug 'scrooloose/nerdtree'
-    Plug 'airblade/vim-gitgutter'
+    Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
     Plug 'szw/vim-maximizer'
@@ -344,9 +344,9 @@
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
 
-  " GitGutter
-  let g:gitgutter_realtime = 0  " Only run on read and write.
-  let g:gitgutter_eager = 0     " ^^
+  " Vim Signify
+  let g:signify_vcs_list = ['git']
+  let g:signify_realtime = 0
 
   " Vim Maximizer
   let g:maximizer_default_mapping_key = '<C-W>o'
