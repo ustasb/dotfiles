@@ -29,13 +29,6 @@ def vim_execute(options)
   system("#{get_vim} #{options}", out: $stdout, err: :out)
 end
 
-def enable_light_theme
-  zshrc_path = "#{HOME_DIR}/.zshrc"
-  settings = File.read(zshrc_path)
-  settings.gsub!('# export USING_LIGHT_THEME=true', 'export USING_LIGHT_THEME=true')
-  File.write(zshrc_path, settings)
-end
-
 task :install_vim_plugins => [:install_config_files] do
   FileUtils.rm_rf("#{HOME_DIR}/.vim")
 
@@ -89,18 +82,11 @@ task :install_pure_prompt do
    -o #{HOME_DIR}/.zfunctions/async`
 end
 
-task :enable_light_theme do
-  enable_light_theme
-end
-
 desc 'Install all config files to $HOME and install Vim plugins forcefully'
 task :install => [:install_config_files, :install_vim_plugins]
 
 desc 'Install all config files to $HOME and only update outdated Vim plugins'
 task :update => [:install_config_files, :update_vim_plugins]
-
-desc 'Same as `update` but enables the light theme'
-task :update_light => [:update, :enable_light_theme]
 
 task :default do
   puts 'Run rake -T for options.'

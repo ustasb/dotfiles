@@ -34,8 +34,9 @@
     Plug 'benmills/vimux'
     Plug 'christoomey/vim-tmux-navigator'
 
-    " Color scheme
+    " Color schemes
     Plug 'chriskempson/base16-vim'
+    Plug 'reedes/vim-colors-pencil'
 
     " Syntax
     Plug 'othree/html5-syntax.vim', { 'for': 'html' }
@@ -307,10 +308,9 @@
 
 "=== Plugin Settings
   " Base16 color schemes
-  if $USING_LIGHT_THEME == 'true' || has('gui_running')
-    set guifont=Source\ Code\ Pro:h11  " github.com/adobe/source-code-pro/downloads
+  if $ITERM_PROFILE == 'Pencil Light - Writing'
     set background=light
-    silent! colorscheme base16-solarized
+    silent! colorscheme pencil
   else
     set background=dark
     silent! colorscheme base16-tomorrow
