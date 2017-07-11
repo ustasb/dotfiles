@@ -15,17 +15,17 @@
 "=== Vim-Plug
   call plug#begin('~/.vim/plugged')
     " Miscellaneous
-    Plug 'tpope/vim-commentary'
-    Plug 'scrooloose/nerdtree'
+    Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
-    Plug 'szw/vim-maximizer'
+    Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ajh17/VimCompletesMe'
-    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
 
     " Requires ag (The Silver Searcher)
-    Plug 'mileszs/ack.vim'
+    Plug 'mileszs/ack.vim', { 'on':  'Ack' }
 
     " Super fast file fuzzy-finding.
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -38,16 +38,14 @@
     Plug 'chriskempson/base16-vim'
 
     " Syntax
-    Plug 'othree/html5-syntax.vim'
-    Plug 'pangloss/vim-javascript'
-    Plug 'kchmck/vim-coffee-script'
-    Plug 'mtscout6/vim-cjsx'
-    Plug 'mxw/vim-jsx'
-    Plug 'tikhomirov/vim-glsl'
+    Plug 'othree/html5-syntax.vim', { 'for': 'html' }
+    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+    Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+    Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
     " Ruby
-    Plug 'vim-ruby/vim-ruby'
-    Plug 'thoughtbot/vim-rspec'
+    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+    Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
   call plug#end()
 
 "=== Basic
@@ -182,7 +180,7 @@
   set wildignore+=*.swp,*~,._*
 
 "=== Files
-  " Treat ES6 files as JavaScript.
+  " Treat .es6 files as JavaScript.
   au BufNewFile,BufRead *.es6 set filetype=javascript
   " Python PEP8 4 space indent
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
@@ -347,7 +345,7 @@
   let g:signify_realtime = 0
 
   " Vim Maximizer
-  let g:maximizer_default_mapping_key = '<C-W>o'
+  nnoremap <C-W>o :MaximizerToggle<CR>
   " Override the default and remap recursively.
   nmap <C-W><C-O> <C-W>o
   vmap <C-W><C-O> <C-W>o
