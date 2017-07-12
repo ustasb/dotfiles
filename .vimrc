@@ -174,6 +174,9 @@
   " qq to record, Q to replay.
   nnoremap Q @q
 
+  " Quickly reload .vimrc
+  nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
+
 "=== Wild Mode (command-line completion)
   set wildmenu
   set wildmode=list:longest,full
