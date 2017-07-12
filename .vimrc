@@ -31,6 +31,9 @@
     Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'for': 'markdown' }
 
+    " GPG
+    Plug 'jamessan/vim-gnupg'
+
     " Requires ag (The Silver Searcher)
     Plug 'mileszs/ack.vim', { 'on':  'Ack' }
 
@@ -377,8 +380,8 @@
 
   " Ack.vim
   let g:ackprg = 'ag --vimgrep --smart-case'
-  let g:ack_lhandler = "topleft lopen"
-  let g:ack_qhandler = "topleft copen"
+  let g:ack_lhandler = 'topleft lopen'
+  let g:ack_qhandler = 'topleft copen'
   cnoreabbrev Ag Ack
 
   " Goyo.vim
@@ -395,11 +398,22 @@
 
   " Vim Markdown Preview
   let vim_markdown_preview_pandoc = 1
-  let vim_markdown_preview_browser='Google Chrome'
+  let vim_markdown_preview_browser = 'Google Chrome'
 
   " Vim Voom
   let g:voom_python_versions = [3, 2]
-  let g:voom_tree_placement = "left"
+  let g:voom_tree_placement = 'left'
   let g:voom_tree_width = 40
-  let g:voom_default_mode = "markdown"
+  let g:voom_default_mode = 'markdown'
   nnoremap <Leader>o :VoomToggle<CR>
+
+  " Vim GnuPG
+  let g:GPGExecutable = 'gpg2 --trust-model always'
+  let g:GPGPreferArmor = 1
+  let g:GPGUseAgent = 1
+  let g:GPGFilePattern = '*.asc' " ASCII armored files
+  let g:GPGDefaultRecipients=[
+    \"Brian Ustas <brianustas@gmail.com>",
+  \]
+  " HACK: Without, two columns are highlighted on the second line...
+  autocmd VimEnter *.asc execute(':redraw!')
