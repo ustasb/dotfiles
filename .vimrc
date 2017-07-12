@@ -327,6 +327,7 @@
     silent! colorscheme pencil
 
     " These colors are mapped to iTerm's 16 colors.
+    hi ColorColumn  ctermbg=255
     hi StatusLine   ctermfg=15 ctermbg=4 cterm=bold " active
     hi StatusLineNC ctermfg=8  ctermbg=7 cterm=NONE " inactive
   else
@@ -334,6 +335,7 @@
     silent! colorscheme base16-tomorrow
 
     " These colors are mapped to iTerm's 16 colors.
+    hi ColorColumn  ctermbg=10
     hi StatusLine   ctermfg=0 ctermbg=7  cterm=bold " active
     hi StatusLineNC ctermfg=8 ctermbg=11 cterm=NONE " inactive
   endif
