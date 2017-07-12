@@ -5,7 +5,6 @@ HOME_DIR = File.expand_path('~')
 CONFIG_FILES = [
   '.zshrc',
   '.tmux.conf',
-  '.tmux_light_theme.conf',
   '.vimrc',
   '.agignore',
   '.gitconfig',
