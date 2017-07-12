@@ -864,13 +864,13 @@
 	<key>HotKeyTogglesWindow</key>
 	<false/>
 	<key>Hotkey</key>
-	<false/>
+	<true/>
 	<key>HotkeyChar</key>
-	<integer>0</integer>
+	<integer>96</integer>
 	<key>HotkeyCode</key>
-	<integer>0</integer>
+	<integer>50</integer>
 	<key>HotkeyModifiers</key>
-	<integer>0</integer>
+	<integer>1048840</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>JobName</key>
