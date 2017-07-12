@@ -391,4 +391,4 @@
   let g:voom_tree_placement = "left"
   let g:voom_tree_width = 40
   let g:voom_default_mode = "markdown"
-  nnoremap <Leader>v :VoomToggle<CR>
+  nnoremap <Leader>o :VoomToggle<CR>
