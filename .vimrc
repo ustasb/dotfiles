@@ -320,6 +320,10 @@
   if $ITERM_PROFILE == 'Pencil Light - Writing'
     set background=light
     silent! colorscheme pencil
+
+    " These colors are mapped to iTerm's 16 colors.
+    hi StatusLine   ctermfg=15 ctermbg=4 cterm=NONE " active
+    hi StatusLineNC ctermfg=8  ctermbg=7 cterm=NONE " inactive
   else
     set background=dark
     silent! colorscheme base16-tomorrow
