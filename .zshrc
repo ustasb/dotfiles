@@ -44,6 +44,9 @@
   setopt share_history
   setopt hist_ignore_all_dups
 
+  # Automatically cd into directories.
+  setopt autocd
+
   # No beeping.
   unsetopt beep
 
