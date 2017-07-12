@@ -54,3 +54,17 @@ Log into the server as root and execute ([Don't Pipe to your Shell](http://blog.
 Do **not** execute the script twice!
 
 After, log into the server as the newly created user.
+
+## Vim Markdown Preview
+
+Update the relevant line in:
+
+    ~/.vim/plugged/vim-markdown-preview/plugin/vim-markdown-preview.vim`
+
+Dark theme:
+
+    call system('pandoc --smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/github.css "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+
+Light theme:
+
+    call system('pandoc --smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/tufte.css "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
