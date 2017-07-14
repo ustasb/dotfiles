@@ -68,6 +68,7 @@
   set mouse=a                     " Enable mouse support for all modes.
   set backspace=indent,eol,start  " Make backspace work like most other apps.
   set history=100                 " Keep 100 lines of command-line history.
+  set undolevels=100              " Keep 100 lines of undo history.
   set showcmd                     " Display incomplete commands.
   set title                       " Change the title of the terminal/tab with the file name.
   set hidden                      " Allow unsaved background buffers.
@@ -79,6 +80,13 @@
   set nofoldenable                " No text folding.
   set shortmess=I                 " Don't show Vim's welcome message.
   set shortmess+=a                " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
+  set modelines=0                 " I don't use modelines and it's apparently a potential security hazard.
+  set spelllang=en_us             " US English spelling
+
+  " Configure term color support.
+  if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+    set t_Co=256
+  endif
 
   " Open new split panes to the bottom and right.
   set splitbelow
