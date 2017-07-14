@@ -201,7 +201,7 @@
   " Treat .md files as Markdown.
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
   " Prose settings.
-  au Filetype {text,markdown} setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4 foldenable
+  au Filetype {text,markdown} setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
