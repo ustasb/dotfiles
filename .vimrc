@@ -411,6 +411,7 @@
   let g:GPGExecutable = 'gpg2 --trust-model always'
   let g:GPGPreferArmor = 1
   let g:GPGUseAgent = 1
+  let g:GPGPreferSign = 1
   let g:GPGFilePattern = '*.asc' " ASCII armored files
   let g:GPGDefaultRecipients=[
     \"Brian Ustas <brianustas@gmail.com>",
