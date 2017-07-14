@@ -323,7 +323,7 @@
 
 "=== Plugin Settings
   " Base16 color schemes
-  if $ITERM_PROFILE == 'Pencil Light - Writing'
+  if $ITERM_PROFILE == 'Pencil Light'
     let g:pencil_gutter_color = 1
 
     set background=light
