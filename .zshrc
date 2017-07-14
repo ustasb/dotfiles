@@ -50,10 +50,6 @@
   # No beeping.
   unsetopt beep
 
-  # Automatically set pushd.
-  setopt auto_pushd
-  export dirstacksize=5
-
   # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation.
   setopt EXTENDED_GLOB
 
