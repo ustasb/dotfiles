@@ -866,9 +866,9 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
-	<integer>96</integer>
+	<integer>27</integer>
 	<key>HotkeyCode</key>
-	<integer>50</integer>
+	<integer>53</integer>
 	<key>HotkeyModifiers</key>
 	<integer>1048840</integer>
 	<key>IRMemory</key>
