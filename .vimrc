@@ -24,6 +24,7 @@
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ajh17/VimCompletesMe'
     Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
+    Plug 'ustasb/scratch.vim'
 
     " Markdown
     Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
@@ -427,3 +428,7 @@
   \]
   " HACK: Without, two columns are highlighted on the second line...
   autocmd VimEnter *.asc execute(':redraw!')
+
+  " Scratch.vim
+  let g:ScratchFileName = '~/Google\ Drive/documents/notes/scratch_file.txt'
+  nnoremap <Leader>a :ScratchToggle<CR>
