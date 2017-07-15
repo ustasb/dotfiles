@@ -28,7 +28,7 @@
     " Markdown
     Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
     Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
-    Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
+    Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'for': 'markdown' }
 
     " GPG
@@ -405,8 +405,9 @@
   let g:jsx_ext_required = 0
 
   " Vim Markdown Preview
-  let vim_markdown_preview_pandoc = 1
-  let vim_markdown_preview_browser = 'Google Chrome'
+  let g:vim_markdown_preview_pandoc = 1
+  let g:vim_markdown_preview_browser = 'Google Chrome'
+  let g:vim_markdown_preview_pandoc_args = '--smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/github.css'
 
   " Vim Voom
   let g:voom_python_versions = [3, 2]

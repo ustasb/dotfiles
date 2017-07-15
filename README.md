@@ -30,19 +30,3 @@ First import my iTerm2 preferences [file](https://github.com/ustasb/dotfiles/blo
 * Font: [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Vim theme](https://github.com/ChrisKempson/Tomorrow-Theme)
 * [iTerm2 theme](https://github.com/chriskempson/base16-iterm2/blob/master/base16-tomorrow.dark.itermcolors)
-
-## Vim Markdown Preview
-
-`Ctrl-p` in Vim will render the Markdown doc into a self contained HTML doc. Make sure to do the following...
-
-Update the relevant line in:
-
-    ~/.vim/plugged/vim-markdown-preview/plugin/vim-markdown-preview.vim`
-
-Dark theme:
-
-    call system('pandoc --smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/github.css "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
-
-Light theme:
-
-    call system('pandoc --smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/tufte.css "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
