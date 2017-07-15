@@ -21,12 +21,12 @@ First import my iTerm2 preferences [file](https://github.com/ustasb/dotfiles/blo
 
 ### Light Theme - 'Pencil Light'
 
-* Font: [Courier Prime Code](https://quoteunquoteapps.com/courierprime/)
+* Font: [Courier Prime Code](https://github.com/ustasb/dotfiles/tree/master/fonts/courier_prime_code)
 * [Vim theme](https://github.com/reedes/vim-colors-pencil)
 * [iTerm2 theme](https://github.com/mattly/iterm-colors-pencil)
 
 ### Dark Theme - 'Tomorrow Night'
 
-* Font: [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
+* Font: [Source Code Pro](https://github.com/ustasb/dotfiles/tree/master/fonts/source_code_pro)
 * [Vim theme](https://github.com/ChrisKempson/Tomorrow-Theme)
 * [iTerm2 theme](https://github.com/chriskempson/base16-iterm2/blob/master/base16-tomorrow.dark.itermcolors)
