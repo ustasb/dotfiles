@@ -1,6 +1,7 @@
 [user]
   name = Brian Ustas
   email = brianustas@gmail.com
+  signingkey = 0x3DEFF568765C9501
 [github]
   user = ustasb
 [alias]
@@ -11,3 +12,9 @@
   publish = "!git push -u origin $(git branch-name)"
   # Pretty graph log (credit: http://fredkschott.com/post/2014/02/git-log-is-so-2005)
   lg = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%C(blue) <%an>%Creset' --abbrev-commit
+[core]
+  editor = mvim -v
+[gpg]
+  program = gpg2
+[commit]
+  gpgsign = true
