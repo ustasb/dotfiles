@@ -269,21 +269,13 @@
   " Daily Journal
   function! TodaysJournalEntry()
     let journal_dir = "~/notes/journal/"
-    let entry_path = journal_dir . "entry_" . strftime("%y%m%d") . ".md"
+    let entry_path = journal_dir . strftime("%Y-%m-%d") . ".md.asc"
 
     " Ensure the journal directory exists.
     exec "silent !mkdir -p " . journal_dir
 
+    " Open the entry.
     exec "e " . entry_path
-
-    " Add an entry title if new.
-    if !filereadable(expand(entry_path))
-      let entry_num = system("ls -l " . journal_dir . "entry_* 2>/dev/null | wc -l | sed 's/ //g'") + 1
-      let entry_title = "# Journal Entry " . entry_num . " - " . strftime("%m/%d/%y")
-      call setline(line('.'), getline(line('.')) . entry_title)
-    endif
-
-    redraw!
   endfunction
   nnoremap <silent> <Leader>j :call TodaysJournalEntry()<CR>
 
