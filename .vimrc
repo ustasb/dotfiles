@@ -83,6 +83,7 @@
   set shortmess+=a                " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
   set modelines=0                 " I don't use modelines and it's apparently a potential security hazard.
   set spelllang=en_us             " US English spelling
+  set cryptmethod=blowfish2       " Vim's default (zip) is poor. Note: I prefer AES256 via GnuPG.
 
   " Configure term color support.
   if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
