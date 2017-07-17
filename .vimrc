@@ -367,7 +367,7 @@
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
 
   " NERD Tree
-  let NERDTreeIgnore=['\.o$', '.DS_Store']
+  let NERDTreeIgnore=['\.o$', '.DS_Store', 'Icon']
   let NERDTreeShowHidden=1
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
