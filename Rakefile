@@ -12,8 +12,13 @@ CONFIG_FILES = [
   '.ctags',
 ]
 
+GPG_CONFIG_FILES = [
+  'gpg.conf',
+  'gpg-agent.conf',
+]
+
 def log(msg)
-  puts "===> #{msg}"
+  puts "\n===> #{msg}"
 end
 
 def is_osx?
@@ -26,6 +31,22 @@ end
 
 def vim_execute(options)
   system("#{get_vim} #{options}", out: $stdout, err: :out)
+end
+
+def install_gpg_conf_files
+  if `which gpg2` == ""
+    log "Error: You need to install gpg2!"
+    exit
+  end
+
+  gnupg_dir = `gpgconf --list-dirs homedir`.chomp
+
+  GPG_CONFIG_FILES.each do |filename|
+    dest_path = "#{gnupg_dir}/#{filename}"
+    FileUtils.cp(filename, dest_path)
+  end
+
+  log "Done installing GPG config files!"
 end
 
 task :install_vim_plugins => [:install_config_files] do
@@ -48,6 +69,8 @@ task :update_vim_plugins => [:install_config_files] do
 end
 
 task :install_config_files => [:install_pure_prompt] do
+  install_gpg_conf_files
+
   config_files = CONFIG_FILES
 
   config_files.each do |filename|
