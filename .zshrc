@@ -11,6 +11,7 @@
 # - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
+# - gpg2 (https://www.gnupg.org)
 #
 # Mac Specific:
 # - Homebrew
@@ -109,6 +110,9 @@
 
   # Scratch File
   alias s="v ~/notes/scratch_file.txt"
+
+  # GPG2
+  alias gpg=gpg2
 
 #=== Functions
 
