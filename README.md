@@ -21,12 +21,12 @@ First import my iTerm2 preferences [file](https://github.com/ustasb/dotfiles/blo
 
 ### Light Theme - 'Pencil Light'
 
-* Font: [Consolas](https://gist.github.com/avalonalex/8125197)
+* Font: 12pt SF Mono Regular
 * [Vim theme](https://github.com/reedes/vim-colors-pencil)
 * [iTerm2 theme](https://github.com/mattly/iterm-colors-pencil)
 
 ### Dark Theme - 'Tomorrow Night'
 
-* Font: [Consolas](https://gist.github.com/avalonalex/8125197)
+* Font: 12pt SF Mono Regular
 * [Vim theme](https://github.com/ChrisKempson/Tomorrow-Theme)
 * [iTerm2 theme](https://github.com/chriskempson/base16-iterm2/blob/master/base16-tomorrow.dark.itermcolors)
