@@ -83,9 +83,6 @@
   export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'  # Respects .gitignore
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
-  # GnuPG: Required if using a terminal based pinentry.
-  export GPG_TTY=$(tty)
-
 #=== Aliases
 
   alias ...='../..'
@@ -170,5 +167,5 @@
   if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   else
-    echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running ?"
+    echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running?"
   fi
