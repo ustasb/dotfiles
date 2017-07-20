@@ -417,7 +417,7 @@
     \"Brian Ustas <brianustas@gmail.com>",
   \]
   " HACK: Without, two columns are highlighted on the second line...
-  autocmd VimEnter *.asc execute(':redraw!')
+  autocmd BufWinEnter *.asc execute(':redraw!')
 
   " Scratch.vim
   let g:ScratchFileName = '~/notes/scratch_file.txt'
