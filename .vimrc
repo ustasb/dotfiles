@@ -165,12 +165,6 @@
   nnoremap q/ <Nop>
   vnoremap q/ <Nop>
 
-  " Split navigation
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
-
   " Remap arrow keys to navigate buffers and tabs.
   nnoremap <left> :bprev<CR>
   nnoremap <right> :bnext<CR>
