@@ -87,9 +87,9 @@
 
   alias ...='../..'
   alias c='clear'
-  alias l='ls'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
+  alias ktmux='tmux kill-server'
 
   # Vim aliases
   if [[ $platform == 'mac' ]]; then
@@ -104,9 +104,6 @@
 
   # Bundler
   alias be='bundle exec'
-
-  # Scratch File
-  alias s="v ~/notes/scratch_file.txt"
 
   # GPG2
   alias gpg=gpg2
