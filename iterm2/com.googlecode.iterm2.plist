@@ -2738,10 +2738,12 @@
 	<key>NoSyncTimeOfLastPromoDownload</key>
 	<real>486053088.49791503</real>
 	<key>OnlyWhenMoreTabs</key>
-	<true/>
+	<false/>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenBookmark</key>
+	<false/>
+	<key>OpenNoWindowsAtStartup</key>
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
@@ -2793,7 +2795,7 @@
 	<key>PromptOnClose</key>
 	<true/>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>RightCommand</key>
@@ -2811,7 +2813,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-07-12T00:21:21Z</date>
+	<date>2017-07-25T15:13:40Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
