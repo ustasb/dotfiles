@@ -89,7 +89,7 @@
   alias c='clear'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
-  alias ktmux='tmux kill-server'
+  alias tmuxk='tmux kill-server'
 
   # Vim aliases
   if [[ $platform == 'mac' ]]; then
