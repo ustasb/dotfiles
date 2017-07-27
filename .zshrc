@@ -156,6 +156,16 @@
     unset IFS
   }
 
+  # Create Cryptomator drive symbolic links.
+  symlink_cryptomator() {
+    ruby ~/dotfiles/scripts/create_cryptomator_symlinks.rb
+  }
+
+  # Backup Google Drive contents to S3.
+  backup_gdrive() {
+    ruby ~/dotfiles/scripts/backup_gdrive.rb
+  }
+
 #=== Prompt
 
   autoload -U promptinit && promptinit
@@ -193,6 +203,13 @@
   # export USTASB_AWS_ACCESS_KEY_ID=
   # export USTASB_AWS_SECRET_ACCESS_KEY=
   # export USTASB_AWS_REGION=
+
+  # For `symlink_cryptomator` and `backup_gdrive`
+  # export USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME=
+  # export USTASB_UNENCRYPTED_SYM_LINK_PATH=
+  # export USTASB_NOTES_SYM_LINK_PATH=
+  # export USTASB_ENCRYPTED_FOLDER_REL_PATH=
+  # export USTASB_S3_BACKUP_BUCKET_NAME=
 
 #=== Local Customizations
 
