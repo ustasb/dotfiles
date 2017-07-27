@@ -945,6 +945,10 @@
 	<string>0 0 1280 800 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>1 6 1277 769 0 0 1280 777 </string>
+	<key>NeverWarnAboutShortLivedSessions_F0D85124-7461-4344-B9B4-3D5C9FB8E250</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_F0D85124-7461-4344-B9B4-3D5C9FB8E250_selection</key>
+	<integer>0</integer>
 	<key>NeverWarnAboutShortLivedSessions_F205B8EE-D18A-4826-BD6C-E58BDE143BE8</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_F205B8EE-D18A-4826-BD6C-E58BDE143BE8_selection</key>
