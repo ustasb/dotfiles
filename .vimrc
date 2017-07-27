@@ -263,8 +263,8 @@
 
   " Daily Journal
   function! TodaysJournalEntry()
-    let journal_dir = "~/notes/journal/"
-    let entry_path = journal_dir . strftime("%Y-%m-%d") . ".md.asc"
+    let journal_dir = $USTASB_NOTES_SYM_LINK_PATH . '/journal/'
+    let entry_path = journal_dir . strftime('%Y-%m-%d') . '.md.asc'
 
     " Ensure the journal directory exists.
     exec "silent !mkdir -p " . journal_dir
@@ -316,7 +316,7 @@
 
   " Notes
   nnoremap <silent> <Leader>n :call fzf#run({
-  \   'source': 'find ~/notes/*',
+  \   'source': 'find $USTASB_NOTES_SYM_LINK_PATH/*',
   \   'sink' : 'e',
   \   'options' : '--reverse',
   \ })<CR>
@@ -421,7 +421,7 @@
   autocmd VimEnter *.asc execute(':redraw!')
 
   " Scratch.vim
-  let g:ScratchFileName = '~/notes/scratch.md'
+  let g:ScratchFileName = $USTASB_NOTES_SYM_LINK_PATH . '/scratch.md'
   nnoremap <Leader>a :ScratchToggle<CR>
 
   " vim-simple-todo

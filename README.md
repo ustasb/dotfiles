@@ -9,6 +9,8 @@ I clone this repo into my `$HOME` directory.
 
 See `rake -T` for options. You probably want to run `rake install` first.
 
+Complete the instructions under `ENV Template` in `.zshrc`.
+
 For MacVim + Zsh, see [this](https://github.com/b4winckler/macvim/wiki/Troubleshooting#for-zsh-users).
 
 ## iTerm Color Profiles
