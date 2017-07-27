@@ -162,20 +162,38 @@
 
   prompt pure
 
-#=== GPG and YubiKey
+#=== GPG + SSH
 
-  # Launch gpg-agent
-  gpg-connect-agent /bye
+  start_gpg_agent() {
+    # Launch gpg-agent
+    gpg-connect-agent /bye
 
-  # When using SSH support, use the current TTY for passphrase prompts.
-  gpg-connect-agent updatestartuptty /bye > /dev/null
+    # When using SSH support, use the current TTY for passphrase prompts.
+    gpg-connect-agent updatestartuptty /bye > /dev/null
 
-  # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
-  if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  else
-    echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running?"
-  fi
+    # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
+    if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    else
+      echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running?"
+    fi
+  }
+
+  restart_gpg_agent() {
+    pkill gpg-agent
+    start_gpg_agent
+  }
+
+  start_gpg_agent
+
+#=== ENV Template
+
+  # Add these to your ~/.zshrc.local
+
+  # export USTASB_AWS_ACCESS_KEY_ID=
+  # export USTASB_AWS_SECRET_ACCESS_KEY=
+  # export USTASB_AWS_REGION=
+
 #=== Local Customizations
 
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
