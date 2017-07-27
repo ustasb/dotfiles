@@ -422,3 +422,8 @@
   " Scratch.vim
   let g:ScratchFileName = '~/notes/scratch.md'
   nnoremap <Leader>a :ScratchToggle<CR>
+"=== Local Customizations
+
+  if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+  endif

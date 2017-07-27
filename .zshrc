@@ -176,3 +176,6 @@
   else
     echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running?"
   fi
+#=== Local Customizations
+
+  [ -f ~/.zshrc.local ] && source ~/.zshrc.local

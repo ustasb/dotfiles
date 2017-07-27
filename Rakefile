@@ -71,22 +71,10 @@ end
 task :install_config_files => [:install_pure_prompt] do
   install_gpg_conf_files
 
-  config_files = CONFIG_FILES
-
-  config_files.each do |filename|
+  CONFIG_FILES.each do |filename|
     dest_path = "#{HOME_DIR}/#{filename}"
     FileUtils.cp(filename, dest_path)
-
-    local_customizations = "#{dest_path}.local"
-    if File.exist?(local_customizations)
-      open(dest_path, 'a') do |f|
-        f.puts "\n" + File.read(local_customizations)
-      end
-    end
   end
-
-  # Configure the git editor
-  `git config --global core.editor "#{get_vim}"`
 
   log "To apply the new .zshrc settings, execute `source ~/.zshrc`"
 end
