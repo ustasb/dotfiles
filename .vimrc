@@ -31,6 +31,7 @@
     Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'for': 'markdown' }
+    Plug 'vitalk/vim-simple-todo', { 'for': 'markdown' }
 
     " GPG
     Plug 'jamessan/vim-gnupg'
@@ -354,8 +355,8 @@
   hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
 
   " RSpec.vim
-  nnoremap <Leader>s :call RunNearestSpec()<CR>
-  nnoremap <Leader>S :call RunCurrentSpecFile()<CR>
+  autocmd FileType ruby nnoremap <Leader>s :call RunNearestSpec()<CR>
+  autocmd FileType ruby nnoremap <Leader>S :call RunCurrentSpecFile()<CR>
 
   " Vimux
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
@@ -422,6 +423,12 @@
   " Scratch.vim
   let g:ScratchFileName = '~/notes/scratch.md'
   nnoremap <Leader>a :ScratchToggle<CR>
+
+  " vim-simple-todo
+  let g:simple_todo_map_keys = 0 " Disable default key bindings
+  autocmd FileType markdown nmap <Leader>I <Plug>(simple-todo-new-start-of-line)
+  autocmd FileType markdown nmap <Leader>s <Plug>(simple-todo-mark-switch)
+
 "=== Local Customizations
 
   if filereadable(glob("~/.vimrc.local"))
