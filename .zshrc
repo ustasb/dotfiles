@@ -11,6 +11,7 @@
 # - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
+# - z ( https://github.com/rupa/z)
 # - gpg2 (https://www.gnupg.org)
 #
 # Mac Specific:
@@ -78,10 +79,19 @@
   # To hold zsh functions.
   fpath=("$HOME/.zfunctions" $fpath)
 
+  # z
+  source /usr/local/etc/profile.d/z.sh
+
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
   export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'  # Respects .gitignore
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
+
+  # fzf + z
+  zz() {
+    [ $# -gt 0 ] && _z "$*" && return
+    cd "$(_z -l 2>&1 | fzf --height 40% --reverse --inline-info +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
+  }
 
 #=== Aliases
 
