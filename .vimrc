@@ -420,5 +420,5 @@
   autocmd BufWinEnter *.asc execute(':redraw!')
 
   " Scratch.vim
-  let g:ScratchFileName = '~/notes/scratch_file.txt'
+  let g:ScratchFileName = '~/notes/scratch.md'
   nnoremap <Leader>a :ScratchToggle<CR>
