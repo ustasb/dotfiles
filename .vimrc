@@ -417,8 +417,8 @@
   let g:GPGDefaultRecipients=[
     \"Brian Ustas <brianustas@gmail.com>",
   \]
-  " HACK: Without, two columns are highlighted on the second line...
-  autocmd BufWinEnter *.asc execute(':redraw!')
+  " HACK: Without, two columns are highlighted on the second line upon startup...
+  autocmd VimEnter *.asc execute(':redraw!')
 
   " Scratch.vim
   let g:ScratchFileName = '~/notes/scratch.md'
