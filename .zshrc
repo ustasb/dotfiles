@@ -118,6 +118,9 @@
   # GPG2
   alias gpg=gpg2
 
+  # Ag
+  alias ag='ag --hidden'
+
 #=== Functions
 
   # No arguments: `git status`

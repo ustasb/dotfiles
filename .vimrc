@@ -379,7 +379,7 @@
   imap <C-W><C-O> <C-W>o
 
   " Ack.vim
-  let g:ackprg = 'ag --vimgrep --smart-case'
+  let g:ackprg = 'ag --hidden --vimgrep --smart-case'
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
   cnoreabbrev Ag Ack
