@@ -9,7 +9,7 @@ require 'aws-sdk'
 
 BRIAN_GPG_IDENTITY = 'brianustas@gmail.com'
 RSYNC_CLAUSE = 'rsync --archive --ignore-existing --checksum --exclude Icon? --exclude .DS_Store'
-MAX_RSYNC_RETRY_COUNT = 3
+MAX_RSYNC_RETRY_COUNT = 5
 GOOGLE_DRIVE_PATH = "#{Dir.home}/Google\\ Drive"
 UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']
 ENCRYPTED_FOLDER_REL_PATH = ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']
