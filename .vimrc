@@ -25,6 +25,7 @@
     Plug 'ajh17/VimCompletesMe'
     Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
     Plug 'ustasb/scratch.vim'
+    Plug 'justinmk/vim-sneak'
 
     " Markdown
     Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
@@ -428,6 +429,11 @@
   let g:simple_todo_map_keys = 0 " Disable default key bindings
   autocmd FileType markdown nmap <Leader>I <Plug>(simple-todo-new-start-of-line)
   autocmd FileType markdown nmap <Leader>s <Plug>(simple-todo-mark-switch)
+
+  " vim-sneak
+  let g:sneak#label = 1
+  map f <Plug>Sneak_s
+  map F <Plug>Sneak_S
 
 "=== Local Customizations
 
