@@ -7,7 +7,7 @@
 # General:
 # - Vim
 # - Git
-# - rbenv and a Ruby version (https://github.com/sstephenson/rbenv)
+# - chruby and a Ruby version (https://github.com/postmodern/chruby)
 # - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
@@ -72,9 +72,9 @@
     export PATH=/usr/local/bin:$PATH
   fi
 
-  # rbenv
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init - zsh)"
+  # chruby
+  source '/usr/local/share/chruby/chruby.sh'
+  source '/usr/local/share/chruby/auto.sh'
 
   # To hold zsh functions.
   fpath=("$HOME/.zfunctions" $fpath)
