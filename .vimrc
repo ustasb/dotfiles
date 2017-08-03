@@ -17,9 +17,10 @@
   call plug#begin('~/.vim/plugged')
     " Miscellaneous
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'mhinz/vim-signify'
-    Plug 'tpope/vim-fugitive'
     Plug 'Raimondi/delimitMate'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ajh17/VimCompletesMe'
@@ -427,7 +428,6 @@
 
   " vim-simple-todo
   let g:simple_todo_map_keys = 0 " Disable default key bindings
-  autocmd FileType markdown nmap <Leader>I <Plug>(simple-todo-new-start-of-line)
   autocmd FileType markdown nmap <Leader>s <Plug>(simple-todo-mark-switch)
 
   " vim-sneak
