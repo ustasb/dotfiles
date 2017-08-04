@@ -37,7 +37,9 @@ def create_notes_sym_link
 end
 
 def remove_sym_links
-  `rm #{UNENCRYPTED_SYM_LINK_PATH} #{NOTES_SYM_LINK_PATH}`
+  [UNENCRYPTED_SYM_LINK_PATH, NOTES_SYM_LINK_PATH].each do |file|
+    File.delete(file) if File.exists?(file)
+  end
 end
 
 def main
