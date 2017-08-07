@@ -18,6 +18,7 @@
     " Miscellaneous
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-surround'
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'mhinz/vim-signify'
