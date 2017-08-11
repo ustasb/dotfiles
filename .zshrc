@@ -210,7 +210,7 @@
   # For `symlink_cryptomator` and `back_up_gdrive`
   # export USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME=
   # export USTASB_UNENCRYPTED_SYM_LINK_PATH=
-  # export USTASB_NOTES_SYM_LINK_PATH=
+  # export USTASB_NOTES_PATH=
   # export USTASB_ENCRYPTED_FOLDER_REL_PATH=
   # export USTASB_S3_BACKUP_BUCKET_NAME=
 
