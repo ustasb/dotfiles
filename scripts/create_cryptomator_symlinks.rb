@@ -4,7 +4,6 @@
 
 MOUNTED_DRIVE_NAME = ENV['USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME']
 UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']
-NOTES_SYM_LINK_PATH = ENV['USTASB_NOTES_SYM_LINK_PATH']
 
 def create_sym_link(source, dest)
   system("ln -sfh #{source} #{dest}")
@@ -31,20 +30,15 @@ def create_unencrypted_sym_link
   create_sym_link(volume_path, UNENCRYPTED_SYM_LINK_PATH)
 end
 
-def create_notes_sym_link
-  volume_notes_path = "#{get_mounted_volume_path}/documents/notes"
-  create_sym_link(volume_notes_path, NOTES_SYM_LINK_PATH)
-end
-
-def remove_sym_links
-  [UNENCRYPTED_SYM_LINK_PATH, NOTES_SYM_LINK_PATH].each do |file|
-    File.delete(file) if File.exists?(file)
+def remove_unencrypted_sym_link
+  if File.exists?(UNENCRYPTED_SYM_LINK_PATH)
+    File.delete(UNENCRYPTED_SYM_LINK_PATH)
   end
 end
 
 def main
   remove_dead_volumes
-  remove_sym_links
+  remove_unencrypted_sym_link
 
   if get_mounted_volume_path == nil
     puts "Could not find the Cryptomator drive: #{MOUNTED_DRIVE_NAME}"
@@ -52,7 +46,6 @@ def main
   end
 
   create_unencrypted_sym_link
-  create_notes_sym_link
 end
 
 main
