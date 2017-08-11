@@ -7,6 +7,7 @@ drive_path = os.environ['USTASB_UNENCRYPTED_SYM_LINK_PATH']
 
 sidebar.removeAll()
 sidebar.add(home_path)
+sidebar.add(drive_path)
 sidebar.add(home_path + '/Desktop')
 sidebar.add(home_path + '/projects')
 
