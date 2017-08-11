@@ -118,6 +118,10 @@
   # Ag
   alias ag='ag --hidden'
 
+  # PGP
+  alias encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
+  alias decrypt="gpg --decrypt --local-user brianustas@gmail.com"
+
 #=== Functions
 
   # No arguments: `git status`
