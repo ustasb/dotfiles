@@ -169,6 +169,11 @@
     ruby ~/dotfiles/scripts/back_up_gdrive.rb
   }
 
+  # Back up Photo Booth to the Cloud.
+  back_up_photo_booth() {
+    ruby ~/dotfiles/scripts/backup_photo_booth.rb
+  }
+
 #=== Prompt
 
   autoload -U promptinit && promptinit
