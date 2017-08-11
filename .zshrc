@@ -122,6 +122,12 @@
   alias encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
   alias decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
+  # GPG2
+  # As of 11/08/17, Homebrew's gpg is version 2.x by default.
+  if type gpg2 > /dev/null; then
+    alias gpg='gpg2'
+  fi
+
 #=== Functions
 
   # No arguments: `git status`
