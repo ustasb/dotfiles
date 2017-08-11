@@ -62,6 +62,13 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 # The amount of time it takes for key repetition to begin.
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
+################################################################################
+# Screen
+################################################################################
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
@@ -70,6 +77,12 @@ defaults write com.apple.screencapture type -string "png"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
+
+# Speed up Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Don’t group windows by application in Mission Control
+defaults write com.apple.dock expose-group-by-app -bool false
 
 ################################################################################
 # Finder
