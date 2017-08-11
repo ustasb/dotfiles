@@ -904,7 +904,7 @@
 	gAKACoAN0xAJChEVGVdOUy5rZXlzoxITFIADgASABaMWFxiABoAHgAiACVpJZGVudGlm
 	aWVyVVdpZHRoVkhpZGRlblEwI0BowAAAAAAACNIhIiMkWiRjbGFzc25hbWVYJGNsYXNz
 	ZXNcTlNEaWN0aW9uYXJ5oiMlWE5TT2JqZWN00xAJCicrGaMSExSAA4AEgAWjLC0YgAuA
-	DIAIgAlRMSNAczAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
+	DIAIgAlRMSNAdCAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
 	TlNLZXllZEFyY2hpdmVy0Tg5VUFycmF5gAEACAARABoAIwAtADIANwBGAEwAUQBcAGMA
 	ZgBoAGoAbABzAHsAfwCBAIMAhQCJAIsAjQCPAJEAnACiAKkAqwC0ALUAugDFAM4A2wDe
 	AOcA7gDyAPQA9gD4APwA/gEAAQIBBAEGAQ8BFAEjAScBLwFBAUQBSgAAAAAAAAIBAAAA
@@ -1639,11 +1639,11 @@
 			<key>Name</key>
 			<string>Tomorrow Night</string>
 			<key>Non Ascii Font</key>
-			<string>SFMono-Regular 13</string>
+			<string>SFMono-Regular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SFMono-Regular 13</string>
+			<string>SFMono-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2513,11 +2513,11 @@
 			<key>Name</key>
 			<string>Pencil Light</string>
 			<key>Non Ascii Font</key>
-			<string>SFMono-Regular 13</string>
+			<string>SFMono-Regular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SFMono-Regular 13</string>
+			<string>SFMono-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
