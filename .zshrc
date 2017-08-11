@@ -87,12 +87,6 @@
   export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'  # Respects .gitignore
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
-  # fzf + z
-  zz() {
-    [ $# -gt 0 ] && _z "$*" && return
-    cd "$(_z -l 2>&1 | fzf --height 40% --reverse --inline-info +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
-  }
-
 #=== Aliases
 
   alias ...='../..'
@@ -112,21 +106,18 @@
   alias vi=$MY_VIM
   alias v=$MY_VIM
 
-  # Bundler
-  alias be='bundle exec'
-
   # Ag
   alias ag='ag --hidden'
-
-  # PGP
-  alias encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
-  alias decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
   # GPG2
   # As of 11/08/17, Homebrew's gpg is version 2.x by default.
   if type gpg2 > /dev/null; then
     alias gpg='gpg2'
   fi
+
+  # PGP
+  alias encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
+  alias decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
 #=== Functions
 
@@ -155,15 +146,6 @@
     branches=$(git branch) &&
     branch=$(echo "$branches" | fzf +m) &&
     git checkout $(echo "$branch" | sed "s/.* //")
-  }
-
-  # Fuzzy-search for a file and open in Vim.
-  vv() {
-    IFS='
-  '
-    local declare files=($(fzf --query="$1" --select-1 --exit-0))
-    [[ -n "$files" ]] && vim "${files[@]}"
-    unset IFS
   }
 
   # Create Cryptomator drive symbolic links.

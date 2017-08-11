@@ -188,9 +188,6 @@
   " Quickly reload .vimrc
   nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
 
-  " Command mode: Allow Ctrl-A to bring you to the beginning of the line like in Bash.
-  cnoremap <C-A> <Home>
-
 "=== Wild Mode (command-line completion)
   set wildmenu
   set wildmode=list:longest,full
