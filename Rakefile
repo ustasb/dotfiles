@@ -29,11 +29,6 @@ def vim_execute(options)
 end
 
 def install_gpg_conf_files
-  if `which gpg2` == ""
-    log "Error: You need to install gpg2!"
-    exit
-  end
-
   gnupg_dir = `gpgconf --list-dirs homedir`.chomp
 
   GPG_CONFIG_FILES.each do |filename|

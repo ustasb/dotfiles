@@ -115,9 +115,6 @@
   # Bundler
   alias be='bundle exec'
 
-  # GPG2
-  alias gpg=gpg2
-
   # Ag
   alias ag='ag --hidden'
 

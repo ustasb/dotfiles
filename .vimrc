@@ -412,7 +412,7 @@
   nnoremap <Leader>o :VoomToggle<CR>
 
   " Vim GnuPG
-  let g:GPGExecutable = 'gpg2 --trust-model always'
+  let g:GPGExecutable = 'gpg --trust-model always'
   let g:GPGPreferArmor = 1
   let g:GPGUseAgent = 1
   let g:GPGPreferSign = 1

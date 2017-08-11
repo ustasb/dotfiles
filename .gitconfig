@@ -16,4 +16,4 @@
   # My ~/.zshrc configures the vim alias correctly.
   editor = vim
 [gpg]
-  program = gpg2
+  program = gpg
