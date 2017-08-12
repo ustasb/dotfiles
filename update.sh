@@ -6,7 +6,7 @@ brew update && brew upgrade && brew cleanup && brew cask cleanup
 echo "Installing config files and updating Vim plugins..."
 rake update
 
-if [ -d ~/projects ]; then
+if [ ! -d ~/projects ]; then
   echo "Making ~/projects..."
   mkdir ~/projects
 fi
