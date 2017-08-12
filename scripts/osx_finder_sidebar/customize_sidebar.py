@@ -9,6 +9,7 @@ sidebar.removeAll()
 sidebar.add(home_path)
 sidebar.add(drive_path)
 sidebar.add(home_path + '/Desktop')
+sidebar.add(home_path + '/Downloads')
 sidebar.add(home_path + '/projects')
 
 # notes
