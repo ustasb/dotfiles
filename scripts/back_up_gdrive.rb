@@ -1,6 +1,7 @@
 # Creates a secure archive of my digital stuff and puts it on S3.
 # Tested on OS X Sierra
 
+require 'optparse'
 require 'tmpdir'
 require 'aws-sdk'
 
@@ -15,11 +16,52 @@ UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']
 ENCRYPTED_FOLDER_REL_PATH = ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']
 S3_BACKUP_BUCKET_NAME = ENV['USTASB_S3_BACKUP_BUCKET_NAME']
 
+$argv_options = {}
+
+def parse_args
+  OptionParser.new do |opts|
+    opts.banner = "Usage: back_up_gdrive.rb [options]"
+
+    opts.on("-a", "--aws", "Backup to AWS") do
+      $argv_options[:aws_backup] = true
+    end
+
+    opts.on("-d", "--dir [DIRECTORY]", "Output directory") do |dir|
+      $argv_options[:output_dir] = dir
+    end
+  end.parse!
+
+  if $argv_options.empty?
+    puts "No arguments given! Exiting..."
+    exit
+  end
+
+  if $argv_options[:aws_backup]
+    log("Backing up to AWS...")
+  end
+
+  if $argv_options.key?(:output_dir)
+    if $argv_options[:output_dir] == nil
+      puts "Output directory can't be blank! Exiting..."
+      exit
+    else
+      if Dir.exists?($argv_options[:output_dir])
+        log("Backing up to: #{$argv_options[:output_dir]}")
+      else
+        puts "Output directory doesn't exist! Exiting..."
+        exit
+      end
+    end
+  end
+end
+
 def log(msg, indent_level = 0)
   puts "#{'===' * indent_level}==> #{msg}"
 end
 
 def main
+  parse_args
+
   log("Looking for: #{UNENCRYPTED_SYM_LINK_PATH}")
   if `ls #{UNENCRYPTED_SYM_LINK_PATH}`.empty?
     log("Error: Couldn't find or was empty: #{UNENCRYPTED_SYM_LINK_PATH}", 1)
@@ -66,13 +108,20 @@ def main
   # Use symmetric password.
   `tar -c -C #{backup_path} . | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --symmetric | gzip > #{archive_path}`
 
-  credentials = Aws::Credentials.new(ENV['USTASB_AWS_ACCESS_KEY_ID'], ENV['USTASB_AWS_SECRET_ACCESS_KEY'])
-  s3_key = "#{now.strftime('%Y/%m/%d')}/#{File.basename(archive_path)}"
-  log("Uploading archive to S3 as: #{S3_BACKUP_BUCKET_NAME}/#{s3_key}")
-  Aws::S3::Resource.new(region: ENV['USTASB_AWS_REGION'], credentials: credentials)
-    .bucket(S3_BACKUP_BUCKET_NAME)
-    .object(s3_key)
-    .upload_file(archive_path)
+  if $argv_options[:output_dir]
+    log("Copying archive to: #{$argv_options[:output_dir]}")
+    FileUtils.cp(archive_path, $argv_options[:output_dir])
+  end
+
+  if $argv_options[:aws_backup]
+    credentials = Aws::Credentials.new(ENV['USTASB_AWS_ACCESS_KEY_ID'], ENV['USTASB_AWS_SECRET_ACCESS_KEY'])
+    s3_key = "#{now.strftime('%Y/%m/%d')}/#{File.basename(archive_path)}"
+    log("Uploading archive to S3 as: #{S3_BACKUP_BUCKET_NAME}/#{s3_key}")
+    Aws::S3::Resource.new(region: ENV['USTASB_AWS_REGION'], credentials: credentials)
+      .bucket(S3_BACKUP_BUCKET_NAME)
+      .object(s3_key)
+      .upload_file(archive_path)
+  end
 
   log("Done!")
 ensure
