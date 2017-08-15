@@ -9,3 +9,4 @@ duti -s org.vim.MacVim .md all
 duti -s org.vim.MacVim .rb all
 duti -s org.vim.MacVim .asc all
 duti -s org.vim.MacVim .key all
+duti -s org.vim.MacVim .log all
