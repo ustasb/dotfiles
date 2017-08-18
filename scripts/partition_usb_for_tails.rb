@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Adds a 6 GB FAT32 partition to a USB. The rest becomes an EXFAT partition.
 # usage: `./partition_usb_for_tails.rb disk2`
 # inspiration: https://www.reddit.com/r/applehelp/comments/4egve5/unmountable_external_drive/
