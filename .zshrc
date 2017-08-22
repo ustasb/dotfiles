@@ -150,13 +150,19 @@
   }
 
   # Create Cryptomator drive symbolic links.
-  alias symlink_cryptomator="ruby ~/dotfiles/scripts/create_cryptomator_symlinks.rb"
+  symlink_cryptomator() {
+    ruby ~/dotfiles/scripts/create_cryptomator_symlinks.rb
+  }
 
   # Back up Google Drive contents to S3.
-  alias back_up_gdrive="ruby ~/dotfiles/scripts/back_up_gdrive.rb"
+  back_up_gdrive() {
+    ruby ~/dotfiles/scripts/back_up_gdrive.rb
+  }
 
   # Back up Photo Booth to the Cloud.
-  alias back_up_photo_booth="ruby ~/dotfiles/scripts/backup_photo_booth.rb"
+  back_up_photo_booth() {
+    ruby ~/dotfiles/scripts/backup_photo_booth.rb
+  }
 
 #=== Prompt
 
