@@ -156,7 +156,7 @@
 
   # Back up Google Drive contents to S3.
   back_up_gdrive() {
-    ruby ~/dotfiles/scripts/back_up_gdrive.rb
+    ruby ~/dotfiles/scripts/back_up_gdrive.rb $*
   }
 
   # Back up Photo Booth to the Cloud.
