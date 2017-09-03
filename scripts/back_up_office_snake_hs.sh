@@ -12,8 +12,8 @@ echo "Downloading new high scores..."
 
 for FILE in 'classicHS.csv' 'challengeHS.csv'
 do
-  ssh ustasb@ustasb.com "sudo docker exec office_snake cat cgi-bin/$FILE" > $OFFICE_SNAKE_DIR/cgi-bin/$FILE
-  git add cgi-bin/$FILE
+  ssh ustasb@ustasb.com "docker exec ustasb_office_snake cat public/high_scores/$FILE" > $OFFICE_SNAKE_DIR/public/high_scores/$FILE
+  git add public/high_scores/$FILE
 done
 
 echo "Publishing new high scores..."
