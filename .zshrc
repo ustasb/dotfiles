@@ -128,7 +128,7 @@
     if [[ $# > 0 ]]; then
       git $@
     else
-      git status
+      git status -s
     fi
   }
   compdef g=git  # Complete `g` like `git`
