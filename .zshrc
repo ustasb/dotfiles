@@ -37,14 +37,17 @@
   bindkey -e
 
   # Keep lots of history.
+  export HISTFILE=~/.zsh_history
   export HISTSIZE=1000
   export SAVEHIST=1000
-  export HISTFILE=~/.history
 
-  # Share history between terminals.
   setopt inc_append_history
-  setopt share_history
+  setopt hist_find_no_dups
   setopt hist_ignore_all_dups
+  # Share history between terminals.
+  setopt share_history
+  # Don't record an entry starting with a space.
+  setopt hist_ignore_space
 
   # Automatically cd into directories.
   setopt autocd
