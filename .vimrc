@@ -34,7 +34,6 @@
     Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'for': 'markdown' }
-    Plug 'vitalk/vim-simple-todo', { 'for': 'markdown' }
 
     " GPG
     Plug 'jamessan/vim-gnupg'
@@ -423,10 +422,6 @@
   " Scratch.vim
   let g:ScratchFileName = $USTASB_NOTES_PATH . '/scratch.md'
   nnoremap <Leader>a :ScratchToggle<CR>
-
-  " vim-simple-todo
-  let g:simple_todo_map_keys = 0 " Disable default key bindings
-  autocmd FileType markdown nmap <Leader>s <Plug>(simple-todo-mark-switch)
 
   " vim-sneak
   let g:sneak#label = 1
