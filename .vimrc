@@ -263,11 +263,11 @@
 
   " Daily Journal
   function! TodaysJournalEntry()
-    let journal_dir = $USTASB_NOTES_PATH . '/ustasb/journal/'
-    let entry_path = journal_dir . strftime('%Y-%m-%d') . '.md.asc'
+    let journal_entry_dir = $USTASB_NOTES_PATH . '/ustasb/journal/entries/'
+    let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md.asc'
 
     " Ensure the journal directory exists.
-    exec "silent !mkdir -p " . journal_dir
+    exec "silent !mkdir -p " . journal_entry_dir
 
     " Open the entry.
     exec "e " . entry_path

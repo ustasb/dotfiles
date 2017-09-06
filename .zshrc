@@ -167,6 +167,11 @@
     ruby ~/dotfiles/scripts/backup_photo_booth.rb
   }
 
+  # Build my journal.
+  build_full_journal() {
+    ruby ~/dotfiles/scripts/build_full_journal.rb
+  }
+
 #=== Prompt
 
   export PURE_GIT_PULL=0
