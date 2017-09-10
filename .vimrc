@@ -39,7 +39,9 @@
     Plug 'jamessan/vim-gnupg'
 
     " Requires ag (The Silver Searcher)
-    Plug 'mileszs/ack.vim', { 'on':  'Ack' }
+    " Don't use vim-plug's lazy loading here! :Ack on text below the cursor
+    " won't work the first time.
+    Plug 'mileszs/ack.vim'
 
     " Super fast file fuzzy-finding.
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
