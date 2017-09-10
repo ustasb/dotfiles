@@ -1,3 +1,5 @@
+# Usage: `ruby back_up_photo_booth.rb`
+
 require 'fileutils'
 
 def get_filename(pb_filename)

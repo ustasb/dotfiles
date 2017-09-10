@@ -1,6 +1,7 @@
 # Creates convenient symbolic links for interacting with my Cryptomator drive.
 # Solves: https://github.com/cryptomator/cryptomator/issues/464
 # Tested on OS X Sierra
+# Usage: `ruby create_cryptomator_symlinks.rb`
 
 MOUNTED_DRIVE_NAME = ENV['USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME']
 UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']

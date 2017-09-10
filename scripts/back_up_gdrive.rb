@@ -1,5 +1,6 @@
 # Creates a secure archive of my digital stuff and puts it on S3.
 # Tested on OS X Sierra
+# Usage: `ruby back_up_gdrive.rb`
 
 require 'optparse'
 require 'tmpdir'

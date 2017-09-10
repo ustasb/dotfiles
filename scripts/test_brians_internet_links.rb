@@ -1,5 +1,6 @@
 # Script for testing my internet links.
 # Relies on curl: https://curl.haxx.se/
+# Usage: `test_brians_internet_links.rb`
 
 def build_url_test_data
   data = []

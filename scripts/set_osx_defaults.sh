@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Inspired by: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# Usage: `./set_osx_defaults.sh`
 
 ################################################################################
 

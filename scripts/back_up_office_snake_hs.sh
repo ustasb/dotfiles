@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Usage: `./back_up_office_snake_hs.sh`
+
 OFFICE_SNAKE_DIR="$HOME/projects/office_snake"
 
 if [ ! -d $OFFICE_SNAKE_DIR ]; then

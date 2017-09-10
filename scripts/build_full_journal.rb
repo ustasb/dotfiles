@@ -1,3 +1,5 @@
+# Usage: `ruby build_full_journal.rb`
+
 INPUT_ENTRIES_PATH = File.expand_path("#{ENV['USTASB_NOTES_PATH']}/ustasb/journal/entries")
 OUTPUT_JOURNAL_PATH = File.expand_path("#{ENV['USTASB_NOTES_PATH']}/ustasb/journal/full_journal.md.asc")
 

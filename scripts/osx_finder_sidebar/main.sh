@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Customizes the Finder sidebar favorites.
-# e.g.: `./main.sh`
+# Usage: `./main.sh`
 
 curl -O https://raw.githubusercontent.com/robperc/FinderSidebarEditor/master/FinderSidebarEditor.py
 
