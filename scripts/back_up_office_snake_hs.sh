@@ -12,11 +12,11 @@ echo "Downloading new high scores..."
 
 for FILE in 'classicHS.csv' 'challengeHS.csv'
 do
-  ssh ustasb@ustasb.com "docker exec ustasb_office_snake cat public/high_scores/$FILE" > $OFFICE_SNAKE_DIR/public/high_scores/$FILE
+  ssh ustasb@ustasb.com "cat ~/ustasb_com/data/office_snake/$FILE" > $OFFICE_SNAKE_DIR/public/high_scores/$FILE
   git add public/high_scores/$FILE
 done
 
 echo "Publishing new high scores..."
 
-git commit -m "Update highscores."
+git commit -m "Update high scores."
 git push origin master
