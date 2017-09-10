@@ -106,7 +106,7 @@ def run_all_url_tests
     puts "Dang! #{failed_urls.count} URL(s) didn't behave properly:"
     failed_urls.each { |url| puts url }
   else
-    puts "Success! All #{all_test_data.count} URLs work."
+    puts "Success! All #{all_test_data.count} URLs behave correctly."
   end
 end
 
