@@ -31,6 +31,8 @@ def build_url_test_data
 
   data << %w{ http://brianustas.com/campus-safety-dashboard/  200 }
   data << %w{ http://brianustas.com/campus-safety-dashboard   301 200 http://brianustas.com/campus-safety-dashboard/ }
+  data << %w{ http://brianustas.com/knightly-demo/            301 200 http://brianustas.com/campus-safety-dashboard/ } # legacy
+  data << %w{ http://brianustas.com/knightly-demo             301 200 http://brianustas.com/campus-safety-dashboard/ } # legacy
 
   data << %w{ http://brianustas.com/where-in-the-world/ 200 }
   data << %w{ http://brianustas.com/where-in-the-world  301 200 http://brianustas.com/where-in-the-world/ }
