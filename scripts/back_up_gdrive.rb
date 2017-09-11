@@ -20,7 +20,7 @@ S3_BACKUP_BUCKET_NAME = ENV['USTASB_S3_BACKUP_BUCKET_NAME']
 $argv_options = {}
 
 def parse_args
-  OptionParser.new do |opts|
+  parser = OptionParser.new do |opts|
     opts.banner = "Usage: back_up_gdrive.rb [options]"
 
     opts.on("-a", "--aws", "Backup to AWS") do
@@ -30,10 +30,13 @@ def parse_args
     opts.on("-d", "--dir [DIRECTORY]", "Output directory") do |dir|
       $argv_options[:output_dir] = dir
     end
-  end.parse!
+  end
+
+  parser.parse!
 
   if $argv_options.empty?
-    puts "No arguments given! Exiting..."
+    log "No arguments given! Exiting..."
+    puts parser
     exit
   end
 
@@ -43,13 +46,13 @@ def parse_args
 
   if $argv_options.key?(:output_dir)
     if $argv_options[:output_dir] == nil
-      puts "Output directory can't be blank! Exiting..."
+      log "Output directory can't be blank! Exiting..."
       exit
     else
       if Dir.exists?($argv_options[:output_dir])
         log("Backing up to: #{$argv_options[:output_dir]}")
       else
-        puts "Output directory doesn't exist! Exiting..."
+        log "Output directory doesn't exist! Exiting..."
         exit
       end
     end
