@@ -152,25 +152,9 @@
     git checkout $(echo "$branch" | sed "s/.* //")
   }
 
-  # Create Cryptomator drive symbolic links.
-  symlink_cryptomator() {
-    ruby ~/dotfiles/scripts/create_cryptomator_symlinks.rb
-  }
-
-  # Back up Google Drive contents to S3.
-  back_up_gdrive() {
-    ruby ~/dotfiles/scripts/back_up_gdrive.rb $*
-  }
-
-  # Back up Photo Booth to the Cloud.
-  back_up_photo_booth() {
-    ruby ~/dotfiles/scripts/backup_photo_booth.rb
-  }
-
-  # Build my journal.
-  build_full_journal() {
-    ruby ~/dotfiles/scripts/build_full_journal.rb
-  }
+  # Enable access to my personal scripts.
+  # Helper functions are prefixed with `bu_`.
+  source ~/dotfiles/scripts/shell_functions.sh
 
 #=== Prompt
 

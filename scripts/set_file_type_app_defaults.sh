@@ -2,7 +2,7 @@
 
 # `brew install duti`
 # To get the Bundle ID of an app: mdls -name kMDItemCFBundleIdentifier -r <app_path>
-# Usage: `./set_filetype_app_defaults.sh`
+# Usage: `./set_file_type_app_defaults.sh`
 
 duti -s org.videolan.vlc .mp4 all
 
