@@ -35,7 +35,7 @@ def parse_args
   parser.parse!
 
   if $argv_options.empty?
-    log "No arguments given! Exiting..."
+    log("No arguments given! Exiting...")
     puts parser
     exit
   end
@@ -46,13 +46,13 @@ def parse_args
 
   if $argv_options.key?(:output_dir)
     if $argv_options[:output_dir] == nil
-      log "Output directory can't be blank! Exiting..."
+      log("Output directory can't be blank! Exiting...")
       exit
     else
       if Dir.exists?($argv_options[:output_dir])
         log("Backing up to: #{$argv_options[:output_dir]}")
       else
-        log "Output directory doesn't exist! Exiting..."
+        log("Output directory doesn't exist! Exiting...")
         exit
       end
     end
@@ -65,6 +65,12 @@ end
 
 def main
   parse_args
+
+  puts "\n"
+  log("*** Ensure that your files-to-backup aren't changing during the backup! ***")
+  log("Waiting 15 seconds. Unless you cancel, the backup process will continue.")
+  sleep(15)
+  puts "\n"
 
   log("Looking for: #{UNENCRYPTED_SYM_LINK_PATH}")
   if `ls #{UNENCRYPTED_SYM_LINK_PATH}`.empty?
