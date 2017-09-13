@@ -1,7 +1,7 @@
-# Brian Ustas's Configuration Files
+# [Brian Ustas's](http://brianustas.com) Configuration Files
 
-* Editor: Terminal [MacVim](https://code.google.com/p/macvim/)
-* Terminal Emulator: [iTerm2](http://www.iterm2.com/)
+- Editor: Terminal [MacVim](https://code.google.com/p/macvim/)
+- Terminal Emulator: [iTerm2](http://www.iterm2.com/)
 
 ## Installing
 
@@ -19,12 +19,12 @@ First, import my iTerm2 [preferences file](https://github.com/ustasb/dotfiles/bl
 
 ### Light Theme - 'Pencil Light'
 
-* Font: 12pt SF Mono Regular
-* [Vim theme](https://github.com/reedes/vim-colors-pencil)
-* [iTerm2 theme](https://github.com/mattly/iterm-colors-pencil)
+- Font: 12pt SF Mono Regular
+- [Vim theme](https://github.com/reedes/vim-colors-pencil)
+- [iTerm2 theme](https://github.com/mattly/iterm-colors-pencil)
 
 ### Dark Theme - 'Tomorrow Night'
 
-* Font: 12pt SF Mono Regular
-* [Vim theme](https://github.com/ChrisKempson/Tomorrow-Theme)
-* [iTerm2 theme](https://github.com/chriskempson/base16-iterm2/blob/master/base16-tomorrow.dark.itermcolors)
+- Font: 12pt SF Mono Regular
+- [Vim theme](https://github.com/ChrisKempson/Tomorrow-Theme)
+- [iTerm2 theme](https://github.com/chriskempson/base16-iterm2/blob/master/base16-tomorrow.dark.itermcolors)
