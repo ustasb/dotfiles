@@ -5,6 +5,7 @@
 require 'optparse'
 require 'tmpdir'
 require 'aws-sdk'
+require 'shellwords'
 
 # To decrypt and unarchive into the current directory:
 # gzcat my_backup.tar.gpg.gz | gpg --decrypt --local-user brianustas@gmail.com | tar -x
@@ -12,10 +13,14 @@ require 'aws-sdk'
 BRIAN_GPG_IDENTITY = 'brianustas@gmail.com'
 RSYNC_CLAUSE = 'rsync --archive --ignore-existing --checksum --exclude Icon? --exclude .DS_Store'
 MAX_RSYNC_RETRY_COUNT = 5
-GOOGLE_DRIVE_PATH = "#{Dir.home}/Google\\ Drive"
-UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']
-ENCRYPTED_FOLDER_REL_PATH = ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']
 S3_BACKUP_BUCKET_NAME = ENV['USTASB_S3_BACKUP_BUCKET_NAME']
+
+REQUIRED_DIRS = [
+  GOOGLE_DRIVE_PATH = File.expand_path("~/Google Drive"),
+  UNENCRYPTED_SYM_LINK_PATH = File.expand_path(ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']),
+  SHARED_FOLDER_PATH = File.join(GOOGLE_DRIVE_PATH, 'shared'),
+  ENCRYPTED_FOLDER_PATH = File.join(GOOGLE_DRIVE_PATH, ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']),
+]
 
 $argv_options = {}
 
@@ -30,6 +35,10 @@ def parse_args
     opts.on("-d", "--dir [DIRECTORY]", "Output directory") do |dir|
       $argv_options[:output_dir] = dir
     end
+
+    opts.on("--include-shared", "Include the shared/ folder") do
+      $argv_options[:include_shared] = true
+    end
   end
 
   parser.parse!
@@ -39,6 +48,9 @@ def parse_args
     puts parser
     exit
   end
+
+  prefix = $argv_options[:include_shared] ? 'Including' : 'Excluding'
+  log("#{prefix}: #{SHARED_FOLDER_PATH}\n\n")
 
   if $argv_options[:aws_backup]
     log("Backing up to AWS...")
@@ -80,6 +92,15 @@ def main
   end
   log("Found!", 1)
 
+  REQUIRED_DIRS.each do |required_dir|
+    unless File.directory?(required_dir)
+      puts "\n"
+      log("ERROR: Required directory does not exist: #{required_dir}")
+      log("Exiting...")
+      exit
+    end
+  end
+
   now = Time.now.utc
   temp_dir = Dir.mktmpdir
   backup_path = "#{temp_dir}/backup-#{now.to_i}"
@@ -88,11 +109,21 @@ def main
   `mkdir -p #{backup_path}`
 
   log("Copying non-encrypted data from: #{GOOGLE_DRIVE_PATH}")
-  log("Excluding: #{ENCRYPTED_FOLDER_REL_PATH}", 1)
-  `#{RSYNC_CLAUSE} --exclude #{ENCRYPTED_FOLDER_REL_PATH} #{GOOGLE_DRIVE_PATH}/* #{backup_path}`
+
+  exclude_shared = ''
+  unless $argv_options[:include_shared]
+    log("Excluding: #{SHARED_FOLDER_PATH}", 1)
+    exclude_shared = "--exclude #{SHARED_FOLDER_PATH.sub(GOOGLE_DRIVE_PATH, '')}"
+  end
+
+  log("Excluding: #{ENCRYPTED_FOLDER_PATH}", 1)
+  exclude_encrypted = "--exclude #{ENCRYPTED_FOLDER_PATH.sub(GOOGLE_DRIVE_PATH, '')}"
+
+  # Note on the exclusion pattern: https://stackoverflow.com/a/18252050/1575238
+  `#{RSYNC_CLAUSE} #{exclude_shared} #{exclude_encrypted} #{Shellwords.escape(GOOGLE_DRIVE_PATH)}/* #{backup_path}`
 
   log("Copying encrypted data from: #{UNENCRYPTED_SYM_LINK_PATH}")
-  cmd = "#{RSYNC_CLAUSE} #{UNENCRYPTED_SYM_LINK_PATH}/* #{backup_path}/#{ENCRYPTED_FOLDER_REL_PATH}"
+  cmd = "#{RSYNC_CLAUSE} #{UNENCRYPTED_SYM_LINK_PATH}/* #{backup_path}/#{ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']}"
   retry_count = 0
   until system(cmd) # Relies on the --ignore-existing flag to not redo work.
     retry_count += 1
