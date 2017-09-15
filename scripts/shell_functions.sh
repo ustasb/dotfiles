@@ -10,6 +10,11 @@ bu_back_up_gdrive() {
   ruby ~/dotfiles/scripts/back_up_gdrive.rb $*
 }
 
+# Unravel `bu_back_up_gdrive` archives.
+bu_unravel_backup() {
+  gzcat $1 | gpg --decrypt --local-user brianustas@gmail.com | tar -x
+}
+
 # Back up Office Snake high scores to Github.
 bu_back_up_office_snake_hs() {
   ~/dotfiles/scripts/back_up_office_snake_hs.sh

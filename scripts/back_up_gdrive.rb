@@ -8,8 +8,8 @@ require 'tmpdir'
 require 'aws-sdk'
 require 'optparse'
 
-# To decrypt and unarchive into the current directory:
-# gzcat my_backup.tar.gpg.gz | gpg --decrypt --local-user brianustas@gmail.com | tar -x
+# To decrypt and unarchive:
+# gzcat <backup-file> | gpg --decrypt --local-user brianustas@gmail.com | tar -x
 
 BRIAN_GPG_IDENTITY = 'brianustas@gmail.com'
 RSYNC_CLAUSE = 'rsync --archive --ignore-existing --checksum --exclude Icon? --exclude .DS_Store'
@@ -148,7 +148,7 @@ def main
   # Use private key.
   # `tar -c -C #{backup_path} . | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --encrypt --recipient #{BRIAN_GPG_IDENTITY} | gzip > #{archive_path}`
   # Use symmetric password.
-  `tar -c -C #{backup_path} . | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --symmetric | gzip > #{archive_path}`
+  `tar -c -C #{File.dirname(backup_path)} #{File.basename(backup_path)} | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --symmetric | gzip > #{archive_path}`
 
   if $argv_options[:output_dir]
     log("Copying archive to: #{$argv_options[:output_dir]}")
