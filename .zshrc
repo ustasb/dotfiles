@@ -196,12 +196,14 @@
   # export USTASB_AWS_SECRET_ACCESS_KEY=
   # export USTASB_AWS_REGION=
 
-  # For `symlink_cryptomator` and `back_up_gdrive`
+  # For `bu_symlink_cryptomator` and `bu_back_up_gdrive`
   # export USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME=
-  # export USTASB_UNENCRYPTED_SYM_LINK_PATH=
-  # export USTASB_NOTES_PATH=
-  # export USTASB_ENCRYPTED_FOLDER_REL_PATH=
   # export USTASB_S3_BACKUP_BUCKET_NAME=
+  # export USTASB_CLOUD_DIR_PATH=
+  # export USTASB_SHARED_DIR_PATH=
+  # export USTASB_ENCRYPTED_DIR_PATH=
+  # export USTASB_UNENCRYPTED_DIR_PATH=
+  # export USTASB_NOTES_DIR_PATH=
 
 #=== Local Customizations
 

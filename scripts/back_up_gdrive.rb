@@ -2,10 +2,11 @@
 # Tested on OS X Sierra
 # Usage: `ruby back_up_gdrive.rb`
 
-require 'optparse'
-require 'tmpdir'
-require 'aws-sdk'
 require 'shellwords'
+require 'tmpdir'
+
+require 'aws-sdk'
+require 'optparse'
 
 # To decrypt and unarchive into the current directory:
 # gzcat my_backup.tar.gpg.gz | gpg --decrypt --local-user brianustas@gmail.com | tar -x
@@ -16,10 +17,10 @@ MAX_RSYNC_RETRY_COUNT = 5
 S3_BACKUP_BUCKET_NAME = ENV['USTASB_S3_BACKUP_BUCKET_NAME']
 
 REQUIRED_DIRS = [
-  GOOGLE_DRIVE_PATH = File.expand_path("~/Google Drive"),
-  UNENCRYPTED_SYM_LINK_PATH = File.expand_path(ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']),
-  SHARED_FOLDER_PATH = File.join(GOOGLE_DRIVE_PATH, 'shared'),
-  ENCRYPTED_FOLDER_PATH = File.join(GOOGLE_DRIVE_PATH, ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']),
+  CLOUD_DIR_PATH = File.expand_path(ENV['USTASB_CLOUD_DIR_PATH']),
+  SHARED_DIR_PATH = File.expand_path(ENV['USTASB_SHARED_DIR_PATH']),
+  ENCRYPTED_DIR_PATH = File.expand_path(ENV['USTASB_ENCRYPTED_DIR_PATH']),
+  UNENCRYPTED_DIR_PATH = File.expand_path(ENV['USTASB_UNENCRYPTED_DIR_PATH']),
 ]
 
 $argv_options = {}
@@ -50,7 +51,7 @@ def parse_args
   end
 
   prefix = $argv_options[:include_shared] ? 'Including' : 'Excluding'
-  log("#{prefix}: #{SHARED_FOLDER_PATH}\n\n")
+  log("#{prefix}: #{SHARED_DIR_PATH}\n\n")
 
   if $argv_options[:aws_backup]
     log("Backing up to AWS...")
@@ -84,10 +85,10 @@ def main
   sleep(15)
   puts "\n"
 
-  log("Looking for: #{UNENCRYPTED_SYM_LINK_PATH}")
-  if `ls #{UNENCRYPTED_SYM_LINK_PATH}`.empty?
-    log("Error: Couldn't find or was empty: #{UNENCRYPTED_SYM_LINK_PATH}", 1)
-    log("Is Cryptomator running and have you run `symlink_cryptomator`? Exiting.", 1)
+  log("Looking for: #{UNENCRYPTED_DIR_PATH}")
+  if `ls #{UNENCRYPTED_DIR_PATH}`.empty?
+    log("Error: Couldn't find or was empty: #{UNENCRYPTED_DIR_PATH}", 1)
+    log("Is Cryptomator running and have you run `bu_symlink_cryptomator`? Exiting.", 1)
     exit
   end
   log("Found!", 1)
@@ -108,22 +109,22 @@ def main
   log("Creating backup directory: #{backup_path}")
   `mkdir -p #{backup_path}`
 
-  log("Copying non-encrypted data from: #{GOOGLE_DRIVE_PATH}")
+  log("Copying non-encrypted data from: #{CLOUD_DIR_PATH}")
 
   exclude_shared = ''
   unless $argv_options[:include_shared]
-    log("Excluding: #{SHARED_FOLDER_PATH}", 1)
-    exclude_shared = "--exclude #{SHARED_FOLDER_PATH.sub(GOOGLE_DRIVE_PATH, '')}"
+    log("Excluding: #{SHARED_DIR_PATH}", 1)
+    exclude_shared = "--exclude /#{File.basename(SHARED_DIR_PATH)}"
   end
 
-  log("Excluding: #{ENCRYPTED_FOLDER_PATH}", 1)
-  exclude_encrypted = "--exclude #{ENCRYPTED_FOLDER_PATH.sub(GOOGLE_DRIVE_PATH, '')}"
+  log("Excluding: #{ENCRYPTED_DIR_PATH}", 1)
+  exclude_encrypted = "--exclude /#{File.basename(ENCRYPTED_DIR_PATH)}"
 
   # Note on the exclusion pattern: https://stackoverflow.com/a/18252050/1575238
-  `#{RSYNC_CLAUSE} #{exclude_shared} #{exclude_encrypted} #{Shellwords.escape(GOOGLE_DRIVE_PATH)}/* #{backup_path}`
+  `#{RSYNC_CLAUSE} #{exclude_shared} #{exclude_encrypted} #{Shellwords.escape(CLOUD_DIR_PATH)}/* #{backup_path}`
 
-  log("Copying encrypted data from: #{UNENCRYPTED_SYM_LINK_PATH}")
-  cmd = "#{RSYNC_CLAUSE} #{UNENCRYPTED_SYM_LINK_PATH}/* #{backup_path}/#{ENV['USTASB_ENCRYPTED_FOLDER_REL_PATH']}"
+  log("Copying encrypted data from: #{UNENCRYPTED_DIR_PATH}")
+  cmd = "#{RSYNC_CLAUSE} #{UNENCRYPTED_DIR_PATH}/* #{backup_path}/#{File.basename(ENCRYPTED_DIR_PATH)}"
   retry_count = 0
   until system(cmd) # Relies on the --ignore-existing flag to not redo work.
     retry_count += 1

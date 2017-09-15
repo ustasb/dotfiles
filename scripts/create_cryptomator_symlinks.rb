@@ -4,7 +4,7 @@
 # Usage: `ruby create_cryptomator_symlinks.rb`
 
 MOUNTED_DRIVE_NAME = ENV['USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME']
-UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_SYM_LINK_PATH']
+UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_DIR_PATH']
 
 def create_sym_link(source, dest)
   system("ln -sfh #{source} #{dest}")

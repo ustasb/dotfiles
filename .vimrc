@@ -264,7 +264,7 @@
 
   " Daily Journal
   function! TodaysJournalEntry()
-    let journal_entry_dir = $USTASB_NOTES_PATH . '/ustasb/journal/entries/'
+    let journal_entry_dir = $USTASB_NOTES_DIR_PATH . '/ustasb/journal/entries/'
     let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md.asc'
 
     " Ensure the journal directory exists.
@@ -317,7 +317,7 @@
 
   " Notes
   nnoremap <silent> <Leader>n :call fzf#run({
-  \   'source': 'find $USTASB_NOTES_PATH/*',
+  \   'source': 'find $USTASB_NOTES_DIR_PATH/*',
   \   'sink' : 'e',
   \   'options' : '--reverse',
   \ })<CR>
@@ -422,7 +422,7 @@
   autocmd VimEnter *.asc execute(':redraw!')
 
   " Scratch.vim
-  let g:ScratchFileName = $USTASB_NOTES_PATH . '/scratch.md'
+  let g:ScratchFileName = $USTASB_NOTES_DIR_PATH . '/scratch.md'
   nnoremap <Leader>a :ScratchToggle<CR>
 
   " vim-sneak
