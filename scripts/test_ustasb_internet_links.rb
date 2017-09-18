@@ -52,6 +52,9 @@ def build_url_test_data
   data << %w{ http://brianustas.com/cubecraft/  200 }
   data << %w{ http://brianustas.com/cubecraft   301 200 http://brianustas.com/cubecraft/ }
 
+  data << %w{ http://brianustas.com/infinite-jest-music/  200 }
+  data << %w{ http://brianustas.com/infinite-jest-music   301 200 http://brianustas.com/infinite-jest-music/ }
+
   data << %w{ http://brianustas.com/office-snake/ 301 200 http://officesnake.com }
   data << %w{ http://brianustas.com/office-snake  301 200 http://officesnake.com }
   data << %w{ http://brianustas.com/officesnake/  301 200 http://officesnake.com } # legacy
