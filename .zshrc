@@ -205,3 +205,10 @@
 #=== Local Customizations
 
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+#=== Misc
+
+if [ -d $USTASB_NOTES_DIR_PATH ] && [ ! -L ~/notes ]; then
+  ln -s $USTASB_NOTES_DIR_PATH ~/notes
+  echo "Created the ~/notes symbolic link."
+fi
