@@ -170,9 +170,6 @@
     # Launch gpg-agent
     gpg-connect-agent /bye
 
-    # When using SSH support, use the current TTY for passphrase prompts.
-    gpg-connect-agent updatestartuptty /bye > /dev/null
-
     # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
     if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
