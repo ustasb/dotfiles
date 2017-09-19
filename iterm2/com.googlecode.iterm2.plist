@@ -869,6 +869,8 @@
 	<integer>27</integer>
 	<key>HotkeyCode</key>
 	<integer>53</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>1048840</integer>
 	<key>IRMemory</key>
@@ -883,10 +885,8 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
-	<key>NSColorPanelMode</key>
-	<string>5</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Desktop</string>
+	<string>~/dotfiles/iterm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -904,7 +904,7 @@
 	gAKACoAN0xAJChEVGVdOUy5rZXlzoxITFIADgASABaMWFxiABoAHgAiACVpJZGVudGlm
 	aWVyVVdpZHRoVkhpZGRlblEwI0BowAAAAAAACNIhIiMkWiRjbGFzc25hbWVYJGNsYXNz
 	ZXNcTlNEaWN0aW9uYXJ5oiMlWE5TT2JqZWN00xAJCicrGaMSExSAA4AEgAWjLC0YgAuA
-	DIAIgAlRMSNAdCAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
+	DIAIgAlRMSNAc7Gdsi0OVtIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
 	TlNLZXllZEFyY2hpdmVy0Tg5VUFycmF5gAEACAARABoAIwAtADIANwBGAEwAUQBcAGMA
 	ZgBoAGoAbABzAHsAfwCBAIMAhQCJAIsAjQCPAJEAnACiAKkAqwC0ALUAugDFAM4A2wDe
 	AOcA7gDyAPQA9gD4APwA/gEAAQIBBAEGAQ8BFAEjAScBLwFBAUQBSgAAAAAAAAIBAAAA
@@ -920,31 +920,16 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
-	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
-	<dict>
-		<key>TB Is Shown</key>
-		<integer>1</integer>
-	</dict>
-	<key>NSWindow Frame NSFontPanel</key>
-	<string>583 278 1021 305 0 0 1920 1177 </string>
-	<key>NSWindow Frame Preferences</key>
-	<string>-1230 959 606 456 -1280 640 1280 777 </string>
-	<key>NSWindow Frame ProfilesPanel</key>
-	<string>750 773 735 382 0 0 1920 1200 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>970 539 700 622 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>524 209 606 456 0 0 1920 1177 </string>
+	<string>600 440 606 469 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>103 235 796 473 0 0 1920 1200 </string>
+	<string>388 726 918 512 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1200 0 0 1920 1177 </string>
+	<string>909 735 585 402 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 800 570 377 0 0 1920 1177 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1217 800 570 377 0 0 1920 1177 </string>
-	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 0 1280 800 0 0 1280 777 </string>
-	<key>NSWindow Frame iTerm Window 4</key>
-	<string>1 6 1277 769 0 0 1280 777 </string>
+	<string>0 798 585 402 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_F0D85124-7461-4344-B9B4-3D5C9FB8E250</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_F0D85124-7461-4344-B9B4-3D5C9FB8E250_selection</key>
@@ -2717,30 +2702,14 @@
 			<string>/Users/ustasb</string>
 		</dict>
 	</array>
-	<key>NoSyncConfirmBeta</key>
-	<true/>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
-	<true/>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
-	<integer>0</integer>
-	<key>NoSyncHaveShownPromoWithId_4</key>
-	<true/>
-	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>C605F934-A0DB-4A56-B362-B0D8781418C9</string>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
-	<true/>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
-	<integer>0</integer>
+	<string>69E05060-70B2-4DC6-A0B8-6F99E4BE7379</string>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>486484997.509202</real>
-	<key>NoSyncTimeOfLastPromo</key>
-	<real>477936687.69303399</real>
-	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>486053088.49791503</real>
+	<real>524209160.07745802</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -2807,17 +2776,19 @@
 	<key>RightOption</key>
 	<integer>3</integer>
 	<key>SUAutomaticallyUpdate</key>
-	<true/>
+	<false/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final.xml?shard=98</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=49</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-07-27T15:15:37Z</date>
+	<date>2017-09-19T17:50:38Z</date>
+	<key>SUSendProfileInfo</key>
+	<false/>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -2869,6 +2840,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.0</string>
 </dict>
 </plist>
