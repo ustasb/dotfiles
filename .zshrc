@@ -119,8 +119,8 @@
   fi
 
   # PGP
-  alias encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
-  alias decrypt="gpg --decrypt --local-user brianustas@gmail.com"
+  alias bu_encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
+  alias bu_decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
 #=== Functions
 
