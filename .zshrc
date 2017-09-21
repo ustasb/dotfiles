@@ -70,11 +70,6 @@
   export VISUAL=vim
   export EDITOR=$VISUAL
 
-  # Homebrew
-  if [[ $platform == 'mac' ]]; then
-    export PATH=/usr/local/bin:$PATH
-  fi
-
   # chruby
   source '/usr/local/share/chruby/chruby.sh'
   source '/usr/local/share/chruby/auto.sh'
