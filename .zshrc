@@ -173,7 +173,7 @@
     fi
   }
 
-  restart_gpg_agent() {
+  bu_restart_gpg_agent() {
     pkill gpg-agent
     start_gpg_agent
   }
