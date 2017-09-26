@@ -6,6 +6,11 @@
 
 duti -s org.videolan.vlc .mp4 all
 
+# Plain text files without an extension.
+duti -s org.vim.MacVim public.plain-text all
+# executable scripts
+duti -s org.vim.MacVim public.unix-executable all
+
 duti -s org.vim.MacVim .txt all
 duti -s org.vim.MacVim .md all
 duti -s org.vim.MacVim .rb all
