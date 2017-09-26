@@ -6,6 +6,8 @@ OUTPUT_JOURNAL_PATH = File.expand_path("#{ENV['USTASB_NOTES_DIR_PATH']}/ustasb/j
 decrypted_entries = []
 
 Dir.glob("#{INPUT_ENTRIES_PATH}/*.asc").sort.reverse.each do |entry_path|
+  puts "\n==> Decrypting: #{entry_path}\n\n"
+
   # entry header
   header = File.basename(entry_path)
   header.gsub!(/\..*$/, '') # Remove the extension.
@@ -13,6 +15,7 @@ Dir.glob("#{INPUT_ENTRIES_PATH}/*.asc").sort.reverse.each do |entry_path|
   decrypted_entries << header
 
   # entry body
+  # If the decrypted file is signed, the signature is also verified.
   body = `gpg --decrypt --local-user brianustas@gmail.com #{entry_path}`
   body.strip!
   body.gsub!(/^#/, '###') # Decrease Markdown heading levels.
