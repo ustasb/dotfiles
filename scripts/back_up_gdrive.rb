@@ -9,6 +9,8 @@ require 'aws-sdk'
 require 'optparse'
 
 # To decrypt and unarchive:
+# bu_unravel_backup <backup-file>
+# or
 # gzcat <backup-file> | gpg --decrypt --local-user brianustas@gmail.com | tar -x
 
 BRIAN_GPG_IDENTITY = 'brianustas@gmail.com'
@@ -104,7 +106,7 @@ def main
 
   now = Time.now.utc
   temp_dir = Dir.mktmpdir
-  backup_path = "#{temp_dir}/backup-#{now.to_i}"
+  backup_path = "#{temp_dir}/backup-#{now.strftime('%Y-%m-%d_%H-%M-%S')}"
 
   log("Creating backup directory: #{backup_path}")
   `mkdir -p #{backup_path}`
