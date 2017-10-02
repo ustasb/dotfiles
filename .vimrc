@@ -190,7 +190,7 @@
   nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
 
   " Quickly insert today's timestamp (Markdown buffers only).
-  autocmd FileType markdown iabbrev <buffer> xdate <C-r>=strftime("%d/%m/%Y %H:%M:%S (%Z)")<CR>
+  autocmd FileType markdown iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
 "=== Wild Mode (command-line completion)
   set wildmenu
