@@ -70,6 +70,8 @@
   syntax enable
 
   set encoding=utf-8              " Set default encoding to UTF-8.
+  set spelllang=en_us             " US English spelling
+  set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/vim/vim-spell-en.utf-8.add " Custom spellfile
   set ffs=unix,dos,mac            " File Format (relevant to line ending type)
   set mouse=a                     " Enable mouse support for all modes.
   set backspace=indent,eol,start  " Make backspace work like most other apps.
@@ -87,7 +89,6 @@
   set shortmess=I                 " Don't show Vim's welcome message.
   set shortmess+=a                " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
   set modelines=0                 " I don't use modelines and it's apparently a potential security hazard.
-  set spelllang=en_us             " US English spelling
   set cryptmethod=blowfish2       " Vim's default (zip) is poor. Note: I prefer AES256 via GnuPG.
 
   " Configure term color support.
@@ -191,6 +192,9 @@
 
   " Quickly insert today's timestamp (Markdown buffers only).
   autocmd FileType markdown iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
+
+  " Fix the current misspelling and jump to the next.
+  nmap <C-f> 1z=]s
 
 "=== Wild Mode (command-line completion)
   set wildmenu
