@@ -114,7 +114,7 @@
   set noswapfile
 
   " Resize splits when Vim is resized.
-  au VimResized * wincmd =
+  autocmd VimResized * wincmd =
 
 "=== UI
   " Status Line
@@ -193,8 +193,29 @@
   " Quickly insert today's timestamp (Markdown buffers only).
   autocmd FileType markdown iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
-  " Fix the current misspelling and jump to the next.
-  nmap <C-f> 1z=]s
+"=== Prose
+
+  autocmd Filetype {text,markdown} call SetProseOptions()
+  function! SetProseOptions()
+    " Fix the current misspelling and jump to the next.
+    nmap <C-f> 1z=]s
+
+    setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
+
+    syntax match TextFileNoSpell "\S*\.\(txt\|rb\|sh\)" contains=@NoSpell
+
+    syntax region HtmlCommentNoSpell start="<!--" end="-->" oneline contains=@NoSpell
+
+    syntax match EmailNoSpell '<\?\w\+@\w\+\.\w\+>\?' contains=@NoSpell
+
+    " Don't mark URL-like things as spelling errors.
+    " Credit: http://www.panozzaj.com/blog/2016/03/21/ignore-urls-and-acroynms-while-spell-checking-vim/
+    syntax match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
+    " Don't count acronyms/ abbreviations as spelling errors.
+    " Credit: http://www.panozzaj.com/blog/2016/03/21/ignore-urls-and-acroynms-while-spell-checking-vim/
+    syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+  endfunction
 
 "=== Wild Mode (command-line completion)
   set wildmenu
@@ -211,19 +232,17 @@
 
 "=== Files
   " Treat .es6 files as JavaScript.
-  au BufNewFile,BufRead *.es6 set filetype=javascript
+  autocmd BufNewFile,BufRead *.es6 set filetype=javascript
   " Python PEP8 4 space indent
-  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+  autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
   " Treat .md files as Markdown.
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-  " Prose settings.
-  au Filetype {text,markdown} setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
 "=== Misc
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler.
   " (happens when dropping a file on gvim).
-  au BufReadPost *
+  autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
@@ -235,7 +254,7 @@
     %s/\s\+$//e
     call cursor(l, c)
   endfunction
-  au FileType * au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+  autocmd FileType * autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
   " Open a file in Google Chrome - OS X only.
   function! OpenFileInChrome()
