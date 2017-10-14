@@ -200,6 +200,9 @@
     " Fix the current misspelling and jump to the next.
     nmap <C-f> 1z=]s
 
+    " Use \d on a word to look it up in Dictionary.app.
+    nmap <silent> <Leader>d :!open dict://<cword><CR><CR>
+
     setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
     syntax match TextFileNoSpell "\S*\.\(txt\|rb\|sh\)" contains=@NoSpell
