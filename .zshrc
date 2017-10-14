@@ -8,6 +8,7 @@
 # - Vim
 # - Git
 # - chruby and a Ruby version (https://github.com/postmodern/chruby)
+# - Python 2
 # - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
@@ -111,6 +112,15 @@
   # As of 11/08/17, Homebrew's gpg is version 2.x by default.
   if type gpg2 > /dev/null; then
     alias gpg='gpg2'
+  fi
+
+  # Homebrew's Python 2
+  # http://docs.python-guide.org/en/latest/starting/install/osx/
+  if type python2 > /dev/null; then
+    alias python='python2'
+  fi
+  if type pip2 > /dev/null; then
+    alias pip='pip2'
   fi
 
   # PGP
