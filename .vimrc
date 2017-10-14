@@ -17,17 +17,18 @@
   call plug#begin('~/.vim/plugged')
     " Miscellaneous
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rhubarb'
-    Plug 'tpope/vim-surround'
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'mhinz/vim-signify'
     Plug 'Raimondi/delimitMate'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ajh17/VimCompletesMe'
     Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
     Plug 'ustasb/scratch.vim'
     Plug 'justinmk/vim-sneak'
+
+    " Git
+    Plug 'mhinz/vim-signify'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
 
     " Markdown
     Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
