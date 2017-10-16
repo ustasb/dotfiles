@@ -191,9 +191,6 @@
   " Quickly reload .vimrc
   nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
 
-  " Quickly insert today's timestamp (Markdown buffers only).
-  autocmd FileType markdown iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
-
 "=== Prose
 
   autocmd Filetype {text,markdown} call SetProseOptions()
@@ -206,6 +203,9 @@
 
     " Text to Speech on the current visual selection.
     vnoremap <Leader>v :w<Home>silent <End> !say <CR>
+
+    " Quickly insert today's timestamp.
+    iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
     setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
