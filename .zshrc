@@ -104,6 +104,7 @@
   fi
   alias vi=$MY_VIM
   alias v=$MY_VIM
+  alias vn="cd ~/notes && v -c NERDTreeToggle"
 
   # Ag
   alias ag='ag --hidden'
