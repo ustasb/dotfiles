@@ -199,10 +199,13 @@
   autocmd Filetype {text,markdown} call SetProseOptions()
   function! SetProseOptions()
     " Fix the current misspelling and jump to the next.
-    nmap <C-f> 1z=]s
+    nnoremap <C-f> 1z=]s
 
     " Use \d on a word to look it up in Dictionary.app.
-    nmap <silent> <Leader>d :!open dict://<cword><CR><CR>
+    nnoremap <silent> <Leader>d :!open dict://<cword><CR><CR>
+
+    " Text to Speech on the current visual selection.
+    vnoremap <Leader>v :w<Home>silent <End> !say <CR>
 
     setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
