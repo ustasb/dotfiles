@@ -202,7 +202,7 @@
     nnoremap <silent> <Leader>d :!open dict://<cword><CR><CR>
 
     " Text to Speech on the current visual selection.
-    vnoremap <Leader>v :w<Home>silent <End> !say <CR>
+    vnoremap <Leader>s :w<Home>silent <End> !say <CR>
 
     " Quickly insert today's timestamp.
     iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
