@@ -444,6 +444,10 @@
   let g:voom_default_mode = 'markdown'
   nnoremap <Leader>o :VoomToggle<CR>
 
+  " vim-markdown-toc
+  let g:vmt_list_item_char = '-'
+  let g:vmt_cycle_list_item_markers = 0
+
   " Vim GnuPG
   let g:GPGExecutable = 'gpg --trust-model always'
   let g:GPGPreferArmor = 1
