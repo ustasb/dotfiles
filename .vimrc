@@ -210,7 +210,7 @@
 
     setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
-    syntax match TextFileNoSpell "\S*\.\(txt\|rb\|sh\)" contains=@NoSpell
+    syntax match TextFileNoSpell "\S*\.\(yml\|json\|md\|txt\|rb\|sh\)" contains=@NoSpell
 
     syntax region HtmlCommentNoSpell start="<!--" end="-->" oneline contains=@NoSpell
 
