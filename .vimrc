@@ -24,6 +24,7 @@
     Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
     Plug 'ustasb/scratch.vim'
     Plug 'justinmk/vim-sneak'
+    Plug 'w0rp/ale' " asynchronous linting engine
 
     " Git
     Plug 'mhinz/vim-signify'
@@ -464,6 +465,11 @@
   let g:sneak#label = 1
   map f <Plug>Sneak_s
   map F <Plug>Sneak_S
+
+  " ALE
+  let g:ale_enabled = 0
+  let g:ale_completion_enabled = 0
+  nnoremap <Leader>l :ALEToggle<CR>
 
 "=== Local Customizations
 
