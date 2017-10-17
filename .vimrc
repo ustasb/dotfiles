@@ -435,7 +435,7 @@
   " Vim Markdown Preview
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
-  let g:vim_markdown_preview_pandoc_args = '--smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/github.css'
+  let g:vim_markdown_preview_pandoc_args = '--from markdown+autolink_bare_uris --smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/github.css'
 
   " Vim Voom
   let g:voom_python_versions = [3, 2]
