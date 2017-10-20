@@ -448,6 +448,14 @@
   let g:vmt_list_item_char = '-'
   let g:vmt_cycle_list_item_markers = 0
 
+  " HACK: vim-markdown-toc and vim-gnupg don't play together well. Both try
+  " to edit the buffer upon saving. If the encrypted content has a TOC, the
+  " content will be truncated before saving. As a workaround, don't
+  " automatically update the TOC if the file is encrypted.
+  let g:vmt_auto_update_on_save = 0
+  autocmd BufWritePre *.{md,mdown,mkd,mkdn,markdown,mdwn}
+    \ if expand('%') !~ 'md\.asc$' | :silent! UpdateToc
+
   " Vim GnuPG
   let g:GPGExecutable = 'gpg --trust-model always'
   let g:GPGPreferArmor = 1
