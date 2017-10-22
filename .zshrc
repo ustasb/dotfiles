@@ -98,13 +98,12 @@
   if [[ $platform == 'mac' ]]; then
     MY_VIM='mvim -v' # terminal MacVim
     alias sysvim='/usr/bin/vim'
-    alias vim=$MY_VIM
   elif [[ $platform == 'linux' ]]; then
     MY_VIM='vim'
   fi
+  alias vim=$MY_VIM
   alias vi=$MY_VIM
   alias v=$MY_VIM
-  alias vn="cd ~/notes && v -c NERDTreeToggle"
 
   # Ag
   alias ag='ag --hidden'
@@ -161,6 +160,10 @@
   # Enable access to my personal scripts.
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
+
+  # Open todo.md in Vim.
+  todo() { cd ~/notes && vim $USTASB_NOTES_DIR_PATH/ustasb/todo.md }
+  alias t=todo
 
 #=== Prompt
 
