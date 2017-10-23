@@ -182,7 +182,9 @@
 
   start_gpg_agent() {
     # Launch gpg-agent
-    gpg-connect-agent /bye
+    # updatestartuptty addresses: 'signing failed: agent refused operation'
+    # source: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=835394
+    gpg-connect-agent updatestartuptty /bye > /dev/null
 
     # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
     if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
