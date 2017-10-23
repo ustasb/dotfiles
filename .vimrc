@@ -73,7 +73,7 @@
 
   set encoding=utf-8              " Set default encoding to UTF-8.
   set spelllang=en_us             " US English spelling
-  set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/vim/vim-spell-en.utf-8.add " Custom spellfile
+  set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add " Custom spellfile
   set ffs=unix,dos,mac            " File Format (relevant to line ending type)
   set mouse=a                     " Enable mouse support for all modes.
   set backspace=indent,eol,start  " Make backspace work like most other apps.
