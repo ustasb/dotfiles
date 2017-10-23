@@ -96,8 +96,12 @@
 
   # Vim aliases
   if [[ $platform == 'mac' ]]; then
-    MY_VIM='mvim -v' # terminal MacVim
     alias sysvim='/usr/bin/vim'
+    if type nvim > /dev/null; then
+      MY_VIM='nvim'
+    else
+      MY_VIM='mvim -v' # terminal MacVim
+    fi
   elif [[ $platform == 'linux' ]]; then
     MY_VIM='vim'
   fi
