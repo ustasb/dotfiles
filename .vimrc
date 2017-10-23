@@ -95,6 +95,7 @@
   if has('nvim')
     " Required to save files on mounted volumes.
     set nofsync
+    set guicursor= " block cursor
   else
     " Vim's default (zip) is poor. I prefer AES256 via GnuPG.
     set cryptmethod=blowfish2
