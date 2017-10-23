@@ -14,6 +14,7 @@
 # - fzf (https://github.com/junegunn/fzf)
 # - z ( https://github.com/rupa/z)
 # - gpg2 (https://www.gnupg.org)
+# - rg (https://github.com/BurntSushi/ripgrep)
 #
 # Mac Specific:
 # - Homebrew
@@ -83,7 +84,7 @@
 
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
-  export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'  # Respects .gitignore
+  export FZF_DEFAULT_COMMAND='rg --no-ignore-vcs --files --hidden --follow' # Respects ~/.rgignore
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
 #=== Aliases
@@ -109,8 +110,8 @@
   alias vi=$MY_VIM
   alias v=$MY_VIM
 
-  # Ag
-  alias ag='ag --hidden'
+  # Ripgrep
+  alias rg='rg --hidden'
 
   # GPG2
   # As of 11/08/17, Homebrew's gpg is version 2.x by default.

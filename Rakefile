@@ -4,7 +4,7 @@ CONFIG_FILES = [
   '.zshrc',
   '.tmux.conf',
   '.vimrc',
-  '.agignore',
+  '.rgignore',
   '.gitconfig',
   '.gemrc',
   '.ctags',

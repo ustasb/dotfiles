@@ -8,7 +8,7 @@
 " - Git
 " - Ruby and RSpec
 " - tmux (http://tmux.sourceforge.net)
-" - ag (https://github.com/ggreer/the_silver_searcher)
+" - rg (https://github.com/BurntSushi/ripgrep)
 " - ctags (http://ctags.sourceforge.net/)
 " - fzf (https://github.com/junegunn/fzf)
 " - pandoc (https://pandoc.org)
@@ -40,7 +40,7 @@
     " GPG
     Plug 'jamessan/vim-gnupg'
 
-    " Requires ag (The Silver Searcher)
+    " Requires rg (ripgrep)
     " Don't use vim-plug's lazy loading here! :Ack on text below the cursor
     " won't work the first time.
     Plug 'mileszs/ack.vim'
@@ -422,7 +422,7 @@
   imap <C-W><C-O> <C-W>o
 
   " Ack.vim
-  let g:ackprg = 'ag --hidden --vimgrep --smart-case'
+  let g:ackprg = 'rg --hidden --vimgrep --smart-case'
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
   cnoreabbrev Ag Ack
