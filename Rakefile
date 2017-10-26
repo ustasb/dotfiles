@@ -8,6 +8,7 @@ CONFIG_FILES = [
   '.gitconfig',
   '.gemrc',
   '.ctags',
+  '.hushlogin',
 ]
 
 GPG_CONFIG_FILES = [
