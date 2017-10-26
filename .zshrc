@@ -84,7 +84,7 @@
 
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
-  export FZF_DEFAULT_COMMAND='rg --no-ignore-vcs --files --hidden --follow' # Respects ~/.rgignore
+  export FZF_DEFAULT_COMMAND='rg --no-ignore-vcs --files --hidden --follow --no-messages' # Respects ~/.rgignore
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
 #=== Aliases
