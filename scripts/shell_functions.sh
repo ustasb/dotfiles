@@ -53,8 +53,13 @@ bu_test_ustasb_internet_links() {
   ruby ~/dotfiles/scripts/test_ustasb_internet_links.rb
 }
 
+# Update apps and install dotfiles.
+bu_update_system() {
+  (cd ~/dotfiles && ./update_system.sh)
+}
+
 # Print all available terminal colors.
 # Credit: http://www.commandlinefu.com/commands/view/5876/show-numerical-values-for-each-of-the-256-colors-in-zsh
 bu_print_term_colors() {
-  for code ({000..255}) { print -nP -- "$code: %F{$code}%K{$code}Test%k%f " ; (( code % 8 && code < 255 )) || printf '\n'}
+  for code ({000..255}) { print -nP -- "$code: %F{$code}%K{$code}Test%k%f " ; (( code % 8 && code < 255 )) || printf '\n' }
 }
