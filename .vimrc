@@ -295,12 +295,14 @@
   endfunction
   command! SudoSave call SudoSaveFile()
 
-  " Refresh all buffers.
   function! RefreshAllBuffers()
-    set noconfirm
-    bufdo e!
-    syntax enable  " Trigger buffers to highlight syntax. `bufdo e!` apparently turns it off.
-    set confirm
+    let currBuff = bufnr("%")
+    " Refresh buffers.
+    execute 'silent bufdo e!'
+    " Go back to the original buffer.
+    execute 'buffer ' . currBuff
+    " bufdo e! turns syntax highlighting off for efficiency.
+    syntax enable
   endfunction
   command! BufRefresh call RefreshAllBuffers()
 
@@ -493,6 +495,6 @@
 
 "=== Local Customizations
 
-  if filereadable(glob("~/.vimrc.local"))
+  if filereadable("~/.vimrc.local")
     source ~/.vimrc.local
   endif
