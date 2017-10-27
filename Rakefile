@@ -16,6 +16,8 @@ GPG_CONFIG_FILES = [
   'gpg-agent.conf',
 ]
 
+XDG_CONFIG = '.config'
+
 def log(msg)
   puts "\n===> #{msg}"
 end
@@ -60,6 +62,10 @@ task :install_config_files => [:install_pure_prompt] do
     dest_path = "#{Dir.home}/#{filename}"
     FileUtils.cp(filename, dest_path)
   end
+
+  xdg_home_config = "#{Dir.home}/#{XDG_CONFIG}"
+  FileUtils.mkdir(xdg_home_config) unless File.directory?(xdg_home_config)
+  FileUtils.cp_r(Dir.glob("#{XDG_CONFIG}/*"), xdg_home_config)
 
   log "To apply the new .zshrc settings, execute `source ~/.zshrc`"
 end
