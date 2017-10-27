@@ -184,6 +184,8 @@
     # Launch gpg-agent
     gpg-connect-agent /bye
 
+    export GPG_TTY=$(tty)
+
     # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
     if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -193,7 +195,7 @@
   }
 
   bu_restart_gpg_agent() {
-    pkill gpg-agent
+    gpgconf --kill gpg-agent
     start_gpg_agent
   }
 
