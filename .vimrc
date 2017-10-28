@@ -47,6 +47,7 @@
 
     " Super fast file fuzzy-finding.
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
 
     " tmux
     Plug 'benmills/vimux'
@@ -319,53 +320,6 @@
   endfunction
   nnoremap <silent> <Leader>j :call TodaysJournalEntry()<CR>
 
-"=== FZF
-  " Search through all files recursively.
-  nnoremap <silent> <Leader>f :FZF! --reverse<CR>
-
-  " MRU
-  " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#simple-mru-search
-  nnoremap <silent> <Leader>m :call fzf#run({
-  \   'source': v:oldfiles,
-  \   'sink' : 'e',
-  \   'options' : '--reverse',
-  \ })<CR>
-
-  " Ctags
-  " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#jump-to-tags
-  command! -bar FZFTags if !empty(tagfiles()) | call fzf#run({
-  \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
-  \   'sink': 'tag',
-  \   'options': '--reverse',
-  \ }) | else | echo 'Preparing tags' | call CreateCtagsFile() | FZFTag | endif
-  nnoremap <silent> <Leader>t :FZFTags<CR>
-
-  " Search buffers
-  " Credit: https://github.com/junegunn/fzf/wiki/Examples-(vim)#select-buffer
-  function! s:buflist()
-    redir => ls
-    silent ls
-    redir END
-    return split(ls, '\n')
-  endfunction
-
-  function! s:bufopen(e)
-    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-  endfunction
-
-  nnoremap <silent> <Leader>b :call fzf#run({
-  \   'source': reverse(<sid>buflist()),
-  \   'sink': function('<sid>bufopen'),
-  \   'options': '--reverse',
-  \ })<CR>
-
-  " Notes
-  nnoremap <silent> <Leader>n :call fzf#run({
-  \   'source': 'find $USTASB_NOTES_DIR_PATH/*',
-  \   'sink' : 'e',
-  \   'options' : '--reverse',
-  \ })<CR>
-
 "=== Plugin Settings
   " Base16 color schemes
   if $ITERM_PROFILE == 'Pencil Light'
@@ -376,8 +330,17 @@
 
     " These colors are mapped to iTerm's 16 colors.
     hi ColorColumn  ctermbg=255
+
+    " StatusLine and TabLine should match.
     hi StatusLine   ctermfg=15 ctermbg=4 cterm=bold " active
     hi StatusLineNC ctermfg=8  ctermbg=7 cterm=NONE " inactive
+    hi TabLineSel   ctermfg=15 ctermbg=4 cterm=bold " active
+    hi TabLine      ctermfg=8  ctermbg=7 cterm=NONE " inactive
+    hi TabLineFill  ctermfg=7  ctermbg=7 cterm=NONE
+
+    " Light grey
+    hi VertSplit    ctermfg=7 ctermbg=7
+    hi CursorLine   ctermbg=7
   else
     set background=dark
     silent! colorscheme base16-tomorrow
@@ -492,6 +455,41 @@
   let g:ale_enabled = 0
   let g:ale_completion_enabled = 0
   nnoremap <Leader>l :ALEToggle<CR>
+
+  " fzf.vim
+  let g:fzf_buffers_jump = 1
+  let g:fzf_command_prefix = 'Fzf'
+
+  if $ITERM_PROFILE == 'Pencil Light'
+    let g:fzf_colors =
+    \ { 'prompt':  ['fg', 'Exception'],
+    \ 'spinner':   ['fg', 'ErrorMsg'],
+    \ 'info':      ['fg', 'Comment'],
+    \ 'pointer':   ['fg', 'Identifier'],
+    \ 'fg':        ['fg', 'Normal'],
+    \ 'fg+':       ['fg', 'Normal'],
+    \ 'bg+':       ['bg', 'CursorLine'],
+    \ 'hl+':       ['fg', 'ErrorMsg'],
+    \ 'hl':        ['fg', 'ErrorMsg'] }
+
+    " https://github.com/junegunn/fzf.vim#status-line-neovim
+    function! s:fzf_statusline()
+      highlight blank ctermfg=7 ctermbg=7
+      setlocal statusline=%#blank#
+    endfunction
+    autocmd! User FzfStatusLine call <SID>fzf_statusline()
+  endif
+
+  " Search through all files recursively.
+  nnoremap <silent> <Leader>f :FzfFiles!<CR>
+  " MRU
+  nnoremap <silent> <Leader>m :FzfHistory!<CR>
+  " Ctags
+  nnoremap <silent> <Leader>t :FzfTags!<CR>
+  " Buffers
+  nnoremap <silent> <Leader>b :FzfBuffers!<CR>
+  " Notes
+  nnoremap <silent> <Leader>n :FzfFiles! ~/notes<CR>
 
 "=== Local Customizations
 
