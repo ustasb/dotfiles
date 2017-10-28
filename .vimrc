@@ -132,7 +132,6 @@
   set laststatus=2              " Always show a status line.
   set statusline=%f\ %m\ %r     " file path, modified status, read-only status
   set statusline+=\ Line:%l/%L  " current line / all lines
-  set statusline+=\ Buf:%n      " buffer number
 
   " GUI
   if has('gui_running')
