@@ -1,11 +1,10 @@
 # Brian Ustas's .zshrc
 #
-# Supports OS X and Linux (tested with Sierra and Ubuntu 14.04).
+# Tested on OS X.
 #
-### Expected Installs
-#
-# General:
-# - Vim
+# Expected installs:
+# - Homebrew (https://brew.sh)
+# - Neovim (https://neovim.io)
 # - Git
 # - chruby and a Ruby version (https://github.com/postmodern/chruby)
 # - Python 2
@@ -15,27 +14,14 @@
 # - z ( https://github.com/rupa/z)
 # - gpg2 (https://www.gnupg.org)
 # - rg (https://github.com/BurntSushi/ripgrep)
-#
-# Mac Specific:
-# - Homebrew
-
-#== Detect OS
-
-  platform='unknown'
-  unamestr=$(uname)
-  if [[ "$unamestr" == 'Darwin' ]]; then
-     platform='mac'
-  elif [[ "$unamestr" == 'Linux' ]]; then
-     platform='linux'
-  fi
 
 #=== zsh Settings
-
-  # Completion
+  # completion
   autoload -U compinit
   compinit
 
-  # Use Emacs as the command line editor. Makes some keys work within tmux...
+  # Use Emacs as the command line editor.
+  # Makes some keys work within tmux.
   bindkey -e
 
   # Keep lots of history.
@@ -54,7 +40,7 @@
   # Automatically cd into directories.
   setopt autocd
 
-  # No beeping.
+  # no beeping
   unsetopt beep
 
   # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation.
@@ -67,16 +53,15 @@
   export CLICOLOR=1
 
 #=== Environment Variables
-
-  # Use Vim as the visual editor.
-  export VISUAL=vim
-  export EDITOR=$VISUAL
+  # Use Neovim as the default editor.
+  export VISUAL=nvim
+  export EDITOR=nvim
 
   # chruby
   source '/usr/local/share/chruby/chruby.sh'
   source '/usr/local/share/chruby/auto.sh'
 
-  # To hold zsh functions.
+  # zsh functions
   fpath=("$HOME/.zfunctions" $fpath)
 
   # z
@@ -84,11 +69,10 @@
 
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
-  export FZF_DEFAULT_COMMAND='rg --no-ignore-vcs --files --hidden --follow --no-messages' # Respects ~/.rgignore
+  export FZF_DEFAULT_COMMAND='rg --no-ignore-vcs --files --hidden --follow --no-messages' # respects ~/.rgignore
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
 #=== Aliases
-
   alias ...='../..'
   alias c='clear'
   alias ll='ls -alh'
@@ -96,28 +80,14 @@
   alias tmuxk='tmux kill-server'
 
   # Vim aliases
-  if [[ $platform == 'mac' ]]; then
-    alias sysvim='/usr/bin/vim'
-    if type nvim > /dev/null; then
-      MY_VIM='nvim'
-    else
-      MY_VIM='mvim -v' # terminal MacVim
-    fi
-  elif [[ $platform == 'linux' ]]; then
-    MY_VIM='vim'
-  fi
-  alias vim=$MY_VIM
-  alias vi=$MY_VIM
-  alias v=$MY_VIM
+  alias sysvim='/usr/bin/vim'
+  alias vim=nvim
+  alias vi=nvim
+  alias v=nvim
 
   # Ripgrep
   alias rg='rg --hidden'
-
-  # GPG2
-  # As of 11/08/17, Homebrew's gpg is version 2.x by default.
-  if type gpg2 > /dev/null; then
-    alias gpg='gpg2'
-  fi
+  alias ag='rg'
 
   # Homebrew's Python 2
   # http://docs.python-guide.org/en/latest/starting/install/osx/
@@ -128,15 +98,18 @@
     alias pip='pip2'
   fi
 
-  # PGP
+  # GPG
+  # As of 11/08/17, Homebrew's gpg is version 2.x by default.
+  if type gpg2 > /dev/null; then
+    alias gpg='gpg2'
+  fi
   alias bu_encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
   alias bu_decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
 #=== Functions
-
-  # No arguments: `git status`
-  # With arguments: acts like `git`
-  # Credit: thoughtbot
+  # no arguments: `git status`
+  # with arguments: acts like `git`
+  # credit: thoughtbot
   g() {
     if [[ $# > 0 ]]; then
       git $@
@@ -149,8 +122,7 @@
   # Create a new named tmux session with my preferred layout.
   # Without arguments, the session name is the basename of the current directory.
   tnew() { tmux new-session -s ${1:-$(basename $(pwd))} \; \
-                split-window -v -p 30 \; \
-                split-window -h -p 66 \; \
+                split-window -v -p 25 \; \
                 split-window -h -p 50 \; \
                 select-pane -t 0 }
 
@@ -166,20 +138,12 @@
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
 
-  # Open todo.md in Vim.
-  todo() { cd ~/notes && vim $USTASB_NOTES_DIR_PATH/ustasb/todo.md }
-  alias t=todo
-
 #=== Prompt
-
   export PURE_GIT_PULL=0
-
   autoload -U promptinit && promptinit
-
   prompt pure
 
 #=== GPG + SSH
-
   start_gpg_agent() {
     # Launch gpg-agent
     gpg-connect-agent /bye
@@ -194,7 +158,7 @@
     fi
   }
 
-  bu_restart_gpg_agent() {
+  restart_gpg_agent() {
     gpgconf --kill gpg-agent
     start_gpg_agent
   }
@@ -202,7 +166,6 @@
   start_gpg_agent
 
 #=== ENV Template
-
   # Add these to your ~/.zshrc.local
 
   # export USTASB_AWS_ACCESS_KEY_ID=
@@ -219,12 +182,4 @@
   # export USTASB_NOTES_DIR_PATH=
 
 #=== Local Customizations
-
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-#=== Misc
-
-if [ -d $USTASB_NOTES_DIR_PATH ] && [ ! -L ~/notes ]; then
-  ln -s $USTASB_NOTES_DIR_PATH ~/notes
-  echo "Created the ~/notes symbolic link."
-fi

@@ -1,30 +1,19 @@
 # [Brian Ustas's](http://brianustas.com) Configuration Files
 
-- Editor: Terminal [MacVim](https://code.google.com/p/macvim/)
-- Terminal Emulator: [iTerm2](http://www.iterm2.com/)
+- shell: [zsh](http://www.zsh.org/)
+- editor: [Neovim](https://neovim.io/)
+- terminal emulator: [iTerm2](http://www.iterm2.com/)
 
-## Installing
+## Usage
 
-I clone this repo into my `$HOME` directory.
+- Import my iTerm2 [preferences file](https://github.com/ustasb/dotfiles/blob/master/iterm2/com.googlecode.iterm2.plist).
+- Clone this repo into `$HOME`.
+- `rake install`
+- Complete the instructions under `ENV Template` in `.zshrc`.
+- `rake update` to update the system.
 
-See `rake -T` for options. You probably want to run `rake install` first.
+### Dark Theme - 'Gruvbox Dark'
 
-Complete the instructions under `ENV Template` in `.zshrc`.
-
-For MacVim + Zsh, see [this](https://github.com/b4winckler/macvim/wiki/Troubleshooting#for-zsh-users).
-
-## iTerm Color Profiles
-
-First, import my iTerm2 [preferences file](https://github.com/ustasb/dotfiles/blob/master/iterm2/com.googlecode.iterm2.plist).
-
-### Light Theme - 'Pencil Light'
-
-- Font: 12pt SF Mono Regular
-- [Vim theme](https://github.com/reedes/vim-colors-pencil)
-- [iTerm2 theme](https://github.com/mattly/iterm-colors-pencil)
-
-### Dark Theme - 'Tomorrow Night'
-
-- Font: 12pt SF Mono Regular
-- [Vim theme](https://github.com/ChrisKempson/Tomorrow-Theme)
-- [iTerm2 theme](https://github.com/chriskempson/base16-iterm2/blob/master/base16-tomorrow.dark.itermcolors)
+- [11pt InputMono ExLight](http://input.fontbureau.com/)
+- [Vim theme](https://github.com/morhetz/gruvbox)
+- [iTerm2 theme](https://github.com/morhetz/gruvbox-contrib/blob/master/iterm2/gruvbox-dark.itermcolors)
