@@ -7,28 +7,22 @@ CONFIG_FILES = [
   '.rgignore',
   '.gitconfig',
   '.gemrc',
-  '.ctags',
   '.hushlogin',
-]
+].freeze
 
 GPG_CONFIG_FILES = [
   'gpg.conf',
   'gpg-agent.conf',
-]
+].freeze
 
-XDG_CONFIG = '.config'
+XDG_CONFIG = '.config'.freeze
 
 def log(msg)
   puts "\n===> #{msg}"
 end
 
-def is_osx?
-  /darwin/ =~ RUBY_PLATFORM
-end
-
-def vim_execute(options)
-  vim = is_osx? ? 'mvim -v' : 'vim'
-  system("#{vim} #{options}", out: $stdout, err: :out)
+def neovim_execute(options)
+  system("nvim #{options}", out: $stdout, err: :out)
 end
 
 def install_gpg_conf_files
@@ -40,6 +34,22 @@ def install_gpg_conf_files
   end
 
   log "Done installing GPG config files!"
+end
+
+def install_xdg_conf_files
+  xdg_home_config = "#{Dir.home}/#{XDG_CONFIG}"
+  FileUtils.mkdir(xdg_home_config) unless File.directory?(xdg_home_config)
+  FileUtils.cp_r(Dir.glob("#{XDG_CONFIG}/*"), xdg_home_config)
+
+  log "Done installing XDG config files!"
+end
+
+def install_ctags_file
+  ctags_dir = "#{Dir.home}/.ctags.d" # universal-ctags
+  FileUtils.mkdir(ctags_dir) unless File.directory?(ctags_dir)
+  FileUtils.cp('.ctags', "#{ctags_dir}/main.ctags")
+
+  log "Done installing the global ctags file!"
 end
 
 task :install_pure_prompt do
@@ -57,17 +67,15 @@ end
 
 task :install_config_files => [:install_pure_prompt] do
   install_gpg_conf_files
+  install_xdg_conf_files
+  install_ctags_file
 
   CONFIG_FILES.each do |filename|
     dest_path = "#{Dir.home}/#{filename}"
     FileUtils.cp(filename, dest_path)
   end
 
-  xdg_home_config = "#{Dir.home}/#{XDG_CONFIG}"
-  FileUtils.mkdir(xdg_home_config) unless File.directory?(xdg_home_config)
-  FileUtils.cp_r(Dir.glob("#{XDG_CONFIG}/*"), xdg_home_config)
-
-  log "To apply the new .zshrc settings, execute `source ~/.zshrc`"
+  log "To apply the new .zshrc settings, execute `source ~/.zshrc`."
 end
 
 task :install_vim_plugins => [:install_config_files] do
@@ -77,14 +85,14 @@ task :install_vim_plugins => [:install_config_files] do
   `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 
   log "Installing Vim plugins..."
-  vim_execute('+PlugInstall +qall')
+  neovim_execute('+PlugInstall +qall')
 
   log "Done installing Vim plugins!"
 end
 
 task :update_vim_plugins => [:install_config_files] do
   log "Updating Vim plugins..."
-  vim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
+  neovim_execute('+PlugUpgrade +PlugUpdate +PlugClean! +qall')
 
   log "Done updating Vim plugins!"
 end

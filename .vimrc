@@ -1,167 +1,227 @@
 " Brian Ustas's .vimrc
 "
-" Supports OS X and Linux (tested with Sierra and Ubuntu 14.04).
-" For MacVim + Zsh, see: https://github.com/b4winckler/macvim/wiki/Troubleshooting#for-zsh-users
+" Tested with Neovim on OS X.
 "
-""" Expected Installs
-"
+" Expected Installs:
 " - Git
 " - Ruby and RSpec
 " - tmux (http://tmux.sourceforge.net)
 " - rg (https://github.com/BurntSushi/ripgrep)
-" - ctags (http://ctags.sourceforge.net/)
+" - ctags (https://github.com/universal-ctags/ctags)
 " - fzf (https://github.com/junegunn/fzf)
 " - pandoc (https://pandoc.org)
 
-"=== Vim-Plug
+"=== vim-plug
   call plug#begin('~/.vim/plugged')
-    " Miscellaneous
-    Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'Raimondi/delimitMate'
-    Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
-    Plug 'ajh17/VimCompletesMe'
-    Plug 'junegunn/goyo.vim', { 'on':  'Goyo' }
-    Plug 'ustasb/scratch.vim'
-    Plug 'justinmk/vim-sneak'
-    Plug 'w0rp/ale' " asynchronous linting engine
+    Plug 'mhinz/vim-startify'
+    Plug 'itchyny/lightline.vim'
 
-    " Git
+    " editing
+    Plug 'Raimondi/delimitMate'
+    Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+    Plug 'ajh17/VimCompletesMe'
+
+    " colorschemes
+    Plug 'morhetz/gruvbox'
+
+    " git
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
 
-    " Markdown
-    Plug 'tpope/vim-markdown', { 'for': 'markdown' } " Vim uses this syntax file by default. I always want the latest.
+    " markdown
+    Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
     Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
-    Plug 'vim-voom/VOoM', { 'for': 'markdown' }
+    Plug 'vim-voom/VOoM', { 'on': 'VoomToggle' }
 
-    " GPG
-    Plug 'jamessan/vim-gnupg'
-
-    " Requires rg (ripgrep)
+    " search
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    " requires rg (ripgrep)
     " Don't use vim-plug's lazy loading here! :Ack on text below the cursor
     " won't work the first time.
     Plug 'mileszs/ack.vim'
-
-    " Super fast file fuzzy-finding.
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
 
     " tmux
     Plug 'benmills/vimux'
     Plug 'christoomey/vim-tmux-navigator'
 
-    " Color schemes
-    Plug 'chriskempson/base16-vim'
-    Plug 'reedes/vim-colors-pencil'
-
-    " Syntax
+    " web
     Plug 'othree/html5-syntax.vim', { 'for': 'html' }
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'mxw/vim-jsx', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
-    " Ruby
+    " ruby
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+
+    " misc
+    Plug 'w0rp/ale', { 'on': 'ALEToggle' }
+    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+    Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
+    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'justinmk/vim-sneak'
+    Plug 'jamessan/vim-gnupg'
   call plug#end()
 
 "=== Basic
   filetype plugin indent on
   syntax enable
 
-  set encoding=utf-8              " Set default encoding to UTF-8.
-  set spelllang=en_us             " US English spelling
-  set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add " Custom spellfile
-  set ffs=unix,dos,mac            " File Format (relevant to line ending type)
-  set mouse=a                     " Enable mouse support for all modes.
-  set backspace=indent,eol,start  " Make backspace work like most other apps.
-  set history=100                 " Keep 100 lines of command-line history.
-  set undolevels=100              " Keep 100 lines of undo history.
-  set showcmd                     " Display incomplete commands.
-  set title                       " Change the title of the terminal/tab with the file name.
-  set hidden                      " Allow unsaved background buffers.
-  set ttimeoutlen=100             " Prevent Shift-O delay in terminal.
-  set scrolloff=3                 " Keep 3 lines above/below cursor when scrolling up/down beyond viewport boundaries.
-  set clipboard=unnamed           " Merge Vim and OS clipboard.
-  set tags=./tags;/               " Set the tag file search order: current directory then root (used by Ctags).
-  set complete=.,w,b,u,i          " Keyword completion (don't search the tag file).
-  set nofoldenable                " No text folding.
-  set shortmess=I                 " Don't show Vim's welcome message.
-  set shortmess+=a                " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
-  set modelines=0                 " I don't use modelines and it's apparently a potential security hazard.
+  " file format (relevant to line ending type)
+  set ffs=unix,dos
+  " Set default encoding to UTF-8.
+  set encoding=utf-8
+  " US English spelling
+  set spelllang=en_us
+  " custom spellfile
+  set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add
 
-  if has('nvim')
-    " Required to save files on mounted volumes.
-    set nofsync
-    set guicursor= " block cursor
-  else
-    " Vim's default (zip) is poor. I prefer AES256 via GnuPG.
-    set cryptmethod=blowfish2
-  endif
+  " Enable mouse support for all modes.
+  set mouse=a
+  " Make backspace work like most other apps.
+  set backspace=indent,eol,start
+  " Merge Vim and OS clipboard.
+  set clipboard=unnamedplus
 
-  " Configure term color support.
-  if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
-    set t_Co=256
-  endif
+  " Keep 100 lines of command-line history.
+  set history=100
+  " Keep 100 lines of undo history.
+  set undolevels=100
 
-  " Open new split panes to the bottom and right.
-  set splitbelow
-  set splitright
+  " Set the tag file search order: current directory then root (used by Ctags).
+  set tags=./tags;/
+  " Keyword completion (don't search the tag file).
+  set complete=.,w,b,u,i
 
-  " Disable all error whistles.
-  set noerrorbells visualbell t_vb=
+  " Allow unsaved background buffers.
+  set hidden
+  " I don't use modelines and it's apparently a potential security hazard.
+  set modelines=0
+  " Prevent Shift-O delay in terminal.
+  set ttimeoutlen=100
 
-  " Backups
+  " ~/.vim/tmp backups
   if isdirectory($HOME . '/.vim/.tmp') == 0
     :silent !mkdir -m 700 -p ~/.vim/.tmp > /dev/null 2>&1
   endif
   set backup
   set backupdir=~/.vim/.tmp
+  set noswapfile " I never use these.
 
-  " I never use these...
-  set noswapfile
+  if has('nvim')
+    " Required to save files on mounted volumes.
+    set nofsync
+  else
+    " Vim's default (zip) is poor. Prefer AES256 via GnuPG.
+    set cryptmethod=blowfish2
+  endif
 
-  " Resize splits when Vim is resized.
-  autocmd VimResized * wincmd =
+"=== Colors
+  " truecolor
+  set t_Co=256
+  set termguicolors
+  set background=dark
+
+  let g:gruvbox_bold = 1
+  let g:gruvbox_invert_tabline = 0
+  let g:gruvbox_invert_selection = 0
+  let g:gruvbox_sign_column = 'bg1'
+  let g:gruvbox_color_column = 'bg1'
+  let g:gruvbox_number_column = 'bg1'
+  let g:gruvbox_guisp_fallback = 'fg' " Make misspellings clearer.
+  let g:gruvbox_contrast_dark = 'medium'
+
+  silent! colorscheme gruvbox
+
+  " https://github.com/itchyny/lightline.vim/issues/179
+  highlight! StatusLine ctermfg=237 ctermbg=237 guifg=#3c3836 guibg=#3c3836
+
+  " https://github.com/morhetz/gruvbox/issues/175
+  " Swap spell highlighting. Make errors red and warnings blue.
+  highlight! SpellBad cterm=undercurl ctermfg=167 gui=undercurl guifg=#fb4934 guisp=#fb4934
+  highlight! SpellCap cterm=undercurl ctermfg=109 gui=undercurl guifg=#83a598 guisp=#83a598
 
 "=== UI
-  " Status Line
-  set laststatus=2              " Always show a status line.
-  set statusline=%f\ %m\ %r     " file path, modified status, read-only status
-  set statusline+=\ Line:%l/%L  " current line / all lines
+  " Change the title of the terminal/tab with the file name.
+  set title
+  " Don't show Vim's welcome message.
+  set shortmess=I
+  " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
+  set shortmess+=a
+  " Always show the status line.
+  set laststatus=2
+  " better splits
+  set splitbelow
+  set splitright
+  " vertical split character
+  set fillchars+=vert:│
+  " Don't show pressed keys in the statusline.
+  set noshowcmd
+  " No text folding.
+  set nofoldenable
+  " block cursor
+  set guicursor=
+  " filename in the tabbar
+  set guitablabel=%t
 
   " GUI
   if has('gui_running')
-    set lines=35 columns=135    " Default window size.
-    set guioptions-=m           " Remove menubar.
-    set guioptions-=T           " Remove toolbar.
-    set guicursor+=a:blinkon0   " Disable cursor blinking.
+    " default window size
+    set lines=35 columns=135
+    " remove menubar
+    set guioptions-=m
+    " remove toolbar
+    set guioptions-=T
+    " disable all error whistles
+    set noerrorbells visualbell t_vb=
+  else
+    " performance tweaks
+    set lazyredraw
+
+    " Don't match parentheses or brackets.
+    let loaded_matchparen=1
+    set noshowmatch
+
+    " not needed / expensive to render
+    set nocursorline
+    set nocursorcolumn
+    set norelativenumber
+
+    " Scroll 10 lines at bottom/ top.
+    set scrolljump=10
   endif
 
-  " Visually define an 80 character limit for the active window.
-  set colorcolumn=80
-  " autocmd! - Remove all autocommands for the current group.
-  augroup ColorColumnToggle
+  " Resize splits when Vim is resized.
+  augroup AG_VimResize
     autocmd!
-    autocmd WinEnter * set colorcolumn=80
-    autocmd WinLeave * set colorcolumn=0
+    autocmd VimResized * wincmd =
   augroup END
 
 "=== Search
-  set nohlsearch      " Turn off highlight matching.
-  set incsearch       " Incremental searching
-  set ignorecase      " Searches are case insensitive...
-  set smartcase       " ...unless they contain at least one capital letter.
+  " Turn off highlight matching.
+  set nohlsearch
+  " incremental searching
+  set incsearch
+  " Searches are case insensitive...
+  set ignorecase
+  " ...unless they contain at least one capital letter.
+  set smartcase
 
 "=== Whitespace
-  set autoindent      " Turn on autoindenting.
-  set nowrap          " Don't wrap lines.
-  set expandtab       " Insert spaces instead of tabs when <Tab> is pressed.
-  set shiftwidth=2    " Set the indentation width for < and >.
-  set tabstop=2       " Make 2 spaces behave like a tab.
+  " enable auto-indenting
+  set autoindent
+  " Don't wrap lines.
+  set nowrap
+  " Insert spaces instead of tabs when <Tab> is pressed.
+  set expandtab
+  " Set the indentation width for < and >.
+  set shiftwidth=2
+  " Make 2 spaces behave like a tab.
+  set tabstop=2
   set softtabstop=2
 
 "=== Key Mappings
@@ -181,12 +241,6 @@
   nnoremap q/ <Nop>
   vnoremap q/ <Nop>
 
-  " Remap arrow keys to navigate buffers and tabs.
-  nnoremap <left> :bprev<CR>
-  nnoremap <right> :bnext<CR>
-  nnoremap <up> :tabnext<CR>
-  nnoremap <down> :tabprev<CR>
-
   " Reselect visual block after indent/outdent.
   vnoremap < <gv
   vnoremap > >gv
@@ -197,90 +251,76 @@
   " qq to record, Q to replay.
   nnoremap Q @q
 
-  " Quickly reload .vimrc
+  " Quickly reload .vimrc.
   nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
 
 "=== Prose
-
-  autocmd Filetype {text,markdown} call SetProseOptions()
   function! SetProseOptions()
-    " Fix the current misspelling and jump to the next.
-    nnoremap <C-f> 1z=]s
+    setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
 
-    " Use \d on a word to look it up in Dictionary.app.
-    nnoremap <silent> <Leader>d :!open dict://<cword><CR><CR>
+    " Fix the current misspelling and jump to the next.
+    nnoremap <buffer> <C-f> 1z=]s
+
+    " Open a word in Dictionary.app.
+    nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
 
     " Text to Speech on the current visual selection.
-    vnoremap <Leader>s :w<Home>silent <End> !say <CR>
+    vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
     " Quickly insert today's timestamp.
     iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
-    setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
-
-    syntax match TextFileNoSpell "\S*\.\(yml\|json\|md\|txt\|rb\|sh\)" contains=@NoSpell
-
-    syntax region HtmlCommentNoSpell start="<!--" end="-->" oneline contains=@NoSpell
-
-    syntax match EmailNoSpell '<\?\w\+@\w\+\.\w\+>\?' contains=@NoSpell
-
-    " Don't mark URL-like things as spelling errors.
-    " Credit: http://www.panozzaj.com/blog/2016/03/21/ignore-urls-and-acroynms-while-spell-checking-vim/
-    syntax match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
-
     " Don't count acronyms/ abbreviations as spelling errors.
     " Credit: http://www.panozzaj.com/blog/2016/03/21/ignore-urls-and-acroynms-while-spell-checking-vim/
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+
+    syntax region HtmlCommentNoSpell start="<!--" end="-->" oneline contains=@NoSpell
+    highlight link HtmlCommentNoSpell Comment
   endfunction
+
+  augroup AG_ProseOptions
+    autocmd!
+    autocmd Filetype {text,markdown} call SetProseOptions()
+  augroup END
 
 "=== Wild Mode (command-line completion)
   set wildmenu
-  set wildmode=list:longest,full
+  set wildmode=list:longest,list:full
   set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-  " Ignore archive files.
   set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-  " Ignore Bundler and SASS cache.
-  set wildignore+=*/vendor/gems/*,*/vendor/bundle/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-  " Ignore node.js modules.
-  set wildignore+=*/node_modules/*
-  " Ignore temp and backup files.
-  set wildignore+=*.swp,*~,._*
 
-"=== Files
-  " Treat .es6 files as JavaScript.
-  autocmd BufNewFile,BufRead *.es6 set filetype=javascript
-  " Python PEP8 4 space indent
-  autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-  " Treat .md files as Markdown.
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+"=== File Types
+  augroup AG_FileTypeOptions
+    autocmd!
 
-"=== Misc
+    " Python PEP8 4 space indent
+    autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+  augroup END
+
+"=== Misc Functions
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler.
   " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+  function! ResetCursorPosition()
+    if line("'\"") > 0 && line("'\"") <= line("$")
+      exe "normal g`\""
+    endif
+  endfunction
 
   " Remove whitespace at the end of lines while maintaining cursor position.
-  function! <SID>StripTrailingWhitespaces()
+  function! StripTrailingWhitespaces()
     let l = line('.')
     let c = col('.')
     %s/\s\+$//e
     call cursor(l, c)
   endfunction
-  autocmd FileType * autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-  " Open a file in Google Chrome - OS X only.
+  " Open a file in Google Chrome.
   function! OpenFileInChrome()
     exec 'silent !open -a "Google Chrome" "%"'
     redraw!
   endfunction
   command! Chrome call OpenFileInChrome()
-
-  " Don't auto-comment the next line on Enter.
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
   " Create a tags file.
   function! CreateCtagsFile()
@@ -297,7 +337,7 @@
 
   function! RefreshAllBuffers()
     let currBuff = bufnr("%")
-    " Refresh buffers.
+    " refresh buffers
     execute 'silent bufdo e!'
     " Go back to the original buffer.
     execute 'buffer ' . currBuff
@@ -317,60 +357,52 @@
     " Open the entry.
     exec "e " . entry_path
   endfunction
-  nnoremap <silent> <Leader>j :call TodaysJournalEntry()<CR>
+  command! J call TodaysJournalEntry()
+
+  " .vimrc
+  command! Vimrc exec ':e ~/.vimrc'
+  command! V Vimrc
+
+  " todo.md
+  command! Todo exec ':e ~/notes/ustasb/todo.md'
+  command! T Todo
+
+  " scratch.md
+  command! Scratch exec ':e ~/notes/scratch.md'
+  command! S Scratch
+
+  augroup AG_Misc
+    autocmd!
+
+    autocmd BufReadPost * :call ResetCursorPosition()
+
+    autocmd FileType * autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
+
+    " Don't auto-comment the next line on Enter.
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  augroup END
 
 "=== Plugin Settings
-  " Base16 color schemes
-  if $ITERM_PROFILE == 'Pencil Light'
-    let g:pencil_gutter_color = 1
-
-    set background=light
-    silent! colorscheme pencil
-
-    " These colors are mapped to iTerm's 16 colors.
-    hi ColorColumn  ctermbg=255
-
-    " StatusLine and TabLine should match.
-    hi StatusLine   ctermfg=15 ctermbg=4 cterm=bold " active
-    hi StatusLineNC ctermfg=8  ctermbg=7 cterm=NONE " inactive
-    hi TabLineSel   ctermfg=15 ctermbg=4 cterm=bold " active
-    hi TabLine      ctermfg=8  ctermbg=7 cterm=NONE " inactive
-    hi TabLineFill  ctermfg=7  ctermbg=7 cterm=NONE
-
-    " Light grey
-    hi VertSplit    ctermfg=7 ctermbg=7
-    hi CursorLine   ctermbg=7
-  else
-    set background=dark
-    silent! colorscheme base16-tomorrow
-
-    " These colors are mapped to iTerm's 16 colors.
-    hi ColorColumn  ctermbg=10
-    hi StatusLine   ctermfg=0 ctermbg=7  cterm=bold " active
-    hi StatusLineNC ctermfg=8 ctermbg=11 cterm=NONE " inactive
-  endif
-
-  " Andy Wokula's HTML Indent
-  let g:html_indent_inctags = 'html,body,head,tbody'
-  let g:html_indent_script1 = 'inc'
-  let g:html_indent_style1 = 'inc'
-
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
 
-  " vim-coffee-script
-  hi link coffeeSpaceError NONE  " Don't highlight trailing whitespace
+  " vim-jsx
+  let g:jsx_ext_required = 0
 
   " RSpec.vim
-  autocmd FileType ruby nnoremap <Leader>s :call RunNearestSpec()<CR>
-  autocmd FileType ruby nnoremap <Leader>S :call RunCurrentSpecFile()<CR>
+  augroup AG_Rspec
+    autocmd!
+    autocmd FileType ruby nnoremap <buffer> <Leader>s :call RunNearestSpec()<CR>
+    autocmd FileType ruby nnoremap <buffer> <Leader>S :call RunCurrentSpecFile()<CR>
+  augroup END
 
   " Vimux
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
 
   " NERD Tree
-  let NERDTreeIgnore=['\.o$', '.DS_Store', 'Icon']
-  let NERDTreeShowHidden=1
+  let NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon']
+  let NERDTreeShowHidden = 1
+  let NERDTreeStatusline = ' ' " blank
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
 
@@ -401,32 +433,51 @@
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
 
-  " Vim-JSX
-  let g:jsx_ext_required = 0
+  " vim-markdown
+  let g:markdown_enable_conceal = 1
+  let g:markdown_include_jekyll_support = 0
+  let g:markdown_enable_folding = 0
+  let g:markdown_enable_mappings = 0
+  let g:markdown_enable_input_abbreviations = 0
 
   " Vim Markdown Preview
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
-  let g:vim_markdown_preview_pandoc_args = '--from markdown+autolink_bare_uris --smart --to=html5 --self-contained --highlight-style=haddock --css /Users/ustasb/dotfiles/markdown_css/github.css'
+  " gfm = Github Flavored Markdown
+  let g:vim_markdown_preview_pandoc_args = '--from markdown+autolink_bare_uris+lists_without_preceding_blankline -f gfm --to=html5 --self-contained --highlight-style=haddock --css $HOME/dotfiles/markdown_css/github.css'
+  autocmd FileType markdown nnoremap <Leader>p :call Vim_Markdown_Preview()<CR>
+
+  " vim-markdown-toc
+  let g:vmt_list_item_char = '-'
+  let g:vmt_cycle_list_item_markers = 0
+  " HACK: vim-markdown-toc and vim-gnupg don't play together well. Both try
+  " to edit the buffer upon saving. If the encrypted content has a TOC, the
+  " content will be truncated before saving. As a workaround, don't
+  " automatically update the TOC if the file is encrypted.
+  let g:vmt_auto_update_on_save = 0
+  augroup AG_VimMarkdownToc
+    autocmd!
+    autocmd BufWritePre *.{md,mdown,mkd,mkdn,markdown,mdwn}
+      \ if expand('%') !~ 'md\.asc$' | :silent UpdateToc
+  augroup END
 
   " Vim Voom
   let g:voom_python_versions = [3, 2]
   let g:voom_tree_placement = 'left'
   let g:voom_tree_width = 40
   let g:voom_default_mode = 'markdown'
-  nnoremap <Leader>o :VoomToggle<CR>
+  autocmd FileType markdown nnoremap <buffer> <Leader>o :VoomToggle markdown<CR>
 
-  " vim-markdown-toc
-  let g:vmt_list_item_char = '-'
-  let g:vmt_cycle_list_item_markers = 0
-
-  " HACK: vim-markdown-toc and vim-gnupg don't play together well. Both try
-  " to edit the buffer upon saving. If the encrypted content has a TOC, the
-  " content will be truncated before saving. As a workaround, don't
-  " automatically update the TOC if the file is encrypted.
-  let g:vmt_auto_update_on_save = 0
-  autocmd BufWritePre *.{md,mdown,mkd,mkdn,markdown,mdwn}
-    \ if expand('%') !~ 'md\.asc$' | :silent! UpdateToc
+  " Tagbar
+  let g:tagbar_silent = 1
+  let g:tagbar_compact = 1
+  let g:tagbar_iconchars = ['▸', '▾']
+  nnoremap <Leader>o :TagbarToggle<CR>
+  let g:tagbar_status_func = 'TagbarStatusFunc'
+  function! TagbarStatusFunc(current, sort, fname, ...) abort
+  	let g:lightline.fname = a:fname
+  	return lightline#statusline(0)
+  endfunction
 
   " Vim GnuPG
   let g:GPGExecutable = 'gpg --trust-model always'
@@ -438,12 +489,6 @@
   let g:GPGDefaultRecipients=[
     \"Brian Ustas <brianustas@gmail.com>",
   \]
-  " HACK: Without, two columns are highlighted on the second line upon startup...
-  autocmd VimEnter *.asc execute(':redraw!')
-
-  " Scratch.vim
-  let g:ScratchFileName = $USTASB_NOTES_DIR_PATH . '/scratch.md'
-  nnoremap <Leader>a :ScratchToggle<CR>
 
   " vim-sneak
   let g:sneak#label = 1
@@ -453,45 +498,109 @@
   " ALE
   let g:ale_enabled = 0
   let g:ale_completion_enabled = 0
+  let g:ale_sign_error = '✖' " ✘
+  let g:ale_sign_warning = '✦' " ⚑
   nnoremap <Leader>l :ALEToggle<CR>
 
   " fzf.vim
-  let g:fzf_buffers_jump = 1
   let g:fzf_command_prefix = 'Fzf'
-
-  if $ITERM_PROFILE == 'Pencil Light'
-    let g:fzf_colors =
-    \ { 'prompt':  ['fg', 'Exception'],
-    \ 'spinner':   ['fg', 'ErrorMsg'],
-    \ 'info':      ['fg', 'Comment'],
-    \ 'pointer':   ['fg', 'Identifier'],
-    \ 'fg':        ['fg', 'Normal'],
-    \ 'fg+':       ['fg', 'Normal'],
-    \ 'bg+':       ['bg', 'CursorLine'],
-    \ 'hl+':       ['fg', 'ErrorMsg'],
-    \ 'hl':        ['fg', 'ErrorMsg'] }
-
-    " https://github.com/junegunn/fzf.vim#status-line-neovim
-    function! s:fzf_statusline()
-      highlight blank ctermfg=7 ctermbg=7
-      setlocal statusline=%#blank#
-    endfunction
-    autocmd! User FzfStatusLine call <SID>fzf_statusline()
-  endif
-
+  let g:fzf_layout = { 'up': '~50%' }
+  let g:fzf_colors = {
+    \ 'prompt':   ['fg', 'Global'],
+    \ 'spinner':  ['fg', 'Comment'],
+    \ 'info':     ['fg', 'Comment'],
+    \ 'pointer':  ['fg', 'Statement'],
+    \ 'fg':       ['fg', 'Normal'],
+    \ 'fg+':      ['fg', 'Normal'],
+    \ 'bg+':      ['bg', 'CursorLine'],
+    \ 'hl+':      ['fg', 'Statement'],
+    \ 'hl':       ['fg', 'Statement']
+    \ }
+  " https://github.com/junegunn/fzf.vim#status-line-neovim
+  " empty status line
+  autocmd! User FzfStatusLine setlocal statusline=%#
   " Search through all files recursively.
-  nnoremap <silent> <Leader>f :FzfFiles!<CR>
+  nnoremap <silent> <Leader>f :FzfFiles<CR>
   " MRU
-  nnoremap <silent> <Leader>m :FzfHistory!<CR>
+  nnoremap <silent> <Leader>m :FzfHistory<CR>
   " Ctags
-  nnoremap <silent> <Leader>t :FzfTags!<CR>
+  nnoremap <silent> <Leader>t :FzfTags<CR>
   " Buffers
-  nnoremap <silent> <Leader>b :FzfBuffers!<CR>
+  nnoremap <silent> <Leader>b :FzfBuffers<CR>
   " Notes
-  nnoremap <silent> <Leader>n :FzfFiles! ~/notes<CR>
+  nnoremap <silent> <Leader>n :FzfFiles ~/notes<CR>
+
+  " vim-startify
+  let g:startify_change_to_dir = 0
+  let g:startify_fortune_use_unicode = 1
+  let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
+
+  " lightline.vim
+  set noshowmode " Don't show the default mode indicator.
+
+  let g:lightline = {
+  \   'colorscheme': 'gruvbox',
+  \   'enable': {
+  \     'tabline': 0,
+  \     'statusline': 1,
+  \   },
+  \   'active': {
+  \     'left': [
+  \       ['mode', 'paste'],
+  \       ['readonly', 'filename', 'modified']
+  \      ],
+  \     'right': [
+  \       ['lineinfo'],
+  \       ['percent'],
+  \       ['fileformat', 'fileencoding', 'filetype']
+  \     ]
+  \   },
+  \   'component_function': {
+  \     'mode': 'LightlineMode',
+  \     'filename': 'LightlineFilename',
+  \     'modified': 'LightlineModified',
+  \     'fileformat': 'LightlineFileformat',
+  \     'fileencoding': 'LightlineFileencoding',
+  \     'filetype': 'LightlineFiletype',
+  \   },
+  \   'subseparator': {
+  \     'left': '│',
+  \     'right': '│'
+  \   }
+  \ }
+
+  function! LightlineMode()
+    let fname = expand('%:t')
+    return &filetype == 'nerdtree' ? 'NERDTree' :
+      \ &filetype == 'tagbar' ? 'Tagbar' :
+      \ winwidth(0) > 60 ? lightline#mode() : ''
+  endfunction
+
+  function! LightlineFilename()
+    let fname = expand('%:t')
+    return &filetype == 'nerdtree' ? '' :
+      \ &filetype == 'tagbar' ? '' :
+      \ fname != '' ? fname : '[No Name]'
+  endfunction
+
+  function! LightlineModified()
+    return &modified ? "+" : ""
+  endfunction
+
+  function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+  endfunction
+
+  function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  endfunction
+
+  function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endfunction
 
 "=== Local Customizations
 
-  if filereadable("~/.vimrc.local")
+  if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
   endif
