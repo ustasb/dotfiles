@@ -134,6 +134,9 @@
     git checkout $(echo "$branch" | sed "s/.* //")
   }
 
+  todo() { cd ~/notes && vim -c NERDTreeToggle -c 'wincmd l' -c T }
+  alias t=todo
+
   # Enable access to my personal scripts.
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
