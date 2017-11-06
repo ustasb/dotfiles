@@ -138,13 +138,21 @@
 
   silent! colorscheme gruvbox
 
-  " https://github.com/itchyny/lightline.vim/issues/179
-  highlight! StatusLine ctermfg=237 ctermbg=237 guifg=#3c3836 guibg=#3c3836
+  function! SetHighlightOverrides()
+    " https://github.com/itchyny/lightline.vim/issues/179
+    highlight! StatusLine ctermfg=237 ctermbg=237 guifg=#3c3836 guibg=#3c3836
 
-  " https://github.com/morhetz/gruvbox/issues/175
-  " Swap spell highlighting. Make errors red and warnings blue.
-  highlight! SpellBad cterm=undercurl ctermfg=167 gui=undercurl guifg=#fb4934 guisp=#fb4934
-  highlight! SpellCap cterm=undercurl ctermfg=109 gui=undercurl guifg=#83a598 guisp=#83a598
+    " https://github.com/morhetz/gruvbox/issues/175
+    " Swap spell highlighting. Make errors red and warnings blue.
+    highlight! SpellBad cterm=undercurl ctermfg=167 gui=undercurl guifg=#fb4934 guisp=#fb4934
+    highlight! SpellCap cterm=undercurl ctermfg=109 gui=undercurl guifg=#83a598 guisp=#83a598
+
+    " colors taken from: :hi Search
+    highlight! SneakLabel cterm=bold ctermfg=235 ctermbg=214 gui=bold guifg=#282828 guibg=#fabd2f
+    highlight! SneakLabelMask ctermfg=235 ctermbg=214 guifg=#282828 guibg=#fabd2f
+  endfunction
+
+  call SetHighlightOverrides()
 
 "=== UI
   " Change the title of the terminal/tab with the file name.
@@ -440,6 +448,7 @@
     highlight VertSplit ctermfg=241 ctermbg=235 guifg=#665c54 guibg=#282828
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call SetHighlightOverrides()
 
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
