@@ -20,6 +20,7 @@
     Plug 'Raimondi/delimitMate'
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
     Plug 'ajh17/VimCompletesMe'
+    Plug 'tpope/vim-surround'
 
     " colorschemes
     Plug 'morhetz/gruvbox'
