@@ -231,7 +231,9 @@
   " Use jk instead of <Esc> to enter Normal mode.
   inoremap jk <Esc>
 
-  " Typos
+  " typos
+  cnoreabbrev aw wa
+
   " Never open `man` documentation for a word.
   nnoremap <S-k> <Nop>
   " Never browse command history.
