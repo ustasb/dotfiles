@@ -432,7 +432,13 @@
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 120
-  let g:goyo_height = 100
+  let g:goyo_height = '70%'
+  function! s:goyo_enter()
+    " Show the vertical splits.
+    setlocal fillchars=vert:│
+    highlight VertSplit ctermfg=241 ctermbg=235 guifg=#665c54 guibg=#282828
+  endfunction
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
