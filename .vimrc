@@ -437,6 +437,7 @@
   let g:ack_qhandler = 'topleft copen'
   cnoreabbrev Ag Ack
   cnoreabbrev AG Ack
+  cnoreabbrev ag Ack
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
