@@ -403,8 +403,11 @@
 
   " NERD Tree
   let NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon']
+  let NERDTreeMinimalUI = 1
   let NERDTreeShowHidden = 1
-  let NERDTreeStatusline = ' ' " blank
+  let NERDTreeAutoDeleteBuffer = 1
+  let NERDTreeWinSize = 25
+  let NERDTreeStatusline = '​' " zero width space
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
 
