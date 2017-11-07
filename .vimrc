@@ -174,8 +174,6 @@
   set nofoldenable
   " block cursor
   set guicursor=
-  " filename in the tabbar
-  set guitablabel=%t
 
   " GUI
   if has('gui_running')
@@ -563,7 +561,7 @@
   let g:lightline = {
   \   'colorscheme': 'gruvbox',
   \   'enable': {
-  \     'tabline': 0,
+  \     'tabline': 1,
   \     'statusline': 1,
   \   },
   \   'active': {
