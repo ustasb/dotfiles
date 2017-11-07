@@ -53,6 +53,9 @@
   export CLICOLOR=1
 
 #=== Environment Variables
+  # Ripgrep
+  export RIPGREP_ARGS="--no-ignore-vcs --hidden --follow --ignore-file $HOME/.rgignore"
+
   # Use Neovim as the default editor.
   export VISUAL=nvim
   export EDITOR=nvim
@@ -69,7 +72,7 @@
 
   # fzf
   export FZF_DEFAULT_OPTS='--reverse'
-  export FZF_DEFAULT_COMMAND='rg --no-ignore-vcs --files --hidden --follow --no-messages' # respects ~/.rgignore
+  export FZF_DEFAULT_COMMAND="rg $RIPGREP_ARGS --files --no-messages"
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
 #=== Aliases
@@ -86,8 +89,8 @@
   alias v=nvim
 
   # Ripgrep
-  alias rg='rg --hidden'
-  alias ag='rg'
+  alias rg="rg $RIPGREP_ARGS"
+  alias ag=rg
 
   # Homebrew's Python 2
   # http://docs.python-guide.org/en/latest/starting/install/osx/

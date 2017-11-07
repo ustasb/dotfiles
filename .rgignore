@@ -1,18 +1,12 @@
-# Common
+# tested with ripgrep
+# https://github.com/BurntSushi/ripgrep
+
+# common
 .git
 log
 tags
 tmp
 plugins
-
-# Images
-.tif
-.tiff
-.gif
-.jpeg
-.jpg
-.png
-.pdf
 
 # Node.js
 node_modules
@@ -26,3 +20,23 @@ bower_components
 # Rails
 spec/cassettes
 vendor/bundle
+
+# images
+*.tif
+*.tiff
+*.gif
+*.jpeg
+*.jpg
+*.png
+*.svg
+
+# fonts
+*.ttf
+*.eot
+*.woff
+*.otf
+
+# misc
+*.pdf
+*.gpg
+*.DS_Store
