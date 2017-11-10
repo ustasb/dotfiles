@@ -39,7 +39,7 @@
     " search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    " requires rg (ripgrep)
+    " requires ripgrep
     " Don't use vim-plug's lazy loading here! :Ack on text below the cursor
     " won't work the first time.
     Plug 'mileszs/ack.vim'
@@ -282,9 +282,6 @@
     " Don't count acronyms/ abbreviations as spelling errors.
     " Credit: http://www.panozzaj.com/blog/2016/03/21/ignore-urls-and-acroynms-while-spell-checking-vim/
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
-
-    syntax region HtmlCommentNoSpell start="<!--" end="-->" oneline contains=@NoSpell
-    highlight link HtmlCommentNoSpell Comment
   endfunction
 
   augroup AG_ProseOptions
@@ -440,7 +437,7 @@
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 120
-  let g:goyo_height = '70%'
+  let g:goyo_height = '80%'
   function! s:goyo_enter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
@@ -622,7 +619,6 @@
   endfunction
 
 "=== Local Customizations
-
   if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
   endif
