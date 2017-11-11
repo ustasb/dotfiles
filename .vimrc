@@ -60,7 +60,7 @@
 
     " misc
     Plug 'w0rp/ale', { 'on': 'ALEToggle' }
-    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+    Plug 'ustasb/goyo.vim', { 'on': 'Goyo' }
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -441,10 +441,8 @@
   function! s:goyo_enter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
-    highlight VertSplit ctermfg=241 ctermbg=235 guifg=#665c54 guibg=#282828
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
-  autocmd! User GoyoLeave nested call SetHighlightOverrides()
 
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
