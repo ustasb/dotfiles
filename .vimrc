@@ -157,6 +157,7 @@
 "=== UI
   " Change the title of the terminal/tab with the file name.
   set title
+  set titlestring=%t
   " Don't show Vim's welcome message.
   set shortmess=I
   " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
@@ -177,12 +178,9 @@
 
   " GUI
   if has('gui_running')
-    " default window size
-    set lines=35 columns=135
-    " remove menubar
-    set guioptions-=m
-    " remove toolbar
-    set guioptions-=T
+    set guifont=InputMono\ ExLight:h11
+    " remove toolbar, menubar and scrollbar
+    set guioptions=
     " disable all error whistles
     set noerrorbells visualbell t_vb=
   else
