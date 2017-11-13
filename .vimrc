@@ -32,7 +32,6 @@
 
     " markdown
     Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
-    Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'on': 'VoomToggle' }
 
@@ -277,9 +276,12 @@
     " Quickly insert today's timestamp.
     iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
-    " Don't count acronyms/ abbreviations as spelling errors.
-    " Credit: http://www.panozzaj.com/blog/2016/03/21/ignore-urls-and-acroynms-while-spell-checking-vim/
-    syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+    " Add Pandoc title block support.
+    " https://pandoc.org/MANUAL.html#extension-pandoc_title_block
+    syn match pandocTitleBlockTitle /^%.*\n/
+    syn match pandocTitleBlockMark /%\ / contained containedin=pandocTitleBlockTitle
+    highlight! link pandocTitleBlockMark GruvboxRed
+    highlight! link pandocTitleBlockTitle GruvboxAquaBold
   endfunction
 
   augroup AG_ProseOptions
@@ -447,7 +449,7 @@
   nnoremap <Leader>c :Commentary<CR>
 
   " vim-markdown
-  let g:markdown_enable_conceal = 1
+  let g:markdown_enable_conceal = 0 " too slow
   let g:markdown_include_jekyll_support = 0
   let g:markdown_enable_folding = 0
   let g:markdown_enable_mappings = 0
@@ -457,22 +459,8 @@
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
   " gfm = Github Flavored Markdown
-  let g:vim_markdown_preview_pandoc_args = '--from gfm+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji --to=html5 --self-contained --highlight-style=haddock --css $HOME/dotfiles/markdown_css/github.css'
+  let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji --to=html5 --self-contained --table-of-contents --css $HOME/dotfiles/markdown_css/pandoc.css'
   autocmd FileType markdown nnoremap <Leader>p :call Vim_Markdown_Preview()<CR>
-
-  " vim-markdown-toc
-  let g:vmt_list_item_char = '-'
-  let g:vmt_cycle_list_item_markers = 0
-  " HACK: vim-markdown-toc and vim-gnupg don't play together well. Both try
-  " to edit the buffer upon saving. If the encrypted content has a TOC, the
-  " content will be truncated before saving. As a workaround, don't
-  " automatically update the TOC if the file is encrypted.
-  let g:vmt_auto_update_on_save = 0
-  augroup AG_VimMarkdownToc
-    autocmd!
-    autocmd BufWritePre *.{md,mdown,mkd,mkdn,markdown,mdwn}
-      \ if expand('%') !~ 'md\.asc$' | :silent UpdateToc
-  augroup END
 
   " Vim Voom
   let g:voom_python_versions = [3, 2]
@@ -519,7 +507,7 @@
   let g:fzf_command_prefix = 'Fzf'
   let g:fzf_layout = { 'up': '~50%' }
   let g:fzf_colors = {
-    \ 'prompt':   ['fg', 'Global'],
+    \ 'prompt':   ['fg', 'GruvboxAquaBold'],
     \ 'spinner':  ['fg', 'Comment'],
     \ 'info':     ['fg', 'Comment'],
     \ 'pointer':  ['fg', 'Statement'],
