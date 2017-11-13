@@ -59,7 +59,7 @@
 
     " misc
     Plug 'w0rp/ale', { 'on': 'ALEToggle' }
-    Plug 'ustasb/goyo.vim', { 'on': 'Goyo' }
+    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -146,9 +146,8 @@
     highlight! SpellBad cterm=undercurl ctermfg=167 gui=undercurl guifg=#fb4934 guisp=#fb4934
     highlight! SpellCap cterm=undercurl ctermfg=109 gui=undercurl guifg=#83a598 guisp=#83a598
 
-    " colors taken from: :hi Search
+    " Colors taken from `highlight Search`.
     highlight! SneakLabel cterm=bold ctermfg=235 ctermbg=214 gui=bold guifg=#282828 guibg=#fabd2f
-    highlight! SneakLabelMask ctermfg=235 ctermbg=214 guifg=#282828 guibg=#fabd2f
   endfunction
 
   call SetHighlightOverrides()
@@ -160,7 +159,7 @@
   " Don't show Vim's welcome message.
   set shortmess=I
   " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
-  set shortmess+=a
+  set shortmess+=at
   " Always show the status line.
   set laststatus=2
   " better splits
@@ -410,7 +409,7 @@
   let NERDTreeMinimalUI = 1
   let NERDTreeShowHidden = 1
   let NERDTreeAutoDeleteBuffer = 1
-  let NERDTreeWinSize = 25
+  let NERDTreeWinSize = 40
   let NERDTreeStatusline = '​' " zero width space
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
@@ -441,8 +440,10 @@
   function! s:goyo_enter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
+    highlight! link VertSplit GruvboxBg2
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call SetHighlightOverrides()
 
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
@@ -465,7 +466,7 @@
   " Vim Voom
   let g:voom_python_versions = [3, 2]
   let g:voom_tree_placement = 'left'
-  let g:voom_tree_width = 40
+  let g:voom_tree_width = 30
   let g:voom_default_mode = 'markdown'
   autocmd FileType markdown nnoremap <buffer> <Leader>o :VoomToggle markdown<CR>
 
@@ -493,6 +494,7 @@
 
   " vim-sneak
   let g:sneak#label = 1
+  let g:sneak#use_ic_scs = 1 " Respect ignorecase and smartcase.
   map f <Plug>Sneak_s
   map F <Plug>Sneak_S
 
