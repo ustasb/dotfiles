@@ -176,7 +176,7 @@
 
   " GUI
   if has('gui_running')
-    set guifont=InputMono\ ExLight:h11
+    set guifont=SFMono\ Light:h11
     " remove toolbar, menubar and scrollbar
     set guioptions=
     " disable all error whistles

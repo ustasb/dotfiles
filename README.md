@@ -14,6 +14,6 @@
 
 ### Dark Theme - 'Gruvbox Dark'
 
-- [11pt InputMono ExLight](http://input.fontbureau.com/)
+- 11pt SF Mono Light
 - [Vim theme](https://github.com/morhetz/gruvbox)
 - [iTerm2 theme](https://github.com/morhetz/gruvbox-contrib/blob/master/iterm2/gruvbox-dark.itermcolors)
