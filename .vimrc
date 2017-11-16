@@ -373,7 +373,7 @@
   command! T Todo
 
   " scratch.md
-  command! Scratch exec ':e ~/notes/scratch.md'
+  command! Scratch exec ':e ~/notes/scratch.txt'
   command! S Scratch
 
   augroup AG_Misc
