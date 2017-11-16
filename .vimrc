@@ -574,17 +574,19 @@
 
   function! LightlineMode()
     let fname = expand('%:t')
-    return &filetype == 'nerdtree' ? 'NERDTree' :
-      \ &filetype == 'tagbar' ? 'Tagbar' :
-      \ &filetype == 'voomtree' ? 'VOoM' :
+    return &filetype == 'nerdtree' ? '' :
+      \ &filetype == 'tagbar' ? '' :
+      \ &filetype == 'voomtree' ? '' :
+      \ &filetype == 'qf' ? '' :
       \ winwidth(0) > 60 ? lightline#mode() : ''
   endfunction
 
   function! LightlineFilename()
     let fname = expand('%:t')
-    return &filetype == 'nerdtree' ? '' :
-      \ &filetype == 'tagbar' ? '' :
-      \ &filetype == 'voomtree' ? '' :
+    return &filetype == 'nerdtree' ? 'NERDTree' :
+      \ &filetype == 'tagbar' ? 'Tagbar' :
+      \ &filetype == 'voomtree' ? 'VOoM' :
+      \ &filetype == 'qf' ? 'QuickFix' :
       \ fname != '' ? fname : '[No Name]'
   endfunction
 
