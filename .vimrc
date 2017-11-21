@@ -72,6 +72,7 @@
   syntax enable
 
   " file format (relevant to line ending type)
+  " Unix based systems and Mac OS X+.
   set ffs=unix,dos
   " Set default encoding to UTF-8.
   set encoding=utf-8
@@ -275,6 +276,9 @@
     " Quickly insert today's timestamp.
     iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
+    " Preface each line with '- ' for quickly creating lists.
+    vnoremap <buffer> <Leader>l :s/\</- /<CR>
+
     " Add Pandoc title block support.
     " https://pandoc.org/MANUAL.html#extension-pandoc_title_block
     syn match pandocTitleBlockTitle /^%.*\n/
@@ -436,7 +440,7 @@
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 120
-  let g:goyo_height = '80%'
+  let g:goyo_height = '90%'
   function! s:goyo_enter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
@@ -578,6 +582,7 @@
       \ &filetype == 'tagbar' ? '' :
       \ &filetype == 'voomtree' ? '' :
       \ &filetype == 'qf' ? '' :
+      \ &filetype == 'fzf' ? '' :
       \ winwidth(0) > 60 ? lightline#mode() : ''
   endfunction
 
@@ -587,6 +592,7 @@
       \ &filetype == 'tagbar' ? 'Tagbar' :
       \ &filetype == 'voomtree' ? 'VOoM' :
       \ &filetype == 'qf' ? 'QuickFix' :
+      \ &filetype == 'fzf' ? 'fzf' :
       \ fname != '' ? fname : '[No Name]'
   endfunction
 
