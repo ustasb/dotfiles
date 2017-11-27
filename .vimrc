@@ -172,8 +172,6 @@
   set noshowcmd
   " No text folding.
   set nofoldenable
-  " block cursor
-  set guicursor=
 
   " GUI
   if has('gui_running')
