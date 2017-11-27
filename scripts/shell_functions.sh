@@ -33,6 +33,12 @@ bu_back_up_photo_booth() {
   ruby ~/dotfiles/scripts/back_up_photo_booth.rb
 }
 
+# Back up 1Password backups to the Cloud.
+bu_back_up_1p() {
+  rsync --verbose --checksum --ignore-existing $HOME/Library/Application\ Support/1Password\ 4/Backups/* $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/archive/1password_backups
+  echo 'Done!'
+}
+
 # Build my complete journal.
 bu_build_full_journal() {
   ruby ~/dotfiles/scripts/build_full_journal.rb
