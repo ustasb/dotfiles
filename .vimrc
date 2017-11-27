@@ -234,12 +234,14 @@
 
   " Use jk instead of <Esc> to enter Normal mode.
   inoremap jk <Esc>
+  inoremap JK <Esc>
 
   " typos
   cnoreabbrev aw wa
 
   " Never open `man` documentation for a word.
   nnoremap <S-k> <Nop>
+  vnoremap <S-k> <Nop>
   " Never browse command history.
   nnoremap q: <Nop>
   vnoremap q: <Nop>
@@ -259,6 +261,10 @@
 
   " Quickly reload .vimrc.
   nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
+
+  " beginning of line / end of line
+  inoremap <C-a> <Esc>I
+  inoremap <C-e> <Esc>A
 
 "=== Prose
   function! SetProseOptions()
@@ -424,10 +430,6 @@
 
   " Vim Maximizer
   nnoremap <C-W>o :MaximizerToggle<CR>
-  " Override the default and remap recursively.
-  nmap <C-W><C-O> <C-W>o
-  vmap <C-W><C-O> <C-W>o
-  imap <C-W><C-O> <C-W>o
 
   " Ack.vim
   let g:ackprg = 'rg --hidden --vimgrep --smart-case'
