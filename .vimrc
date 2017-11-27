@@ -376,6 +376,10 @@
   command! Vimrc exec ':e ~/.vimrc'
   command! V Vimrc
 
+  " .zshrc
+  command! Zshrc exec ':e ~/.zshrc'
+  command! Z Zshrc
+
   " todo.md
   command! Todo exec ':e ~/notes/ustasb/todo.md'
   command! T Todo
