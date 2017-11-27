@@ -1,5 +1,9 @@
 # Convenient functions for accessing Brian's personal scripts.
 
+bu_source_shell() {
+  source ~/.zshrc
+}
+
 # Customize the Finder sidebar defaults.
 bu_customize_finder_sidebar() {
   ~/dotfiles/scripts/osx_finder_sidebar/main.sh
