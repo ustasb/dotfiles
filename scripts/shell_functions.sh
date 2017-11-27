@@ -9,7 +9,7 @@ bu_customize_finder_sidebar() {
 bu_back_up_notes() {
   # Reason for subshell: https://stackoverflow.com/a/10382170/1575238
   (cd $USTASB_NOTES_DIR_PATH/.. \
-    && zip --quiet --recurse-paths notes_backups/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_NOTES_DIR_PATH) \
+    && zip --quiet --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/archive/notes_backups/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_NOTES_DIR_PATH) \
     && echo 'Done!')
 }
 
