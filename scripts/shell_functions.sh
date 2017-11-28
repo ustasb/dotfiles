@@ -79,3 +79,8 @@ bu_test_ustasb_internet_links() {
 bu_print_term_colors() {
   for code in {000..255}; do print -nP -- "$code: %F{$code}%K{$code}Test%k%f " ; (( code % 8 && code < 255 )) || printf '\n'; done
 }
+
+# See script for details.
+bu_tidy_up_pic_names() {
+  ruby ~/dotfiles/scripts/tidy_up_image_names.rb $USTASB_UNENCRYPTED_DIR_PATH/pictures
+}
