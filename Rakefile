@@ -1,5 +1,7 @@
 require 'fileutils'
 
+DOTFILES_DIR = File.dirname(__FILE__)
+
 def log(msg)
   puts "\n===> #{msg}"
 end
@@ -22,7 +24,7 @@ task :install_pure_prompt do
 end
 
 task :install_config_files => [:install_pure_prompt] do
-  local_home_path = "#{Rake.original_dir}/home"
+  local_home_path = "#{DOTFILES_DIR}/home"
 
   config_paths = Dir.glob("#{local_home_path}/**/*", File::FNM_DOTMATCH)
 

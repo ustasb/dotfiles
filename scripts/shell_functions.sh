@@ -65,7 +65,7 @@ bu_test_ustasb_internet_links() {
 
 # Update apps and install dotfiles.
 bu_update_system() {
-  (cd ~/dotfiles && ./update_system.sh)
+  ~/dotfiles/scripts/update_system.sh
 }
 
 # Print all available terminal colors.
