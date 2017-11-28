@@ -1040,6 +1040,41 @@
 					<key>Text</key>
 					<string>0x7f</string>
 				</dict>
+				<key>0x6e-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>13</integer>
+					<key>Text</key>
+					<string></string>
+				</dict>
+				<key>0x73-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x77</string>
+				</dict>
+				<key>0x74-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>13</integer>
+					<key>Text</key>
+					<string></string>
+				</dict>
+				<key>0x7b-0x120000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x70</string>
+				</dict>
+				<key>0x7d-0x120000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x6E</string>
+				</dict>
 				<key>0x7f-0x80000</key>
 				<dict>
 					<key>Action</key>
