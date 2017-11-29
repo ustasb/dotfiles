@@ -14,7 +14,7 @@ bu_back_up_system() {
   bu_back_up_notes && \
   bu_back_up_photo_booth && \
   bu_back_up_1p && \
-  bu_back_up_gdrive $*
+  bu_back_up_github_repos
 }
 
 # Back up Brian's notes.
@@ -47,6 +47,11 @@ bu_back_up_photo_booth() {
 # Back up 1Password backups to the Cloud.
 bu_back_up_1p() {
   rsync --verbose --checksum --ignore-existing $HOME/Library/Application\ Support/1Password\ 4/Backups/* $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/archive/1password_backups
+}
+
+# Back up my source code.
+bu_back_up_github_repos() {
+  ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_UNENCRYPTED_DIR_PATH/archive/source_code
 }
 
 # Customize the Finder sidebar defaults.
