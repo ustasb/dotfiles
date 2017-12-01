@@ -13,7 +13,8 @@ if [ ! -d ~/projects ]; then
   mkdir ~/projects
 fi
 
-if [ -d $USTASB_NOTES_DIR_PATH ] && [ ! -L ~/notes ]; then
+if [ -d $USTASB_NOTES_DIR_PATH ]; then
+  [ -L ~/notes ] && rm ~/notes
   echo "Creating ~/notes..."
   ln -s $USTASB_NOTES_DIR_PATH ~/notes
 fi
