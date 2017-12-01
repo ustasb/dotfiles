@@ -21,7 +21,7 @@ bu_back_up_system() {
 bu_back_up_notes() {
   # Reason for subshell: https://stackoverflow.com/a/10382170/1575238
   (cd $USTASB_NOTES_DIR_PATH/.. \
-    && zip --quiet --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/archive/notes_backups/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_NOTES_DIR_PATH))
+    && zip --quiet --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/notes/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_NOTES_DIR_PATH))
 }
 
 # Back up Google Drive contents to S3.
@@ -46,12 +46,12 @@ bu_back_up_photo_booth() {
 
 # Back up 1Password backups to the Cloud.
 bu_back_up_1p() {
-  rsync --verbose --checksum --ignore-existing $HOME/Library/Application\ Support/1Password\ 4/Backups/* $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/archive/1password_backups
+  rsync --verbose --checksum --ignore-existing $HOME/Library/Application\ Support/1Password\ 4/Backups/* $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password
 }
 
 # Back up my source code.
 bu_back_up_github_repos() {
-  ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_UNENCRYPTED_DIR_PATH/archive/source_code
+  ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_UNENCRYPTED_DIR_PATH/backups/code
 }
 
 # Customize the Finder sidebar defaults.
