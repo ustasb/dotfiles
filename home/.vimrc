@@ -264,6 +264,10 @@
   inoremap <C-a> <Esc>I
   inoremap <C-e> <Esc>A
 
+  " Allows pasting over content without changing the copy buffer.
+  " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
+  xnoremap p "_dP
+
 "=== Prose
   function! SetProseOptions()
     setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
