@@ -486,6 +486,7 @@
   let g:tagbar_silent = 1
   let g:tagbar_compact = 1
   let g:tagbar_iconchars = ['▸', '▾']
+  let g:tagbar_sort = 0 " Don't sort alphabetically.
   nnoremap <Leader>o :TagbarToggle<CR>
   let g:tagbar_status_func = 'TagbarStatusFunc'
   function! TagbarStatusFunc(current, sort, fname, ...) abort
