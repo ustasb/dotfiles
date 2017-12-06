@@ -74,6 +74,11 @@ bu_set_file_type_app_defaults() {
   ~/dotfiles/scripts/set_file_type_app_defaults.sh
 }
 
+# See script for details.
+bu_tidy_up_pic_names() {
+  ruby ~/dotfiles/scripts/tidy_up_image_names.rb $USTASB_UNENCRYPTED_DIR_PATH/pictures
+}
+
 # Test Brian's internet links' behavior.
 bu_test_ustasb_internet_links() {
   ruby ~/dotfiles/scripts/test_ustasb_internet_links.rb
@@ -81,11 +86,20 @@ bu_test_ustasb_internet_links() {
 
 # Print all available terminal colors.
 # Credit: http://www.commandlinefu.com/commands/view/5876/show-numerical-values-for-each-of-the-256-colors-in-zsh
-bu_print_term_colors() {
+bu_term_colors() {
   for code in {000..255}; do print -nP -- "$code: %F{$code}%K{$code}Test%k%f " ; (( code % 8 && code < 255 )) || printf '\n'; done
 }
 
-# See script for details.
-bu_tidy_up_pic_names() {
-  ruby ~/dotfiles/scripts/tidy_up_image_names.rb $USTASB_UNENCRYPTED_DIR_PATH/pictures
+# Show both the public and private IP addresses.
+bu_ip_address() {
+  public_ip=$(curl -s icanhazip.com)
+  echo "public:\n$public_ip"
+
+  if [ `uname -s` == "Darwin" ]; then
+    private_ip=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2)
+  elif [ `uname -s` == "Linux" ]; then
+    private_ip=$(hostname -I)
+  fi
+
+  echo "\nprivate:\n$private_ip"
 }
