@@ -1,5 +1,20 @@
 # A script to back up my Github repos.
 
+require 'thread'
+
+Thread.abort_on_exception = true
+
+def back_up_repo(repo_name)
+  repo_url = "#{GITHUB_BASE_URI}/#{repo_name}.git"
+  backup_path = "#{BACKUP_DIR}/#{repo_name}"
+
+  if File.exist?(backup_path)
+    system("cd #{backup_path} && git fetch origin master && git reset --hard origin/master")
+  else
+    system("git clone #{repo_url} #{backup_path}")
+  end
+end
+
 if ARGV.empty?
   puts 'Please supply a backup directory path.'
   exit
@@ -36,13 +51,15 @@ REPO_NAMES = [
 
 GITHUB_BASE_URI = "git@github.com:ustasb"
 
-REPO_NAMES.each do |repo_name|
-  repo_url = "#{GITHUB_BASE_URI}/#{repo_name}.git"
-  backup_path = "#{BACKUP_DIR}/#{repo_name}"
-
-  if File.exist?(backup_path)
-    system("cd #{backup_path} && git fetch origin master && git reset --hard origin/master")
+REPO_NAMES.each_with_index.map do |repo_name, i|
+  if i == 0
+    # Perform the first back up synchronously.
+    # GPG will likely need to prompt for authentication.
+    back_up_repo(repo_name)
+    nil
   else
-    system("git clone #{repo_url} #{backup_path}")
+    Thread.new do
+      back_up_repo(repo_name)
+    end
   end
-end
+end.compact.each(&:join)
