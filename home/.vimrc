@@ -407,9 +407,6 @@
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
 
-  " vim-jsx
-  let g:jsx_ext_required = 0
-
   " RSpec.vim
   augroup AG_Rspec
     autocmd!
