@@ -363,6 +363,20 @@
   endfunction
   command! BufRefresh call RefreshAllBuffers()
 
+  " Execute the current file with the correct interpreter.
+  function! ExecuteFile()
+    let interpreter = &filetype == 'ruby' ? 'ruby' :
+      \ &filetype == 'python' ? 'python3' :
+      \ &filetype == 'javascript' ? 'node' : ''
+
+    if interpreter == ''
+      echom "No interpreter found for filetype '" . &filetype . "'!"
+    else
+      exec '!' . interpreter . ' %'
+    endif
+  endfunction
+  nnoremap <Leader>e :call ExecuteFile()<CR>
+
   " Daily Journal
   function! TodaysJournalEntry()
     let journal_entry_dir = $USTASB_NOTES_DIR_PATH . '/ustasb/journal/entries/'
