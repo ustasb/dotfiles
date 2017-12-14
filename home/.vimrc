@@ -19,7 +19,7 @@
     " editing
     Plug 'Raimondi/delimitMate'
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-    Plug 'ajh17/VimCompletesMe'
+    Plug 'lifepillar/vim-mucomplete'
     Plug 'tpope/vim-surround'
 
     " colorschemes
@@ -95,8 +95,6 @@
 
   " Set the tag file search order: current directory then root (used by Ctags).
   set tags=./tags;/
-  " Keyword completion (don't search the tag file).
-  set complete=.,w,b,u,i
 
   " Allow unsaved background buffers.
   set hidden
@@ -157,10 +155,16 @@
   " Change the title of the terminal/tab with the file name.
   set title
   set titlestring=%t
+
   " Don't show Vim's welcome message.
   set shortmess=I
   " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
   set shortmess+=at
+  " Don't show completion messages.
+  set shortmess+=c
+  " Use 'recording' instead of 'recording @a'.
+  set shortmess+=q
+
   " Always show the status line.
   set laststatus=2
   " better splits
@@ -561,6 +565,25 @@
   let g:startify_change_to_dir = 0
   let g:startify_fortune_use_unicode = 1
   let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
+
+  " vim-mucomplete
+  " . : current buffer
+  " w : buffers from other windows
+  " b : buffers from buffer list
+  " t : tags
+  set complete=.,w,b,t
+  set completeopt=menu,menuone,preview,noselect
+
+  let g:mucomplete#spel#max = 15
+  let g:mucomplete#buffer_relative_paths = 1
+  let g:mucomplete#always_use_completeopt = 1
+
+  " :h mucomplete-methods
+  let g:mucomplete#chains = {}
+  " c-n respects Vim's `set complete`.
+  let g:mucomplete#chains.default = ['path', 'c-n', 'omni']
+  let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
+  let g:mucomplete#chains.markdown = ['path', 'keyn', 'dict', 'uspl']
 
   " lightline.vim
   set noshowmode " Don't show the default mode indicator.
