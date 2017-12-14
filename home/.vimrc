@@ -621,15 +621,15 @@
   endfunction
 
   function! LightlineFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
+    return winwidth(0) > 80 ? &fileformat : ''
   endfunction
 
   function! LightlineFileencoding()
-    return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    return winwidth(0) > 80 ? (strlen(&fenc) ? &fenc : &enc) : ''
   endfunction
 
   function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
 
 "=== Local Customizations
