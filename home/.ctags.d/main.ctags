@@ -8,3 +8,12 @@
 --exclude=vendor/assets
 --exclude=lib/assets
 --exclude=node_modules
+--exclude=*.md
+--exclude=*.txt
+--exclude=*.xml
+--exclude=*.yml
+--exclude=*.html
+--exclude=*.csv
+--exclude=*.tsv
+--exclude=*.json
+--exclude=*.lock
