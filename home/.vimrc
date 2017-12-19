@@ -394,6 +394,13 @@
   endfunction
   command! J call TodaysJournalEntry()
 
+  " Quit Vim if the last buffer is a quickfix or NERDtree instance.
+  function! QuitVimIfAppropriate()
+    if winnr("$") == 1 && (&buftype == "quickfix" || (exists("b:NERDTree") && b:NERDTree.isTabTree()))
+      quit!
+    endif
+  endfunction
+
   " .vimrc
   command! Vimrc exec ':e ~/.vimrc'
   command! V Vimrc
@@ -412,6 +419,8 @@
 
   augroup AG_Misc
     autocmd!
+
+    autocmd BufEnter * call QuitVimIfAppropriate()
 
     autocmd BufReadPost * :call ResetCursorPosition()
 
