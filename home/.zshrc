@@ -88,6 +88,10 @@
   alias vi=nvim
   alias v=nvim
 
+  # Preserves aliases while using sudo.
+  # https://askubuntu.com/a/22043
+  alias sudo='sudo '
+
   # Ripgrep
   alias rg="rg $RIPGREP_ARGS"
   alias ag=rg
