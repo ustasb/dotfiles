@@ -582,9 +582,12 @@
   " b : buffers from buffer list
   " t : tags
   set complete=.,w,b,t
-  set completeopt=menu,menuone,preview,noselect
+  set completeopt=menu,menuone,noselect
 
-  let g:mucomplete#spel#max = 15
+  " max number of suggestions
+  set pumheight=25
+  let g:mucomplete#spel#max = 25
+
   let g:mucomplete#buffer_relative_paths = 1
   let g:mucomplete#always_use_completeopt = 1
 
