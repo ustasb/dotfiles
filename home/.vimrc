@@ -21,6 +21,7 @@
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
     Plug 'lifepillar/vim-mucomplete'
     Plug 'tpope/vim-surround'
+    Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 
     " colorschemes
     Plug 'morhetz/gruvbox'
