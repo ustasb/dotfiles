@@ -383,17 +383,15 @@
   nnoremap <Leader>e :call ExecuteFile()<CR>
 
   " Daily Journal
-  function! TodaysJournalEntry()
+  function! TodaysJournalEntry(encrypt)
     let journal_entry_dir = $USTASB_NOTES_DIR_PATH . '/ustasb/journal/entries/'
-    let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md.asc'
-
-    " Ensure the journal directory exists.
-    exec "silent !mkdir -p " . journal_entry_dir
-
-    " Open the entry.
-    exec "e " . entry_path
+    let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.asc' : '')
+    " `resolve` to follow symbolic links.
+    " Quiets NERDTree's findAndRevealPath exception.
+    exec "e " . resolve(entry_path)
   endfunction
-  command! J call TodaysJournalEntry()
+  command! J call TodaysJournalEntry(0)
+  command! JE call TodaysJournalEntry(1)
 
   " Quit Vim if the last buffer is a quickfix or NERDtree instance.
   function! QuitVimIfAppropriate()
