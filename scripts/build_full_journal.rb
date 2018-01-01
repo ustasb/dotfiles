@@ -5,7 +5,7 @@ OUTPUT_JOURNAL_PATH = File.expand_path("#{ENV['USTASB_NOTES_DIR_PATH']}/ustasb/j
 
 entries = []
 
-Dir.glob("#{INPUT_ENTRIES_PATH}/*").sort.reverse.each do |entry_path|
+Dir.glob("#{INPUT_ENTRIES_PATH}/*").sort.each do |entry_path|
   # entry header
   header = File.basename(entry_path)
   header.gsub!(/\..*$/, '') # Remove the extension.
@@ -23,7 +23,7 @@ Dir.glob("#{INPUT_ENTRIES_PATH}/*").sort.reverse.each do |entry_path|
   end
 
   body.strip!
-  body.gsub!(/^#/, '##') # Decrease Markdown heading levels.
+  body.gsub!(/^#/, '##') # Increase Markdown heading levels.
 
   entries << body
 end
