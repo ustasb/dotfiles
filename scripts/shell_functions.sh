@@ -1,5 +1,3 @@
-# Convenient functions for accessing Brian's personal scripts.
-
 bu_source_shell() {
   source ~/.zshrc
 }
@@ -102,4 +100,11 @@ bu_ip_address() {
   fi
 
   echo "\nprivate:\n$private_ip"
+}
+
+# Test internet connection speed and ping using speedtest.net.
+# https://github.com/sindresorhus/speed-test
+bu_speed_test() {
+  which speed-test &> /dev/null || npm install --global speed-test
+  speed-test $*
 }
