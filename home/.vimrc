@@ -524,7 +524,7 @@
   let g:GPGPreferSign = 1
   let g:GPGUsePipes = 1
   let g:GPGFilePattern = '*.asc' " ASCII armored files
-  let g:GPGDefaultRecipients=[
+  let g:GPGDefaultRecipients = [
     \"Brian Ustas <brianustas@gmail.com>",
   \]
 
@@ -543,7 +543,7 @@
 
   " fzf.vim
   let g:fzf_command_prefix = 'Fzf'
-  let g:fzf_layout = { 'up': '~50%' }
+  let g:fzf_layout = { 'up': '~30%' }
   let g:fzf_colors = {
     \ 'prompt':   ['fg', 'GruvboxAquaBold'],
     \ 'spinner':  ['fg', 'Comment'],
