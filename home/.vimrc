@@ -580,7 +580,7 @@
   " b : buffers from buffer list
   " t : tags
   set complete=.,w,b,t
-  set completeopt=menu,menuone,noselect
+  set completeopt=menu,menuone
 
   " max number of suggestions
   set pumheight=25
