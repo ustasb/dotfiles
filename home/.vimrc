@@ -163,8 +163,6 @@
   set shortmess+=at
   " Don't show completion messages.
   set shortmess+=c
-  " Use 'recording' instead of 'recording @a'.
-  set shortmess+=q
 
   " Always show the status line.
   set laststatus=2
@@ -245,12 +243,6 @@
   " Never open `man` documentation for a word.
   nnoremap <S-k> <Nop>
   vnoremap <S-k> <Nop>
-  " Never browse command history.
-  nnoremap q: <Nop>
-  vnoremap q: <Nop>
-  " Never browse search history.
-  nnoremap q/ <Nop>
-  vnoremap q/ <Nop>
 
   " Reselect visual block after indent/outdent.
   vnoremap < <gv
@@ -258,9 +250,6 @@
 
   " Swap two words.
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
-
-  " qq to record, Q to replay.
-  nnoremap Q @q
 
   " Quickly reload .vimrc.
   nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
