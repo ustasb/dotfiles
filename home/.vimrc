@@ -104,14 +104,6 @@
   " Prevent Shift-O delay in terminal.
   set ttimeoutlen=100
 
-  " ~/.vim/tmp backups
-  if isdirectory($HOME . '/.vim/.tmp') == 0
-    :silent !mkdir -m 700 -p ~/.vim/.tmp > /dev/null 2>&1
-  endif
-  set backup
-  set backupdir=~/.vim/.tmp
-  set noswapfile " I never use these.
-
   if has('nvim')
     " Required to save files on mounted volumes.
     set nofsync
@@ -119,6 +111,31 @@
     " Vim's default (zip) is poor. Prefer AES256 via GnuPG.
     set cryptmethod=blowfish2
   endif
+
+"=== Backups
+  " I never use these.
+  set noswapfile
+
+  if isdirectory($HOME . '/.vim/.backup') == 0
+    :silent !mkdir -m 700 -p ~/.vim/.backup > /dev/null 2>&1
+  endif
+
+  set backup
+  set backupdir=~/.vim/.backup
+  set backupcopy=auto
+  " Make a backup before overwriting the current buffer.
+  set writebackup
+  " Don't back up my notes.
+  set backupskip+=*/notes/*
+  " Don't back up OS X's tmp/.
+  set backupskip+=/private/tmp/*
+
+  augroup AG_VimBackup
+    autocmd!
+    " Ensure unique backup names.
+    " solves: https://stackoverflow.com/a/26779916/1575238
+    autocmd BufWritePre * let &backupext = '~' . substitute(expand('%:p:h'), '/', '%', 'g')
+  augroup END
 
 "=== Colors
   " truecolor
