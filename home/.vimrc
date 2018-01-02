@@ -285,8 +285,8 @@
     " https://pandoc.org/MANUAL.html#extension-pandoc_title_block
     syn match pandocTitleBlockTitle /^%.*\n/
     syn match pandocTitleBlockMark /%\ / contained containedin=pandocTitleBlockTitle
-    highlight! link pandocTitleBlockMark GruvboxRedBold
-    highlight! link pandocTitleBlockTitle GruvboxAquaBold
+    highlight! link pandocTitleBlockMark GruvboxOrange
+    highlight! link pandocTitleBlockTitle GruvboxGreenBold
   endfunction
 
   augroup AG_ProseOptions
