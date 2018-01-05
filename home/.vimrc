@@ -406,6 +406,18 @@
     endif
   endfunction
 
+  " Convert Pandoc markdown to Github flavored markdown.
+  function! PandocMarkdownToGFM()
+    if &filetype == "markdown"
+      %s/^#/##/g " Increase heading levels.
+      %s/^%/#/g " Convert the title header.
+      echo "Converted to Github flavored markdown!"
+    else
+      echo "You're not in a markdown file!"
+    endif
+  endfunction
+  command! PandocMarkdownToGFM call PandocMarkdownToGFM()
+
   " .vimrc
   command! Vimrc exec ':e ~/.vimrc'
   command! V Vimrc
