@@ -293,7 +293,8 @@
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
     " Quickly insert today's timestamp.
-    iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
+    iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y")<CR>
+    iabbrev <buffer> xdatetime <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
 
     " Preface each line with '- ' for quickly creating lists.
     vnoremap <buffer> <Leader>l :s/\</- /<CR>
