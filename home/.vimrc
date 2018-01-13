@@ -379,7 +379,8 @@
   function! ExecuteFile()
     let interpreter = &filetype == 'ruby' ? 'ruby' :
       \ &filetype == 'python' ? 'python3' :
-      \ &filetype == 'javascript' ? 'node' : ''
+      \ &filetype == 'javascript' ? 'node' :
+      \ &filetype == 'sh' ? 'bash' : ''
 
     if interpreter == ''
       echom "No interpreter found for filetype '" . &filetype . "'!"
