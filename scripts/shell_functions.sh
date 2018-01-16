@@ -62,6 +62,15 @@ bu_build_full_journal() {
   ruby ~/dotfiles/scripts/build_full_journal.rb
 }
 
+# Encrypt unencrypted journal entries.
+bu_encrypt_journal_entries() {
+  local entries=$(ls $USTASB_NOTES_DIR_PATH/ustasb/journal/entries/*.md 2> /dev/null)
+
+  for entry in $entries; do
+    gpg --sign --encrypt --recipient brianustas@gmail.com $entry && rm $entry
+  done
+}
+
 # Create Cryptomator drive symbolic links.
 bu_symlink_cryptomator() {
   ruby ~/dotfiles/scripts/create_cryptomator_symlinks.rb
