@@ -11,7 +11,7 @@ require 'optparse'
 # To decrypt and unarchive:
 # bu_unravel_backup <backup-file>
 # or
-# gzcat <backup-file> | gpg --decrypt --local-user brianustas@gmail.com | tar -x
+# cat <backup-file> | gpg --decrypt --local-user brianustas@gmail.com | tar -x
 
 BRIAN_GPG_IDENTITY = 'brianustas@gmail.com'
 RSYNC_CLAUSE = 'rsync --archive --ignore-existing --checksum --exclude Icon? --exclude .DS_Store'
@@ -144,13 +144,11 @@ def main
   log("Killing gpg-agent (forces a restart)...")
   `pkill gpg-agent`
 
-  archive_path = "#{backup_path}.tar.gpg.gz"
-  log("Creating a signed, encrypted, gzipped archive: #{archive_path}")
+  archive_path = "#{backup_path}.tar.gz.gpg"
+  log("Creating a gzipped, signed and encrypted archive: #{archive_path}")
 
-  # Use private key.
-  # `tar -c -C #{backup_path} . | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --encrypt --recipient #{BRIAN_GPG_IDENTITY} | gzip > #{archive_path}`
   # Use symmetric password.
-  `tar -c -C #{File.dirname(backup_path)} #{File.basename(backup_path)} | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --symmetric | gzip > #{archive_path}`
+  `tar -c -z -C #{File.dirname(backup_path)} #{File.basename(backup_path)} | gpg --no-armor --sign --local-user #{BRIAN_GPG_IDENTITY} --symmetric > #{archive_path}`
 
   if $argv_options[:output_dir]
     log("Copying archive to: #{$argv_options[:output_dir]}")

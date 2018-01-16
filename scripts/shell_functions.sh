@@ -29,7 +29,7 @@ bu_back_up_gdrive() {
 
 # Unravel `bu_back_up_gdrive` archives.
 bu_unravel_backup() {
-  gzcat $1 | gpg --decrypt --local-user brianustas@gmail.com | tar -x
+  cat $1 | gpg --decrypt --local-user brianustas@gmail.com | tar -x
 }
 
 # Back up Office Snake high scores to Github.
