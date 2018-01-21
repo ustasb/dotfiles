@@ -32,7 +32,7 @@
     Plug 'tpope/vim-rhubarb'
 
     " markdown
-    Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+    Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'on': 'VoomToggle' }
 
@@ -165,6 +165,10 @@
 
     " Colors taken from `highlight Search`.
     highlight! SneakLabel cterm=bold ctermfg=235 ctermbg=214 gui=bold guifg=#282828 guibg=#fabd2f
+
+    " ustasb/markdown.vim customizations
+    highlight! def link markdownLinkText GruvboxPurple
+    highlight! def link markdownUrl Underlined
   endfunction
 
   call SetHighlightOverrides()
@@ -299,12 +303,7 @@
     " Preface each line with '- ' for quickly creating lists.
     vnoremap <buffer> <Leader>l :s/\</- /<CR>
 
-    " Add Pandoc title block support.
-    " https://pandoc.org/MANUAL.html#extension-pandoc_title_block
-    syn match pandocTitleBlockTitle /^%.*\n/
-    syn match pandocTitleBlockMark /%\ / contained containedin=pandocTitleBlockTitle
-    highlight! link pandocTitleBlockMark GruvboxOrange
-    highlight! link pandocTitleBlockTitle GruvboxGreenBold
+    syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
   endfunction
 
   augroup AG_ProseOptions
@@ -503,13 +502,6 @@
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
-
-  " vim-markdown
-  let g:markdown_enable_conceal = 0 " too slow
-  let g:markdown_include_jekyll_support = 0
-  let g:markdown_enable_folding = 0
-  let g:markdown_enable_mappings = 0
-  let g:markdown_enable_input_abbreviations = 0
 
   " Vim Markdown Preview
   let g:vim_markdown_preview_pandoc = 1
