@@ -543,8 +543,8 @@
   " vim-sneak
   let g:sneak#label = 1
   let g:sneak#use_ic_scs = 1 " Respect ignorecase and smartcase.
-  map f <Plug>Sneak_s
-  map F <Plug>Sneak_S
+  map s <Plug>Sneak_s
+  map S <Plug>Sneak_S
 
   " ALE
   let g:ale_enabled = 0
