@@ -507,7 +507,7 @@
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
   " gfm = Github Flavored Markdown
-  let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji --to=html5 --self-contained --table-of-contents --css $HOME/dotfiles/markdown_css/pandoc.css'
+  let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji --to=html5 --self-contained --table-of-contents --css $HOME/dotfiles/markdown_css/pandoc.css --resource-path $USTASB_NOTES_DIR_PATH/images'
   autocmd FileType markdown nnoremap <Leader>p :call Vim_Markdown_Preview()<CR>
 
   " Vim Voom
