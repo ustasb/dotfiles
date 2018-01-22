@@ -206,7 +206,6 @@
     set noerrorbells visualbell t_vb=
   else
     " performance tweaks
-    set lazyredraw
 
     " Don't match parentheses or brackets.
     let loaded_matchparen=1
