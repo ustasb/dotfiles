@@ -53,6 +53,7 @@
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'mxw/vim-jsx', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+    Plug 'chr4/nginx.vim', { 'for' : 'nginx' }
 
     " ruby
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
