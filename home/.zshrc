@@ -144,6 +144,18 @@
   todo() { cd ~/notes && vim -c NERDTreeToggle -c 'wincmd l' -c T }
   alias t=todo
 
+  dark_theme() {
+    export ITERM_PROFILE="Gruvbox Dark"
+    tmux set-environment ITERM_PROFILE "Gruvbox Dark"
+    tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
+  }
+
+  light_theme() {
+    export ITERM_PROFILE="Gruvbox Light"
+    tmux set-environment ITERM_PROFILE "Gruvbox Light"
+    tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
+  }
+
   # Enable access to my personal scripts.
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
