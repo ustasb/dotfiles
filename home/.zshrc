@@ -126,12 +126,9 @@
   }
   compdef g=git  # Complete `g` like `git`
 
-  # Create a new named tmux session with my preferred layout.
+  # Create a new named tmux session.
   # Without arguments, the session name is the basename of the current directory.
-  tnew() { tmux new-session -s ${1:-$(basename $(pwd))} \; \
-                split-window -v -p 25 \; \
-                split-window -h -p 50 \; \
-                select-pane -t 0 }
+  tnew() { tmux new-session -s ${1:-$(basename $(pwd))} }
 
   # Checkout a Git branch with fzf.
   fbr() {
