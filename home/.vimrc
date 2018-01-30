@@ -24,7 +24,7 @@
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 
     " colorschemes
-    Plug 'morhetz/gruvbox'
+    Plug 'ustasb/gruvbox'
 
     " git
     Plug 'mhinz/vim-signify'
@@ -142,7 +142,12 @@
   " truecolor
   set t_Co=256
   set termguicolors
-  set background=dark
+
+  if $ITERM_PROFILE == 'Gruvbox Light'
+    set background=light
+  else
+    set background=dark
+  endif
 
   let g:gruvbox_bold = 1
   let g:gruvbox_invert_tabline = 0
@@ -152,13 +157,11 @@
   let g:gruvbox_number_column = 'bg1'
   let g:gruvbox_guisp_fallback = 'fg' " Make misspellings clearer.
   let g:gruvbox_contrast_dark = 'medium'
+  let g:gruvbox_contrast_light = 'hard'
 
   silent! colorscheme gruvbox
 
   function! SetHighlightOverrides()
-    " https://github.com/itchyny/lightline.vim/issues/179
-    highlight! StatusLine ctermfg=237 ctermbg=237 guifg=#3c3836 guibg=#3c3836
-
     " https://github.com/morhetz/gruvbox/issues/175
     " Swap spell highlighting. Make errors red and warnings blue.
     highlight! SpellBad cterm=undercurl ctermfg=167 gui=undercurl guifg=#fb4934 guisp=#fb4934
@@ -166,10 +169,6 @@
 
     " Colors taken from `highlight Search`.
     highlight! SneakLabel cterm=bold ctermfg=235 ctermbg=214 gui=bold guifg=#282828 guibg=#fabd2f
-
-    " ustasb/markdown.vim customizations
-    highlight! def link markdownLinkText GruvboxPurple
-    highlight! def link markdownUrl Underlined
   endfunction
 
   call SetHighlightOverrides()
