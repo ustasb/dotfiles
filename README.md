@@ -15,19 +15,21 @@
 ## iTerm Profiles
 
 After switching profiles, you'll need to run either `dark_theme` or
-`light_theme`. This updates tmux colors if necessary and sets `ITERM_PROFILE` to
+`light_theme`.
+
+This updates tmux colors if necessary and sets `ITERM_PROFILE` to
 help Vim select the correct color scheme.
 
 ### Gruvbox Dark (default)
 
 - shortcut: `^⌘k`
-- 11pt SF Mono Light
+- 13pt SF Mono Light
 - [Vim theme](https://github.com/ustasb/gruvbox)
 - [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/gruvbox_dark.itermcolors)
 
 ### Gruvbox Light
 
 - shortcut: `^⌘l`
-- 11pt SF Mono Regular
+- 13pt SF Mono Regular
 - [Vim theme](https://github.com/ustasb/gruvbox)
 - [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/gruvbox_light.itermcolors)
