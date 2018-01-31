@@ -284,7 +284,7 @@
 
 "=== Prose
   function! SetProseOptions()
-    setlocal spell textwidth=80 softtabstop=4 tabstop=4 shiftwidth=4
+    setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
     " Fix the current misspelling and jump to the next.
     nnoremap <buffer> <C-f> 1z=]s
