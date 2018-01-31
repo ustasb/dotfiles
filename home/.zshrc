@@ -201,6 +201,12 @@
       fi
     fi
 
+    # If in a tmux pane, ensure that the local session has the correct
+    # ITERM_PROFILE value. `light_theme` and `dark_theme` will set the
+    # variable for the global tmux environment (which this hack reads from).
+    if [ -n "$TMUX" ]; then
+      export $(tmux show-environment | grep "^ITERM_PROFILE")
+    fi
   }
 
 #=== ENV Template
