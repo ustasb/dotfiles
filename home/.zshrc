@@ -184,6 +184,25 @@
 
   start_gpg_agent
 
+#=== Hacks
+
+  preexec() {
+    # workaround: https://github.com/Yubico/yubico-piv-tool/issues/88
+    # On OSX, after sleeping or being locked, GPG operations with YubiKey will
+    # throw `signing failed: agent refused operation`. This hack detects that
+    # error during *some* commands and restarts the agent if necessary.
+    if [[ $1 =~ "^(g|git) (publish|pull|push|fetch)" ]] || [[ $1 =~ '^ssh ' ]]; then
+      ssh -T git@github.com &>/dev/null
+
+      # Did that command fail?
+      if [ $? -ne 1 ]; then
+        echo "Restarting gpg-agent..."
+        restart_gpg_agent &>/dev/null
+      fi
+    fi
+
+  }
+
 #=== ENV Template
   # Add these to your ~/.zshrc.local
 
