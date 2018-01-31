@@ -142,14 +142,14 @@
   alias t=todo
 
   dark_theme() {
-    export ITERM_PROFILE="Gruvbox Dark"
-    tmux set-environment ITERM_PROFILE "Gruvbox Dark"
+    export ITERM_PROFILE="GruvboxDark"
+    tmux set-environment ITERM_PROFILE "GruvboxDark"
     tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
   }
 
   light_theme() {
-    export ITERM_PROFILE="Gruvbox Light"
-    tmux set-environment ITERM_PROFILE "Gruvbox Light"
+    export ITERM_PROFILE="GruvboxLight"
+    tmux set-environment ITERM_PROFILE "GruvboxLight"
     tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
   }
 

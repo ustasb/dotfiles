@@ -143,7 +143,7 @@
   set t_Co=256
   set termguicolors
 
-  if $ITERM_PROFILE == 'Gruvbox Light'
+  if $ITERM_PROFILE == 'GruvboxLight'
     set background=light
   else
     set background=dark
