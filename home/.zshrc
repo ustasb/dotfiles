@@ -143,14 +143,19 @@
 
   dark_theme() {
     export ITERM_PROFILE="GruvboxDark"
-    tmux set-environment ITERM_PROFILE "GruvboxDark"
-    tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
+    if [ -n "$TMUX" ]; then
+      tmux set-environment ITERM_PROFILE "GruvboxDark"
+      tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
+    fi
   }
 
   light_theme() {
     export ITERM_PROFILE="GruvboxLight"
-    tmux set-environment ITERM_PROFILE "GruvboxLight"
-    tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
+
+    if [ -n "$TMUX" ]; then
+      tmux set-environment ITERM_PROFILE "GruvboxLight"
+      tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
+    fi
   }
 
   # Enable access to my personal scripts.
@@ -232,7 +237,7 @@
   # If the ustasb session doesn't exist, create it. Otherwise, attach to it.
   # Prefer tmux windows over iTerm tabs and windows.
   # I've told iTerm to ignore Command-T and Command-N.
-  if [ -z $TMUX ] && [ $TERM_PROGRAM == 'iTerm.app' ]; then
+  if [ -z "$TMUX" ] && [ $TERM_PROGRAM == 'iTerm.app' ]; then
     # -d to detach other clients.
     tmux attach -d -t ustasb 2>/dev/null || cd ~ && tnew ustasb
   fi
