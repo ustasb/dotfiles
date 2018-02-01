@@ -423,6 +423,9 @@
   command! Scratch exec ':e ~/notes/scratch.md'
   command! S Scratch
 
+  " quickly quit
+  command! Q exec 'qa!'
+
   augroup AG_Misc
     autocmd!
 
