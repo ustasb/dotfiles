@@ -141,11 +141,18 @@
   todo() { cd ~/notes && vim -c NERDTreeToggle -c 'wincmd l' -c T }
   alias t=todo
 
+  # Changes the iTerm profile via the CLI.
+  # Doesn't work in tmux. :(
+  it2_profile() { echo -e "\033]50;SetProfile=$1\a" }
+
   dark_theme() {
     export ITERM_PROFILE="GruvboxDark"
     if [ -n "$TMUX" ]; then
       tmux set-environment ITERM_PROFILE "GruvboxDark"
       tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
+      echo "Press Ctrl+CMD+k to change the iTerm profile to $ITERM_PROFILE."
+    else
+      it2_profile $ITERM_PROFILE
     fi
   }
 
@@ -155,6 +162,9 @@
     if [ -n "$TMUX" ]; then
       tmux set-environment ITERM_PROFILE "GruvboxLight"
       tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
+      echo "Press Ctrl+CMD+l to change the iTerm profile to $ITERM_PROFILE."
+    else
+      it2_profile $ITERM_PROFILE
     fi
   }
 
