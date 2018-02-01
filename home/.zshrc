@@ -81,6 +81,7 @@
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
   alias tmuxk='tmux kill-server'
+  alias gitx='gitup'
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'
