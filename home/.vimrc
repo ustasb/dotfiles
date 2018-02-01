@@ -25,6 +25,7 @@
 
     " colorschemes
     Plug 'ustasb/gruvbox'
+    Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' }
 
     " git
     Plug 'mhinz/vim-signify'
@@ -593,6 +594,10 @@
   let g:mucomplete#chains.default = ['path', 'c-n', 'omni']
   let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
   let g:mucomplete#chains.markdown = ['path', 'keyn', 'dict', 'uspl']
+
+  " colorizer.vim (hex colorizing)
+  let g:colorizer_startup = 0
+  let g:colorizer_nomap = 1
 
   " lightline.vim
   set noshowmode " Don't show the default mode indicator.
