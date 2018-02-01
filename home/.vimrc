@@ -161,18 +161,6 @@
 
   silent! colorscheme gruvbox
 
-  function! SetHighlightOverrides()
-    " https://github.com/morhetz/gruvbox/issues/175
-    " Swap spell highlighting. Make errors red and warnings blue.
-    highlight! SpellBad cterm=undercurl ctermfg=167 gui=undercurl guifg=#fb4934 guisp=#fb4934
-    highlight! SpellCap cterm=undercurl ctermfg=109 gui=undercurl guifg=#83a598 guisp=#83a598
-
-    " Colors taken from `highlight Search`.
-    highlight! SneakLabel cterm=bold ctermfg=235 ctermbg=214 gui=bold guifg=#282828 guibg=#fabd2f
-  endfunction
-
-  call SetHighlightOverrides()
-
 "=== UI
   " Change the title of the terminal/tab with the file name.
   set title
@@ -496,7 +484,6 @@
     highlight! link VertSplit GruvboxBg2
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
-  autocmd! User GoyoLeave nested call SetHighlightOverrides()
 
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
