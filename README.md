@@ -25,11 +25,11 @@ help Vim select the correct color scheme.
 - shortcut: `Ctrl+⌘+k`
 - 13pt SF Mono Light
 - [Vim theme](https://github.com/ustasb/gruvbox)
-- [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/gruvbox_dark.itermcolors)
+- [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/bu_gruvbox_dark.itermcolors)
 
 ### Gruvbox Light
 
 - shortcut: `Ctrl+⌘+l`
 - 13pt SF Mono Regular
 - [Vim theme](https://github.com/ustasb/gruvbox)
-- [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/gruvbox_light.itermcolors)
+- [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/bu_gruvbox_light.itermcolors)
