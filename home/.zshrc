@@ -142,31 +142,32 @@
   todo() { cd ~/notes && vim -c NERDTreeToggle -c 'wincmd l' -c T }
   alias t=todo
 
-  # Changes the iTerm profile via the CLI.
-  # Doesn't work in tmux. :(
-  it2_profile() { echo -e "\033]50;SetProfile=$1\a" }
-
-  dark_theme() {
-    export ITERM_PROFILE="GruvboxDark"
+  # Changes the iTerm profile.
+  it2_profile() {
     if [ -n "$TMUX" ]; then
-      tmux set-environment ITERM_PROFILE "GruvboxDark"
-      tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
-      echo "Press Ctrl+CMD+k to change the iTerm profile to $ITERM_PROFILE."
+      # Inspired by: https://github.com/sjl/vitality.vim/blob/4bb8c078c3a9a23f8af5db1dd95832faa802a1a9/doc/vitality.txt#L199
+      echo "\033Ptmux;\033\033]50;SetProfile=$1\007\033\\"
     else
-      it2_profile $ITERM_PROFILE
+      echo "\033]50;SetProfile=$1\a"
     fi
   }
 
-  light_theme() {
-    export ITERM_PROFILE="GruvboxLight"
-
+  dark_theme() {
+    export ITERM_PROFILE=GruvboxDark
     if [ -n "$TMUX" ]; then
-      tmux set-environment ITERM_PROFILE "GruvboxLight"
-      tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
-      echo "Press Ctrl+CMD+l to change the iTerm profile to $ITERM_PROFILE."
-    else
-      it2_profile $ITERM_PROFILE
+      tmux set-environment ITERM_PROFILE $ITERM_PROFILE
+      tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
     fi
+    it2_profile $ITERM_PROFILE
+  }
+
+  light_theme() {
+    export ITERM_PROFILE=GruvboxLight
+    if [ -n "$TMUX" ]; then
+      tmux set-environment ITERM_PROFILE $ITERM_PROFILE
+      tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
+    fi
+    it2_profile $ITERM_PROFILE
   }
 
   # Enable access to my personal scripts.

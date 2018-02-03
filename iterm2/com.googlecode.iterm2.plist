@@ -767,20 +767,6 @@
 	<real>1.0934733152389526</real>
 	<key>GlobalKeyMap</key>
 	<dict>
-		<key>0x6b-0x140000</key>
-		<dict>
-			<key>Action</key>
-			<integer>37</integer>
-			<key>Text</key>
-			<string>CA377C5B-C92B-4CD7-8CEE-537FACEEDDE2</string>
-		</dict>
-		<key>0x6c-0x140000</key>
-		<dict>
-			<key>Action</key>
-			<integer>37</integer>
-			<key>Text</key>
-			<string>641D8A18-DEF2-4687-A0D8-95FA088D3199</string>
-		</dict>
 		<key>0x72-0x100000</key>
 		<dict>
 			<key>Action</key>
