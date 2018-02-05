@@ -582,7 +582,7 @@
   " b : buffers from buffer list
   " t : tags
   set complete=.,w,b,t
-  set completeopt=menu,menuone
+  set completeopt=menu,menuone,noselect
 
   " max number of suggestions
   set pumheight=25
@@ -590,10 +590,13 @@
 
   let g:mucomplete#buffer_relative_paths = 1
   let g:mucomplete#always_use_completeopt = 1
+  " Conflicts with my c-e (beginning of line) mapping.
+  let g:mucomplete#no_popup_mappings = 1
 
   " :h mucomplete-methods
   let g:mucomplete#chains = {}
   " c-n respects Vim's `set complete`.
+  " c-h or c-j to cycle through completion modes (once the popup menu is open).
   let g:mucomplete#chains.default = ['path', 'c-n', 'omni']
   let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
   let g:mucomplete#chains.markdown = ['path', 'keyn', 'dict', 'uspl']
