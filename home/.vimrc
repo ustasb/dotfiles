@@ -480,12 +480,12 @@
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
-  let g:goyo_width = 120
+  let g:goyo_width = 80
   let g:goyo_height = '95%'
   function! s:goyo_enter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
-    highlight! link VertSplit GruvboxBg2
+    highlight! link VertSplit GruvboxBg1
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
 
