@@ -474,9 +474,9 @@
   let g:ackprg = 'rg --hidden --vimgrep --smart-case'
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
-  cnoreabbrev Ag Ack
-  cnoreabbrev AG Ack
-  cnoreabbrev ag Ack
+  cnoreabbrev Ag Ack!
+  cnoreabbrev AG Ack!
+  cnoreabbrev ag Ack!
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
