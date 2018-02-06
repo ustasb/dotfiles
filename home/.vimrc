@@ -523,7 +523,9 @@
   let g:GPGExecutable = 'gpg --trust-model always'
   let g:GPGPreferArmor = 1
   let g:GPGUseAgent = 1
-  let g:GPGPreferSign = 1
+  " Only signs upon creation, not after editing.
+  " Turning it off - too inconsistent. Even after forking and fixing, it's too slow.
+  let g:GPGPreferSign = 0
   let g:GPGUsePipes = 1
   let g:GPGFilePattern = '*.asc' " ASCII armored files
   let g:GPGDefaultRecipients = [
