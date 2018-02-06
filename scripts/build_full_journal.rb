@@ -30,7 +30,7 @@ end
 
 full_journal = "% Brian's Journal\n" + entries.join("\n")
 
-IO.popen('gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com', 'r+') do |io|
+IO.popen('gpg --encrypt --local-user brianustas@gmail.com --recipient brianustas@gmail.com', 'r+') do |io|
   io.write(full_journal)
   io.close_write
   File.write(OUTPUT_JOURNAL_PATH, io.read)
