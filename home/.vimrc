@@ -36,6 +36,7 @@
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'on': 'VoomToggle' }
+    Plug 'reedes/vim-litecorrect', { 'for': 'markdown' }
 
     " search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -274,6 +275,9 @@
 
 "=== Prose
   function! SetProseOptions()
+    " Fix common typos.
+    call litecorrect#init()
+
     " mucomplete's `dict` completion requires `dictionary` set locally.
     setlocal dictionary=$HOME/dotfiles/vim/en_words.txt
 
