@@ -301,6 +301,10 @@
     vnoremap <buffer> <Leader>l :s/\</- /<CR>
 
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+
+    " Highlight extra whitespace in red.
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    syntax match ExtraWhitespace /\S\zs\s\{2,}/
   endfunction
 
   augroup AG_ProseOptions
