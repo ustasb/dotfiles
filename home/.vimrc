@@ -144,7 +144,7 @@
   set t_Co=256
   set termguicolors
 
-  if $ITERM_PROFILE == 'GruvboxLight'
+  if $ITERM_PROFILE == 'GruvboxLight' || has('gui_running')
     set background=light
   else
     set background=dark
@@ -188,7 +188,7 @@
 
   " GUI
   if has('gui_running')
-    set guifont=SFMono\ Light:h11
+    set guifont=SF\ Mono\ Regular:h13
     " remove toolbar, menubar and scrollbar
     set guioptions=
     " disable all error whistles
