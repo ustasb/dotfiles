@@ -79,7 +79,7 @@
   set ffs=unix,dos
   " Set default encoding to UTF-8.
   set encoding=utf-8
-  " US English spelling
+  " English spelling
   set spelllang=en
   " Custom spellfile for `zg` and `zw`.
   set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add
@@ -274,6 +274,9 @@
 
 "=== Prose
   function! SetProseOptions()
+    " mucomplete's `dict` completion requires `dictionary` set locally.
+    setlocal dictionary=$HOME/dotfiles/vim/en_words.txt
+
     setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
     " Fix the current misspelling and jump to the next.
@@ -589,7 +592,6 @@
 
   " max number of suggestions
   set pumheight=25
-  let g:mucomplete#spel#max = 25
 
   let g:mucomplete#buffer_relative_paths = 1
   let g:mucomplete#always_use_completeopt = 1
@@ -602,7 +604,7 @@
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   let g:mucomplete#chains.default = ['path', 'c-n', 'omni']
   let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
-  let g:mucomplete#chains.markdown = ['path', 'keyn', 'dict', 'uspl']
+  let g:mucomplete#chains.markdown = ['path', 'keyn', 'dict']
 
   " colorizer.vim (hex colorizing)
   let g:colorizer_startup = 0
