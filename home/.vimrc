@@ -279,8 +279,9 @@
 
     setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
-    " Fix the current misspelling and jump to the next.
-    nnoremap <buffer> <C-f> 1z=]s
+    " Fix the previous misspelling.
+    nnoremap <buffer> <C-f> [s1z=<C-o>
+    inoremap <buffer> <C-f> <C-g>u<Esc>[s1z=`]A<C-g>u
 
     " Open a word in Dictionary.app.
     nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
