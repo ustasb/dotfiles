@@ -80,9 +80,10 @@
   " Set default encoding to UTF-8.
   set encoding=utf-8
   " US English spelling
-  set spelllang=en_us
-  " custom spellfile
+  set spelllang=en
+  " Custom spellfile for `zg` and `zw`.
   set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add
+  " Default spellfile is located at: ~/.vim/spell/en.utf-8.spl
 
   " Enable mouse support for all modes.
   set mouse=a
