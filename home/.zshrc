@@ -245,16 +245,6 @@
 #=== Local Customizations
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-#=== Color Theme
-  let date=$(date +%H)
-
-  # 6PM <= time < 5AM
-  if [ $date -ge 18 ] || [ $date -lt 5 ]; then
-    dark_theme
-  else
-    light_theme
-  fi
-
 #=== Default tmux session
   # If the ustasb session doesn't exist, create it. Otherwise, attach to it.
   # Prefer tmux windows over iTerm tabs and windows.
