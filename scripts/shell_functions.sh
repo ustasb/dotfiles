@@ -64,9 +64,7 @@ bu_build_full_journal() {
 
 # Encrypt unencrypted journal entries.
 bu_encrypt_journal_entries() {
-  local entries=$(ls $USTASB_NOTES_DIR_PATH/ustasb/journal/entries/*.md 2> /dev/null)
-
-  for entry in $entries; do
+  for entry in $USTASB_NOTES_DIR_PATH/ustasb/journal/entries/*.md; do
     # Don't need to sign when the recipient is myself.
     gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
   done
