@@ -598,7 +598,7 @@
   " b : buffers from buffer list
   " t : tags
   set complete=.,w,b,t
-  set completeopt=menu,menuone,noselect
+  set completeopt=menu,menuone,noselect,preview
 
   " max number of suggestions
   set pumheight=25
@@ -614,7 +614,7 @@
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   let g:mucomplete#chains.default = ['path', 'c-n', 'omni']
   let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
-  let g:mucomplete#chains.markdown = ['path', 'keyn', 'dict']
+  let g:mucomplete#chains.markdown = ['path', 'c-n', 'dict']
 
   " colorizer.vim (hex colorizing)
   let g:colorizer_startup = 0
