@@ -116,3 +116,10 @@ bu_speed_test() {
   which speed-test &> /dev/null || npm install --global speed-test
   speed-test $*
 }
+
+# Outputs the weather forecast with:
+# https://github.com/jessfraz/weather
+bu_weather() {
+  which weather &> /dev/null || brew install darksky-weather
+  weather --hide-icon $*
+}
