@@ -297,6 +297,10 @@
     " Preface each line with '- ' for quickly creating lists.
     vnoremap <buffer> <Leader>l :s/\</- /<CR>
 
+    " Titlecase the highlighted line.
+    " requires: pip install titlecase
+    vnoremap <buffer> <Leader>t :!titlecase<CR>
+
     " Quickly insert today's timestamp.
     iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y")<CR>
     iabbrev <buffer> xdatetime <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
