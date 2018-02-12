@@ -91,7 +91,8 @@
   " Make backspace work like most other apps.
   set backspace=indent,eol,start
   " Merge Vim and OS clipboard.
-  set clipboard=unnamedplus
+  " https://stackoverflow.com/a/30691754/1575238
+  set clipboard=unnamed,unnamedplus
 
   " Keep 100 lines of command-line history.
   set history=100
