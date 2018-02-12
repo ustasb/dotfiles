@@ -194,6 +194,8 @@
     set guifont=SF\ Mono\ Regular:h13
     " remove toolbar, menubar and scrollbar
     set guioptions=
+    " disable cursor blinking
+    set guicursor+=a:blinkon0
     " disable all error whistles
     set noerrorbells visualbell t_vb=
   else
