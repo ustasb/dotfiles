@@ -57,8 +57,9 @@
   export RIPGREP_ARGS="--no-ignore-vcs --hidden --follow --ignore-file $HOME/.rgignore"
 
   # Use Neovim as the default editor.
-  export VISUAL=nvim
-  export EDITOR=nvim
+  export BU_EDITOR="nvim"
+  export VISUAL=$BU_EDITOR
+  export EDITOR=$BU_EDITOR
 
   # chruby
   source '/usr/local/share/chruby/chruby.sh'
@@ -85,9 +86,9 @@
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'
-  alias vim=nvim
-  alias vi=nvim
-  alias v=nvim
+  alias vim=$BU_EDITOR
+  alias vi=$BU_EDITOR
+  alias v=$BU_EDITOR
 
   # Preserves aliases while using sudo.
   # https://askubuntu.com/a/22043
