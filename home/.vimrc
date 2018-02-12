@@ -32,11 +32,11 @@
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
 
-    " markdown
+    " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'vim-voom/VOoM', { 'on': 'VoomToggle' }
-    Plug 'reedes/vim-litecorrect', { 'for': 'markdown' }
+    Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'text'] }
 
     " search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
