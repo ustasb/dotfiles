@@ -425,23 +425,23 @@
   command! PandocMarkdownToGFM call PandocMarkdownToGFM()
 
   " .vimrc
-  command! Vimrc exec ':e ~/.vimrc'
+  command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
 
   " .zshrc
-  command! Zshrc exec ':e ~/.zshrc'
+  command! Zshrc :e ~/dotfiles/home/.zshrc
   command! Z Zshrc
 
   " todo.md
-  command! Todo exec ':e ~/notes/ustasb/todo.md'
+  command! Todo :e ~/notes/ustasb/todo.md
   command! T Todo
 
   " scratch.md
-  command! Scratch exec ':e ~/notes/scratch.md'
+  command! Scratch :e ~/notes/scratch.md
   command! S Scratch
 
   " quickly quit
-  command! Q exec 'qa!'
+  command! Q :qa!
 
   augroup AG_Misc
     autocmd!
