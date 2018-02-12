@@ -504,7 +504,13 @@
     setlocal fillchars=vert:│
     highlight! link VertSplit GruvboxBg1
   endfunction
+  function! s:goyo_leave()
+    " HACK: Without, after leaving Goyo, my fzf statusline
+    " customizations are replaced by the lightline statusline.
+    autocmd! FileType fzf doautocmd User FzfStatusLine
+  endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
   " Vim-Commentary
   vnoremap <Leader>c :Commentary<CR>
