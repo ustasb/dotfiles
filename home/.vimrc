@@ -578,7 +578,10 @@
     \ }
   " https://github.com/junegunn/fzf.vim#status-line-neovim
   " empty status line
-  autocmd! User FzfStatusLine setlocal statusline=%#
+  augroup AG_MyFZF
+    autocmd!
+    autocmd User FzfStatusLine setlocal statusline=%#CursorLine#
+  augroup END
   " Search through all files recursively.
   nnoremap <silent> <Leader>f :FzfFiles<CR>
   " MRU
