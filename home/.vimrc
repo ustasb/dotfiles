@@ -627,8 +627,7 @@
   " . : current buffer
   " w : buffers from other windows
   " b : buffers from buffer list
-  " t : tags
-  set complete=.,w,b,t
+  set complete=.,w,b
   set completeopt=menu,menuone,noselect,preview
 
   " max number of suggestions
@@ -640,12 +639,16 @@
   let g:mucomplete#no_popup_mappings = 1
 
   " :h mucomplete-methods
+  " c-p / c-n respects Vim's `set complete`.
   let g:mucomplete#chains = {}
-  " c-n respects Vim's `set complete`.
+  let g:mucomplete#chains.default  = ['path', 'ulti', 'c-n', 'tags']
+  let g:mucomplete#chains.vim      = ['path', 'ulti', 'cmd', 'c-n']
+  let g:mucomplete#chains.markdown = ['path', 'ulti', 'c-n', 'dict']
+
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
-  let g:mucomplete#chains.default = ['path', 'c-n', 'omni']
-  let g:mucomplete#chains.vim = ['path', 'cmd', 'c-n']
-  let g:mucomplete#chains.markdown = ['path', 'c-n', 'dict']
+  " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
+  imap <C-h> <plug>(MUcompleteCycBwd)
+  inoremap <silent> <plug>(MUcompleteBwdKey) <C-h>
 
   " colorizer.vim (hex colorizing)
   let g:colorizer_startup = 0
