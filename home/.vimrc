@@ -64,6 +64,7 @@
     " misc
     Plug 'w0rp/ale', { 'on': 'ALEToggle' }
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+    Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -503,11 +504,13 @@
     " Show the vertical splits.
     setlocal fillchars=vert:│
     highlight! link VertSplit GruvboxBg1
+    Limelight 0.6
   endfunction
   function! s:goyo_leave()
     " HACK: Without, after leaving Goyo, my fzf statusline
     " customizations are replaced by the lightline statusline.
     autocmd! FileType fzf doautocmd User FzfStatusLine
+    Limelight!
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
   autocmd! User GoyoLeave nested call <SID>goyo_leave()
