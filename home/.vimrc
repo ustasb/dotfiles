@@ -569,11 +569,16 @@
   map S <Plug>Sneak_S
 
   " ALE
+  nnoremap <Leader>l :ALEToggle<CR>
   let g:ale_enabled = 0
   let g:ale_completion_enabled = 0
   let g:ale_sign_error = '✖' " ✘
   let g:ale_sign_warning = '✦' " ⚑
-  nnoremap <Leader>l :ALEToggle<CR>
+  " gem install mdl
+  " pip install proselint
+  let g:ale_linters = {
+    \ 'markdown': ['mdl', 'proselint']
+    \ }
 
   " fzf.vim
   let g:fzf_command_prefix = 'Fzf'
