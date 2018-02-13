@@ -312,10 +312,6 @@
     " requires: pip install titlecase
     vnoremap <buffer> <Leader>t :!titlecase<CR>
 
-    " Quickly insert today's timestamp.
-    iabbrev <buffer> xdate <C-r>=strftime("%m/%d/%Y")<CR>
-    iabbrev <buffer> xdatetime <C-r>=strftime("%m/%d/%Y %H:%M:%S (%Z)")<CR>
-
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
 
     " LaTeX math highlighting
