@@ -23,6 +23,10 @@
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 
+    " snippets
+    Plug 'sirver/UltiSnips'
+    Plug 'honza/vim-snippets'
+
     " colorschemes
     Plug 'ustasb/gruvbox'
     Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' }
@@ -282,6 +286,9 @@
   function! SetProseOptions()
     " Fix common typos.
     call litecorrect#init()
+
+    " Add LaTeX snippets.
+    UltiSnipsAddFiletypes tex
 
     " mucomplete's `dict` completion requires `dictionary` set locally.
     setlocal dictionary=$HOME/dotfiles/vim/en_words.txt
@@ -643,6 +650,12 @@
   " colorizer.vim (hex colorizing)
   let g:colorizer_startup = 0
   let g:colorizer_nomap = 1
+
+  " UltiSnips
+  " c-j is reserved for mucomplete.
+  let g:UltiSnipsExpandTrigger = '<C-Space>'
+  let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+  let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
   " lightline.vim
   set noshowmode " Don't show the default mode indicator.
