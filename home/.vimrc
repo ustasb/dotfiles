@@ -626,26 +626,28 @@
   let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
 
   " vim-mucomplete
+  " manual completion
+  let g:mucomplete#enable_auto_at_startup = 0
+  let g:mucomplete#buffer_relative_paths = 1
+  " Conflicts with my c-e (beginning of line) mapping.
+  let g:mucomplete#no_popup_mappings = 1
+
+  " max number of suggestions
+  set pumheight=25
+
   " . : current buffer
   " w : buffers from other windows
   " b : buffers from buffer list
   set complete=.,w,b
   set completeopt=menu,menuone,noselect,preview
-
-  " max number of suggestions
-  set pumheight=25
-
-  let g:mucomplete#buffer_relative_paths = 1
   let g:mucomplete#always_use_completeopt = 1
-  " Conflicts with my c-e (beginning of line) mapping.
-  let g:mucomplete#no_popup_mappings = 1
 
   " :h mucomplete-methods
   " c-p / c-n respects Vim's `set complete`.
   let g:mucomplete#chains = {}
-  let g:mucomplete#chains.default  = ['path', 'ulti', 'c-n', 'tags']
-  let g:mucomplete#chains.vim      = ['path', 'ulti', 'cmd', 'c-n']
-  let g:mucomplete#chains.markdown = ['path', 'ulti', 'c-n', 'dict']
+  let g:mucomplete#chains.default  = ['path', 'ulti', 'c-p', 'tags']
+  let g:mucomplete#chains.vim      = ['path', 'ulti', 'cmd', 'c-p']
+  let g:mucomplete#chains.markdown = ['path', 'ulti', 'c-p', 'dict']
 
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
