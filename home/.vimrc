@@ -663,6 +663,7 @@
   let g:UltiSnipsExpandTrigger = '<C-Space>'
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+  command! ListSnippets call UltiSnips#ListSnippets()
 
   " lightline.vim
   set noshowmode " Don't show the default mode indicator.
