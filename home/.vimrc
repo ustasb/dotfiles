@@ -35,6 +35,7 @@
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
+    Plug 'jreybert/vimagit', { 'on': 'MagitOnly' }
 
     " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
@@ -74,6 +75,7 @@
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
+    Plug 'tpope/vim-repeat'
   call plug#end()
 
 "=== Basic
@@ -193,7 +195,15 @@
   " Don't show pressed keys in the statusline.
   set noshowcmd
   " No text folding.
-  set nofoldenable
+  " set nofoldenable
+  " set foldenable
+  " set foldmethod=syntax
+  " set foldcolumn=0
+  " set foldignore=
+  " " set foldclose=0
+  " set foldlevelstart=1
+  let g:markdown_folding = 1
+  nnoremap <Space> zA
 
   " GUI
   if has('gui_running')
@@ -235,6 +245,12 @@
   set ignorecase
   " ...unless they contain at least one capital letter.
   set smartcase
+  augroup AG_SmartCase
+    autocmd!
+    " I prefer case insensitivity during autocompletion.
+    autocmd InsertEnter * set nosmartcase
+    autocmd InsertLeave * set smartcase
+  augroup END
 
 "=== Whitespace
   " enable auto-indenting
@@ -291,7 +307,7 @@
     UltiSnipsAddFiletypes tex
 
     " mucomplete's `dict` completion requires `dictionary` set locally.
-    setlocal dictionary=$HOME/dotfiles/vim/en_words.txt
+    setlocal dictionary=/Users/ustasb/dotfiles/vim/en_popular.txt
 
     setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
@@ -591,7 +607,7 @@
 
   " fzf.vim
   let g:fzf_command_prefix = 'Fzf'
-  let g:fzf_layout = { 'up': '~30%' }
+  let g:fzf_layout = { 'up': '~35%' }
   let g:fzf_colors = {
     \ 'prompt':   ['fg', 'GruvboxAquaBold'],
     \ 'spinner':  ['fg', 'Comment'],
@@ -609,16 +625,18 @@
     autocmd!
     autocmd User FzfStatusLine setlocal statusline=%#CursorLine#
   augroup END
-  " Search through all files recursively.
+  " Search recursively through all files in CWD.
   nnoremap <silent> <Leader>f :FzfFiles<CR>
-  " MRU
+  " most recently used
   nnoremap <silent> <Leader>m :FzfHistory<CR>
-  " Ctags
+  " ctags
   nnoremap <silent> <Leader>t :FzfTags<CR>
-  " Buffers
+  " buffers
   nnoremap <silent> <Leader>b :FzfBuffers<CR>
-  " Docs
+  " documents
   nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
+  " snippets via UltiSnips (full screen)
+  nnoremap <silent> <Leader>u :FzfSnippets!<CR>
 
   " vim-startify
   let g:startify_change_to_dir = 0
@@ -627,10 +645,13 @@
 
   " vim-mucomplete
   " manual completion
-  let g:mucomplete#enable_auto_at_startup = 0
+  let g:mucomplete#enable_auto_at_startup = 1
+  nnoremap <silent> <Leader>a :MUcompleteAutoToggle<CR>
   let g:mucomplete#buffer_relative_paths = 1
+
   " Conflicts with my c-e (beginning of line) mapping.
   let g:mucomplete#no_popup_mappings = 1
+  inoremap <expr> <CR> pumvisible() ? ("\<Esc>a" . mucomplete#popup_exit("\<CR>")) : mucomplete#popup_exit("\<CR>")
 
   " max number of suggestions
   set pumheight=25
@@ -645,9 +666,9 @@
   " :h mucomplete-methods
   " c-p / c-n respects Vim's `set complete`.
   let g:mucomplete#chains = {}
-  let g:mucomplete#chains.default  = ['path', 'ulti', 'c-p', 'tags']
-  let g:mucomplete#chains.vim      = ['path', 'ulti', 'cmd', 'c-p']
-  let g:mucomplete#chains.markdown = ['path', 'ulti', 'c-p', 'dict']
+  let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'ulti']
+  let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
+  let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
 
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
@@ -663,7 +684,10 @@
   let g:UltiSnipsExpandTrigger = '<C-Space>'
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-  command! ListSnippets call UltiSnips#ListSnippets()
+  let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
+
+  " vimagit
+  command! G MagitOnly
 
   " lightline.vim
   set noshowmode " Don't show the default mode indicator.
