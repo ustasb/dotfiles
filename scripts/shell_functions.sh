@@ -121,5 +121,5 @@ bu_speed_test() {
 # https://github.com/jessfraz/weather
 bu_weather() {
   which weather &> /dev/null || brew install darksky-weather
-  weather --hide-icon $*
+  weather --hide-icon -l "Cambridge, MA" $*
 }
