@@ -13,8 +13,8 @@ if [ ! -d ~/projects ]; then
   mkdir ~/projects
 fi
 
-if [ -d $USTASB_NOTES_DIR_PATH ]; then
-  [ -L ~/notes ] && rm ~/notes
-  echo "Creating ~/notes..."
-  ln -s $USTASB_NOTES_DIR_PATH ~/notes
+if [ -d $USTASB_DOCS_DIR_PATH ]; then
+  BU_DOCS_SYMLINK=$HOME/bu_$(basename $USTASB_DOCS_DIR_PATH)
+  echo "Creating $BU_DOCS_SYMLINK"
+  ln -sfn $USTASB_DOCS_DIR_PATH $BU_DOCS_SYMLINK
 fi

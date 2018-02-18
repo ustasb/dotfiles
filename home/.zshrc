@@ -140,7 +140,7 @@
     git checkout $(echo "$branch" | sed "s/.* //")
   }
 
-  todo() { cd ~/notes && vim -c NERDTreeToggle -c 'wincmd l' -c T }
+  todo() { cd $USTASB_DOCS_DIR_PATH && vim -c NERDTreeToggle -c 'wincmd l' -c T }
   alias t=todo
 
   # Changes the iTerm profile.
@@ -241,7 +241,7 @@
   # export USTASB_SHARED_DIR_PATH=
   # export USTASB_ENCRYPTED_DIR_PATH=
   # export USTASB_UNENCRYPTED_DIR_PATH=
-  # export USTASB_NOTES_DIR_PATH=
+  # export USTASB_DOCS_DIR_PATH=
 
 #=== Local Customizations
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local

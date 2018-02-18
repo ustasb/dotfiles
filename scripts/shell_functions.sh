@@ -9,17 +9,17 @@ bu_update_system() {
 
 # Back up everything at once.
 bu_back_up_system() {
-  bu_back_up_notes && \
+  bu_back_up_docs && \
   bu_back_up_photo_booth && \
   bu_back_up_1p && \
   bu_back_up_github_repos
 }
 
-# Back up Brian's notes.
-bu_back_up_notes() {
+# Back up Brian's documents.
+bu_back_up_docs() {
   # Reason for subshell: https://stackoverflow.com/a/10382170/1575238
-  (cd $USTASB_NOTES_DIR_PATH/.. \
-    && zip --quiet --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/notes/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_NOTES_DIR_PATH))
+  (cd $USTASB_DOCS_DIR_PATH/.. \
+    && zip --quiet --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/documents/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_DOCS_DIR_PATH))
 }
 
 # Back up Google Drive contents to S3.
@@ -64,7 +64,7 @@ bu_build_full_journal() {
 
 # Encrypt unencrypted journal entries.
 bu_encrypt_journal_entries() {
-  for entry in $USTASB_NOTES_DIR_PATH/ustasb/journal/entries/*.md; do
+  for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/entries/*.md; do
     # Don't need to sign when the recipient is myself.
     gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
   done
