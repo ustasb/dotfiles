@@ -130,8 +130,8 @@
   set backupcopy=auto
   " Make a backup before overwriting the current buffer.
   set writebackup
-  " Don't back up my notes.
-  set backupskip+=*/notes/*
+  " Don't back up my documents.
+  set backupskip+=*/documents/*
   " Don't back up OS X's tmp/.
   set backupskip+=/private/tmp/*
 
@@ -396,7 +396,7 @@
 
   " Daily Journal
   function! TodaysJournalEntry(encrypt)
-    let journal_entry_dir = $USTASB_NOTES_DIR_PATH . '/ustasb/journal/entries/'
+    let journal_entry_dir = $USTASB_DOCS_DIR_PATH . '/ustasb/journal/entries/'
     let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.asc' : '')
     " `resolve` to follow symbolic links.
     " Quiets NERDTree's findAndRevealPath exception.
@@ -433,11 +433,11 @@
   command! Z Zshrc
 
   " todo.md
-  command! Todo :e ~/notes/ustasb/todo.md
+  command! Todo :e $USTASB_DOCS_DIR_PATH/ustasb/todo.md
   command! T Todo
 
   " scratch.md
-  command! Scratch :e ~/notes/scratch.md
+  command! Scratch :e $USTASB_DOCS_DIR_PATH/scratch.md
   command! S Scratch
 
   " quickly quit
@@ -524,7 +524,7 @@
     \ . ' --standalone --mathjax'
     \ . ' --table-of-contents'
     \ . ' --css $HOME/dotfiles/markdown_css/pandoc.css'
-    \ . ' --resource-path $USTASB_NOTES_DIR_PATH/images'
+    \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
   autocmd FileType markdown nnoremap <Leader>p :call Vim_Markdown_Preview()<CR>
 
   " Vim Voom
@@ -600,8 +600,8 @@
   nnoremap <silent> <Leader>t :FzfTags<CR>
   " Buffers
   nnoremap <silent> <Leader>b :FzfBuffers<CR>
-  " Notes
-  nnoremap <silent> <Leader>n :FzfFiles ~/notes<CR>
+  " Docs
+  nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
 
   " vim-startify
   let g:startify_change_to_dir = 0
