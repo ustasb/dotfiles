@@ -123,3 +123,10 @@ bu_weather() {
   which weather &> /dev/null || brew install darksky-weather
   weather --hide-icon -l "Cambridge, MA" $*
 }
+
+# Pomodoro timer
+# https://github.com/hughbien/thyme
+bu_work() {
+  which thyme &> /dev/null || echo "Please install Thyme from source (gem is outdated): https://github.com/hughbien/thyme"
+  thyme $*
+}

@@ -83,6 +83,7 @@
   alias cdd='cd ~/Desktop'
   alias tmuxk='tmux kill-server'
   alias gitx='gitup'
+  alias work='bu_work'
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'

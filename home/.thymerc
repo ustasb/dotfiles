@@ -1,0 +1,27 @@
+# thyme: console Pomodoro timer
+# https://github.com/hughbien/thyme
+
+set :timer, 25*60 # 25 minute pomodoros
+set :timer_break, 5*60 # 5 minute breaks
+
+# tmux
+set :tmux, true
+set :tmux_theme, '│ #[fg=%s]%s '
+set :interval, 1 # Refresh timer every 1 second.
+set :warning, 5*60 # Show warning color at <5 minutes.
+set :warning_color, 'red,bold'
+set :break_color, 'blue'
+
+# Add `-m --minutes num` option which allows on-the-fly timer.
+option :m, 'minutes num', 'run with custom minutes' do |num|
+  set :timer, num.to_i * 60
+  @run = true
+end
+
+before do
+  `terminal-notifier -title "Pomodoro Timer" -message "Timer started!"`
+end
+
+after do |seconds_left|
+  `terminal-notifier -title "Pomodoro Timer" -message "Time's up!" -sound Glass` if seconds_left == 0
+end
