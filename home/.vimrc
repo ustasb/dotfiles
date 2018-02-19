@@ -11,7 +11,8 @@
 " - fzf (https://github.com/junegunn/fzf)
 " - pandoc (https://pandoc.org)
 
-"=== vim-plug
+" === vim-plug === {{{
+
   call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'itchyny/lightline.vim'
@@ -77,7 +78,10 @@
     Plug 'jamessan/vim-gnupg'
   call plug#end()
 
-"=== Basic
+" }}}
+
+" === Basic === {{{
+
   filetype plugin indent on
   syntax enable
 
@@ -123,7 +127,10 @@
     set cryptmethod=blowfish2
   endif
 
-"=== Backups
+" }}}
+
+" === Backups === {{{
+
   " I never use these.
   set noswapfile
 
@@ -148,7 +155,10 @@
     autocmd BufWritePre * let &backupext = '~' . substitute(expand('%:p:h'), '/', '%', 'g')
   augroup END
 
-"=== Colors
+" }}}
+
+" === Colors === {{{
+
   " truecolor
   set t_Co=256
   set termguicolors
@@ -172,7 +182,10 @@
 
   silent! colorscheme gruvbox
 
-"=== UI
+" }}}
+
+" === UI === {{{
+
   " Change the title of the terminal/tab with the file name.
   set title
   set titlestring=%t
@@ -236,7 +249,10 @@
     autocmd VimResized * wincmd =
   augroup END
 
-"=== Search
+" }}}
+
+" === Search === {{{
+
   " Turn off highlight matching.
   set nohlsearch
   " incremental searching
@@ -252,7 +268,10 @@
     autocmd InsertLeave * set smartcase
   augroup END
 
-"=== Whitespace
+" }}}
+
+" === Whitespace === {{{
+
   " enable auto-indenting
   set autoindent
   " Don't wrap lines.
@@ -265,7 +284,10 @@
   set tabstop=2
   set softtabstop=2
 
-"=== Key Mappings
+" }}}
+
+" === Key Mappings === {{{
+
   " Change the leader key from \ to ,
   let mapleader=','
 
@@ -298,7 +320,10 @@
   " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
   xnoremap p "_dP
 
-"=== Prose
+" }}}
+
+" === Prose === {{{
+
   function! SetProseOptions()
     " Fix common typos.
     call litecorrect#init()
@@ -336,13 +361,19 @@
     autocmd Filetype {text,markdown} call SetProseOptions()
   augroup END
 
-"=== Wild Mode (command-line completion)
+" }}}
+
+" === Wild Mode (command-line completion) === {{{
+
   set wildmenu
   set wildmode=list:longest,list:full
   set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
   set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
-"=== File Types
+" }}}
+
+" === File Types === {{{
+
   augroup AG_FileTypeOptions
     autocmd!
 
@@ -350,7 +381,10 @@
     autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
   augroup END
 
-"=== Misc Functions
+" }}}
+
+" === Misc Functions === {{{
+
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler.
   " (happens when dropping a file on gvim).
@@ -476,7 +510,10 @@
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   augroup END
 
-"=== Plugin Settings
+" }}}
+
+" === Plugin Settings === {{{
+
   " vim-javascript
   let g:javascript_ignore_javaScriptdoc = 1
 
@@ -752,7 +789,12 @@
     return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
 
-"=== Local Customizations
+" }}}
+
+" === Local Customizations === {{{
+
   if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
   endif
+
+" }}}
