@@ -305,7 +305,7 @@
     UltiSnipsAddFiletypes tex
 
     " mucomplete's `dict` completion requires `dictionary` set locally.
-    setlocal dictionary=/Users/ustasb/dotfiles/vim/en_popular.txt
+    setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
 
     setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
@@ -639,13 +639,18 @@
   let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
 
   " vim-mucomplete
-  " manual completion
+  " auto-completion by default
   let g:mucomplete#enable_auto_at_startup = 1
-  nnoremap <silent> <Leader>a :MUcompleteAutoToggle<CR>
+  nnoremap <Leader>a :MUcompleteAutoToggle<CR>
   let g:mucomplete#buffer_relative_paths = 1
 
-  " Conflicts with my c-e (beginning of line) mapping.
+  " Conflicts with my c-e (beginning-of-line) mapping.
   let g:mucomplete#no_popup_mappings = 1
+  " Hack: Without, if you type 'Monday' and 'Monday' is automatically
+  " suggested by mu-complete, and then press ENTER without selecting the
+  " suggestion, 'nday' will be chopped from 'Monday'. It only happens when
+  " autocomplete is enabled and completeopt=noselect. This hack exits the
+  " completion window via ESC, if visible, when ENTER is pressed.
   inoremap <expr> <CR> pumvisible() ? ("\<Esc>a" . mucomplete#popup_exit("\<CR>")) : mucomplete#popup_exit("\<CR>")
 
   " max number of suggestions
@@ -681,7 +686,7 @@
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
 
-  " vimagit
+  " vimagit - Git staging tool
   command! G MagitOnly
 
   " lightline.vim
