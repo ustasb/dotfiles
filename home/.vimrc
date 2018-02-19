@@ -194,16 +194,17 @@
   set fillchars+=vert:│
   " Don't show pressed keys in the statusline.
   set noshowcmd
-  " No text folding.
-  " set nofoldenable
-  " set foldenable
-  " set foldmethod=syntax
-  " set foldcolumn=0
-  " set foldignore=
-  " " set foldclose=0
-  " set foldlevelstart=1
-  let g:markdown_folding = 1
-  nnoremap <Space> zA
+
+  " text folding
+  set foldenable
+  " Open all folds by default.
+  set foldlevel=20
+  set foldmethod=marker
+  set foldmarker={{{,}}}
+  " Only allow two levels of nesting.
+  set foldnestmax=2
+  " toggle folds
+  nnoremap <silent> <Space> @=(foldlevel('.') ? 'za' : "\<Space>")<CR>
 
   " GUI
   if has('gui_running')
