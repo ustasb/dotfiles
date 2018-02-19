@@ -40,7 +40,6 @@
     " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
     Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
-    Plug 'vim-voom/VOoM', { 'on': 'VoomToggle' }
     Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'text'] }
 
     " search
@@ -72,6 +71,7 @@
     Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+    Plug 'lvht/tagbar-markdown'
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
@@ -555,14 +555,9 @@
     \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
   autocmd FileType markdown nnoremap <Leader>p :call Vim_Markdown_Preview()<CR>
 
-  " Vim Voom
-  let g:voom_python_versions = [3, 2]
-  let g:voom_tree_placement = 'left'
-  let g:voom_tree_width = 30
-  let g:voom_default_mode = 'markdown'
-  autocmd FileType markdown nnoremap <buffer> <Leader>o :VoomToggle markdown<CR>
-
   " Tagbar
+  let g:tagbar_width = 50
+  let g:tagbar_left = 0
   let g:tagbar_silent = 1
   let g:tagbar_compact = 1
   let g:tagbar_iconchars = ['▸', '▾']
@@ -727,7 +722,6 @@
     let fname = expand('%:t')
     return &filetype == 'nerdtree' ? '' :
       \ &filetype == 'tagbar' ? '' :
-      \ &filetype == 'voomtree' ? '' :
       \ &filetype == 'qf' ? '' :
       \ &filetype == 'fzf' ? '' :
       \ winwidth(0) > 60 ? lightline#mode() : ''
@@ -737,7 +731,6 @@
     let fname = expand('%:t')
     return &filetype == 'nerdtree' ? 'NERDTree' :
       \ &filetype == 'tagbar' ? 'Tagbar' :
-      \ &filetype == 'voomtree' ? 'VOoM' :
       \ &filetype == 'qf' ? 'QuickFix' :
       \ &filetype == 'fzf' ? 'fzf' :
       \ fname != '' ? fname : '[No Name]'
