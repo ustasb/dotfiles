@@ -75,7 +75,6 @@
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
-    Plug 'tpope/vim-repeat'
   call plug#end()
 
 "=== Basic
