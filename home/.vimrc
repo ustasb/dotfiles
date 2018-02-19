@@ -519,6 +519,8 @@
   cnoreabbrev Ag Ack!
   cnoreabbrev AG Ack!
   cnoreabbrev ag Ack!
+  " Agn to search my documents.
+  command! -nargs=1 Agn Ack! <f-args> $USTASB_DOCS_DIR_PATH
 
   " Goyo.vim
   nnoremap <Leader>z :Goyo<CR>
