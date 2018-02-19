@@ -329,12 +329,6 @@
     vnoremap <buffer> <Leader>t :!titlecase<CR>
 
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
-
-    " LaTeX math highlighting
-    syntax region Statement oneline matchgroup=Delimiter start="\$" end="\$"
-    syntax region Statement matchgroup=Delimiter start="\\begin{.*}" end="\\end{.*}" contains=Statement
-    syntax region Statement matchgroup=Delimiter start="{" end="}" contains=Statement
-    syntax region Statement matchgroup=Delimiter start="$$" end="$$" contains=Statement
   endfunction
 
   augroup AG_ProseOptions
