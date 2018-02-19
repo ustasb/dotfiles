@@ -517,20 +517,23 @@
 
 " === Plugin Settings === {{{
 
-  " vim-javascript
+  " vim-javascript {{{
   let g:javascript_ignore_javaScriptdoc = 1
+  " }}}
 
-  " RSpec.vim
+  " RSpec.vim {{{
   augroup AG_Rspec
     autocmd!
     autocmd FileType ruby nnoremap <buffer> <Leader>s :call RunNearestSpec()<CR>
     autocmd FileType ruby nnoremap <buffer> <Leader>S :call RunCurrentSpecFile()<CR>
   augroup END
+  " }}}
 
-  " Vimux
+  " Vimux {{{
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
+  " }}}
 
-  " NERD Tree
+  " NERD Tree {{{
   let NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon']
   let NERDTreeMinimalUI = 1
   let NERDTreeShowHidden = 1
@@ -539,15 +542,18 @@
   let NERDTreeStatusline = '​' " zero width space
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
+  " }}}
 
-  " Vim Signify
+  " Vim Signify {{{
   let g:signify_vcs_list = ['git']
   let g:signify_realtime = 0
+  " }}}
 
-  " Vim Maximizer
+  " Vim Maximizer {{{
   nnoremap <C-W>o :MaximizerToggle<CR>
+  " }}}
 
-  " Ack.vim
+  " Ack.vim {{{
   let g:ackprg = 'rg --hidden --vimgrep --smart-case'
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
@@ -556,8 +562,9 @@
   cnoreabbrev ag Ack!
   " Agn to search my documents.
   command! -nargs=1 Agn Ack! <f-args> $USTASB_DOCS_DIR_PATH
+  " }}}
 
-  " Goyo.vim
+  " Goyo.vim {{{
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 80
   let g:goyo_height = '95%'
@@ -575,12 +582,14 @@
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
   autocmd! User GoyoLeave nested call <SID>goyo_leave()
+  " }}}
 
-  " Vim-Commentary
+  " Vim-Commentary {{{
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
+  " }}}
 
-  " Vim Markdown Preview (trigger with <C-p>)
+  " Vim Markdown Preview (trigger with <C-p>) {{{
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
   let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji'
@@ -589,8 +598,9 @@
     \ . ' --table-of-contents'
     \ . ' --css $HOME/dotfiles/markdown_css/pandoc.css'
     \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
+  " }}}
 
-  " Tagbar
+  " Tagbar {{{
   let g:tagbar_width = 50
   let g:tagbar_silent = 1
   let g:tagbar_compact = 1
@@ -602,8 +612,9 @@
   	let g:lightline.fname = a:fname
   	return lightline#statusline(0)
   endfunction
+  " }}}
 
-  " Vim GnuPG
+  " Vim GnuPG {{{
   let g:GPGExecutable = 'gpg --trust-model always'
   let g:GPGPreferArmor = 1
   let g:GPGUseAgent = 1
@@ -615,14 +626,16 @@
   let g:GPGDefaultRecipients = [
     \"Brian Ustas <brianustas@gmail.com>",
   \]
+  " }}}
 
-  " vim-sneak
+  " vim-sneak {{{
   let g:sneak#label = 1
   let g:sneak#use_ic_scs = 1 " Respect ignorecase and smartcase.
   map s <Plug>Sneak_s
   map S <Plug>Sneak_S
+  " }}}
 
-  " ALE
+  " ALE {{{
   nnoremap <Leader>l :ALEToggle<CR>
   let g:ale_enabled = 0
   let g:ale_completion_enabled = 0
@@ -633,8 +646,9 @@
   let g:ale_linters = {
     \ 'markdown': ['mdl', 'proselint']
     \ }
+  " }}}
 
-  " fzf.vim
+  " fzf.vim {{{
   let g:fzf_command_prefix = 'Fzf'
   let g:fzf_layout = { 'up': '~35%' }
   let g:fzf_colors = {
@@ -666,13 +680,15 @@
   nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
   " snippets via UltiSnips (full screen)
   nnoremap <silent> <Leader>u :FzfSnippets!<CR>
+  " }}}
 
-  " vim-startify
+  " vim-startify {{{
   let g:startify_change_to_dir = 0
   let g:startify_fortune_use_unicode = 1
   let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
+  " }}}
 
-  " vim-mucomplete
+  " vim-mucomplete {{{
   " auto-completion by default
   let g:mucomplete#enable_auto_at_startup = 1
   nnoremap <Leader>a :MUcompleteAutoToggle<CR>
@@ -708,22 +724,26 @@
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
   imap <C-h> <plug>(MUcompleteCycBwd)
   inoremap <silent> <plug>(MUcompleteBwdKey) <C-h>
+  " }}}
 
-  " colorizer.vim (hex colorizing)
+  " colorizer.vim (hex colorizing) {{{
   let g:colorizer_startup = 0
   let g:colorizer_nomap = 1
+  " }}}
 
-  " UltiSnips
+  " UltiSnips {{{
   " c-j is reserved for mucomplete.
   let g:UltiSnipsExpandTrigger = '<C-Space>'
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
+  " }}}
 
-  " vimagit - Git staging tool
+  " vimagit - Git staging tool {{{
   command! G MagitOnly
+  " }}}
 
-  " lightline.vim
+  " lightline.vim {{{
   set noshowmode " Don't show the default mode indicator.
 
   let g:lightline = {
@@ -790,6 +810,7 @@
   function! LightlineFiletype()
     return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
+  " }}}
 
 " }}}
 
