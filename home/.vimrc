@@ -580,7 +580,7 @@
   vnoremap <Leader>c :Commentary<CR>
   nnoremap <Leader>c :Commentary<CR>
 
-  " Vim Markdown Preview
+  " Vim Markdown Preview (trigger with <C-p>)
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
   let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji'
@@ -589,7 +589,6 @@
     \ . ' --table-of-contents'
     \ . ' --css $HOME/dotfiles/markdown_css/pandoc.css'
     \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
-  autocmd FileType markdown nnoremap <Leader>p :call Vim_Markdown_Preview()<CR>
 
   " Tagbar
   let g:tagbar_width = 50
