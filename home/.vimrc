@@ -724,6 +724,7 @@
   let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'ulti']
   let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
   let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
+  let g:mucomplete#chains.magit    = ['c-p']
 
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
@@ -745,6 +746,8 @@
   " }}}
 
   " vimagit - Git staging tool {{{
+  let g:magit_show_help = 0
+  let g:magit_default_fold_level = 2
   command! G MagitOnly
   " }}}
 
