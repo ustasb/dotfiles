@@ -589,6 +589,10 @@
   nnoremap <Leader>c :Commentary<CR>
   " }}}
 
+  " Vim Markdown {{{
+  let g:markdown_folding = 1
+  " }}}
+
   " Vim Markdown Preview (trigger with <C-p>) {{{
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
