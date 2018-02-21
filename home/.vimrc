@@ -520,6 +520,10 @@
 
   " vim-javascript {{{
   let g:javascript_ignore_javaScriptdoc = 1
+  augroup AG_JavaScriptFolding
+    autocmd!
+    autocmd FileType javascript,javascript.jsx setlocal foldmethod=syntax
+  augroup END
   " }}}
 
   " vim-ruby {{{
