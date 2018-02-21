@@ -57,8 +57,8 @@
 
     " web
     Plug 'othree/html5-syntax.vim', { 'for': 'html' }
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-    Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'chr4/nginx.vim', { 'for' : 'nginx' }
 
