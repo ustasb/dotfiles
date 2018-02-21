@@ -625,6 +625,7 @@
   let g:tagbar_compact = 1
   let g:tagbar_iconchars = ['▸', '▾']
   let g:tagbar_sort = 0 " Don't sort alphabetically.
+  let g:tagbar_map_togglefold = '<Space>'
   nnoremap <Leader>o :TagbarToggle<CR>
   let g:tagbar_status_func = 'TagbarStatusFunc'
   function! TagbarStatusFunc(current, sort, fname, ...) abort
