@@ -130,3 +130,19 @@ bu_work() {
   which thyme &> /dev/null || echo "Please install Thyme from source (gem is outdated): https://github.com/hughbien/thyme"
   thyme $*
 }
+
+# Browse Chrome history with fzf.
+# credit: https://junegunn.kr/2015/04/browsing-chrome-history-with-fzf
+bu_chrome_hist() {
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  cp -f ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/h
+
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
+}
