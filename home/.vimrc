@@ -548,12 +548,13 @@
   " }}}
 
   " NERD Tree {{{
-  let NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon']
-  let NERDTreeMinimalUI = 1
-  let NERDTreeShowHidden = 1
-  let NERDTreeAutoDeleteBuffer = 1
-  let NERDTreeWinSize = 40
-  let NERDTreeStatusline = '​' " zero width space
+  let g:NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon']
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeShowHidden = 1
+  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTreeWinSize = 40
+  let g:NERDTreeStatusline = '​' " zero width space
+  let g:NERDTreeMapActivateNode = '<Space>'
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
   " }}}
