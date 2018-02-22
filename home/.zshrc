@@ -82,7 +82,7 @@
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
   alias tmuxk='tmux kill-server'
-  alias work='bu_work'
+  alias work='bu_work -d'
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'
