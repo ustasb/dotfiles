@@ -725,7 +725,7 @@
   inoremap <expr> <CR> pumvisible() ? ("\<Esc>a" . mucomplete#popup_exit("\<CR>")) : mucomplete#popup_exit("\<CR>")
 
   " max number of suggestions
-  set pumheight=25
+  set pumheight=15
 
   " . : current buffer
   " w : buffers from other windows
