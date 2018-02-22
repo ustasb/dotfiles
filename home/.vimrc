@@ -426,7 +426,7 @@
   function! RefreshAllBuffers()
     let currBuff = bufnr("%")
     " refresh buffers
-    execute 'silent bufdo e!'
+    execute 'silent! bufdo e!'
     " Go back to the original buffer.
     execute 'buffer ' . currBuff
     " bufdo e! turns syntax highlighting off for efficiency.
