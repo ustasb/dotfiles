@@ -573,6 +573,11 @@
   let g:signify_realtime = 0
   " }}}
 
+  " Vim Fugitive {{{
+  " Slows down my C-r command mode mapping.
+  let g:fugitive_no_maps = 1
+  " }}}
+
   " Vim Maximizer {{{
   nnoremap <C-W>o :MaximizerToggle<CR>
   " }}}
@@ -710,6 +715,8 @@
   nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
   " snippets via UltiSnips (full screen)
   nnoremap <silent> <Leader>u :FzfSnippets!<CR>
+  " command history
+  cnoremap <silent> <C-r> FzfHistory:<CR>
   " }}}
 
   " vim-startify {{{
