@@ -350,9 +350,8 @@
     " Preface each line with '- ' for quickly creating lists.
     vnoremap <buffer> <Leader>l :s/\</- /<CR>
 
-    " Titlecase the highlighted line.
-    " requires: pip install titlecase
-    vnoremap <buffer> <Leader>t :!titlecase<CR>
+    " Adds periods and capitalization.
+    vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
 
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
   endfunction
