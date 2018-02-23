@@ -218,6 +218,7 @@
   set foldnestmax=2
   " toggle folds
   nnoremap <silent> <Space> @=(foldlevel('.') ? 'za' : "\<Space>")<CR>
+  nnoremap <silent> <C-Space> :call ToggleAllFolds()<CR>
 
   " GUI
   if has('gui_running')
@@ -487,6 +488,18 @@
     endfor
   endfunction
   command! CloseHiddenBuffers call CloseHiddenBuffers()
+
+  " Open / close all folds.
+  let $foldsOpen = 1
+  function! ToggleAllFolds()
+    if $foldsOpen == 1
+      let $foldsOpen = 0
+      normal zM
+    else
+      let $foldsOpen = 1
+      normal zR
+    endif
+  endfunction
 
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
