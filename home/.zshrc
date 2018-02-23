@@ -140,7 +140,7 @@
     git checkout $(echo "$branch" | sed "s/.* //")
   }
 
-  todo() { cd $USTASB_DOCS_DIR_PATH && vim -c NERDTreeToggle -c 'wincmd l' -c T }
+  todo() { cd $USTASB_DOCS_DIR_PATH && vim -c NERDTreeToggle -c 'wincmd l' -c T -c Tagbar }
   alias t=todo
 
   # Changes the iTerm profile.
