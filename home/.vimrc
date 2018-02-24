@@ -731,6 +731,8 @@
   nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
   " snippets via UltiSnips (full screen)
   nnoremap <silent> <Leader>u :FzfSnippets!<CR>
+  " search history
+  nnoremap <silent> <Leader>/ :FzfHistory/<CR>
   " command history
   cnoremap <silent> <C-r> FzfHistory:<CR>
   " }}}
