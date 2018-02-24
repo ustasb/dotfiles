@@ -300,9 +300,12 @@
   " typos
   cnoreabbrev aw wa
 
-  " Never open `man` documentation for a word.
+  " Disable `man` documentation for a word.
   nnoremap <S-k> <Nop>
   vnoremap <S-k> <Nop>
+  " Disable command and search history. Replaced with fzf.
+  nnoremap q: <Nop>
+  nnoremap q/ <Nop>
 
   " Reselect visual block after indent/outdent.
   vnoremap < <gv
