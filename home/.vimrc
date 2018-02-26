@@ -304,6 +304,7 @@
   nnoremap <S-k> <Nop>
   vnoremap <S-k> <Nop>
   " Disable command and search history. Replaced with fzf.
+  nnoremap Q <Nop>
   nnoremap q: <Nop>
   nnoremap q/ <Nop>
 
@@ -522,6 +523,7 @@
 
   " quickly quit
   command! Q :qa!
+  nnoremap Q :qa<CR>
 
   " Pomodoro timer
   command! -nargs=* Work execute '!thyme -d <args>'
