@@ -15,11 +15,16 @@ bu_back_up_system() {
   bu_back_up_github_repos
 }
 
-# Back up Brian's documents.
+# Back up Brian's documents via Git.
 bu_back_up_docs() {
+  bu_encrypt_journal_entries
+
   # Reason for subshell: https://stackoverflow.com/a/10382170/1575238
-  (cd $USTASB_DOCS_DIR_PATH/.. \
-    && zip --quiet --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/documents/$(date '+%Y-%m-%d_%H-%M-%S').zip $(basename $USTASB_DOCS_DIR_PATH))
+  (cd $USTASB_UNENCRYPTED_DIR_PATH/backups/documents \
+    && rsync --archive --delete --exclude='.git/' --exclude='.gitignore' $USTASB_DOCS_DIR_PATH/ ./ \
+    && git add . \
+    && git status \
+    && git commit -m "$(date '+%Y-%m-%d_%H-%M-%S')")
 }
 
 # Back up Google Drive contents to S3.
