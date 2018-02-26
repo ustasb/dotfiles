@@ -65,8 +65,12 @@ bu_build_full_journal() {
 # Encrypt unencrypted journal entries.
 bu_encrypt_journal_entries() {
   for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/entries/*.md; do
-    # Don't need to sign when the recipient is myself.
-    gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
+    # Does the file exist?
+    # https://stackoverflow.com/a/43606356/1575238
+    if [ -e $entry ]; then
+      # Don't need to sign when the recipient is myself.
+      gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
+    fi
   done
 }
 
