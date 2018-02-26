@@ -82,7 +82,10 @@
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
   alias tmuxk='tmux kill-server'
+  # pomodoro timer
   alias work='bu_work -d'
+  # Vim Git GUI
+  alias gv='$BU_EDITOR -c "let g:startify_disable_at_vimenter = 1" -c Magit'
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'
