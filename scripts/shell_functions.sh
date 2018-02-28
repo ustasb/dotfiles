@@ -130,7 +130,7 @@ bu_speed_test() {
 # https://github.com/jessfraz/weather
 bu_weather() {
   which weather &> /dev/null || brew install darksky-weather
-  weather --hide-icon -l "Cambridge, MA" $*
+  weather -ignore-alerts -l "Cambridge, MA" $*
 }
 
 # Pomodoro timer
