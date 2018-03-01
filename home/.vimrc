@@ -503,6 +503,8 @@
       let $foldsOpen = 1
       normal zR
     endif
+    " center the cursor
+    normal zz
   endfunction
 
   " .vimrc
@@ -514,7 +516,23 @@
   command! Z Zshrc
 
   " todo.md
-  command! Todo :e $USTASB_DOCS_DIR_PATH/ustasb/todo.md
+  function! OpenTodo()
+    let is_open = bufexists(bufname('todo.md'))
+
+    e $USTASB_DOCS_DIR_PATH/ustasb/todo.md
+
+    if !is_open
+      " Fold everything except Tasks and Today.
+      normal zM
+      call search('^## Tasks', 'cw')
+      normal zA
+      call search('^## Today', 'cw')
+      normal zA
+      " center the cursor
+      normal zz
+    endif
+  endfunction
+  command! Todo call OpenTodo()
   command! T Todo
 
   " scratch.md
