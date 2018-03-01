@@ -7,7 +7,7 @@
 # - Neovim (https://neovim.io)
 # - Git
 # - chruby and a Ruby version (https://github.com/postmodern/chruby)
-# - Python 2
+# - Conda via Anaconda (https://conda.io/docs/user-guide/install)
 # - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
@@ -65,6 +65,9 @@
   source '/usr/local/share/chruby/chruby.sh'
   source '/usr/local/share/chruby/auto.sh'
 
+  # Conda via Anaconda
+  export PATH=/usr/local/anaconda3/bin:"$PATH"
+
   # zsh functions
   fpath=("$HOME/.zfunctions" $fpath)
 
@@ -107,15 +110,6 @@
   # Ripgrep
   alias rg="rg $RIPGREP_ARGS"
   alias ag=rg
-
-  # Homebrew's Python 2
-  # http://docs.python-guide.org/en/latest/starting/install/osx/
-  if type python2 > /dev/null; then
-    alias python='python2'
-  fi
-  if type pip2 > /dev/null; then
-    alias pip='pip2'
-  fi
 
   # GPG
   # As of 11/08/17, Homebrew's gpg is version 2.x by default.
