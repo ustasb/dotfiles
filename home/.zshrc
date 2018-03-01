@@ -15,7 +15,8 @@
 # - gpg2 (https://www.gnupg.org)
 # - rg (https://github.com/BurntSushi/ripgrep)
 
-#=== zsh Settings
+# === zsh Settings === {{{
+
   # completion
   autoload -U compinit
   compinit
@@ -52,7 +53,10 @@
   # Enable colored output from `ls`.
   export CLICOLOR=1
 
-#=== Environment Variables
+# }}}
+
+# === Environment Variables === {{{
+
   # Ripgrep
   export RIPGREP_ARGS="--no-ignore-vcs --hidden --follow --ignore-file $HOME/.rgignore"
 
@@ -86,7 +90,10 @@
   export FZF_DEFAULT_COMMAND="rg $RIPGREP_ARGS --files --no-messages"
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
 
-#=== Aliases
+# }}}
+
+# === Aliases === {{{
+
   alias ...='../..'
   alias c='clear'
   alias ll='ls -alh'
@@ -119,7 +126,10 @@
   alias bu_encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
   alias bu_decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
-#=== Functions
+# }}}
+
+# === Functions === {{{
+
   # no arguments: `git status`
   # with arguments: acts like `git`
   # credit: thoughtbot
@@ -187,12 +197,18 @@
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
 
-#=== Prompt
+# }}}
+
+# === Prompt === {{{
+
   export PURE_GIT_PULL=0
   autoload -U promptinit && promptinit
   prompt pure
 
-#=== GPG + SSH
+# }}}
+
+# === GPG + SSH === {{{
+
   start_gpg_agent() {
     # Launch gpg-agent
     gpg-connect-agent /bye
@@ -214,7 +230,9 @@
 
   start_gpg_agent
 
-#=== Hacks
+# }}}
+
+# === Hacks === {{{
 
   preexec() {
     # workaround: https://github.com/Yubico/yubico-piv-tool/issues/88
@@ -239,7 +257,10 @@
     fi
   }
 
-#=== ENV Template
+# }}}
+
+# === ENV Template === {{{
+
   # Add these to your ~/.zshrc.local
 
   # export USTASB_AWS_ACCESS_KEY_ID=
@@ -255,10 +276,16 @@
   # export USTASB_UNENCRYPTED_DIR_PATH=
   # export USTASB_DOCS_DIR_PATH=
 
-#=== Local Customizations
+# }}}
+
+# === Local Customizations === {{{
+
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-#=== Default tmux session
+# }}}
+
+# === Default tmux Session === {{{
+
   # Prefer tmux windows over iTerm tabs and windows.
   # I've told iTerm to ignore Command-T and Command-N.
   if [ $TERM_PROGRAM == 'iTerm.app' ]; then
@@ -272,3 +299,5 @@
       bu_symlink_cryptomator
     fi
   fi
+
+# }}}
