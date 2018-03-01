@@ -259,10 +259,16 @@
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 #=== Default tmux session
-  # If the ustasb session doesn't exist, create it. Otherwise, attach to it.
   # Prefer tmux windows over iTerm tabs and windows.
   # I've told iTerm to ignore Command-T and Command-N.
-  if [ -z "$TMUX" ] && [ $TERM_PROGRAM == 'iTerm.app' ]; then
-    # -d to detach other clients.
-    tmux attach -d -t ustasb 2>/dev/null || cd ~ && tnew ustasb
+  if [ $TERM_PROGRAM == 'iTerm.app' ]; then
+    # If not in tmux yet...
+    if [ -z "$TMUX" ]; then
+      # Create or attach to the 'ustasb' tmux session.
+      # -d to detach other clients.
+      tmux attach -d -t ustasb 2>/dev/null || cd ~ && tnew ustasb
+    else
+      # misc shell start-up tasks...
+      bu_symlink_cryptomator
+    fi
   fi
