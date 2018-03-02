@@ -72,9 +72,6 @@
   # Conda via Anaconda
   export PATH=/usr/local/anaconda3/bin:"$PATH"
 
-  # zsh functions
-  fpath=("$HOME/.zfunctions" $fpath)
-
   # z
   source /usr/local/etc/profile.d/z.sh
   # Show a fzf prompt when no arguments are provided to z.
@@ -207,6 +204,7 @@
 
 # === Prompt === {{{
 
+  fpath=("$HOME/.pure_prompt" $fpath) # dependencies
   export PURE_GIT_PULL=0
   autoload -U promptinit && promptinit
   prompt pure

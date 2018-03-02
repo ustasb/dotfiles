@@ -13,14 +13,14 @@ end
 task :install_pure_prompt do
   log "Installing Pure prompt..."
 
-  zfunc_path = "#{Dir.home}/.zfunctions"
-  FileUtils.mkdir(zfunc_path) unless File.directory?(zfunc_path)
+  pure_path = "#{Dir.home}/.pure_prompt"
+  FileUtils.mkdir(pure_path) unless File.directory?(pure_path)
 
   `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/pure.zsh' \
-   -o #{zfunc_path}/prompt_pure_setup`
+   -o #{pure_path}/prompt_pure_setup`
 
   `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh' \
-   -o #{zfunc_path}/async`
+   -o #{pure_path}/async`
 end
 
 task :install_config_files => [:install_pure_prompt] do
