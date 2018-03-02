@@ -10,6 +10,7 @@ require 'shellwords'
 TEST_MODE = false
 
 NEWLINE_MARKER = 'N' * 5
+TRAILING_NEWLINE_RE = /\s*\z/
 
 WORD_RE = /(\w|[:'"%])+/
 # Must contain at least 3 words.
@@ -46,7 +47,8 @@ SENTENCES_TO_CAPITALIZE_RE = %r{
 }x
 
 def professionalize(input)
-  output = input.dup.chomp
+  trailing_newlines = input.match(TRAILING_NEWLINE_RE)
+  output = input.dup.gsub!(TRAILING_NEWLINE_RE, '')
 
   # flatten newlines (makes capitalization easier)
   output.gsub!(LINES_TO_CONCAT_RE, NEWLINE_MARKER)
@@ -76,8 +78,7 @@ def professionalize(input)
 
   # Add back the newlines.
   output.gsub!(NEWLINE_MARKER, "\n")
-
-  output
+  output + trailing_newlines[0] unless trailing_newlines.nil?
 end
 
 if TEST_MODE
@@ -107,6 +108,7 @@ if TEST_MODE
 
     John Apple:
     - he likes Apple products
+
   EOF
 else
   input = ARGV[0] || STDIN.read
