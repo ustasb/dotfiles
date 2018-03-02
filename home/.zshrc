@@ -55,6 +55,15 @@
 
 # }}}
 
+# === Prompt === {{{
+
+  fpath=("$HOME/.pure_prompt" $fpath) # dependencies
+  export PURE_GIT_PULL=0
+  autoload -U promptinit && promptinit
+  prompt pure
+
+# }}}
+
 # === Environment Variables === {{{
 
   # Ripgrep
@@ -74,18 +83,40 @@
 
 # }}}
 
+# === ustasb ENV Template === {{{
+
+  # Add these to your ~/.ustasbenv
+
+  # export USTASB_AWS_ACCESS_KEY_ID=
+  # export USTASB_AWS_SECRET_ACCESS_KEY=
+  # export USTASB_AWS_REGION=
+
+  # For `bu_symlink_cryptomator` and `bu_back_up_gdrive`
+  # export USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME=
+  # export USTASB_S3_BACKUP_BUCKET_NAME=
+  # export USTASB_CLOUD_DIR_PATH=
+  # export USTASB_SHARED_DIR_PATH=
+  # export USTASB_ENCRYPTED_DIR_PATH=
+  # export USTASB_UNENCRYPTED_DIR_PATH=
+  # export USTASB_DOCS_DIR_PATH=
+
+  [ -f ~/.ustasbenv ] && source ~/.ustasbenv
+
+# }}}
+
 # === Aliases === {{{
 
   # Preserves aliases while using sudo.
   # https://askubuntu.com/a/22043
   alias sudo='sudo '
 
+  # core
   alias ...='../..'
   alias c='clear'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
 
-  # Vim aliases
+  # Vim
   alias sysvim='/usr/bin/vim'
   alias vim=$BU_EDITOR
   alias vi=$BU_EDITOR
@@ -111,7 +142,7 @@
 
 # }}}
 
-# === Functions === {{{
+# === Helper Functions === {{{
 
   # no arguments: `git status`
   # with arguments: acts like `git`
@@ -176,11 +207,6 @@
     it2_profile $ITERM_PROFILE
   }
 
-  startup_tasks() {
-    start_gpg_agent
-    bu_symlink_cryptomator
-  }
-
   # Enable access to my personal scripts.
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
@@ -203,15 +229,6 @@
   export FZF_DEFAULT_OPTS='--reverse'
   export FZF_DEFAULT_COMMAND="rg $RIPGREP_ARGS --files --no-messages"
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh  # Allow fzf to replace Ctrl-R, etc.
-
-# }}}
-
-# === Prompt === {{{
-
-  fpath=("$HOME/.pure_prompt" $fpath) # dependencies
-  export PURE_GIT_PULL=0
-  autoload -U promptinit && promptinit
-  prompt pure
 
 # }}}
 
@@ -265,27 +282,6 @@
 
 # }}}
 
-# === ENV Template === {{{
-
-  # Add these to your ~/.ustasbenv
-
-  # export USTASB_AWS_ACCESS_KEY_ID=
-  # export USTASB_AWS_SECRET_ACCESS_KEY=
-  # export USTASB_AWS_REGION=
-
-  # For `bu_symlink_cryptomator` and `bu_back_up_gdrive`
-  # export USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME=
-  # export USTASB_S3_BACKUP_BUCKET_NAME=
-  # export USTASB_CLOUD_DIR_PATH=
-  # export USTASB_SHARED_DIR_PATH=
-  # export USTASB_ENCRYPTED_DIR_PATH=
-  # export USTASB_UNENCRYPTED_DIR_PATH=
-  # export USTASB_DOCS_DIR_PATH=
-
-  [ -f ~/.ustasbenv ] && source ~/.ustasbenv
-
-# }}}
-
 # === Local Customizations === {{{
 
   [ -f ~/.zshrc.local ] && source ~/.zshrc.local
@@ -293,6 +289,11 @@
 # }}}
 
 # === Default tmux Session === {{{
+
+  startup_tasks() {
+    start_gpg_agent
+    bu_symlink_cryptomator
+  }
 
   # Prefer tmux windows over iTerm tabs and windows.
   # I've told iTerm to ignore Command-T and Command-N.
