@@ -194,6 +194,11 @@
     it2_profile $ITERM_PROFILE
   }
 
+  startup_tasks() {
+    start_gpg_agent
+    bu_symlink_cryptomator
+  }
+
   # Enable access to my personal scripts.
   # Helper functions are prefixed with `bu_`.
   source ~/dotfiles/scripts/shell_functions.sh
@@ -228,8 +233,6 @@
     gpgconf --kill gpg-agent
     start_gpg_agent
   }
-
-  start_gpg_agent
 
 # }}}
 
@@ -296,9 +299,10 @@
       # -d to detach other clients.
       tmux attach -d -t ustasb 2>/dev/null || cd ~ && tnew ustasb
     else
-      # misc shell start-up tasks...
-      bu_symlink_cryptomator
+      startup_tasks
     fi
+  else
+    startup_tasks
   fi
 
 # }}}
