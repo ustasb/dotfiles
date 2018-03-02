@@ -263,7 +263,7 @@
 
 # === ENV Template === {{{
 
-  # Add these to your ~/.zshrc.local
+  # Add these to your ~/.ustasbenv
 
   # export USTASB_AWS_ACCESS_KEY_ID=
   # export USTASB_AWS_SECRET_ACCESS_KEY=
@@ -277,6 +277,8 @@
   # export USTASB_ENCRYPTED_DIR_PATH=
   # export USTASB_UNENCRYPTED_DIR_PATH=
   # export USTASB_DOCS_DIR_PATH=
+
+  [ -f ~/.ustasbenv ] && source ~/.ustasbenv
 
 # }}}
 
