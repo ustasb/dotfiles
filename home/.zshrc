@@ -91,26 +91,21 @@
 
 # === Aliases === {{{
 
+  # Preserves aliases while using sudo.
+  # https://askubuntu.com/a/22043
+  alias sudo='sudo '
+
   alias ...='../..'
   alias c='clear'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
-  alias tmuxk='tmux kill-server'
-  # pomodoro timer
-  alias work='bu_work -d'
-  # Vim Git GUI
-  alias gv='$BU_EDITOR -c "let g:startify_disable_at_vimenter = 1" -c Magit'
-  alias jp="jupyter notebook"
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'
   alias vim=$BU_EDITOR
   alias vi=$BU_EDITOR
   alias v=$BU_EDITOR
-
-  # Preserves aliases while using sudo.
-  # https://askubuntu.com/a/22043
-  alias sudo='sudo '
+  alias gv='$BU_EDITOR -c "let g:startify_disable_at_vimenter = 1" -c Magit' # Git GUI
 
   # Ripgrep
   alias rg="rg $RIPGREP_ARGS"
@@ -123,6 +118,11 @@
   fi
   alias bu_encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
   alias bu_decrypt="gpg --decrypt --local-user brianustas@gmail.com"
+
+  # misc tools
+  alias tmuxk='tmux kill-server'
+  alias work='bu_work -d' # pomodoro timer
+  alias jp="jupyter notebook"
 
 # }}}
 
