@@ -103,6 +103,7 @@
   alias work='bu_work -d'
   # Vim Git GUI
   alias gv='$BU_EDITOR -c "let g:startify_disable_at_vimenter = 1" -c Magit'
+  alias jp="jupyter notebook"
 
   # Vim aliases
   alias sysvim='/usr/bin/vim'
