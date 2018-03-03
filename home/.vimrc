@@ -358,6 +358,12 @@
     " Adds periods and capitalization.
     vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
 
+    if expand('%:t') == 'todo.md'
+      setlocal textwidth=0
+
+      command! -buffer Done call LogCompletedTask()
+    end
+
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
   endfunction
 
@@ -505,6 +511,29 @@
     endif
     " center the cursor
     normal zz
+  endfunction
+
+  " Timestamp, log and delete the task at the cursor.
+  function! LogCompletedTask()
+    let task = getline('.')
+    " remove list markers
+    let task = substitute(task, '^\s*[-+]\s*', '', '')
+    " remove trailing whitespace
+    let task = substitute(task, '\s*$', '', '')
+
+    " ISO8601
+    let timestamp = strftime('%FT%T%z')
+    let json = json_encode({ 'task': task, 'timestamp': timestamp })
+
+    " log the task
+    let done_log = $USTASB_DOCS_DIR_PATH . '/ustasb/done.log'
+    silent exec('!echo ' . shellescape(json, 1) . ' >> ' . done_log)
+    silent exec('!ruby ~/dotfiles/scripts/create_done_md.rb')
+
+    " delete the task (don't cut)
+    normal \"_dd
+
+    echomsg 'Task Done! ' . json
   endfunction
 
   " .vimrc
