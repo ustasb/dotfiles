@@ -482,9 +482,9 @@
     if &filetype == "markdown"
       %s/^#/##/g " Increase heading levels.
       %s/^%/#/g " Convert the title header.
-      echo "Converted to Github flavored markdown!"
+      echomsg "Converted to Github flavored markdown!"
     else
-      echo "You're not in a markdown file!"
+      echomsg "You're not in a markdown file!"
     endif
   endfunction
   command! PandocMarkdownToGFM call PandocMarkdownToGFM()
