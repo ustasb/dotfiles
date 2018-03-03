@@ -349,6 +349,9 @@
     " Open a word in Dictionary.app.
     nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
 
+    " Surround cursor word with backticks indicating code.
+    nnoremap <buffer> <Leader>C :normal ysiW`<CR>
+
     " Text to Speech on the current visual selection.
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
