@@ -556,6 +556,13 @@
     if !is_open
       " Fold everything except Tasks and Today.
       normal zM
+
+      call search('^# Overview', 'cw')
+      normal zo
+      call search('^## Q1', 'cw')
+      normal zA
+      call search('^# This Week', 'cw')
+      normal zo
       call search('^## Tasks', 'cw')
       normal zA
       call search('^## Today', 'cw')
