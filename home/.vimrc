@@ -356,7 +356,7 @@
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
     " Preface each line with '- ' for quickly creating lists.
-    vnoremap <buffer> <Leader>l :s/\</- /<CR>
+    vnoremap <buffer> <Leader>l :s/\</- / \| :normal gv<CR>
 
     " Adds periods and capitalization.
     vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
