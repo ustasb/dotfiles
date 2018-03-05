@@ -13,14 +13,17 @@ body {
     line-height: 140%;
     color: #333;
 }
-pre {
-    border: 1px dotted gray;
-    background-color: #ececec;
+pre, code {
+    font-family: monospace;
     color: #1111111;
-    padding: 0.5em;
+    background-color: #ececec;
+}
+pre {
+    padding: 0.2em 0.4em;
+    border: 1px dotted gray;
 }
 code {
-    font-family: monospace;
+    padding: 0.0em 0.3em;
 }
 a {
     color: blue;
