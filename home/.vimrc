@@ -713,6 +713,7 @@
   let g:tagbar_width = 30
   let g:tagbar_silent = 1
   let g:tagbar_compact = 1
+  let g:tagbar_autofocus = 1
   let g:tagbar_iconchars = ['▸', '▾']
   let g:tagbar_sort = 0 " Don't sort alphabetically.
   let g:tagbar_map_togglefold = '<Space>'

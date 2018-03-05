@@ -173,9 +173,9 @@
     && vim \
     -c "let g:startify_disable_at_vimenter = 1" \
     -c Todo \
+    -c Tagbar \
     -c NERDTreeToggle \
-    -c 'wincmd l' \
-    -c Tagbar
+    -c 'wincmd l'
   }
   alias t=todo
 
