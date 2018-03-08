@@ -360,6 +360,8 @@
     vnoremap <buffer> <Leader>l :s/\</- / \| :normal gv<CR>
 
     " Adds periods and capitalization.
+    " create mark x, select line, professionalize, go back to mark x
+    nnoremap <buffer> <Leader>t :execute('normal mxV,t`x')<CR>
     vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
 
     if expand('%:t') == 'todo.md'
