@@ -77,6 +77,7 @@
     Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
+    Plug 'tyru/open-browser.vim'
   call plug#end()
 
 " }}}
@@ -870,6 +871,12 @@
   let g:magit_show_help = 0
   let g:magit_default_fold_level = 2
   command! G MagitOnly
+  " }}}
+
+  " openbrowser.vim {{{
+  let g:netrw_nogx = 1 " Disable netrw's gx mapping.
+  nmap gx <Plug>(openbrowser-smart-search)
+  vmap gx <Plug>(openbrowser-smart-search)
   " }}}
 
   " lightline.vim {{{
