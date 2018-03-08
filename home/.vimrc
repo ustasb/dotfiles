@@ -611,12 +611,12 @@
   " }}}
 
   " vim-ruby {{{
-  let g:ruby_fold = 1
-  let g:ruby_foldable_groups = 'def'
   let g:ruby_spellcheck_strings = 0
   let g:ruby_indent_block_style = 'do'
   " Uncomment the below line if Ruby files become sluggish. Folding won't work.
-  " let g:ruby_no_expensive = 1
+  let g:ruby_no_expensive = 1
+  let g:ruby_fold = 1
+  let g:ruby_foldable_groups = 'def'
   " }}}
 
   " RSpec.vim {{{
