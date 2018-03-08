@@ -549,6 +549,10 @@
 
   " todo.md
   function! OpenTodo()
+    if expand('%:t') == 'todo.md'
+      return
+    endif
+
     let is_open = bufexists(bufname('todo.md'))
 
     e $USTASB_DOCS_DIR_PATH/ustasb/todo.md
@@ -590,9 +594,9 @@
 
     autocmd BufEnter * call QuitVimIfAppropriate()
 
-    autocmd BufReadPost * :call ResetCursorPosition()
+    autocmd BufReadPost * call ResetCursorPosition()
 
-    autocmd FileType * autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
+    autocmd FileType * autocmd BufWritePre <buffer> call StripTrailingWhitespaces()
 
     " Don't auto-comment the next line on Enter.
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
