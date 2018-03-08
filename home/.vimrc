@@ -539,6 +539,14 @@
     echomsg 'Task Done! ' . json
   endfunction
 
+  function! ToggleAutoComplete()
+    if &filetype == 'markdown'
+      MUcompleteAutoOff
+    else
+      MUcompleteAutoOn
+    end
+  endfunction
+
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
@@ -593,6 +601,7 @@
     autocmd!
 
     autocmd BufEnter * call QuitVimIfAppropriate()
+    autocmd BufEnter * call ToggleAutoComplete()
 
     autocmd BufReadPost * call ResetCursorPosition()
 
@@ -808,9 +817,7 @@
   " }}}
 
   " vim-mucomplete {{{
-  " auto-completion by default
-  let g:mucomplete#enable_auto_at_startup = 1
-  nnoremap <Leader>a :MUcompleteAutoToggle<CR>
+  let g:mucomplete#enable_auto_at_startup = 0
   let g:mucomplete#buffer_relative_paths = 1
 
   " Conflicts with my c-e (beginning-of-line) mapping.
