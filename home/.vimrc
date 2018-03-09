@@ -428,8 +428,9 @@
 
   " Create a tags file.
   function! CreateCtagsFile()
-    exec 'silent !ctags .'
-    redraw!
+    let cwd = getcwd()
+    silent exec('silent !ctags ' . cwd)
+    echom 'Created tags file at: ' . cwd . '/tags'
   endfunction
   command! Ctags call CreateCtagsFile()
 
