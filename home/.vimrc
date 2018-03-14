@@ -545,8 +545,10 @@
 
   function! ToggleAutoComplete()
     if &filetype == 'markdown'
+      set completeopt-=noselect
       MUcompleteAutoOff
     else
+      set completeopt+=noselect
       MUcompleteAutoOn
     end
   endfunction
