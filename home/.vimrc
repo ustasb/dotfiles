@@ -357,7 +357,7 @@
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
     " Preface each line with '- ' for quickly creating lists.
-    vnoremap <buffer> <Leader>l :s/\</- / \| :normal gv<CR>
+    vnoremap <buffer> <Leader>l :s/\</- /<CR>
 
     " Adds periods and capitalization.
     " create mark x, select line, professionalize, go back to mark x
@@ -573,7 +573,7 @@
 
     if !is_open
       " Fold everything except Tasks and Today.
-      normal zM
+      call ToggleAllFolds()
 
       call search('^# Overview', 'cw')
       normal zo
