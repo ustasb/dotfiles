@@ -724,7 +724,7 @@
     \ . ' --to=html5'
     \ . ' --standalone --mathjax'
     \ . ' --table-of-contents'
-    \ . ' --css $HOME/dotfiles/markdown_css/pandoc.css'
+    \ . ' --css $HOME/dotfiles/pandoc/notes.css'
     \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
   " }}}
 
