@@ -722,7 +722,7 @@
   let g:vim_markdown_preview_browser = 'Google Chrome'
   let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji'
     \ . ' --to=html5'
-    \ . ' --standalone --mathjax'
+    \ . ' --self-contained --mathjax="$HOME/dotfiles/pandoc/mathjax.js"'
     \ . ' --table-of-contents'
     \ . ' --css $HOME/dotfiles/pandoc/notes.css'
     \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
