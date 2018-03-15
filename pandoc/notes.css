@@ -30,6 +30,13 @@ code {
 }
 a {
     color: blue;
+    /* Add ellipsis to long links. */
+    display: inline-block;
+    max-width: 500px;
+    white-space: nowrap;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a {
     text-decoration: none;
