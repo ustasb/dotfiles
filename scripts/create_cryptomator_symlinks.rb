@@ -6,9 +6,13 @@
 MOUNTED_DRIVE_NAME = ENV['USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME']
 UNENCRYPTED_SYM_LINK_PATH = ENV['USTASB_UNENCRYPTED_DIR_PATH']
 
+def sh_colorize(str)
+  "\033[0;34m#{str}\e[0m" # blue
+end
+
 def create_sym_link(source, dest)
   system("ln -sfh #{source} #{dest}")
-  puts "Created a symbolic link between `#{source}` and `#{dest}`!"
+  puts "Created a symbolic link between #{sh_colorize(source)} and #{sh_colorize(dest)}!"
 end
 
 def get_mounted_volume_path
