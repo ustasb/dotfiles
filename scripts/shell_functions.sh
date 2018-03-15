@@ -17,6 +17,7 @@ bu_back_up_system() {
 
 # Back up Brian's documents via Git.
 bu_back_up_docs() {
+  bu_localize_doc_images
   bu_encrypt_journal_entries
 
   # Reason for subshell: https://stackoverflow.com/a/10382170/1575238
@@ -77,6 +78,11 @@ bu_encrypt_journal_entries() {
       gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
     fi
   done
+}
+
+# Scans all Markdown documents and localizes images.
+bu_localize_doc_images() {
+  ruby ~/dotfiles/scripts/localize_markdown_images.rb
 }
 
 # Create Cryptomator drive symbolic links.

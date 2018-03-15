@@ -725,7 +725,7 @@
     \ . ' --self-contained --mathjax="$HOME/dotfiles/pandoc/mathjax.js"'
     \ . ' --table-of-contents'
     \ . ' --css $HOME/dotfiles/pandoc/notes.css'
-    \ . ' --resource-path $USTASB_DOCS_DIR_PATH/images'
+    \ . ' --resource-path $USTASB_DOCS_IMAGE_DIR_PATH'
   " }}}
 
   " Tagbar {{{
