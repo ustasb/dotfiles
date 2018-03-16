@@ -31,7 +31,7 @@ tasks = $done_log.each_line.map do |l|
   task['timestamp'] = Time.parse(task['timestamp'])
   Task.new(*task.values)
 end.sort_by do |t|
-  -t.timestamp.to_i
+  [-t.timestamp.to_i, t.task]
 end
 
 state = TimeState.new
