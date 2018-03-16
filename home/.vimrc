@@ -720,13 +720,15 @@
   " Vim Markdown Preview (trigger with <C-p>) {{{
   let g:vim_markdown_preview_pandoc = 1
   let g:vim_markdown_preview_browser = 'Google Chrome'
-  let g:vim_markdown_preview_pandoc_args = '--from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji'
+  let g:vim_markdown_preview_pandoc_args = ''
+    \ . ' --from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji'
     \ . ' --to=html5'
-    \ . ' --self-contained --mathjax="$HOME/dotfiles/pandoc/mathjax.js"'
+    \ . ' --self-contained'
     \ . ' --table-of-contents'
+    \ . ' --mathjax="$HOME/dotfiles/pandoc/mathjax.js"'
     \ . ' --css $HOME/dotfiles/pandoc/normalize.css'
     \ . ' --css $HOME/dotfiles/pandoc/docs.css'
-    \ . ' --resource-path $USTASB_DOCS_IMAGE_DIR_PATH'
+    \ . ' --resource-path $USTASB_DOCS_IMAGE_DIR_PATH:$HOME/Desktop'
   " }}}
 
   " Tagbar {{{
