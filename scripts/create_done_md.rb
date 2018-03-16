@@ -60,7 +60,7 @@ tasks.each do |task|
   if state.day != task.timestamp.day
     state.day = task.timestamp.day
     days_in_month = Date.new(state.year, state.month, -1).day
-    header = task.timestamp.strftime("%A (#{state.day}/#{days_in_month})\n\n")
+    header = task.timestamp.strftime("%A - %D (#{state.day}/#{days_in_month})\n\n")
     print_header(header, level: 4)
   end
 
