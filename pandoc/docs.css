@@ -1,0 +1,101 @@
+body {
+  width: 600px;
+  margin: auto;
+  color: black;
+  font-size: 15px;
+  font-family: Verdana, sans-serif;
+  line-height: 130%;
+}
+
+h1 { font-size: 130%; }
+h2 { font-size: 120%; }
+h3 { font-size: 110%; }
+h1, h2, h3 {
+  margin-top: 1.5em;
+  padding-left: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid black;
+}
+h4, h5, h6 {
+  font-size: 100%;
+  font-style: italic;
+}
+
+hr {
+  border: 0;
+  border-bottom: 2px dashed #ccc;
+  background: #999;
+}
+
+a {
+  /* Add ellipsis to long links. */
+  display: inline-block;
+  max-width: 500px;
+  white-space: nowrap;
+  vertical-align: top; /* Preserves list item alignment. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+a, a:visited {
+  color: #0000EE;
+}
+
+pre, code {
+  padding: 0.3em;
+  font-family: monospace;
+  background-color: #ECECEC;
+  border-radius: 3px;
+}
+pre > code { padding: 0 }
+code { padding: 0em 0.3em; }
+
+blockquote {
+  margin: 0;
+  padding: 0.1em 1em;
+  background-color: #ECECEC;
+  border-left: 10px solid lightgrey;
+}
+
+dt {
+  font-weight: bold;
+}
+
+img {
+  display: block;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 3px;
+}
+
+figure { margin: 0 0 20px 0; }
+figcaption {
+  padding: 0.2em;
+  font-style: italic;
+  text-align: center;
+}
+
+/* --- Pandoc specific --- */
+
+#TOC {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.title {
+  border: none;
+}
+
+.math.inline {
+  padding: 0em 0.3em;
+}
+
+/* --- Misc --- */
+
+.math.inline, .MathJax_Display {
+  background-color: #ECECEC;
+  border-radius: 3px;
+}
+
+.MathJax_Display {
+  padding: 0.4em 0;
+}

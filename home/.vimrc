@@ -724,7 +724,8 @@
     \ . ' --to=html5'
     \ . ' --self-contained --mathjax="$HOME/dotfiles/pandoc/mathjax.js"'
     \ . ' --table-of-contents'
-    \ . ' --css $HOME/dotfiles/pandoc/notes.css'
+    \ . ' --css $HOME/dotfiles/pandoc/normalize.css'
+    \ . ' --css $HOME/dotfiles/pandoc/docs.css'
     \ . ' --resource-path $USTASB_DOCS_IMAGE_DIR_PATH'
   " }}}
 
