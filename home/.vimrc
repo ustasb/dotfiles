@@ -181,6 +181,7 @@
   let g:gruvbox_guisp_fallback = 'fg' " Make misspellings clearer.
   let g:gruvbox_contrast_dark = 'medium'
   let g:gruvbox_contrast_light = 'hard'
+  let g:bu_ignore_capitalization = 1
 
   silent! colorscheme gruvbox
 
