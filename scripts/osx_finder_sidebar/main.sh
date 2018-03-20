@@ -7,7 +7,8 @@ cd ~/dotfiles/scripts/osx_finder_sidebar/
 
 curl -O https://raw.githubusercontent.com/robperc/FinderSidebarEditor/master/FinderSidebarEditor.py
 
-python customize_sidebar.py
+# Use Apple's Python which includes pyobjc.
+/usr/bin/python customize_sidebar.py
 
 rm FinderSidebarEditor*
 
