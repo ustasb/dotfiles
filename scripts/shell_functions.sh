@@ -161,3 +161,8 @@ bu_chrome_hist() {
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
 }
+
+# Render Markdown files as HTML.
+bu_markdown_to_html() {
+  ruby ~/dotfiles/pandoc/markdown_to_html.rb $*
+}

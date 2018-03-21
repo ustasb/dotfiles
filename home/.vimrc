@@ -40,7 +40,6 @@
 
     " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
-    Plug 'ustasb/vim-markdown-preview', { 'for': 'markdown' }
     Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'text'] }
 
     " search
@@ -366,6 +365,8 @@
     nnoremap <buffer> <Leader>t :execute('normal mxV,t`x')<CR>
     vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
 
+    nnoremap <buffer> <C-p> :call RenderMarkdownInChrome()<CR>
+
     if expand('%:t') == 'todo.md'
       setlocal textwidth=0
 
@@ -555,6 +556,10 @@
     end
   endfunction
 
+  function! RenderMarkdownInChrome()
+    call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb  --input ' . expand('%:p') . ' --output /tmp/pandoc-markdown-preview.html --open-in-chrome')
+  endfunction
+
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
@@ -717,20 +722,6 @@
 
   " Vim Markdown {{{
   let g:markdown_folding = 1
-  " }}}
-
-  " Vim Markdown Preview (trigger with <C-p>) {{{
-  let g:vim_markdown_preview_pandoc = 1
-  let g:vim_markdown_preview_browser = 'Google Chrome'
-  let g:vim_markdown_preview_pandoc_args = ''
-    \ . ' --from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji'
-    \ . ' --to=html5'
-    \ . ' --self-contained'
-    \ . ' --table-of-contents'
-    \ . ' --mathjax="$HOME/dotfiles/pandoc/mathjax.js"'
-    \ . ' --css $HOME/dotfiles/pandoc/normalize.css'
-    \ . ' --css $HOME/dotfiles/pandoc/docs.css'
-    \ . ' --resource-path $USTASB_DOCS_IMAGE_DIR_PATH:$HOME/Desktop'
   " }}}
 
   " Tagbar {{{
