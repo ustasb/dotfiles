@@ -351,8 +351,8 @@
     nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
 
     " Surround cursor word with backticks indicating code.
-    " create mark x, add backticks, go back to mark x
-    nnoremap <buffer> <Leader>C :normal mxysiW``x<CR>
+    " create mark x, add backticks, go back to mark x, move right one char
+    nnoremap <buffer> <Leader>C :normal mxysiW``xl<CR>
 
     " Text to Speech on the current visual selection.
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
