@@ -21,4 +21,4 @@ duti -s org.vim.MacVim .conf all
 
 duti -s com.google.Chrome .svg all
 
-duti -s net.sourceforge.skim-app.skim .pdf all
+duti -s com.apple.Preview .pdf all
