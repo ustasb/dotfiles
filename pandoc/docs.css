@@ -34,10 +34,14 @@ a {
   white-space: nowrap;
   vertical-align: top; /* Preserves list item alignment. */
   overflow: hidden;
+  text-decoration: none;
   text-overflow: ellipsis;
 }
 a, a:visited {
   color: #0000EE;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 pre, code {
