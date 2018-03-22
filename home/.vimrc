@@ -796,12 +796,12 @@
   augroup END
   " Search recursively through all files in CWD.
   nnoremap <silent> <Leader>f :FzfFiles<CR>
+  " buffers
+  nnoremap <silent> <Leader>F :FzfBuffers<CR>
   " most recently used
   nnoremap <silent> <Leader>m :FzfHistory<CR>
   " ctags
   nnoremap <silent> <Leader>t :FzfTags<CR>
-  " buffers
-  nnoremap <silent> <Leader>b :FzfBuffers<CR>
   " documents
   nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
   " snippets via UltiSnips (full screen)
