@@ -358,7 +358,7 @@
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
     " Preface each line with '- ' for quickly creating lists.
-    vnoremap <buffer> <Leader>l :s/\</- /<CR>
+    vnoremap <buffer> <Leader>l :s/^\(\s*\)/\1- /<CR>
 
     " Adds periods and capitalization.
     " create mark x, select line, professionalize, go back to mark x
