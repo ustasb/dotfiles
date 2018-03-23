@@ -166,3 +166,11 @@ bu_chrome_hist() {
 bu_markdown_to_html() {
   ruby ~/dotfiles/pandoc/markdown_to_html.rb $*
 }
+
+# reveal.js presentations with Markdown.
+# shortcuts: (s)peaker notes, (f)ullscreen, (o)utline
+bu_slideshow() {
+  which reveal-md &> /dev/null || npm install --global reveal-md
+  (cd $USTASB_DOCS_DIR_PATH/talks/slides && \
+   reveal-md --theme white $(ls | fzf --height 30%))
+}
