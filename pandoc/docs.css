@@ -27,16 +27,6 @@ hr {
   background: #999;
 }
 
-a {
-  /* Add ellipsis to long links. */
-  display: inline-block;
-  max-width: 500px;
-  white-space: nowrap;
-  vertical-align: top; /* Preserves list item alignment. */
-  overflow: hidden;
-  text-decoration: none;
-  text-overflow: ellipsis;
-}
 a, a:visited {
   color: #0000EE;
 }
@@ -47,8 +37,6 @@ a:hover {
 pre, code {
   padding: 0.3em;
   font-family: monospace;
-  white-space: nowrap;
-  overflow: auto;
   background-color: #ECECEC;
   border-radius: 3px;
 }
@@ -104,4 +92,52 @@ figcaption {
 
 .MathJax_Display {
   padding: 0.4em 0;
+}
+
+/* --- screen specific --- */
+
+@media screen {
+  a {
+    /* Add ellipsis to long links. */
+    display: inline-block;
+    max-width: 500px;
+    white-space: nowrap;
+    vertical-align: top; /* Preserves list item alignment. */
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+  }
+
+  pre, code, .MathJax_Display {
+    white-space: pre;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+}
+
+/* --- print specific --- */
+
+@media print {
+  body {
+    width: 700px;
+    font-size: 13px;
+  }
+
+  #TOC {
+    display: none;
+  }
+
+  pre.sourceCode {
+    position: relative;
+    height: 2em;
+    overflow: hidden;
+  }
+  pre.sourceCode:after {
+    content: 'hidden for print';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    text-align: center;
+    padding: 0.6em 0;
+    background-color: #ECECEC;
+  }
 }
