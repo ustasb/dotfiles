@@ -1,6 +1,7 @@
 # Render Markdown files as HTML using custom CSS + MathJax.
 
 require 'optparse'
+require 'shellwords'
 
 $argv = {}
 
@@ -51,8 +52,8 @@ def main
       --css #{Dir.home}/dotfiles/pandoc/normalize.css
       --css #{Dir.home}/dotfiles/pandoc/docs.css
       --resource-path #{ENV['USTASB_DOCS_IMAGE_DIR_PATH']}:#{Dir.home}/Desktop
-      --output #{$argv[:output_path]}
-      #{$argv[:input_path]}
+      --output #{Shellwords.escape($argv[:output_path])}
+      #{Shellwords.escape($argv[:input_path])}
   EOF
 
   cmd(md_to_html_cmd)
