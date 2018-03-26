@@ -293,6 +293,13 @@
   startup_tasks() {
     start_gpg_agent
     bu_symlink_cryptomator
+
+    # Things to happen after booting.
+    # OS X cleans this directory upon shutdown.
+    if [ ! -f /tmp/machine_booted ]; then
+      touch /tmp/machine_booted
+      bu_customize_finder_sidebar
+    fi
   }
 
   # Prefer tmux windows over iTerm tabs and windows.
