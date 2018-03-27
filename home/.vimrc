@@ -306,8 +306,6 @@
   vnoremap <S-k> <Nop>
   " Disable command and search history. Replaced with fzf.
   nnoremap Q <Nop>
-  nnoremap q: <Nop>
-  nnoremap q/ <Nop>
 
   " Reselect visual block after indent/outdent.
   vnoremap < <gv
@@ -807,9 +805,9 @@
   " snippets via UltiSnips (full screen)
   nnoremap <silent> <Leader>u :FzfSnippets!<CR>
   " search history
-  nnoremap <silent> <Leader>/ :FzfHistory/<CR>
+  nnoremap <silent> q/ :FzfHistory/<CR>
   " command history
-  cnoremap <silent> <C-r> FzfHistory:<CR>
+  nnoremap <silent> q: :FzfHistory:<CR>
   " }}}
 
   " vim-startify {{{
