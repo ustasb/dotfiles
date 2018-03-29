@@ -65,7 +65,7 @@ bu_back_up_1p() {
 
 # Back up my source code.
 bu_back_up_github_repos() {
-  ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_UNENCRYPTED_DIR_PATH/backups/code
+  ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/code
 }
 
 # Customize the Finder sidebar defaults.
