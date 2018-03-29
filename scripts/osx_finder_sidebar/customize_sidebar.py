@@ -7,6 +7,7 @@ cloud_drive_path = os.environ['USTASB_CLOUD_DIR_PATH']
 unencrypted_path = os.environ['USTASB_UNENCRYPTED_DIR_PATH']
 
 sidebar.removeAll()
+sidebar.add(home_path + '/backups')
 sidebar.add('/Volumes')
 sidebar.add('/Applications')
 sidebar.add(cloud_drive_path)

@@ -7,9 +7,10 @@ Thread.abort_on_exception = true
 
 def back_up_repo(repo_name)
   repo_url = "#{GITHUB_BASE_URI}/#{repo_name}.git"
-  backup_path = Shellwords.escape("#{BACKUP_DIR}/#{repo_name}")
+  backup_path = "#{BACKUP_DIR}/#{repo_name}"
 
   if File.exist?(backup_path)
+    backup_path = Shellwords.escape(backup_path)
     system("cd #{backup_path} && git fetch origin master && git reset --hard origin/master")
   else
     system("git clone #{repo_url} #{backup_path}")
