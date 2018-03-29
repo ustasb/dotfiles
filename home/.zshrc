@@ -299,6 +299,12 @@
       touch /tmp/machine_booted
       bu_customize_finder_sidebar
     fi
+
+    if [ -d $USTASB_UNENCRYPTED_DIR_PATH ]; then
+      ln -sfn $USTASB_UNENCRYPTED_DIR_PATH $HOME/ustasb_encrypted
+    else
+      printf "\033[1;31m\`ustasb_encrypted\` Cryptomator drive not mounted\!\033[0m"
+    fi
   }
 
   # Prefer tmux windows over iTerm tabs and windows.
