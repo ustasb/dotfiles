@@ -14,3 +14,23 @@
   lg = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%C(blue) <%an>%Creset' --abbrev-commit
 [gpg]
   program = gpg
+
+# diff-so-fancy
+# https://github.com/so-fancy/diff-so-fancy
+# brew install diff-so-fancy
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = blue
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
