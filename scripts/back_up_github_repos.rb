@@ -1,12 +1,13 @@
 # A script to back up my Github repos.
 
 require 'thread'
+require 'shellwords'
 
 Thread.abort_on_exception = true
 
 def back_up_repo(repo_name)
   repo_url = "#{GITHUB_BASE_URI}/#{repo_name}.git"
-  backup_path = "#{BACKUP_DIR}/#{repo_name}"
+  backup_path = Shellwords.escape("#{BACKUP_DIR}/#{repo_name}")
 
   if File.exist?(backup_path)
     system("cd #{backup_path} && git fetch origin master && git reset --hard origin/master")
