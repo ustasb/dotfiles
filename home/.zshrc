@@ -312,8 +312,6 @@
     else
       startup_tasks
     fi
-  else
-    startup_tasks
   fi
 
 # }}}
