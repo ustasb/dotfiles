@@ -85,20 +85,20 @@
 
 # === ustasb ENV Template === {{{
 
-  # Add these to your ~/.ustasbenv
+  # Add these to ~/.ustasbenv
 
   # export USTASB_AWS_ACCESS_KEY_ID=
   # export USTASB_AWS_SECRET_ACCESS_KEY=
   # export USTASB_AWS_REGION=
 
-  # For `bu_symlink_cryptomator` and `bu_back_up_gdrive`
-  # export USTASB_CRYPTOMATOR_MOUNTED_DRIVE_NAME=
+  # `bu_back_up_gdrive`
   # export USTASB_S3_BACKUP_BUCKET_NAME=
   # export USTASB_CLOUD_DIR_PATH=
   # export USTASB_SHARED_DIR_PATH=
   # export USTASB_ENCRYPTED_DIR_PATH=
   # export USTASB_UNENCRYPTED_DIR_PATH=
   # export USTASB_DOCS_DIR_PATH=
+  # export USTASB_DOCS_IMAGE_DIR_PATH=
 
   [ -f ~/.ustasbenv ] && source ~/.ustasbenv
 
@@ -292,7 +292,6 @@
 
   startup_tasks() {
     start_gpg_agent
-    bu_symlink_cryptomator
 
     # Things to happen after booting.
     # OS X cleans this directory upon shutdown.

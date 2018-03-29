@@ -85,11 +85,6 @@ bu_localize_doc_images() {
   ruby ~/dotfiles/scripts/localize_markdown_images.rb
 }
 
-# Create Cryptomator drive symbolic links.
-bu_symlink_cryptomator() {
-  ruby ~/dotfiles/scripts/create_cryptomator_symlinks.rb
-}
-
 # Set the default program for file types.
 bu_set_file_type_app_defaults() {
   ~/dotfiles/scripts/set_file_type_app_defaults.sh
