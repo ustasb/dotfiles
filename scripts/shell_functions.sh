@@ -17,15 +17,25 @@ bu_back_up_system() {
 
 # Back up Brian's documents via Git.
 bu_back_up_docs() {
-  bu_localize_doc_images
   bu_encrypt_journal_entries
 
-  # Reason for subshell: https://stackoverflow.com/a/10382170/1575238
-  (cd $USTASB_UNENCRYPTED_DIR_PATH/backups/documents \
+  tmp_dir=$(mktemp -d)
+  if [ ! -d $tmp_dir ]; then
+    echo "Couldn't make temp directory! Exiting..."
+  fi
+
+  # Uses zip's File Sync mode (-FS).
+  # Zipping b/c Cryptomator + Google Drive struggle with all the .git/ files.
+  (cd $tmp_dir \
+    && unzip $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip -d . \
+    && cd documents \
     && rsync --archive --delete --exclude='.git/' --exclude='.gitignore' $USTASB_DOCS_DIR_PATH/ ./ \
     && git add . \
     && git status \
-    && git commit -m "$(date '+%Y-%m-%d_%H-%M-%S')")
+    && git commit -m "$(date '+%Y-%m-%d_%H-%M-%S')" \
+    && cd .. \
+    && zip -FSr $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip documents \
+    && rm -rf $tmp_dir)
 }
 
 # Back up Google Drive contents to S3.
@@ -65,6 +75,7 @@ bu_customize_finder_sidebar() {
 
 # Build my complete journal.
 bu_build_full_journal() {
+  bu_encrypt_journal_entries
   ruby ~/dotfiles/scripts/build_full_journal.rb
 }
 
