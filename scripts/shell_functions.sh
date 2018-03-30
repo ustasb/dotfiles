@@ -12,7 +12,34 @@ bu_back_up_system() {
   bu_back_up_docs && \
   bu_back_up_photo_booth && \
   bu_back_up_1p && \
-  bu_back_up_github_repos
+  bu_create_small_s3_backup
+}
+
+# Back up a small, important subset to S3.
+# (Really don't fully trust Cryptomator yet. :D)
+bu_create_small_s3_backup() {
+  backup_dir=$HOME/backups
+  backup_folder="$(date '+%Y-%m-%d_%H-%M-%S')"
+  backup_path="$backup_dir/$backup_folder"
+
+  mkdir -p $backup_path
+
+  # back up docs
+  cp -r $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip $backup_path
+
+  # back up 1p (most recent backup)
+  (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password && \
+   cp "$(ls -t | head -1)" $backup_path)
+
+  # create S3 archive
+  (cd $backup_dir && \
+    zip -r --quiet "$backup_folder.zip" $backup_folder && \
+    gpg --symmetric --no-armor "$backup_folder.zip" && \
+    AWS_ACCESS_KEY_ID=$USTASB_AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$USTASB_AWS_SECRET_ACCESS_KEY AWS_REGION=$USTASB_AWS_REGION \
+    aws s3 cp "$backup_folder.zip.gpg" "s3://$USTASB_S3_BACKUP_BUCKET_NAME/$(date '+%Y/%m/%d')/")
+
+  # clean up
+  rm -rf $backup_path "$backup_path.zip"
 }
 
 # Back up Brian's documents via Git.
@@ -64,8 +91,9 @@ bu_back_up_1p() {
 }
 
 # Back up my source code.
+# FIXME: Back up into gzip archives.
 bu_back_up_github_repos() {
-  ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/code
+  # ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/code
 }
 
 # Customize the Finder sidebar defaults.
