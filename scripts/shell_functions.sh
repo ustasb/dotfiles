@@ -27,14 +27,14 @@ bu_back_up_docs() {
   # Uses zip's File Sync mode (-FS).
   # Zipping b/c Cryptomator + Google Drive struggle with all the .git/ files.
   (cd $tmp_dir \
-    && unzip $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip -d . \
+    && unzip -q $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip -d . \
     && cd documents \
-    && rsync --archive --delete --exclude='.git/' --exclude='.gitignore' $USTASB_DOCS_DIR_PATH/ ./ \
+    && rsync --archive --delete --exclude='.git/' --exclude='.gitignore' --quiet $USTASB_DOCS_DIR_PATH/ ./ \
     && git add . \
     && git status \
     && git commit -m "$(date '+%Y-%m-%d_%H-%M-%S')" \
     && cd .. \
-    && zip -FSr $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip documents \
+    && zip -FSrq $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip documents \
     && rm -rf $tmp_dir)
 }
 
