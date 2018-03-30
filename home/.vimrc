@@ -582,7 +582,7 @@
 
       call search('^# Overview', 'cw')
       normal zo
-      call search('^## Q1', 'cw')
+      call search('^## Q2', 'cw')
       normal zA
       call search('^# This Week', 'cw')
       normal zo
