@@ -303,7 +303,7 @@
     if [ -d $USTASB_UNENCRYPTED_DIR_PATH ]; then
       ln -sfn $USTASB_UNENCRYPTED_DIR_PATH $HOME/ustasb_encrypted
     else
-      printf "\033[1;31m\`ustasb_encrypted\` Cryptomator drive not mounted\!\033[0m"
+      printf "\033[1;31m\n\`ustasb_encrypted\` Cryptomator drive not mounted!\n\033[0m"
     fi
   }
 
