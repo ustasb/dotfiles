@@ -208,3 +208,9 @@ bu_slideshow() {
   (cd $USTASB_DOCS_DIR_PATH/talks/slides && \
    reveal-md --theme white $(ls | fzf --height 30%))
 }
+
+# Open ebooks with fzf.
+bu_ebooks() {
+  (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/ebooks && \
+    open "$(ls | fzf --height 30%)")
+}
