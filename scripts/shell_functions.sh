@@ -19,7 +19,7 @@ bu_back_up_system() {
 # (Really don't fully trust Cryptomator yet. :D)
 bu_create_small_s3_backup() {
   backup_dir=$HOME/backups
-  backup_folder="$(date '+%Y-%m-%d_%H-%M-%S')"
+  backup_folder="backup-$(date '+%Y-%m-%d_%H-%M-%S')"
   backup_path="$backup_dir/$backup_folder"
 
   mkdir -p $backup_path
@@ -36,7 +36,7 @@ bu_create_small_s3_backup() {
     zip -r --quiet "$backup_folder.zip" $backup_folder && \
     gpg --symmetric --no-armor "$backup_folder.zip" && \
     AWS_ACCESS_KEY_ID=$USTASB_AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$USTASB_AWS_SECRET_ACCESS_KEY AWS_REGION=$USTASB_AWS_REGION \
-    aws s3 cp "$backup_folder.zip.gpg" "s3://$USTASB_S3_BACKUP_BUCKET_NAME/$(date '+%Y/%m/%d')/")
+    aws s3 cp "$backup_folder.zip.gpg" "s3://$USTASB_S3_BACKUP_BUCKET_NAME/small-backups/")
 
   # clean up
   rm -rf $backup_path "$backup_path.zip"

@@ -157,7 +157,7 @@ def main
 
   if $argv_options[:aws_backup]
     credentials = Aws::Credentials.new(ENV['USTASB_AWS_ACCESS_KEY_ID'], ENV['USTASB_AWS_SECRET_ACCESS_KEY'])
-    s3_key = "#{now.strftime('%Y/%m/%d')}/#{File.basename(archive_path)}"
+    s3_key = "full-backups/#{File.basename(archive_path)}"
     log("Uploading archive to S3 as: #{S3_BACKUP_BUCKET_NAME}/#{s3_key}")
     Aws::S3::Resource.new(region: ENV['USTASB_AWS_REGION'], credentials: credentials)
       .bucket(S3_BACKUP_BUCKET_NAME)
