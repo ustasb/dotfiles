@@ -206,11 +206,11 @@ bu_markdown_to_html() {
 bu_slideshow() {
   which reveal-md &> /dev/null || npm install --global reveal-md
   (cd $USTASB_DOCS_DIR_PATH/talks/slides && \
-   reveal-md --theme white $(ls | fzf --height 30%))
+   reveal-md --theme white $(find . -name '*.md' | fzf --height 30%))
 }
 
 # Open ebooks with fzf.
 bu_ebooks() {
   (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/ebooks && \
-    open "$(ls | fzf --height 30%)")
+    open "$(find . -name '*.pdf' | fzf --height 30%)")
 }
