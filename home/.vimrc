@@ -395,8 +395,13 @@
   augroup AG_FileTypeOptions
     autocmd!
 
-    " Python PEP8 4 space indent
-    autocmd FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+    " Python
+    " Use `pythoncomplete#Complete` for Python 2.
+    autocmd FileType python setlocal
+      \ softtabstop=4
+      \ tabstop=4
+      \ shiftwidth=4
+      \ omnifunc=python3complete#Complete
   augroup END
 
 " }}}
@@ -836,13 +841,13 @@
   " w : buffers from other windows
   " b : buffers from buffer list
   set complete=.,w,b
-  set completeopt=menu,menuone,noselect,preview
+  set completeopt=menu,menuone,noselect
   let g:mucomplete#always_use_completeopt = 1
 
   " :h mucomplete-methods
   " c-p / c-n respects Vim's `set complete`.
   let g:mucomplete#chains = {}
-  let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'ulti']
+  let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'omni', 'ulti']
   let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
   let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
   let g:mucomplete#chains.magit    = ['c-p']
