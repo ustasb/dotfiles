@@ -427,11 +427,10 @@
   endfunction
 
   " Open a file in Google Chrome.
-  function! OpenFileInChrome()
-    exec 'silent !open -a "Google Chrome" "%"'
-    redraw!
-  endfunction
-  command! Chrome call OpenFileInChrome()
+  command! Chrome :!open -a "Google Chrome" %:p
+
+  " Open a file in Tad (CSV viewer).
+  command! Tad :!open -a "Tad" %:p
 
   " Create a tags file.
   function! CreateCtagsFile()
