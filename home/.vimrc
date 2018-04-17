@@ -77,6 +77,7 @@
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
     Plug 'tyru/open-browser.vim'
+    Plug 'rizzatti/dash.vim'
   call plug#end()
 
 " }}}
@@ -881,6 +882,16 @@
   let g:netrw_nogx = 1 " Disable netrw's gx mapping.
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
+  " }}}
+
+  " dash.vim {{{
+  nmap <silent> <Leader>d <Plug>DashSearch
+  let g:dash_map = {
+    \ 'python'           : ['py'],
+    \ 'ruby'             : ['rb'],
+    \ 'javascript'       : ['js'],
+    \ 'javascript.jsx'   : ['js'],
+    \ }
   " }}}
 
   " lightline.vim {{{
