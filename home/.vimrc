@@ -267,12 +267,6 @@
   set ignorecase
   " ...unless they contain at least one capital letter.
   set smartcase
-  augroup AG_SmartCase
-    autocmd!
-    " I prefer case insensitivity during autocompletion.
-    autocmd InsertEnter * set nosmartcase
-    autocmd InsertLeave * set smartcase
-  augroup END
 
 " }}}
 
