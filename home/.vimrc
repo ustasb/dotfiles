@@ -65,6 +65,9 @@
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
+    " python
+    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
     " misc
     Plug 'w0rp/ale', { 'on': 'ALEToggle' }
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -396,12 +399,10 @@
     autocmd!
 
     " Python
-    " Use `pythoncomplete#Complete` for Python 2.
     autocmd FileType python setlocal
       \ softtabstop=4
       \ tabstop=4
       \ shiftwidth=4
-      \ omnifunc=python3complete#Complete
   augroup END
 
 " }}}
@@ -870,6 +871,21 @@
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
   imap <C-h> <plug>(MUcompleteCycBwd)
   inoremap <silent> <plug>(MUcompleteBwdKey) <C-h>
+  " }}}
+
+  " jedi.vim {{{
+  " Configured to work with MUcomplete.
+  let g:jedi#force_py_version = 3
+  let g:jedi#auto_initialization = 0
+  let g:jedi#auto_vim_configuration = 0
+  let g:jedi#smart_auto_mappings = 0
+  let g:jedi#completions_enabled = 0
+  let g:jedi#show_call_signatures = 1
+  augroup AG_JediVim
+    autocmd!
+    autocmd FileType python setlocal omnifunc=jedi#completions
+    autocmd FileType python call jedi#configure_call_signatures()
+  augroup END
   " }}}
 
   " colorizer.vim (hex colorizing) {{{
