@@ -661,6 +661,8 @@
   let g:ruby_no_expensive = 1
   let g:ruby_fold = 1
   let g:ruby_foldable_groups = 'def'
+  " Enable omni completion.
+  let g:rubycomplete_buffer_loading = 1
   " }}}
 
   " RSpec.vim {{{
@@ -866,6 +868,13 @@
   let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
   let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
   let g:mucomplete#chains.magit    = ['c-p']
+
+  " Ruby/Python: Trigger completion after period (e.g. `obj.`).
+  let s:py_rb_omni_cond = { t -> t =~# '\m\k\%(\k\|\.\)$' }
+  let g:mucomplete#can_complete = {
+    \ 'python' : { 'omni': s:py_rb_omni_cond },
+    \ 'ruby'   : { 'omni': s:py_rb_omni_cond },
+    \ }
 
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
