@@ -26,7 +26,6 @@
 
     " snippets
     Plug 'sirver/UltiSnips'
-    Plug 'honza/vim-snippets'
 
     " colors
     Plug 'ustasb/gruvbox'
@@ -329,9 +328,6 @@
   function! SetProseOptions()
     " Fix common typos.
     call litecorrect#init()
-
-    " Add LaTeX snippets.
-    UltiSnipsAddFiletypes tex
 
     " mucomplete's `dict` completion requires `dictionary` set locally.
     setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
@@ -902,6 +898,7 @@
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
+  let g:UltiSnipsSnippetDirectories = [$HOME . '/dotfiles/vim/ultisnips']
   " }}}
 
   " vimagit - Git staging tool {{{

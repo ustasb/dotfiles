@@ -1,0 +1,25 @@
+snippet html "basic HTML template"
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>${1:title}</title>
+	</head>
+	<body>
+		${0:body}
+	</body>
+</html>
+endsnippet
+
+snippet js "JS script tag"
+<script type="text/javascript" src="${1:path}"></script>
+endsnippet
+
+snippet css "CSS link tag"
+<link type="text/css" rel="stylesheet" media="screen" href="${1:path}">
+endsnippet
+
+snippet a "a tag"
+<a href="${1:url}"${2: target="_blank"}>${3:anchor text}</a>
+endsnippet

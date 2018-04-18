@@ -1,0 +1,22 @@
+snippet lorem "lorem ipsum - 50 words"
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+endsnippet
+
+snippet date "YYYY-MM-DD"
+`!v strftime("%F")`
+endsnippet
+
+snippet datetime "YYYY-MM-DD hh:mm"
+`!v strftime("%Y-%m-%d %H:%M")`
+endsnippet
+
+snippet diso "ISO datetime"
+`!v strftime("%F %H:%M:%S%z")`
+endsnippet
+
+snippet uuid "random UUID"
+`!p if not snip.c: import uuid; snip.rv = uuid.uuid4()`
+endsnippet

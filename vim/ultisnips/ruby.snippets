@@ -1,0 +1,19 @@
+snippet shebang "#!/usr/bin/env ruby"
+#!/usr/bin/env ruby
+$0
+endsnippet
+
+snippet class "class declaration"
+class ${1:class_name}
+	def initialize(${2:*args})
+		$0
+	end
+end
+endsnippet
+
+snippet case "case statement"
+case ${1:variable}
+when ${2:expression}
+	$0
+end
+endsnippet
