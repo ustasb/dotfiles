@@ -77,7 +77,6 @@
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
     Plug 'tyru/open-browser.vim'
-    Plug 'rizzatti/dash.vim'
   call plug#end()
 
 " }}}
@@ -563,6 +562,21 @@
     call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb  --input ' . expand('%:p') . ' --output /tmp/pandoc-markdown-preview.html --open-in-chrome')
   endfunction
 
+  " Open the cursor's word in Dash using Search Profiles.
+  " https://kapeli.com/dash_guide#searchProfiles
+  function! OpenInDash()
+    let g:ft_dash_profile_map = get(g:, 'ft_dash_profile_map', {
+      \ 'python'         : 'py',
+      \ 'ruby'           : 'rb',
+      \ 'javascript'     : 'js',
+      \ 'javascript.jsx' : 'js',
+      \ })
+    let dash_profile = get(g:ft_dash_profile_map, &filetype, 'default')
+    let dash_uri = 'dash://' . dash_profile . ':' . expand('<cword>')
+    silent exec('!open ' . dash_uri)
+  endfunction
+  nnoremap <Leader>d :call OpenInDash()<CR>
+
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
@@ -881,16 +895,6 @@
   let g:netrw_nogx = 1 " Disable netrw's gx mapping.
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
-  " }}}
-
-  " dash.vim {{{
-  nmap <silent> <Leader>d <Plug>DashSearch
-  let g:dash_map = {
-    \ 'python'           : ['py'],
-    \ 'ruby'             : ['rb'],
-    \ 'javascript'       : ['js'],
-    \ 'javascript.jsx'   : ['js'],
-    \ }
   " }}}
 
   " lightline.vim {{{
