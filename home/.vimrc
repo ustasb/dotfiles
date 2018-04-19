@@ -35,7 +35,6 @@
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
-    Plug 'jreybert/vimagit', { 'on': 'MagitOnly' }
 
     " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
@@ -857,7 +856,6 @@
   let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'omni', 'ulti']
   let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
   let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
-  let g:mucomplete#chains.magit    = ['c-p']
 
   " Ruby/Python: Trigger completion after period (e.g. `obj.`).
   let s:py_rb_omni_cond = { t -> t =~# '\m\k\%(\k\|\.\)$' }
@@ -899,12 +897,6 @@
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
   let g:UltiSnipsSnippetDirectories = [$HOME . '/dotfiles/vim/ultisnips']
-  " }}}
-
-  " vimagit - Git staging tool {{{
-  let g:magit_show_help = 0
-  let g:magit_default_fold_level = 2
-  command! G MagitOnly
   " }}}
 
   " openbrowser.vim {{{
