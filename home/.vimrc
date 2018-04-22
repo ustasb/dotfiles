@@ -775,8 +775,10 @@
   let g:ale_sign_warning = '✦' " ⚑
   " gem install mdl
   " pip install proselint
+  " pip install pylint
   let g:ale_linters = {
-    \ 'markdown': ['mdl', 'proselint']
+    \ 'markdown': ['mdl', 'proselint'],
+    \ 'python': ['pylint'],
     \ }
   " }}}
 
