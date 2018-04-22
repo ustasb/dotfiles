@@ -137,7 +137,6 @@
 
   # misc tools
   alias tmuxk='tmux kill-server'
-  alias work='bu_work -d' # pomodoro timer
   alias jp="jupyter notebook"
 
 # }}}

@@ -614,9 +614,6 @@
   command! Q :qa!
   nnoremap Q :qa<CR>
 
-  " Pomodoro timer
-  command! -nargs=* Work execute '!thyme -d <args>'
-
   augroup AG_Misc
     autocmd!
 

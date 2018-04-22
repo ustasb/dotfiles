@@ -173,13 +173,6 @@ bu_weather() {
   weather -ignore-alerts -l "Cambridge, MA" -d 3 $* | less -r
 }
 
-# Pomodoro timer
-# https://github.com/hughbien/thyme
-bu_work() {
-  which thyme &> /dev/null || echo "Please install Thyme from source (gem is outdated): https://github.com/hughbien/thyme"
-  thyme $*
-}
-
 # Browse Chrome history with fzf.
 # credit: https://junegunn.kr/2015/04/browsing-chrome-history-with-fzf
 bu_chrome_hist() {
