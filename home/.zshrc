@@ -138,6 +138,7 @@
   # misc tools
   alias tmuxk='tmux kill-server'
   alias jp="jupyter notebook"
+  alias pt="ptpython"
 
 # }}}
 
