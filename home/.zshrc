@@ -172,7 +172,6 @@
     -c 'cd $USTASB_DOCS_DIR_PATH' \
     -c Todo \
     -c Tagbar \
-    -c NERDTreeToggle \
     -c 'wincmd l'
   }
   alias t=todo

@@ -71,7 +71,7 @@
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown'
-    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'justinmk/vim-dirvish'
     Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
@@ -462,16 +462,14 @@
   function! TodaysJournalEntry(encrypt)
     let journal_entry_dir = $USTASB_DOCS_DIR_PATH . '/ustasb/journal/entries/'
     let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.asc' : '')
-    " `resolve` to follow symbolic links.
-    " Quiets NERDTree's findAndRevealPath exception.
-    exec "e " . resolve(entry_path)
+    exec 'e ' . entry_path
   endfunction
   command! J call TodaysJournalEntry(0)
   command! JE call TodaysJournalEntry(1)
 
-  " Quit Vim if the last buffer is a quickfix or NERDtree instance.
+  " Quit Vim if the last buffer is a quickfix window.
   function! QuitVimIfAppropriate()
-    if winnr("$") == 1 && (&buftype == "quickfix" || (exists("b:NERDTree") && b:NERDTree.isTabTree()))
+    if winnr("$") == 1 && (&buftype == "quickfix")
       quit!
     endif
   endfunction
@@ -666,16 +664,8 @@
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
   " }}}
 
-  " NERD Tree {{{
-  let g:NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon']
-  let g:NERDTreeMinimalUI = 1
-  let g:NERDTreeShowHidden = 1
-  let g:NERDTreeAutoDeleteBuffer = 1
-  let g:NERDTreeWinSize = 30
-  let g:NERDTreeStatusline = '​' " zero width space
-  let g:NERDTreeMapActivateNode = '<Space>'
-  nnoremap <C-n> :NERDTreeToggle<CR>
-  nnoremap <Leader>g :NERDTreeFind<CR>
+  " dirvish.vim {{{
+  let g:dirvish_mode = ':sort ,^.*[\/],' " directories first
   " }}}
 
   " Vim Signify {{{
@@ -935,7 +925,7 @@
 
   function! LightlineMode()
     let fname = expand('%:t')
-    return &filetype == 'nerdtree' ? '' :
+    return &filetype == 'dirvish' ? '' :
       \ &filetype == 'tagbar' ? '' :
       \ &filetype == 'qf' ? '' :
       \ &filetype == 'fzf' ? '' :
@@ -944,7 +934,7 @@
 
   function! LightlineFilename()
     let fname = expand('%:t')
-    return &filetype == 'nerdtree' ? 'NERDTree' :
+    return &filetype == 'dirvish' ? 'Dirvish' :
       \ &filetype == 'tagbar' ? 'Tagbar' :
       \ &filetype == 'qf' ? 'QuickFix' :
       \ &filetype == 'fzf' ? 'fzf' :
