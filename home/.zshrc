@@ -170,7 +170,6 @@
 
   todo() {
     vim \
-    -c 'let g:startify_disable_at_vimenter = 1' \
     -c 'cd $USTASB_DOCS_DIR_PATH' \
     -c Todo \
     -c Tagbar \

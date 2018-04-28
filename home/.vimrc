@@ -14,7 +14,6 @@
 " === vim-plug === {{{
 
   call plug#begin('~/.vim/plugged')
-    Plug 'mhinz/vim-startify'
     Plug 'itchyny/lightline.vim'
 
     " editing
@@ -820,12 +819,6 @@
   nnoremap <silent> q/ :FzfHistory/<CR>
   " command history
   nnoremap <silent> q: :FzfHistory:<CR>
-  " }}}
-
-  " vim-startify {{{
-  let g:startify_change_to_dir = 0
-  let g:startify_fortune_use_unicode = 1
-  let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
   " }}}
 
   " vim-mucomplete {{{
