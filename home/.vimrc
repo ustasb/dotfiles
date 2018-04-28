@@ -39,11 +39,12 @@
     " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
     Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'text'] }
+    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+    Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
     " search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    " requires ripgrep
     " Don't use vim-plug's lazy loading here! :Ack on text below the cursor
     " won't work the first time.
     Plug 'mileszs/ack.vim'
@@ -68,8 +69,6 @@
 
     " misc
     Plug 'w0rp/ale', { 'on': 'ALEToggle' }
-    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-    Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown'
@@ -232,11 +231,11 @@
     " disable all error whistles
     set noerrorbells visualbell t_vb=
   else
-    " performance tweaks
+    " Performance tweaks for terminal Vim...
 
     " Don't match parentheses or brackets.
-    let loaded_matchparen=1
-    set noshowmatch
+    " let loaded_matchparen=1
+    " set noshowmatch
 
     " not needed / expensive to render
     set nocursorline
@@ -244,7 +243,7 @@
     set norelativenumber
 
     " Scroll 10 lines at bottom/ top.
-    set scrolljump=10
+    " set scrolljump=10
   endif
 
   " Resize splits when Vim is resized.
@@ -357,13 +356,12 @@
 
     nnoremap <buffer> <C-p> :call RenderMarkdownInChrome()<CR>
 
+    syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
+
     if expand('%:t') == 'todo.md'
       setlocal textwidth=0
-
       command! -buffer Done call LogCompletedTask()
     end
-
-    syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
   endfunction
 
   augroup AG_ProseOptions
@@ -502,13 +500,12 @@
   command! CloseHiddenBuffers call CloseHiddenBuffers()
 
   " Open / close all folds.
-  let $foldsOpen = 1
   function! ToggleAllFolds()
-    if $foldsOpen == 1
-      let $foldsOpen = 0
+    if get(g:, 'folds_open', 1) == 1
+      let g:folds_open = 0
       normal zM
     else
-      let $foldsOpen = 1
+      let g:folds_open = 1
       normal zR
     endif
     " center the cursor
@@ -553,7 +550,10 @@
   endfunction
 
   function! RenderMarkdownInChrome()
-    call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb  --input ' . expand('%:p') . ' --output /tmp/pandoc-markdown-preview.html --open-in-chrome')
+    call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb'
+      \ . ' --input ' . expand('%:p')
+      \ . ' --output /tmp/pandoc-markdown-preview.html --open-in-chrome'
+      \ )
   endfunction
 
   " Open the cursor's word in Dash using Search Profiles.
@@ -615,7 +615,7 @@
   command! S Scratch
 
   " quickly quit
-  command! Q :qa!
+  command! Q :qa
   nnoremap Q :qa<CR>
 
   augroup AG_Misc
@@ -759,9 +759,7 @@
   let g:GPGPreferSign = 0
   let g:GPGUsePipes = 1
   let g:GPGFilePattern = '*.asc' " ASCII armored files
-  let g:GPGDefaultRecipients = [
-    \"Brian Ustas <brianustas@gmail.com>",
-  \]
+  let g:GPGDefaultRecipients = ['Brian Ustas <brianustas@gmail.com>']
   " }}}
 
   " vim-sneak {{{
@@ -816,8 +814,8 @@
   nnoremap <silent> <Leader>t :FzfTags<CR>
   " documents
   nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
-  " snippets via UltiSnips (full screen)
-  nnoremap <silent> <Leader>u :FzfSnippets!<CR>
+  " snippets via UltiSnips
+  nnoremap <silent> <Leader>u :FzfSnippets<CR>
   " search history
   nnoremap <silent> q/ :FzfHistory/<CR>
   " command history
