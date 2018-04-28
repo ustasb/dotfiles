@@ -17,7 +17,7 @@
     Plug 'itchyny/lightline.vim'
 
     " editing
-    Plug 'Raimondi/delimitMate'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
     Plug 'lifepillar/vim-mucomplete'
     Plug 'tpope/vim-surround'
