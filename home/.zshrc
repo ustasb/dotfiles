@@ -121,7 +121,6 @@
   alias vim=$BU_EDITOR
   alias vi=$BU_EDITOR
   alias v=$BU_EDITOR
-  alias gv='$BU_EDITOR -c "let g:startify_disable_at_vimenter = 1" -c Magit' # Git GUI
 
   # Ripgrep
   alias rg="rg $RIPGREP_ARGS"
