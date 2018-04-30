@@ -189,6 +189,11 @@ bu_chrome_hist() {
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
 }
 
+# List the active Chrome window's tabs' links.
+bu_chrome_tabs_links() {
+  ruby ~/dotfiles/scripts/chrome_tabs_links.rb
+}
+
 # Render Markdown files as HTML.
 bu_markdown_to_html() {
   ruby ~/dotfiles/pandoc/markdown_to_html.rb $*
