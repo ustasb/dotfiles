@@ -33,6 +33,13 @@ Dir.glob("#{DOCS_PATH}/**/*").each do |doc|
 
     next if /^data:/.match?(image_path) # skip base64 images
 
+    # Is this an image owned by another doc?
+    existing_image_path = File.join(PANDOC_IMAGE_RESOURCE_PATH, image_path)
+    if File.exists?(existing_image_path)
+      expected_image_paths.add(existing_image_path)
+      next
+    end
+
     image_uri_path = URI.parse(image_path).path # strip query params if present
     extension = File.extname(image_uri_path)
     # Remove misc unwanted characters.
@@ -43,7 +50,7 @@ Dir.glob("#{DOCS_PATH}/**/*").each do |doc|
 
     next if File.exists?(expected_image_path)
 
-    # If the link isn't a URL, its expected home the Desktop.
+    # If the link isn't a URL, its expected home is the Desktop.
     uri = /^http/.match?(image_path) ? image_path : File.join("#{Dir.home}/Desktop", image_path)
 
     tmpfile = Tempfile.new
