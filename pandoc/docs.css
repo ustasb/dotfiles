@@ -15,23 +15,39 @@
     margin: 1em 0;
   }
 
+  /* === headings === {{{ */
+
   h1, h2, h3, h4, h5, h6 {
-    margin: 0;
+    margin: 1.2em 0 0.4em 0;
     padding: 0;
   }
-  h1, h2, h3 {
-    margin-top: 1.5em;
-    padding-left: 0.5em;
-    padding-bottom: 0.5em;
+
+  h1 {
+    padding-bottom: 0.4em;
     border-bottom: 1px solid black;
   }
-  h1 { font-size: 130%; }
-  h2 { font-size: 120%; }
-  h3 { font-size: 110%; }
+
+  h1 { font-size: 148%; }
+  h2 { font-size: 136%; }
+  h3 { font-size: 124%; }
   h4, h5, h6 {
-    font-size: 100%;
+    font-size: 112%;
     font-style: italic;
   }
+
+  /* Pound marks for indicating header depth. */
+  h1:after, h2:after, h3:after, h4:after, h5:after, h6:after {
+    float: right;
+    color: #ECECEC;
+  }
+  h1:after { content: '#'; }
+  h2:after { content: '##'; }
+  h3:after { content: '###'; }
+  h4:after { content: '####'; }
+  h5:after { content: '#####'; }
+  h6:after { content: '######'; }
+
+  /* }}} */
 
   hr {
     border: 0;
