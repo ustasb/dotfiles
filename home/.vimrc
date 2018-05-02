@@ -222,6 +222,7 @@
 
   " GUI
   if has('gui_running')
+    set antialias
     set linespace=1 " line height
     set guifont=SF\ Mono\ Regular:h13
     " remove toolbar, menubar and scrollbar
