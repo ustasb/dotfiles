@@ -318,6 +318,11 @@
   " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
   xnoremap p "_dP
 
+  if has('nvim')
+    " Neovim terminal
+    tnoremap jk <C-\><C-n>
+  endif
+
 " }}}
 
 " === Prose === {{{
