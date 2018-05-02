@@ -63,8 +63,13 @@ task :update_vim_plugins => [:install_config_files] do
   log "Done updating Vim plugins!"
 end
 
+task :define_term_capabilities do
+  `/bin/sh #{DOTFILES_DIR}/scripts/fix_term.sh`
+  log "~/.terminfo/ created! Restart tmux and/or your shell."
+end
+
 desc 'Install all config files to $HOME and install Vim plugins forcefully.'
-task :install => [:install_config_files, :install_vim_plugins]
+task :install => [:define_term_capabilities, :install_config_files, :install_vim_plugins]
 
 desc 'Install all config files to $HOME and only update outdated Vim plugins.'
 task :update => [:install_config_files, :update_vim_plugins]
