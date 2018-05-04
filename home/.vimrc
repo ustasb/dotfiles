@@ -39,7 +39,6 @@
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
     Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'text'] }
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-    Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
     " search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -709,13 +708,11 @@
     " Show the vertical splits.
     setlocal fillchars=vert:│
     highlight! link VertSplit GruvboxBg1
-    Limelight 0.6
   endfunction
   function! s:goyo_leave()
     " HACK: Without, after leaving Goyo, my fzf statusline
     " customizations are replaced by the lightline statusline.
     autocmd! FileType fzf doautocmd User FzfStatusLine
-    Limelight!
   endfunction
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
   autocmd! User GoyoLeave nested call <SID>goyo_leave()
