@@ -454,6 +454,7 @@
     let interpreter = &filetype == 'ruby' ? 'ruby' :
       \ &filetype == 'python' ? 'python3' :
       \ &filetype == 'javascript' ? 'node' :
+      \ &filetype == 'javascript.jsx' ? 'node' :
       \ &filetype == 'sh' ? 'bash' : ''
 
     if interpreter == ''
