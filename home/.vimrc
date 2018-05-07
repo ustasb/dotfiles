@@ -365,7 +365,7 @@
 
     if expand('%:t') == 'todo.md'
       setlocal textwidth=0
-      command! -buffer Done call LogCompletedTask()
+      command! -buffer -nargs=* Done call LogCompletedTask(<f-args>)
     end
   endfunction
 
@@ -516,7 +516,7 @@
   endfunction
 
   " Timestamp, log and delete the task at the cursor.
-  function! LogCompletedTask()
+  function! LogCompletedTask(...)
     let task = getline('.')
     " remove list markers
     let task = substitute(task, '^\s*[-+]\s*', '', '')
@@ -524,7 +524,9 @@
     let task = substitute(task, '\s*$', '', '')
 
     " ISO8601
-    let timestamp = strftime('%FT%T%z')
+    let days_ago = (a:0 == 0) ? 0 : a:1
+    let epoch_secs = system('date -v-' . days_ago . 'd +%s')
+    let timestamp = strftime('%FT%T%z', epoch_secs)
     let json = json_encode({ 'task': task, 'timestamp': timestamp })
 
     " log the task
