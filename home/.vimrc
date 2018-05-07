@@ -452,7 +452,7 @@
   " Execute the current file with the correct interpreter.
   function! ExecuteFile()
     let interpreter = &filetype == 'ruby' ? 'ruby' :
-      \ &filetype == 'python' ? 'python3' :
+      \ &filetype == 'python' ? 'python' :
       \ &filetype == 'javascript' ? 'node' :
       \ &filetype == 'javascript.jsx' ? 'node' :
       \ &filetype == 'sh' ? 'bash' : ''
