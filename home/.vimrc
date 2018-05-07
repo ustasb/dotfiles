@@ -565,6 +565,7 @@
   " https://kapeli.com/dash_guide#searchProfiles
   function! OpenInDash()
     let g:ft_dash_profile_map = get(g:, 'ft_dash_profile_map', {
+      \ 'vim'            : 'vim',
       \ 'python'         : 'py',
       \ 'ruby'           : 'rb',
       \ 'javascript'     : 'js',
