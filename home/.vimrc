@@ -820,6 +820,13 @@
   nnoremap <silent> q: :FzfHistory:<CR>
   " }}}
 
+  " auto-pairs {{{
+  let g:AutoPairsShortcutToggle = '' " disable
+  let g:AutoPairsMapCh = 0
+  let g:AutoPairsMapSpace = 0
+  let g:AutoPairsCenterLine = 0
+  " }}}
+
   " vim-mucomplete {{{
   let g:mucomplete#enable_auto_at_startup = 0
   let g:mucomplete#buffer_relative_paths = 1
