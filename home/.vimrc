@@ -380,6 +380,7 @@
 
   set wildmenu
   set wildmode=list:longest,list:full
+  set wildignore+=*.csv,*.tsv,*.json
   set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
   set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
