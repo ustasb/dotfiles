@@ -476,13 +476,6 @@
   command! J call TodaysJournalEntry(0)
   command! JE call TodaysJournalEntry(1)
 
-  " Quit Vim if the last buffer is a quickfix window.
-  function! QuitVimIfAppropriate()
-    if winnr("$") == 1 && (&buftype == "quickfix")
-      quit!
-    endif
-  endfunction
-
   " Convert Pandoc markdown to Github flavored markdown.
   function! PandocMarkdownToGFM()
     if &filetype == "markdown"
@@ -630,7 +623,6 @@
   augroup AG_Misc
     autocmd!
 
-    autocmd BufEnter * call QuitVimIfAppropriate()
     autocmd BufEnter * call ToggleAutoComplete()
 
     autocmd BufReadPost * call ResetCursorPosition()
