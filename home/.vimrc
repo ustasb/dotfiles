@@ -63,6 +63,7 @@
     Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
     " python
+    Plug 'vim-python/python-syntax', { 'for': 'python' }
     Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
     " misc
@@ -883,6 +884,12 @@
     endif
   endfunction
   inoremap <silent> <CR> <C-r>=<SID>SmartCR()<CR>
+  " }}}
+
+  " python-syntax {{{
+  let g:python_highlight_all = 1
+  let g:python_highlight_space_errors = 0
+  let g:python_highlight_indent_errors = 0
   " }}}
 
   " jedi.vim {{{
