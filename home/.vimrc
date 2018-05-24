@@ -830,15 +830,7 @@
   " vim-mucomplete {{{
   let g:mucomplete#enable_auto_at_startup = 0
   let g:mucomplete#buffer_relative_paths = 1
-
-  " Conflicts with my c-e (beginning-of-line) mapping.
-  let g:mucomplete#no_popup_mappings = 1
-  " Hack: Without, if you type 'Monday' and 'Monday' is automatically
-  " suggested by mu-complete, and then press ENTER without selecting the
-  " suggestion, 'nday' will be chopped from 'Monday'. It only happens when
-  " autocomplete is enabled and completeopt=noselect. This hack exits the
-  " completion window via ESC, if visible, when ENTER is pressed.
-  inoremap <expr> <CR> pumvisible() ? ("\<Esc>a" . mucomplete#popup_exit("\<CR>")) : mucomplete#popup_exit("\<CR>")
+  let g:mucomplete#no_popup_mappings = 1 " Conflicts with my C-e (beginning-of-line) mapping.
 
   " max number of suggestions
   set pumheight=15
@@ -866,8 +858,31 @@
 
   " c-h or c-j to cycle through completion modes (once the popup menu is open).
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
-  imap <C-h> <plug>(MUcompleteCycBwd)
-  inoremap <silent> <plug>(MUcompleteBwdKey) <C-h>
+  imap <C-h> <Plug>(MUcompleteCycBwd)
+  inoremap <silent> <Plug>(MUcompleteBwdKey) <C-h>
+
+  function! s:SmartCR()
+    if pumvisible()
+      if empty(v:completed_item) " Nothing selected?
+        " Hack: Without, if you type 'Monday' and 'Monday' is automatically
+        " suggested by mu-complete, and then press ENTER without selecting the
+        " suggestion, 'nday' will be chopped from 'Monday'. It only happens
+        " when autocomplete is enabled and completeopt=noselect. This hack
+        " first exits the completion window via Escape.
+        return "\<Esc>a" . mucomplete#popup_exit("\<CR>")
+      else
+        let snippet = UltiSnips#ExpandSnippet()
+        if g:ulti_expand_res > 0
+          return snippet
+        else
+          return mucomplete#popup_exit("\<CR>")
+        endif
+      endif
+    else
+      return "\<CR>"
+    endif
+  endfunction
+  inoremap <silent> <CR> <C-r>=<SID>SmartCR()<CR>
   " }}}
 
   " jedi.vim {{{
@@ -891,7 +906,7 @@
 
   " UltiSnips {{{
   " c-j is reserved for mucomplete.
-  let g:UltiSnipsExpandTrigger = '<C-Space>'
+  let g:UltiSnipsExpandTrigger = '<Nop>' " see SmartCR
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
