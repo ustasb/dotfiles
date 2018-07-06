@@ -65,6 +65,7 @@
     " python
     Plug 'vim-python/python-syntax', { 'for': 'python' }
     Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+    Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 
     " misc
     Plug 'w0rp/ale', { 'on': 'ALEToggle' }
