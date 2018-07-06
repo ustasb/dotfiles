@@ -21,6 +21,9 @@ bower_components
 spec/cassettes
 vendor/bundle
 
+# Python
+*.pyc
+
 # images
 *.tif
 *.tiff
