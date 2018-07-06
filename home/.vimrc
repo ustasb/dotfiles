@@ -906,7 +906,7 @@
 
   " UltiSnips {{{
   " c-j is reserved for mucomplete.
-  let g:UltiSnipsExpandTrigger = '<Nop>' " see SmartCR
+  let g:UltiSnipsExpandTrigger = '<C-Space>'
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
