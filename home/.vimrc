@@ -842,6 +842,7 @@
   let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'omni', 'ulti']
   let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
   let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
+  let g:mucomplete#chains.python   = ['path', 'c-p', 'tags', 'ulti']
 
   " Ruby/Python: Trigger completion after period (e.g. `obj.`).
   let s:py_rb_omni_cond = { t -> t =~# '\m\k\%(\k\|\.\)$' }
