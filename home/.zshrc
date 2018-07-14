@@ -302,6 +302,10 @@
     else
       printf "\033[1;31m\n\`ustasb_encrypted\` Cryptomator drive not mounted!\n\033[0m"
     fi
+
+    if [ -f ~/.shell_quote ]; then
+      echo -e "\n\e[3;30m $(cat ~/.shell_quote)\e[0m"
+    fi
   }
 
   # Prefer tmux windows over iTerm tabs and windows.
