@@ -19,7 +19,7 @@ bu_back_up_system() {
 # (Really don't fully trust Cryptomator yet. :D)
 bu_create_small_s3_backup() {
   backup_dir=$HOME/backups
-  backup_folder="backup-$(date '+%Y-%m-%d_%H-%M-%S')"
+  backup_folder="backup-$(date '+%Y-%m-%d_%H-%M-%S_%Z')"
   backup_path="$backup_dir/$backup_folder"
 
   mkdir -p $backup_path
@@ -44,7 +44,7 @@ bu_create_small_s3_backup() {
 
 # Back up Brian's documents via Git.
 bu_back_up_docs() {
-  bu_encrypt_journal_entries
+  bu_encrypt_journal
 
   tmp_dir=$(mktemp -d)
   if [ ! -d $tmp_dir ]; then
@@ -103,13 +103,13 @@ bu_customize_finder_sidebar() {
 
 # Build my complete journal.
 bu_build_full_journal() {
-  bu_encrypt_journal_entries
+  bu_encrypt_journal
   ruby ~/dotfiles/scripts/build_full_journal.rb
 }
 
 # Encrypt unencrypted journal entries.
-bu_encrypt_journal_entries() {
-  for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/entries/*.md; do
+bu_encrypt_journal() {
+  for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/{entries/*.md,voice_memos/*.ogg}; do
     # Does the file exist?
     # https://stackoverflow.com/a/43606356/1575238
     if [ -e $entry ]; then
@@ -211,4 +211,31 @@ bu_slideshow() {
 bu_ebooks() {
   (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/ebooks && \
     open "$(find . -name '*.pdf' | fzf --height 30%)")
+}
+
+# Records a voice memo with `sox`.
+# `bu_voice_memo <optional-title>`
+# http://sox.sourceforge.net
+bu_voice_memo() {
+  tmp_path=$TMPDIR$(date '+%Y-%m-%d_%H-%M-%S_%Z')
+  if [ -n "$*" ]; then
+    title="${*// /_}"
+    tmp_path=$tmp_path"__"$title
+  fi
+  tmp_path=$tmp_path".ogg"
+
+  echo "Recording! Press Ctrl-C to stop."
+  sox --default-device --no-show-progress $tmp_path
+
+  # Reason for \r: https://unix.stackexchange.com/a/26578
+  echo -n "\rDo you want to save that recording? [y/n] "
+  read answer
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    out_path="$USTASB_DOCS_DIR_PATH/ustasb/journal/voice_memos/$(basename $tmp_path)"
+    mv $tmp_path $out_path
+    echo "Saved! Destination: $out_path"
+  else
+    rm $tmp_path
+    echo "Destroyed!"
+  fi
 }
