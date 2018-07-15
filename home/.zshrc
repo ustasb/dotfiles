@@ -304,7 +304,7 @@
     fi
 
     if [ -f ~/.shell_quote ]; then
-      echo -e "\n\e[3;30m $(cat ~/.shell_quote)\e[0m"
+      echo -e "\n\e[3;30m$(cat ~/.shell_quote)\e[0m"
     fi
   }
 
