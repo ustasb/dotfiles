@@ -772,7 +772,7 @@
   " pip install pylint
   let g:ale_linters = {
     \ 'markdown': ['mdl', 'proselint'],
-    \ 'python': ['pylint'],
+    \ 'python': ['flake8'],
     \ }
   " }}}
 
