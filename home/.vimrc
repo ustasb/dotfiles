@@ -68,7 +68,7 @@
     Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 
     " misc
-    Plug 'w0rp/ale', { 'on': 'ALEToggle' }
+    Plug 'w0rp/ale'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown'
@@ -762,16 +762,17 @@
   " }}}
 
   " ALE {{{
-  nnoremap <Leader>l :ALEToggle<CR>
-  let g:ale_enabled = 0
+  let g:ale_enabled = 1
   let g:ale_completion_enabled = 0
   let g:ale_sign_error = '✖' " ✘
   let g:ale_sign_warning = '✦' " ⚑
-  " gem install mdl
-  " pip install proselint
-  " pip install pylint
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_enter = 1
+  let g:ale_lint_on_text_changed = 0
+  let g:ale_lint_on_filetype_changed = 1
+  let g:ale_linters_explicit = 1
   let g:ale_linters = {
-    \ 'markdown': ['mdl', 'proselint'],
+    \ 'javascript': ['eslint'],
     \ 'python': ['flake8'],
     \ }
   " }}}
