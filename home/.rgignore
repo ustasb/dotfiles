@@ -7,6 +7,7 @@ log
 tags
 tmp
 plugins
+cache
 
 # Node.js
 node_modules
