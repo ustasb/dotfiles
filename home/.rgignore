@@ -44,3 +44,4 @@ vendor/bundle
 *.pdf
 *.gpg
 *.DS_Store
+*.h5
