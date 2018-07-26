@@ -72,7 +72,7 @@
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown'
-    Plug 'justinmk/vim-dirvish'
+    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
@@ -472,7 +472,9 @@
   function! TodaysJournalEntry(encrypt)
     let journal_entry_dir = $USTASB_DOCS_DIR_PATH . '/ustasb/journal/entries/'
     let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.asc' : '')
-    exec 'e ' . entry_path
+    " `resolve` to follow symbolic links.
+    " Quiets NERDTree's findAndRevealPath exception.
+    exec 'e ' . resolve(entry_path)
   endfunction
   command! J call TodaysJournalEntry(0)
   command! JE call TodaysJournalEntry(1)
@@ -669,8 +671,16 @@
   let g:rspec_command = 'call VimuxRunCommand("bundle exec rspec {spec}")'
   " }}}
 
-  " dirvish.vim {{{
-  let g:dirvish_mode = ':sort ,^.*[\/],' " directories first
+  " NERD Tree {{{
+  let g:NERDTreeIgnore = ['\.o$', '.DS_Store', 'Icon', '__pycache__']
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeShowHidden = 1
+  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTreeWinSize = 30
+  let g:NERDTreeStatusline = '​' " zero width space
+  let g:NERDTreeMapActivateNode = '<Space>'
+  nnoremap <C-n> :NERDTreeToggle<CR>
+  nnoremap <Leader>g :NERDTreeFind<CR>
   " }}}
 
   " Vim Signify {{{
@@ -957,7 +967,7 @@
 
   function! LightlineMode()
     let fname = expand('%:t')
-    return &filetype == 'dirvish' ? '' :
+    return &filetype == 'nerdtree' ? '' :
       \ &filetype == 'tagbar' ? '' :
       \ &filetype == 'qf' ? '' :
       \ &filetype == 'fzf' ? '' :
@@ -966,7 +976,7 @@
 
   function! LightlineFilename()
     let fname = expand('%:t')
-    return &filetype == 'dirvish' ? 'Dirvish' :
+    return &filetype == 'nerdtree' ? 'NERDTree' :
       \ &filetype == 'tagbar' ? 'Tagbar' :
       \ &filetype == 'qf' ? 'QuickFix' :
       \ &filetype == 'fzf' ? 'fzf' :
