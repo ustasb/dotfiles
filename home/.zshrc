@@ -291,9 +291,14 @@
 
     # Things to happen after booting.
     # OS X cleans this directory upon shutdown.
-    if [ ! -f /tmp/machine_booted ]; then
-      touch /tmp/machine_booted
-      bu_customize_finder_sidebar
+    if [ ! -f /tmp/bu_machine_booted ]; then
+      touch /tmp/bu_machine_booted
+
+      bu_customize_finder_sidebar &> /dev/null
+
+      if [ -f ~/.shell_quote ]; then
+        echo -e "\n\e[3;32m$(cat ~/.shell_quote)\e[0m"
+      fi
     fi
 
     if [ -d $USTASB_UNENCRYPTED_DIR_PATH ]; then
@@ -301,10 +306,6 @@
       ln -sfn $USTASB_UNENCRYPTED_DIR_PATH/documents $HOME/ustasb_documents
     else
       printf "\033[1;31m\n\`ustasb_encrypted\` Cryptomator drive not mounted!\n\033[0m"
-    fi
-
-    if [ -f ~/.shell_quote ]; then
-      echo -e "\n\e[3;32m$(cat ~/.shell_quote)\e[0m"
     fi
   }
 
