@@ -230,6 +230,9 @@
 
 # === GPG + SSH === {{{
 
+  # The remote system might not have TERM=tmux-256color in its database.
+  alias ssh="TERM=xterm-256color ssh"
+
   start_gpg_agent() {
     # Launch gpg-agent
     gpg-connect-agent /bye
