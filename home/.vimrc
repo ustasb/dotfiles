@@ -442,6 +442,8 @@
   command! SudoSave call SudoSaveFile()
 
   function! RefreshAllBuffers()
+    " Temporarily disable syntax highlighting to speed things up.
+    syntax off
     let currBuff = bufnr("%")
     " refresh buffers
     execute 'silent! bufdo e!'
