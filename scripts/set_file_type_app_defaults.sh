@@ -20,6 +20,8 @@ duti -s org.vim.MacVim .key all
 duti -s org.vim.MacVim .log all
 duti -s org.vim.MacVim .conf all
 
+duti -s com.antonycourtney.tad .csv all
+
 duti -s com.google.Chrome .svg all
 
 duti -s com.apple.Preview .pdf all
