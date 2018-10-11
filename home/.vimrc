@@ -542,20 +542,6 @@
     echomsg 'Task Done! ' . json
   endfunction
 
-  function! ToggleAutoComplete()
-    if exists(':MUcompleteAutoOn') == 0
-      return
-    endif
-
-    if &filetype == 'markdown'
-      set completeopt-=noselect
-      MUcompleteAutoOff
-    else
-      set completeopt+=noselect
-      MUcompleteAutoOn
-    end
-  endfunction
-
   function! RenderMarkdownInChrome()
     call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb'
       \ . ' --input ' . expand('%:p')
@@ -628,8 +614,6 @@
 
   augroup AG_Misc
     autocmd!
-
-    autocmd BufEnter * call ToggleAutoComplete()
 
     autocmd BufReadPost * call ResetCursorPosition()
 
@@ -836,9 +820,10 @@
   " }}}
 
   " vim-mucomplete {{{
-  let g:mucomplete#enable_auto_at_startup = 0
+  let g:mucomplete#enable_auto_at_startup = 1
   let g:mucomplete#buffer_relative_paths = 1
   let g:mucomplete#no_popup_mappings = 1 " Conflicts with my C-e (beginning-of-line) mapping.
+  let g:mucomplete#completion_delay = 200
 
   " max number of suggestions
   set pumheight=15
@@ -869,29 +854,6 @@
   " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
   imap <C-h> <Plug>(MUcompleteCycBwd)
   inoremap <silent> <Plug>(MUcompleteBwdKey) <C-h>
-
-  function! s:SmartCR()
-    if pumvisible()
-      if empty(v:completed_item) " Nothing selected?
-        " Hack: Without, if you type 'Monday' and 'Monday' is automatically
-        " suggested by mu-complete, and then press ENTER without selecting the
-        " suggestion, 'nday' will be chopped from 'Monday'. It only happens
-        " when autocomplete is enabled and completeopt=noselect. This hack
-        " first exits the completion window via Escape.
-        return "\<Esc>a" . mucomplete#popup_exit("\<CR>")
-      else
-        let snippet = UltiSnips#ExpandSnippet()
-        if g:ulti_expand_res > 0
-          return snippet
-        else
-          return mucomplete#popup_exit("\<CR>")
-        endif
-      endif
-    else
-      return "\<CR>"
-    endif
-  endfunction
-  inoremap <silent> <CR> <C-r>=<SID>SmartCR()<CR>
   " }}}
 
   " python-syntax {{{
