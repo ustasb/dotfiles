@@ -138,7 +138,6 @@
   alias tmuxk='tmux kill-server'
   alias pt="ptpython"
   alias jp="jupyter notebook"
-  alias jl="jupyter lab"
 
 # }}}
 
@@ -314,7 +313,7 @@
 
   # Prefer tmux windows over iTerm tabs and windows.
   # I've told iTerm to ignore Command-T and Command-N.
-  if [ $TERM_PROGRAM == 'iTerm.app' ]; then
+  if [ "$TERM_PROGRAM" == 'iTerm.app' ]; then
     # If not in tmux yet...
     if [ -z "$TMUX" ]; then
       # Create or attach to the 'ustasb' tmux session.
