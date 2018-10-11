@@ -53,6 +53,7 @@
 
     " web
     Plug 'othree/html5-syntax.vim', { 'for': 'html' }
+    Plug 'JulesWang/css.vim', { 'for': 'css' }
     Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
