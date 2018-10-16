@@ -13,6 +13,8 @@
 --exclude=*.xml
 --exclude=*.yml
 --exclude=*.html
+--exclude=*.css
+--exclude=*.min.js
 --exclude=*.csv
 --exclude=*.tsv
 --exclude=*.json
