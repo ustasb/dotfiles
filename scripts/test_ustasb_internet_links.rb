@@ -62,7 +62,10 @@ def build_url_test_data
 
   data << %w{ http://brianustas.com/robots.txt 200 }
   data << %w{ http://brianustas.com/keybase.txt 200 }
-  data << %w{ http://brianustas.com/brian_ustas_resume.pdf 200 }
+  data << %w{ http://brianustas.com/resume 200 }
+  data << %w{ http://brianustas.com/resume.pdf 301 200 http://brianustas.com/resume } # legacy
+  data << %w{ http://brianustas.com/portfolio 200 }
+  data << %w{ http://brianustas.com/brian-ustas-resume.pdf 200 }
 
   data.sort.map do |d|
     ret = {
