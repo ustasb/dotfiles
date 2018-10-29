@@ -585,20 +585,8 @@
     e $USTASB_DOCS_DIR_PATH/ustasb/todo.md
 
     if !is_open
-      " Fold everything except Tasks and Today.
-      call ToggleAllFolds()
-
-      call search('^# Overview', 'cw')
-      normal zo
-      call search('^## Q2', 'cw')
-      normal zA
-      call search('^# This Week', 'cw')
-      normal zo
-      call search('^## Tasks', 'cw')
-      normal zA
       call search('^## Today', 'cw')
-      normal zA
-      " center the cursor
+      " center vertically
       normal zz
     endif
   endfunction
