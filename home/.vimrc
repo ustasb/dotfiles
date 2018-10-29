@@ -367,6 +367,12 @@
 
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
 
+    " YAML frontmatter (Jekyll)
+    silent! unlet b:current_syntax
+    syntax include @yaml syntax/yaml.vim
+    syntax region yamlfrontmatter start=/\%^---$/ end=/^---$/ keepend contains=@yaml
+    let b:current_syntax = &filetype
+
     if expand('%:t') == 'todo.md'
       setlocal textwidth=0
       command! -buffer -nargs=* Done call LogCompletedTask(<f-args>)
