@@ -8,12 +8,16 @@ def build_url_test_data
   # format: [<test-url> <...expected-http-codes> <expected-final-redirect-url>?]
 
   # officesnake.com
-  data << %w{ http://officesnake.com     200 }
-  data << %w{ http://www.officesnake.com 301 200 http://officesnake.com/ }
+  data << %w{ http://officesnake.com      301 200 https://officesnake.com/ }
+  data << %w{ http://www.officesnake.com  301 200 https://officesnake.com/ }
+  data << %w{ https://officesnake.com     200 }
+  data << %w{ https://www.officesnake.com 301 200 https://officesnake.com/ }
 
   # pandify.com
-  data << %w{ http://pandify.com     200 }
-  data << %w{ http://www.pandify.com 301 200 http://pandify.com/ }
+  data << %w{ http://pandify.com      301 200 https://pandify.com/ }
+  data << %w{ http://www.pandify.com  301 200 https://pandify.com/ }
+  data << %w{ https://pandify.com     200 }
+  data << %w{ https://www.pandify.com 301 200 https://pandify.com/ }
 
   # hitpic.me
   # This app is hosted by Heroku. I don't have access to the reverse proxy config.
@@ -22,50 +26,54 @@ def build_url_test_data
   data << %w{ http://hitpic.me      302 200 http://www.hitpic.me }
 
   # ustasb.com
-  data << %w{ http://ustasb.com     301 200 http://brianustas.com/ }
-  data << %w{ http://www.ustasb.com 301 200 http://brianustas.com/ }
+  data << %w{ http://ustasb.com      301 200 https://brianustas.com/ }
+  data << %w{ http://www.ustasb.com  301 200 https://brianustas.com/ }
+  data << %w{ https://ustasb.com     301 200 https://brianustas.com/ }
+  data << %w{ https://www.ustasb.com 301 200 https://brianustas.com/ }
 
   # brianustas.com
-  data << %w{ http://brianustas.com     200 }
-  data << %w{ http://www.brianustas.com 301 200 http://brianustas.com/ }
+  data << %w{ http://brianustas.com      301 200 https://brianustas.com/ }
+  data << %w{ http://www.brianustas.com  301 200 https://brianustas.com/ }
+  data << %w{ https://brianustas.com     200 }
+  data << %w{ https://www.brianustas.com 301 200 https://brianustas.com/ }
 
-  data << %w{ http://brianustas.com/campus-safety-dashboard/  200 }
-  data << %w{ http://brianustas.com/campus-safety-dashboard   301 200 http://brianustas.com/campus-safety-dashboard/ }
-  data << %w{ http://brianustas.com/knightly-demo/            301 200 http://brianustas.com/campus-safety-dashboard/ } # legacy
-  data << %w{ http://brianustas.com/knightly-demo             301 200 http://brianustas.com/campus-safety-dashboard/ } # legacy
+  data << %w{ https://brianustas.com/campus-safety-dashboard/  200 }
+  data << %w{ https://brianustas.com/campus-safety-dashboard   301 200 https://brianustas.com/campus-safety-dashboard/ }
+  data << %w{ https://brianustas.com/knightly-demo/            301 200 https://brianustas.com/campus-safety-dashboard/ } # legacy
+  data << %w{ https://brianustas.com/knightly-demo             301 200 https://brianustas.com/campus-safety-dashboard/ } # legacy
 
-  data << %w{ http://brianustas.com/where-in-the-world/ 200 }
-  data << %w{ http://brianustas.com/where-in-the-world  301 200 http://brianustas.com/where-in-the-world/ }
-  data << %w{ http://brianustas.com/whereintheworld/    301 200 http://brianustas.com/where-in-the-world/ } # legacy
-  data << %w{ http://brianustas.com/whereintheworld     301 200 http://brianustas.com/where-in-the-world/ } # legacy
+  data << %w{ https://brianustas.com/where-in-the-world/ 200 }
+  data << %w{ https://brianustas.com/where-in-the-world  301 200 https://brianustas.com/where-in-the-world/ }
+  data << %w{ https://brianustas.com/whereintheworld/    301 200 https://brianustas.com/where-in-the-world/ } # legacy
+  data << %w{ https://brianustas.com/whereintheworld     301 200 https://brianustas.com/where-in-the-world/ } # legacy
 
-  data << %w{ http://brianustas.com/emoji-soup/ 200 }
-  data << %w{ http://brianustas.com/emoji-soup  301 200 http://brianustas.com/emoji-soup/ }
-  data << %w{ http://brianustas.com/emojisoup/  301 200 http://brianustas.com/emoji-soup/ } # legacy
-  data << %w{ http://brianustas.com/emojisoup   301 200 http://brianustas.com/emoji-soup/ } # legacy
+  data << %w{ https://brianustas.com/emoji-soup/ 200 }
+  data << %w{ https://brianustas.com/emoji-soup  301 200 https://brianustas.com/emoji-soup/ }
+  data << %w{ https://brianustas.com/emojisoup/  301 200 https://brianustas.com/emoji-soup/ } # legacy
+  data << %w{ https://brianustas.com/emojisoup   301 200 https://brianustas.com/emoji-soup/ } # legacy
 
-  data << %w{ http://brianustas.com/free-donut/ 200 }
-  data << %w{ http://brianustas.com/free-donut  301 200 http://brianustas.com/free-donut/ }
-  data << %w{ http://brianustas.com/freedonut/  301 200 http://brianustas.com/free-donut/ } # legacy
-  data << %w{ http://brianustas.com/freedonut   301 200 http://brianustas.com/free-donut/ } # legacy
+  data << %w{ https://brianustas.com/free-donut/ 200 }
+  data << %w{ https://brianustas.com/free-donut  301 200 https://brianustas.com/free-donut/ }
+  data << %w{ https://brianustas.com/freedonut/  301 200 https://brianustas.com/free-donut/ } # legacy
+  data << %w{ https://brianustas.com/freedonut   301 200 https://brianustas.com/free-donut/ } # legacy
 
-  data << %w{ http://brianustas.com/cubecraft/  200 }
-  data << %w{ http://brianustas.com/cubecraft   301 200 http://brianustas.com/cubecraft/ }
+  data << %w{ https://brianustas.com/cubecraft/  200 }
+  data << %w{ https://brianustas.com/cubecraft   301 200 https://brianustas.com/cubecraft/ }
 
-  data << %w{ http://brianustas.com/infinite-jest-music/  200 }
-  data << %w{ http://brianustas.com/infinite-jest-music   301 200 http://brianustas.com/infinite-jest-music/ }
+  data << %w{ https://brianustas.com/infinite-jest-music/  200 }
+  data << %w{ https://brianustas.com/infinite-jest-music   301 200 https://brianustas.com/infinite-jest-music/ }
 
-  data << %w{ http://brianustas.com/office-snake/ 301 200 http://officesnake.com }
-  data << %w{ http://brianustas.com/office-snake  301 200 http://officesnake.com }
-  data << %w{ http://brianustas.com/officesnake/  301 200 http://officesnake.com } # legacy
-  data << %w{ http://brianustas.com/officesnake   301 200 http://officesnake.com } # legacy
+  data << %w{ https://brianustas.com/office-snake/ 301 200 https://officesnake.com }
+  data << %w{ https://brianustas.com/office-snake  301 200 https://officesnake.com }
+  data << %w{ https://brianustas.com/officesnake/  301 200 https://officesnake.com } # legacy
+  data << %w{ https://brianustas.com/officesnake   301 200 https://officesnake.com } # legacy
 
-  data << %w{ http://brianustas.com/robots.txt 200 }
-  data << %w{ http://brianustas.com/keybase.txt 200 }
-  data << %w{ http://brianustas.com/resume 200 }
-  data << %w{ http://brianustas.com/resume.pdf 301 200 http://brianustas.com/resume } # legacy
-  data << %w{ http://brianustas.com/portfolio 200 }
-  data << %w{ http://brianustas.com/brian-ustas-resume.pdf 200 }
+  data << %w{ https://brianustas.com/robots.txt 200 }
+  data << %w{ https://brianustas.com/keybase.txt 200 }
+  data << %w{ https://brianustas.com/resume 200 }
+  data << %w{ https://brianustas.com/resume.pdf 301 200 https://brianustas.com/resume } # legacy
+  data << %w{ https://brianustas.com/portfolio 200 }
+  data << %w{ https://brianustas.com/brian-ustas-resume.pdf 200 }
 
   data.sort.map do |d|
     ret = {
@@ -74,7 +82,7 @@ def build_url_test_data
     }
 
     # Was a redirect URL provided?
-    if (/^http:/ =~ d.last) == 0
+    if (/^https?:/ =~ d.last) == 0
       ret[:final_redirect_url] = ret[:http_codes].pop
     end
 
