@@ -58,7 +58,6 @@
     Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'chr4/nginx.vim', { 'for' : 'nginx' }
-    Plug 'tpope/vim-liquid', { 'for': ['html', 'markdown'] }
 
     " ruby
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
