@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>$pagetitle$</title>
+
+    <script type="text/javascript">
+      // Lazy load to prevent Pandoc's "self-contained" from embedding these links.
+      var urls = [
+        "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro:400|Source+Serif+Pro:600",
+        "https://brianustas.com/assets/css/main.css",
+      ];
+      for (var i = 0; i < urls.length; i++) {
+        var l = document.createElement("link");
+        l.rel = "stylesheet";
+        l.href = urls[i];
+        document.getElementsByTagName("head")[0].appendChild(l);
+      }
+    </script>
+
+    <style type="text/css">
+      $highlighting-css$
+    </style>
+
+    $for(css)$
+      <link rel="stylesheet" href="$css$">
+    $endfor$
+  </head>
+  <body>
+    <div class="post">
+      $if(title)$
+        <h1 class="title">$title$</h1>
+      $endif$
+
+      $if(toc)$
+        <nav id="table-of-contents">
+          $table-of-contents$
+        </nav>
+      $endif$
+
+<!-- Eliminating whitespace before `body` helps `pre` tags render properly. -->
+$body$
+    </div>
+
+    <script type="text/javascript"> // MathJax
+      // Lazy load to prevent Pandoc's "self-contained" from embedding MathJax.
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("body")[0].appendChild(s);
+    </script>
+  </body>
+</html>

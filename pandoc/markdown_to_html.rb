@@ -48,9 +48,9 @@ def main
       --to=html5
       --self-contained
       --table-of-contents
-      --mathjax="#{Dir.home}/dotfiles/pandoc/mathjax.js"
-      --css #{Dir.home}/dotfiles/pandoc/normalize.css
+      --template="#{Dir.home}/dotfiles/pandoc/html_template.html"
       --css #{Dir.home}/dotfiles/pandoc/docs.css
+      --mathjax=""
       --resource-path #{ENV['USTASB_DOCS_IMAGE_DIR_PATH']}:#{Dir.home}/Desktop
       --output #{Shellwords.escape($argv[:output_path])}
       #{Shellwords.escape($argv[:input_path])}
