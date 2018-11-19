@@ -5,8 +5,8 @@
 /* === Pandoc === {{{ */
 
 #table-of-contents {
-  padding-top: 10px;
-  margin-bottom: 20px;
+  padding-top: 16px;
+  margin-bottom: 16px;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
 }
