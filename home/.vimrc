@@ -693,7 +693,7 @@
   " Goyo.vim {{{
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 100
-  let g:goyo_height = '95%'
+  let g:goyo_height = '80%'
   function! s:goyo_enter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
