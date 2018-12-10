@@ -551,7 +551,7 @@
   function! RenderMarkdownInChrome()
     call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb'
       \ . ' --input ' . expand('%:p')
-      \ . ' --output /tmp/pandoc-markdown-preview.html --open-in-chrome'
+      \ . ' --output /tmp/pandoc-markdown-preview.html --open-in-chrome --title-h1-only'
       \ )
   endfunction
 

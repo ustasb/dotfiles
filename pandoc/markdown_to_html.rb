@@ -2,6 +2,7 @@
 
 require 'optparse'
 require 'shellwords'
+require 'tempfile'
 
 $argv = {}
 
@@ -24,6 +25,10 @@ def parse_args
     opts.on('-c', '--open-in-chrome', 'open in Google Chrome') do
       $argv[:open_in_chrome] = true
     end
+
+    opts.on('--title-h1-only', 'Increase heading levels by 1. Only the title (% marker) becomes a h1.') do
+      $argv[:title_h1_only] = true
+    end
   end
 
   parser.parse!
@@ -42,6 +47,11 @@ end
 def main
   parse_args
 
+  temp_file = Tempfile.new  # Gets cleaned up automatically.
+  markdown = File.read($argv[:input_path])
+  markdown.gsub!(/^#/, '##') if $argv[:title_h1_only]
+  File.write(temp_file, markdown)
+
   md_to_html_cmd = <<-EOF
     pandoc
       --from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji
@@ -53,7 +63,7 @@ def main
       --mathjax=""
       --resource-path #{ENV['USTASB_DOCS_IMAGE_DIR_PATH']}:#{Dir.home}/Desktop
       --output #{Shellwords.escape($argv[:output_path])}
-      #{Shellwords.escape($argv[:input_path])}
+      #{Shellwords.escape(temp_file.path)}
   EOF
 
   cmd(md_to_html_cmd)
