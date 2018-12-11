@@ -109,7 +109,7 @@ bu_build_full_journal() {
 
 # Encrypt unencrypted journal entries.
 bu_encrypt_journal() {
-  for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/{entries/*.md,voice_memos/*.ogg}; do
+  for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/{entries/*.md,voice_memos/*.ogg,voice_memos/*.m4a}; do
     # Does the file exist?
     # https://stackoverflow.com/a/43606356/1575238
     if [ -e $entry ]; then
