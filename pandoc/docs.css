@@ -34,9 +34,8 @@ code.sourceCode {
 /* === print specific === {{{ */
 
 @media print {
-  body {
-    width: 700px;
-    font-size: 13px;
+  .post {
+    margin: 0;
   }
 
   #table-of-contents {
