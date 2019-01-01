@@ -61,6 +61,7 @@ def main
       --template="#{Dir.home}/dotfiles/pandoc/html_template.html"
       --css #{Dir.home}/dotfiles/pandoc/docs.css
       --mathjax=""
+      --highlight-style=haddock
       --resource-path #{ENV['USTASB_DOCS_IMAGE_DIR_PATH']}:#{Dir.home}/Desktop
       --output #{Shellwords.escape($argv[:output_path])}
       #{Shellwords.escape(temp_file.path)}
