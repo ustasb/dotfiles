@@ -100,6 +100,9 @@
   # export USTASB_DOCS_DIR_PATH=
   # export USTASB_DOCS_IMAGE_DIR_PATH=
 
+  # comma separated
+  # export USTASB_TODO_ITEM_TAGS=
+
   [ -f ~/.ustasbenv ] && source ~/.ustasbenv
 
 # }}}

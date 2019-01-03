@@ -366,6 +366,12 @@
 
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
 
+    " Help distinguish valid TODO item tags. Positive lookbehind: \@<=
+    " Supports tags separated by a comma.
+    let tag_regex = '\(^- \)\@<=\(,\?\(' . substitute($USTASB_TODO_ITEM_TAGS, ',', '\\|', 'g') . '\)\)\+:'
+    silent exec("syntax match TODOItemTag '" . tag_regex . "'")
+    highlight def link TODOItemTag WildMenu
+
     " YAML frontmatter (Jekyll)
     silent! unlet b:current_syntax
     syntax include @yaml syntax/yaml.vim
