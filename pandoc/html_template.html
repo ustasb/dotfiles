@@ -13,10 +13,7 @@
         "https://brianustas.com/assets/css/main.css",
       ];
       for (var i = 0; i < urls.length; i++) {
-        var l = document.createElement("link");
-        l.rel = "stylesheet";
-        l.href = urls[i];
-        document.getElementsByTagName("head")[0].appendChild(l);
+        document.write('<link rel="stylesheet" href="' + urls[i] + '">')
       }
     </script>
 
