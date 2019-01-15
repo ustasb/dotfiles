@@ -11,6 +11,10 @@
   border-bottom: 2px solid black;
 }
 
+a.uri {
+  word-break: break-all;  /* Break long URLs so they don't overflow. */
+}
+
 /* }}} */
 
 /* === code === {{{ */
