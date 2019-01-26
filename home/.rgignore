@@ -47,3 +47,4 @@ vendor/bundle
 *.h4
 *.h5
 *.db
+*.sketch
