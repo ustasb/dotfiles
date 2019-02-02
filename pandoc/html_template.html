@@ -41,13 +41,16 @@
 $body$
     </div>
 
-    <script type="text/javascript"> // MathJax
-      // Lazy load to prevent Pandoc's "self-contained" from embedding MathJax.
-      var s = document.createElement("script");
-      s.async = true;
-      s.type = "text/javascript";
-      s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-      document.getElementsByTagName("body")[0].appendChild(s);
+    <script type="text/javascript">
+      // Only load MathJax when necessary.
+      if (document.querySelector('span.math')) {
+        // Lazy load to prevent Pandoc's "self-contained" from embedding MathJax.
+        var s = document.createElement("script");
+        s.async = true;
+        s.type = "text/javascript";
+        s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+        document.getElementsByTagName("body")[0].appendChild(s);
+      }
     </script>
   </body>
 </html>
