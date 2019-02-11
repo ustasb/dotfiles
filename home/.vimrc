@@ -19,11 +19,13 @@
     " editing
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-    Plug 'lifepillar/vim-mucomplete'
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 
-    " snippets
+    " completion
+    Plug 'lifepillar/vim-mucomplete'
+    Plug 'prabirshrestha/async.vim' " required for vim-lsp
+    Plug 'prabirshrestha/vim-lsp'
     Plug 'sirver/UltiSnips'
 
     " colors
@@ -65,7 +67,6 @@
 
     " python
     Plug 'vim-python/python-syntax', { 'for': 'python' }
-    Plug 'davidhalter/jedi-vim', { 'for': 'python' }
     Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 
     " misc
@@ -642,8 +643,6 @@
   let g:ruby_no_expensive = 1
   let g:ruby_fold = 1
   let g:ruby_foldable_groups = 'def'
-  " Enable omni completion.
-  let g:rubycomplete_buffer_loading = 1
   " }}}
 
   " RSpec.vim {{{
@@ -841,7 +840,6 @@
   let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'omni', 'ulti']
   let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
   let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
-  let g:mucomplete#chains.python   = ['path', 'c-p', 'tags', 'ulti']
 
   " Ruby/Python: Trigger completion after period (e.g. `obj.`).
   let s:py_rb_omni_cond = { t -> t =~# '\m\k\%(\k\|\.\)$' }
@@ -856,24 +854,44 @@
   inoremap <silent> <Plug>(MUcompleteBwdKey) <C-h>
   " }}}
 
+  " vim-lsp {{{
+  let g:lsp_async_completion = 0  " MUcomplete doesn't support async.
+
+  augroup AG_VimLSP
+    autocmd!
+
+    " Python omni completion
+    if executable('pyls')
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': { server_info -> ['pyls'] },
+        \ 'whitelist': ['python'],
+        \ })
+      autocmd FileType python setlocal omnifunc=lsp#complete
+    else
+      echom "Python omni completion requires pyls: pip install python-language-server"
+    endif
+
+    " Ruby omni completion
+    if executable('solargraph')
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': { server_info -> [&shell, &shellcmdflag, 'solargraph stdio'] },
+        \ 'initialization_options': { 'diagnostics': 'true' },
+        \ 'whitelist': ['ruby'],
+        \ })
+      autocmd FileType ruby setlocal omnifunc=lsp#complete
+    else
+      echom "Ruby omni completion requires solargraph: gem install solargraph"
+    endif
+  augroup END
+
+  " }}}
+
   " python-syntax {{{
   let g:python_highlight_all = 1
   let g:python_highlight_space_errors = 0
   let g:python_highlight_indent_errors = 0
-  " }}}
-
-  " jedi.vim {{{
-  " Configured to work with MUcomplete.
-  let g:jedi#force_py_version = 3
-  let g:jedi#auto_initialization = 0
-  let g:jedi#auto_vim_configuration = 0
-  let g:jedi#smart_auto_mappings = 0
-  let g:jedi#completions_enabled = 0
-  let g:jedi#show_call_signatures = 0 " too slow
-  augroup AG_JediVim
-    autocmd!
-    autocmd FileType python setlocal omnifunc=jedi#completions
-  augroup END
   " }}}
 
   " colorizer.vim (hex colorizing) {{{
