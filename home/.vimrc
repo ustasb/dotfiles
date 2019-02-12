@@ -696,18 +696,18 @@
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 100
   let g:goyo_height = '80%'
-  function! s:goyo_enter()
+  function! s:goyoEnter()
     " Show the vertical splits.
     setlocal fillchars=vert:│
     highlight! link VertSplit GruvboxBg1
   endfunction
-  function! s:goyo_leave()
+  function! s:goyoLeave()
     " HACK: Without, after leaving Goyo, my fzf statusline
     " customizations are replaced by the lightline statusline.
     autocmd! FileType fzf doautocmd User FzfStatusLine
   endfunction
-  autocmd! User GoyoEnter nested call <SID>goyo_enter()
-  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+  autocmd! User GoyoEnter nested call <SID>goyoEnter()
+  autocmd! User GoyoLeave nested call <SID>goyoLeave()
   " }}}
 
   " Vim-Commentary {{{
