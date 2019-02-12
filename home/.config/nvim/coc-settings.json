@@ -1,0 +1,21 @@
+{
+  "coc.preferences.timeout": 2000,
+  "coc.preferences.autoTrigger": "always",
+  "coc.preferences.minTriggerInputLength": 2,
+  "coc.preferences.maxCompleteItemCount": 15,
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.diagnostic.displayByAle": true,
+
+  "css.enable": true,
+  "json.enable": true,
+  "coc.source.dictionary.enable": true,
+  "coc.source.tag.enable": true,
+  "coc.source.ultisnips.enable": true,
+  "solargraph.enable": true,
+  "tsserver.enable": true,
+  "eslint.enable": true,
+
+  "pyls.enable": true,
+  "pyls.configurationSources": ["pycodestyle"],
+  "pyls.plugins.pycodestyle.maxLineLength": 100
+}

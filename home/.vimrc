@@ -23,9 +23,7 @@
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 
     " completion
-    Plug 'lifepillar/vim-mucomplete'
-    Plug 'prabirshrestha/async.vim' " required for vim-lsp
-    Plug 'prabirshrestha/vim-lsp'
+    Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
     Plug 'sirver/UltiSnips'
 
     " colors
@@ -336,7 +334,7 @@
     " Fix common typos.
     call litecorrect#init()
 
-    " mucomplete's `dict` completion requires `dictionary` set locally.
+    " For dictionary completion with coc.nvim.
     setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
 
     setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
@@ -757,17 +755,16 @@
   " ALE {{{
   let g:ale_enabled = 1
   let g:ale_completion_enabled = 0
-  let g:ale_sign_error = '✖' " ✘
-  let g:ale_sign_warning = '✦' " ⚑
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_enter = 1
+  let g:ale_sign_error = 'E'
+  let g:ale_sign_warning = 'W'
+  let g:ale_sign_info = 'I'
   let g:ale_lint_on_text_changed = 0
-  let g:ale_lint_on_filetype_changed = 1
+  let g:ale_lint_on_insert_leave = 0
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_filetype_changed = 0
   let g:ale_linters_explicit = 1
-  let g:ale_linters = {
-    \ 'javascript': ['eslint'],
-    \ 'python': ['flake8'],
-    \ }
+  let g:ale_linters = {} " NOTE: coc.nvim uses ALE to display linting issues.
   " }}}
 
   " fzf.vim {{{
@@ -815,74 +812,54 @@
   let g:AutoPairsCenterLine = 0
   " }}}
 
-  " vim-mucomplete {{{
-  let g:mucomplete#enable_auto_at_startup = 1
-  let g:mucomplete#buffer_relative_paths = 1
-  let g:mucomplete#no_popup_mappings = 1 " Conflicts with my C-e (beginning-of-line) mapping.
-  let g:mucomplete#completion_delay = 200
-
-  " max number of suggestions
-  set pumheight=15
-
+  " coc.nvm (Conquer of Completion) {{{
   " . : current buffer
   " w : buffers from other windows
   " b : buffers from buffer list
   set complete=.,w,b
   set completeopt=menu,menuone,noselect
-  let g:mucomplete#always_use_completeopt = 1
 
-  " :h mucomplete-methods
-  " c-p / c-n respects Vim's `set complete`.
-  let g:mucomplete#chains = {}
-  let g:mucomplete#chains.default  = ['path', 'c-p', 'tags', 'omni', 'ulti']
-  let g:mucomplete#chains.vim      = ['path', 'cmd', 'c-p',  'ulti']
-  let g:mucomplete#chains.markdown = ['path', 'c-p', 'dict', 'ulti']
+  let g:coc_start_at_startup = 1
+  let g:coc_enable_locationlist = 1  " needed for <Plug>(coc-references)
+  let g:coc_global_extensions = [
+    \ 'coc-css',
+    \ 'coc-json',
+    \ 'coc-dictionary',
+    \ 'coc-tag',
+    \ 'coc-ultisnips',
+    \ 'coc-pyls',
+    \ 'coc-solargraph',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ ]
 
-  " Ruby/Python: Trigger completion after period (e.g. `obj.`).
-  let s:py_rb_omni_cond = { t -> t =~# '\m\k\%(\k\|\.\)$' }
-  let g:mucomplete#can_complete = {
-    \ 'python' : { 'omni': s:py_rb_omni_cond },
-    \ 'ruby'   : { 'omni': s:py_rb_omni_cond },
-    \ }
+  " Use <Tab> and <S-Tab> for navigating the completion list.
+  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-  " c-h or c-j to cycle through completion modes (once the popup menu is open).
-  " c-h workaround: https://github.com/lifepillar/vim-mucomplete/issues/55
-  imap <C-h> <Plug>(MUcompleteCycBwd)
-  inoremap <silent> <Plug>(MUcompleteBwdKey) <C-h>
-  " }}}
+  " Use <C-t> to force open the completion list.
+  inoremap <silent><expr> <C-t> coc#refresh()
 
-  " vim-lsp {{{
-  let g:lsp_async_completion = 0  " MUcomplete doesn't support async.
+  " Jump to definition of current symbol.
+  nmap <silent> gd <Plug>(coc-definition)
+  " Jump to references of current symbol.
+  nmap <silent> gr <Plug>(coc-references)
+  " Format the entire buffer.
+  command! -nargs=0 Format :call CocAction('format')
 
-  augroup AG_VimLSP
-    autocmd!
+  " Use [c and ]c for navigating diagnostics.
+  nmap <silent> [c <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-    " Python omni completion
-    if executable('pyls')
-      autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': { server_info -> ['pyls'] },
-        \ 'whitelist': ['python'],
-        \ })
-      autocmd FileType python setlocal omnifunc=lsp#complete
+  " Show documentation for the current word.
+  function! s:showDocumentation()
+    if &filetype == 'vim'
+      execute 'h ' . expand('<cword>')
     else
-      echom "Python omni completion requires pyls: pip install python-language-server"
+      call CocAction('doHover')
     endif
-
-    " Ruby omni completion
-    if executable('solargraph')
-      autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': { server_info -> [&shell, &shellcmdflag, 'solargraph stdio'] },
-        \ 'initialization_options': { 'diagnostics': 'true' },
-        \ 'whitelist': ['ruby'],
-        \ })
-      autocmd FileType ruby setlocal omnifunc=lsp#complete
-    else
-      echom "Ruby omni completion requires solargraph: gem install solargraph"
-    endif
-  augroup END
-
+  endfunction
+  nnoremap <silent> K :call <SID>showDocumentation()<CR>
   " }}}
 
   " python-syntax {{{
@@ -897,7 +874,6 @@
   " }}}
 
   " UltiSnips {{{
-  " c-j is reserved for mucomplete.
   let g:UltiSnipsExpandTrigger = '<C-Space>'
   let g:UltiSnipsJumpForwardTrigger = '<C-j>'
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
