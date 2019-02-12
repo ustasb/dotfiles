@@ -438,9 +438,6 @@
   " Open a file in Google Chrome.
   command! Chrome :!open -a "Google Chrome" %:p
 
-  " Open a file in Tad (CSV viewer).
-  command! Tad :!open -a "Tad" %:p
-
   " Create a tags file.
   function! CreateCtagsFile()
     let cwd = getcwd()
