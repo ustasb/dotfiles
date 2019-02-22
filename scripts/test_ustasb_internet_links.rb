@@ -20,10 +20,10 @@ def build_url_test_data
   data << %w{ https://www.pandify.com 301 200 https://pandify.com/ }
 
   # hitpic.me
-  # This app is hosted by Heroku. I don't have access to the reverse proxy config.
-  # Thus, the www version is the primary.
-  data << %w{ http://www.hitpic.me  200 }
-  data << %w{ http://hitpic.me      302 200 http://www.hitpic.me }
+  data << %w{ http://hitpic.me      301 200 https://hitpic.me/ }
+  data << %w{ http://www.hitpic.me  301 200 https://hitpic.me/ }
+  data << %w{ https://hitpic.me     200 }
+  data << %w{ https://www.hitpic.me 301 200 https://hitpic.me/ }
 
   # ustasb.com
   data << %w{ http://ustasb.com      301 200 https://brianustas.com/ }
