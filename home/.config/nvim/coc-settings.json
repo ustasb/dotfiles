@@ -1,5 +1,5 @@
 {
-  "coc.preferences.timeout": 2000,
+  "coc.preferences.timeout": 4000,
   "coc.preferences.autoTrigger": "always",
   "coc.preferences.minTriggerInputLength": 2,
   "coc.preferences.maxCompleteItemCount": 15,
