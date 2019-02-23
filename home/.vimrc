@@ -807,9 +807,11 @@
 
   " auto-pairs {{{
   let g:AutoPairsShortcutToggle = '' " disable
+  let g:AutoPairsMapCR = 0
   let g:AutoPairsMapCh = 0
   let g:AutoPairsMapSpace = 0
   let g:AutoPairsCenterLine = 0
+  let g:AutoPairsMultilineClose = 0
   " }}}
 
   " coc.nvm (Conquer of Completion) {{{
