@@ -5,6 +5,7 @@
   "coc.preferences.maxCompleteItemCount": 15,
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.diagnostic.displayByAle": true,
+  "coc.preferences.triggerCompletionWait": 300,
 
   "css.enable": true,
   "json.enable": true,
