@@ -92,7 +92,7 @@
   " Set default encoding to UTF-8.
   set encoding=utf-8
   " English spelling
-  set spelllang=en
+  set spell spelllang=en
   " Custom spellfile for `zg` and `zw`.
   set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add
   " Default spellfile is located at: ~/.vim/spell/en.utf-8.spl
@@ -317,6 +317,10 @@
   inoremap <C-a> <Esc>I
   inoremap <C-e> <Esc>A
 
+  " Fix the previous misspelling.
+  nnoremap <C-f> [s1z=<C-o>
+  inoremap <C-f> <C-g>u<Esc>[s1z=`]A<C-g>u
+
   " Allows pasting over content without changing the copy buffer.
   " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
   xnoremap p "_dP
@@ -337,11 +341,7 @@
     " For dictionary completion with coc.nvim.
     setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
 
-    setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
-
-    " Fix the previous misspelling.
-    nnoremap <buffer> <C-f> [s1z=<C-o>
-    inoremap <buffer> <C-f> <C-g>u<Esc>[s1z=`]A<C-g>u
+    setlocal textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
     " Open a word in Dictionary.app.
     nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
