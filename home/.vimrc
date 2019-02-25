@@ -92,7 +92,7 @@
   " Set default encoding to UTF-8.
   set encoding=utf-8
   " English spelling
-  set spell spelllang=en
+  set spelllang=en
   " Custom spellfile for `zg` and `zw`.
   set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add
   " Default spellfile is located at: ~/.vim/spell/en.utf-8.spl
@@ -341,7 +341,7 @@
     " For dictionary completion with coc.nvim.
     setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
 
-    setlocal textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
+    setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
 
     " Open a word in Dictionary.app.
     nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
