@@ -19,7 +19,7 @@ def get_filename(pb_filename)
 end
 
 PHOTO_BOOTH_CONTENT = "#{Dir.home}/Pictures/Photo Booth Library/Pictures"
-BACKUP_DIR = "#{ENV['USTASB_UNENCRYPTED_DIR_PATH']}/pictures/photo_booth_backup"
+BACKUP_DIR = "#{ENV['USTASB_UNENCRYPTED_DIR_PATH']}/backups/photo_booth"
 
 unless Dir.exists?(BACKUP_DIR)
   puts "Backup directory doesn't exist: #{BACKUP_DIR}"
