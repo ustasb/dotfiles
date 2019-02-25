@@ -15,12 +15,14 @@ DOCS_PATH = ENV['USTASB_DOCS_DIR_PATH']
 # Value of Pandoc's --resource-path argument.
 PANDOC_IMAGE_RESOURCE_PATH = ENV['USTASB_DOCS_IMAGE_DIR_PATH']
 MARKDOWN_IMAGE_LINK_REGEX = /\! \[.*?\] \((.+?)\)/x # format: ![optional caption](link)
+MARKDOWN_FILE_REGEX = /\.md$/
 
+remove_items = ARGV[0] == "--rm"
 expected_image_paths = Set.new
 
 Dir.glob("#{DOCS_PATH}/**/*").each do |doc|
   # Only consider Markdown files.
-  next unless /\.md$/.match?(doc) && File.file?(doc)
+  next unless MARKDOWN_FILE_REGEX.match?(doc) && File.file?(doc)
 
   # Unique image folder for this document.
   doc_image_folder_path = doc.sub(DOCS_PATH, PANDOC_IMAGE_RESOURCE_PATH)
@@ -86,15 +88,25 @@ all_image_contents = Dir.glob("#{PANDOC_IMAGE_RESOURCE_PATH}/**/*").to_set
 # Find and remove unreferenced images.
 images_to_remove = all_image_contents - expected_image_paths
 images_to_remove.each do |image|
-  next if File.directory?(image)
-  puts "removing unreferenced image: #{image}"
-  FileUtils.rm(image)
+  if !File.directory?(image)
+    puts "removing unreferenced image: #{image}"
+    if remove_items
+      FileUtils.rm(image)
+    else
+      puts "- rerun with --rm to actually remove!"
+    end
+  end
 end
 
 # Remove empty image directories.
 # sort.reverse to remove "a/b/c" before "a/b".
 all_image_contents.sort.reverse.each do |dir|
-  next unless File.directory?(dir) && Dir.empty?(dir)
-  puts "removing empty directory: #{dir}"
-  FileUtils.rmdir(dir)
+  if File.directory?(dir) && Dir.empty?(dir)
+    puts "removing empty directory: #{dir}"
+    if remove_items
+      Dir.rmdir(dir)
+    else
+      puts "- rerun with --rm to actually remove!"
+    end
+  end
 end

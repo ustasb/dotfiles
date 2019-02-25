@@ -121,7 +121,7 @@ bu_encrypt_journal() {
 
 # Scans all Markdown documents and localizes images.
 bu_localize_doc_images() {
-  ruby ~/dotfiles/scripts/localize_markdown_images.rb
+  ruby ~/dotfiles/scripts/localize_markdown_images.rb $*
 }
 
 # Set the default program for file types.
