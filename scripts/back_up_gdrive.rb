@@ -20,7 +20,6 @@ S3_BACKUP_BUCKET_NAME = ENV['USTASB_S3_BACKUP_BUCKET_NAME']
 
 REQUIRED_DIRS = [
   CLOUD_DIR_PATH = File.expand_path(ENV['USTASB_CLOUD_DIR_PATH']),
-  SHARED_DIR_PATH = File.expand_path(ENV['USTASB_SHARED_DIR_PATH']),
   ENCRYPTED_DIR_PATH = File.expand_path(ENV['USTASB_ENCRYPTED_DIR_PATH']),
   UNENCRYPTED_DIR_PATH = File.expand_path(ENV['USTASB_UNENCRYPTED_DIR_PATH']),
 ]
@@ -38,10 +37,6 @@ def parse_args
     opts.on("-d", "--dir [DIRECTORY]", "Output directory") do |dir|
       $argv_options[:output_dir] = dir
     end
-
-    opts.on("--include-shared", "Include the shared/ folder") do
-      $argv_options[:include_shared] = true
-    end
   end
 
   parser.parse!
@@ -51,9 +46,6 @@ def parse_args
     puts parser
     exit
   end
-
-  prefix = $argv_options[:include_shared] ? 'Including' : 'Excluding'
-  log("#{prefix}: #{SHARED_DIR_PATH}\n\n")
 
   if $argv_options[:aws_backup]
     log("Backing up to AWS...")
@@ -83,8 +75,8 @@ def main
 
   puts "\n"
   log("*** Ensure that your files-to-backup aren't changing during the backup! ***")
-  log("Waiting 15 seconds. Unless you cancel, the backup process will continue.")
-  sleep(15)
+  log("Waiting 10 seconds. Unless you cancel, the backup process will continue.")
+  sleep(10)
   puts "\n"
 
   log("Looking for: #{UNENCRYPTED_DIR_PATH}")
@@ -113,17 +105,11 @@ def main
 
   log("Copying non-encrypted data from: #{CLOUD_DIR_PATH}")
 
-  exclude_shared = ''
-  unless $argv_options[:include_shared]
-    log("Excluding: #{SHARED_DIR_PATH}", 1)
-    exclude_shared = "--exclude /#{File.basename(SHARED_DIR_PATH)}"
-  end
-
   log("Excluding: #{ENCRYPTED_DIR_PATH}", 1)
   exclude_encrypted = "--exclude /#{File.basename(ENCRYPTED_DIR_PATH)}"
 
   # Note on the exclusion pattern: https://stackoverflow.com/a/18252050/1575238
-  `#{RSYNC_CLAUSE} #{exclude_shared} #{exclude_encrypted} #{Shellwords.escape(CLOUD_DIR_PATH)}/* #{backup_path}`
+  `#{RSYNC_CLAUSE} #{exclude_encrypted} #{Shellwords.escape(CLOUD_DIR_PATH)}/* #{backup_path}`
 
   log("Copying encrypted data from: #{UNENCRYPTED_DIR_PATH}")
   cmd = "#{RSYNC_CLAUSE} #{UNENCRYPTED_DIR_PATH}/* #{backup_path}/#{File.basename(ENCRYPTED_DIR_PATH)}"

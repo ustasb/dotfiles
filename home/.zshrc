@@ -94,7 +94,6 @@
   # `bu_back_up_gdrive`
   # export USTASB_S3_BACKUP_BUCKET_NAME=
   # export USTASB_CLOUD_DIR_PATH=
-  # export USTASB_SHARED_DIR_PATH=
   # export USTASB_ENCRYPTED_DIR_PATH=
   # export USTASB_UNENCRYPTED_DIR_PATH=
   # export USTASB_DOCS_DIR_PATH=
