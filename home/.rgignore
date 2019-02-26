@@ -42,7 +42,6 @@ vendor/bundle
 
 # misc
 *.pdf
-*.gpg
 *.DS_Store
 *.h4
 *.h5

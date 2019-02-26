@@ -482,7 +482,7 @@
   " Daily Journal
   function! TodaysJournalEntry(encrypt)
     let journal_entry_dir = $USTASB_DOCS_DIR_PATH . '/ustasb/journal/entries/'
-    let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.asc' : '')
+    let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.gpg' : '')
     " `resolve` to follow symbolic links.
     " Quiets NERDTree's findAndRevealPath exception.
     exec 'e ' . resolve(entry_path)
@@ -735,13 +735,13 @@
 
   " Vim GnuPG {{{
   let g:GPGExecutable = 'gpg --trust-model always'
-  let g:GPGPreferArmor = 1
+  let g:GPGPreferArmor = 0
   let g:GPGUseAgent = 1
   " Only signs upon creation, not after editing.
   " Turning it off - too inconsistent. Even after forking and fixing, it's too slow.
   let g:GPGPreferSign = 0
   let g:GPGUsePipes = 1
-  let g:GPGFilePattern = '*.asc' " ASCII armored files
+  let g:GPGFilePattern = '*.\(gpg\|asc\)'
   let g:GPGDefaultRecipients = ['Brian Ustas <brianustas@gmail.com>']
   " }}}
 

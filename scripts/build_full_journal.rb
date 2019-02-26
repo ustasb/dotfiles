@@ -1,7 +1,7 @@
 # Usage: `ruby build_full_journal.rb`
 
 INPUT_ENTRIES_PATH = File.expand_path("#{ENV['USTASB_DOCS_DIR_PATH']}/ustasb/journal/entries")
-OUTPUT_JOURNAL_PATH = File.expand_path("#{ENV['USTASB_DOCS_DIR_PATH']}/ustasb/journal/full_journal.md.asc")
+OUTPUT_JOURNAL_PATH = File.expand_path("#{ENV['USTASB_DOCS_DIR_PATH']}/ustasb/journal/full_journal.md.gpg")
 
 entries = []
 
@@ -13,7 +13,7 @@ Dir.glob("#{INPUT_ENTRIES_PATH}/*").sort.each do |entry_path|
   entries << header
 
   # entry body
-  if /\.asc$/.match?(entry_path)
+  if /\.gpg$/.match?(entry_path)
     puts "\n==> Decrypting: #{entry_path}\n\n"
     # If the decrypted file is signed, the signature is also verified.
     body = `gpg --decrypt --local-user brianustas@gmail.com #{entry_path}`
