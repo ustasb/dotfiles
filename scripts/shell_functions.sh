@@ -25,7 +25,7 @@ bu_create_small_s3_backup() {
   mkdir -p $backup_path
 
   # back up docs
-  cp -r $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip $backup_path
+  cp $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip $backup_path
 
   # back up 1p (most recent backup)
   (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password && \
@@ -34,7 +34,7 @@ bu_create_small_s3_backup() {
   # create S3 archive
   (cd $backup_dir && \
     zip -r --quiet "$backup_folder.zip" $backup_folder && \
-    gpg --symmetric --no-armor "$backup_folder.zip" && \
+    gpg --symmetric "$backup_folder.zip" && \
     AWS_ACCESS_KEY_ID=$USTASB_AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$USTASB_AWS_SECRET_ACCESS_KEY AWS_REGION=$USTASB_AWS_REGION \
     aws s3 cp "$backup_folder.zip.gpg" "s3://$USTASB_S3_BACKUP_BUCKET_NAME/small-backups/")
 
@@ -46,7 +46,7 @@ bu_create_small_s3_backup() {
 bu_back_up_docs() {
   bu_encrypt_journal
   # Updates the archive in-place.
-  (cd $USTASB_UNENCRYPTED_DIR_PATH && zip --recurse-paths --filesync backups/documents.zip documents)
+  (cd $USTASB_UNENCRYPTED_DIR_PATH && zip --filesync --recurse-paths backups/documents.zip documents)
 }
 
 # Back up Google Drive contents to S3.
@@ -101,8 +101,7 @@ bu_build_full_journal() {
 # Encrypt unencrypted journal entries.
 bu_encrypt_journal() {
   for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/{entries/*.md,voice_memos/*.ogg,voice_memos/*.m4a}; do
-    # Does the file exist?
-    # https://stackoverflow.com/a/43606356/1575238
+    # Does the file exist? https://stackoverflow.com/a/43606356/1575238
     if [ -e $entry ]; then
       # Don't need to sign when the recipient is myself.
       gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
