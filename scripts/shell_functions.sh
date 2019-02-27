@@ -69,9 +69,15 @@ bu_back_up_photo_booth() {
   ruby ~/dotfiles/scripts/back_up_photo_booth.rb
 }
 
-# Back up 1Password backups to the Cloud.
 bu_back_up_1p() {
-  rsync --verbose --checksum --ignore-existing $HOME/Library/Application\ Support/1Password\ 4/Backups/* $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password
+  # Back up the latest three 1Password backups.
+  if ls $HOME/Library/Group\ Containers/*.com.agilebits/Library/Application\ Support/1Password/Backups 1> /dev/null 2>&1; then
+    (rm -rf $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password/* \
+      && cd $HOME/Library/Group\ Containers/*.com.agilebits/Library/Application\ Support/1Password/Backups \
+      && ls -t | head -3 | xargs -I{} cp {} $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password)
+  else
+    echo "1Password backup folder not found!"
+  fi
 }
 
 # Back up my source code.
