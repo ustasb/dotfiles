@@ -28,7 +28,6 @@
 
     " colors
     Plug 'ustasb/gruvbox'
-    Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' }
 
     " git
     Plug 'mhinz/vim-signify'
@@ -860,11 +859,6 @@
   let g:python_highlight_all = 1
   let g:python_highlight_space_errors = 0
   let g:python_highlight_indent_errors = 0
-  " }}}
-
-  " colorizer.vim (hex colorizing) {{{
-  let g:colorizer_startup = 0
-  let g:colorizer_nomap = 1
   " }}}
 
   " UltiSnips {{{
