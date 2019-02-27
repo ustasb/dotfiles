@@ -45,24 +45,8 @@ bu_create_small_s3_backup() {
 # Back up Brian's documents via Git.
 bu_back_up_docs() {
   bu_encrypt_journal
-
-  tmp_dir=$(mktemp -d)
-  if [ ! -d $tmp_dir ]; then
-    echo "Couldn't make temp directory! Exiting..."
-  fi
-
-  # Uses zip's File Sync mode (-FS).
-  # Zipping b/c Cryptomator + Google Drive struggle with all the .git/ files.
-  (cd $tmp_dir \
-    && unzip -q $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip -d . \
-    && cd documents \
-    && rsync --archive --delete --exclude='.git/' --exclude='.gitignore' --quiet $USTASB_DOCS_DIR_PATH/ ./ \
-    && git add . \
-    && git status \
-    && git commit -m "$(date '+%Y-%m-%d_%H-%M-%S')" \
-    && cd .. \
-    && zip -FSrq $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip documents \
-    && rm -rf $tmp_dir)
+  # Updates the archive in-place.
+  (cd $USTASB_UNENCRYPTED_DIR_PATH && zip --recurse-paths --filesync backups/documents.zip documents)
 }
 
 # Back up Google Drive contents to S3.
