@@ -47,3 +47,9 @@ vendor/bundle
 *.h5
 *.db
 *.sketch
+*.ogg
+*.m4a
+
+# encrypted audio files
+*.ogg.gpg
+*.m4a.gpg
