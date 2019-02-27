@@ -156,13 +156,6 @@ bu_speed_test() {
   speed-test $*
 }
 
-# Outputs the weather forecast with:
-# https://github.com/jessfraz/weather
-bu_weather() {
-  which weather &> /dev/null || brew install darksky-weather
-  weather -ignore-alerts -l "Cambridge, MA" -d 3 $* | less -r
-}
-
 # Browse Chrome history with fzf.
 # credit: https://junegunn.kr/2015/04/browsing-chrome-history-with-fzf
 bu_chrome_hist() {
