@@ -73,7 +73,6 @@
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown'
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'justinmk/vim-sneak'
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
     Plug 'tyru/open-browser.vim'
@@ -743,13 +742,6 @@
   let g:GPGUsePipes = 1
   let g:GPGFilePattern = '*.\(gpg\|asc\)'
   let g:GPGDefaultRecipients = ['Brian Ustas <brianustas@gmail.com>']
-  " }}}
-
-  " vim-sneak {{{
-  let g:sneak#label = 1
-  let g:sneak#use_ic_scs = 1 " Respect ignorecase and smartcase.
-  map s <Plug>Sneak_s
-  map S <Plug>Sneak_S
   " }}}
 
   " ALE {{{
