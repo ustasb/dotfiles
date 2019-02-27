@@ -35,6 +35,7 @@ bu_create_small_s3_backup() {
   (cd $backup_dir && \
     zip -r --quiet "$backup_folder.zip" $backup_folder && \
     gpg --symmetric "$backup_folder.zip" && \
+    cp "$backup_folder.zip.gpg" "$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/small_s3_backup.zip.gpg" && \
     AWS_ACCESS_KEY_ID=$USTASB_AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$USTASB_AWS_SECRET_ACCESS_KEY AWS_REGION=$USTASB_AWS_REGION \
     aws s3 cp "$backup_folder.zip.gpg" "s3://$USTASB_S3_BACKUP_BUCKET_NAME/small-backups/")
 
