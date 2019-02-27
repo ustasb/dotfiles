@@ -226,8 +226,8 @@ bu_voice_memo() {
   tmp_path=$tmp_path".ogg"
 
   echo "Recording! Press Ctrl-C to stop."
-  # silence: trim silence longer than 2 seconds down to only 2 seconds long (https://unix.stackexchange.com/a/293868)
-  rec --guard $tmp_path silence -l 1 0.1 1% -1 2.0 1
+  # gain: increases volume
+  rec --guard $tmp_path gain +15
 
   # Reason for \r: https://unix.stackexchange.com/a/26578
   echo -n "\rDo you want to save that recording? [y/n] "
@@ -235,8 +235,7 @@ bu_voice_memo() {
   if [ "$answer" != "${answer#[Yy]}" ]; then
     out_path="$USTASB_DOCS_DIR_PATH/ustasb/journal/voice_memos/$(basename $tmp_path)"
     # sample rates: https://manual.audacityteam.org/man/sample_rates.html
-    # gain: increases volume
-    sox $tmp_path --rate 22050 --channels 1 $out_path gain +10
+    sox $tmp_path --rate 22050 --channels 1 $out_path
     rm $tmp_path
     echo "Saved! Destination: $out_path"
   else
