@@ -543,7 +543,7 @@
     silent exec('!ruby ~/dotfiles/scripts/create_done_md.rb')
 
     " delete the task (don't cut)
-    normal \"_dd
+    normal "_dd
 
     echomsg 'Task Done! ' . json
   endfunction
