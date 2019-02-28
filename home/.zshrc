@@ -234,10 +234,7 @@
   # The remote system might not have TERM=tmux-256color in its database.
   alias ssh="TERM=xterm-256color ssh"
 
-  start_gpg_agent() {
-    # Launch gpg-agent
-    gpg-connect-agent /bye
-
+  set_gpg_agent_env_vars() {
     export GPG_TTY=$(tty)
 
     # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
@@ -249,8 +246,11 @@
   }
 
   restart_gpg_agent() {
+    # Kill gpg-agent
     gpgconf --kill gpg-agent
-    start_gpg_agent
+    # Launch gpg-agent
+    gpg-connect-agent /bye
+    set_gpg_agent_env_vars
   }
 
 # }}}
@@ -291,18 +291,20 @@
 # === Default tmux Session === {{{
 
   startup_tasks() {
-    start_gpg_agent
-
     # Things to happen after booting.
     # OS X cleans this directory upon shutdown.
     if [ ! -f /tmp/bu_machine_booted ]; then
       touch /tmp/bu_machine_booted
+
+      restart_gpg_agent
 
       bu_customize_finder_sidebar &> /dev/null
 
       if [ -f ~/.shell_quote ]; then
         echo -e "\n\e[3;32m$(cat ~/.shell_quote)\e[0m"
       fi
+    else
+      set_gpg_agent_env_vars
     fi
 
     if [ -d $USTASB_UNENCRYPTED_DIR_PATH ]; then
