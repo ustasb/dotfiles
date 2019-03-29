@@ -226,3 +226,14 @@ bu_voice_memo() {
     echo "Destroyed!"
   fi
 }
+
+# Displays all blob objects in the repository, sorted from smallest to largest.
+# credit: https://stackoverflow.com/a/42544963/1575238
+bu_list_git_blobs() {
+  git rev-list --objects --all \
+  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+  | sed -n 's/^blob //p' \
+  | sort --numeric-sort --key=2 \
+  | cut -c 1-12,41- \
+  | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+}
