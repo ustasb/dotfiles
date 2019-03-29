@@ -1,5 +1,9 @@
+body {
+  padding: 20px 20px 40px 20px;
+}
+
 .post {
-  margin: 20px auto 40px auto;
+  margin: 0 auto;
 }
 
 /* === Pandoc === {{{ */
@@ -13,24 +17,6 @@
 
 a.uri {
   word-break: break-all;  /* Break long URLs so they don't overflow. */
-}
-
-/* }}} */
-
-/* === code === {{{ */
-
-/* Overrides to match the look of the 'Code' section at
- * https://brianustas.com/typography.
- * Why different? My website doesn't use Pandoc for syntax highlighting.
- */
-
-code.sourceCode {
-  white-space: pre-wrap;
-}
-
-.sourceCode a, .sourceCode span {
-  line-height: 1.5rem;
-  font-weight: 400 !important;
 }
 
 /* }}} */

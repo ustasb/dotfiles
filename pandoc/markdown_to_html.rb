@@ -55,6 +55,7 @@ def main
   # `wrap=none`: Without, Pandoc will add newlines between raw HTML tags. This
   # can cause unnecessary spacing in some tags, for instance. `wrap=none`
   # removes spacing between HTML elements.
+  # no-highlight: brianustas.com's post.js handles syntax highlighting.
   md_to_html_cmd = <<-EOF
     pandoc
       --from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji
@@ -65,7 +66,7 @@ def main
       --css #{Dir.home}/dotfiles/pandoc/docs.css
       --mathjax=""
       --wrap=none
-      --highlight-style=haddock
+      --no-highlight
       --resource-path #{ENV['USTASB_DOCS_IMAGE_DIR_PATH']}:#{Dir.home}/Desktop
       --output #{Shellwords.escape($argv[:output_path])}
       #{Shellwords.escape(temp_file.path)}

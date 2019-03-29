@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" class="nojs">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>$pagetitle$</title>
 
     <script type="text/javascript">
       // Lazy load to prevent Pandoc's "self-contained" from embedding these links.
-      var urls = [
+      var linkUrls = [
         "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro:400,600|Source+Serif+Pro:600",
         "https://brianustas.com/assets/css/main.css",
       ];
-      for (var i = 0; i < urls.length; i++) {
-        document.write('<link rel="stylesheet" href="' + urls[i] + '">')
+      for (var i = 0; i < linkUrls.length; i++) {
+        document.write('<link rel="stylesheet" href="' + linkUrls[i] + '">')
       }
     </script>
-
-    <style type="text/css">
-      $highlighting-css$
-    </style>
 
     $for(css)$
       <link rel="stylesheet" href="$css$">
     $endfor$
+
+    <!-- Enables CSS styles that rely on JavaScript being enabled. -->
+    <script type="text/javascript">
+      (function(B,C){B[C]=B[C].replace(/\bnojs\b/,'js')})(document.documentElement,'className');
+    </script>
   </head>
   <body>
-    <div class="post">
+    <div class="post nowrap">
       $if(title)$
         <h1 class="title">$title$</h1>
       $endif$
@@ -42,15 +43,24 @@ $body$
     </div>
 
     <script type="text/javascript">
-      // Only load MathJax when necessary.
-      if (document.querySelector('span.math')) {
-        // Lazy load to prevent Pandoc's "self-contained" from embedding MathJax.
-        var s = document.createElement("script");
-        s.async = true;
-        s.type = "text/javascript";
-        s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-        document.getElementsByTagName("body")[0].appendChild(s);
+      // Lazy load to prevent Pandoc's "self-contained" from embedding these scripts.
+      var scriptUrls = [
+        "https://code.jquery.com/jquery-3.3.1.slim.min.js",
+        "https://brianustas.com/assets/js/post.js",
+      ];
+
+      // Adds the URLs in order, waiting for earlier scripts to load.
+      function appendUrl() {
+        var url = scriptUrls.shift();
+        if (!url) return;
+        var script = document.createElement('script');
+        script.src = url
+        script.type = 'text/javascript';
+        script.addEventListener('load', appendUrl);
+        document.body.appendChild(script);
       }
+
+      appendUrl();
     </script>
   </body>
 </html>
