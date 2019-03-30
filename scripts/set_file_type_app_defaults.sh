@@ -5,6 +5,7 @@
 # Usage: `./set_file_type_app_defaults.sh`
 
 duti -s org.videolan.vlc .mp4 all
+duti -s org.videolan.vlc .m4a all
 
 # Plain text files without an extension.
 duti -s org.vim.MacVim public.plain-text all
