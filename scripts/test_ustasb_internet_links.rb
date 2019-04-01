@@ -68,6 +68,7 @@ def build_url_test_data
   data << %w{ https://brianustas.com/officesnake/  301 200 https://officesnake.com } # legacy
   data << %w{ https://brianustas.com/officesnake   301 200 https://officesnake.com } # legacy
 
+  data << %w{ https://brianustas.com/sitemap.xml 200 }
   data << %w{ https://brianustas.com/robots.txt 200 }
   data << %w{ https://brianustas.com/keybase.txt 200 }
   data << %w{ https://brianustas.com/resume 200 }
