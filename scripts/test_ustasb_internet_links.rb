@@ -37,10 +37,12 @@ def build_url_test_data
   data << %w{ https://brianustas.com     200 }
   data << %w{ https://www.brianustas.com 301 200 https://brianustas.com/ }
 
-  data << %w{ https://brianustas.com/campus-safety-dashboard/  200 }
-  data << %w{ https://brianustas.com/campus-safety-dashboard   301 200 https://brianustas.com/campus-safety-dashboard/ }
-  data << %w{ https://brianustas.com/knightly-demo/            301 200 https://brianustas.com/campus-safety-dashboard/ } # legacy
-  data << %w{ https://brianustas.com/knightly-demo             301 200 https://brianustas.com/campus-safety-dashboard/ } # legacy
+  data << %w{ https://brianustas.com/knightly-dashboard-demo/  200 }
+  data << %w{ https://brianustas.com/knightly-dashboard-demo   301 200 https://brianustas.com/knightly-dashboard-demo/ }
+  data << %w{ https://brianustas.com/knightly-demo/            301 200 https://brianustas.com/knightly-dashboard-demo/ } # legacy
+  data << %w{ https://brianustas.com/knightly-demo             301 200 https://brianustas.com/knightly-dashboard-demo/ } # legacy
+  data << %w{ https://brianustas.com/campus-safety-dashboard/  301 200 https://brianustas.com/knightly-dashboard-demo/ } # legacy
+  data << %w{ https://brianustas.com/campus-safety-dashboard   301 200 https://brianustas.com/knightly-dashboard-demo/ } # legacy
 
   data << %w{ https://brianustas.com/where-in-the-world/ 200 }
   data << %w{ https://brianustas.com/where-in-the-world  301 200 https://brianustas.com/where-in-the-world/ }
