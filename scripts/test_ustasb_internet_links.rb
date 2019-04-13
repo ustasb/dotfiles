@@ -54,10 +54,12 @@ def build_url_test_data
   data << %w{ https://brianustas.com/emojisoup/  301 200 https://brianustas.com/emoji-soup/ } # legacy
   data << %w{ https://brianustas.com/emojisoup   301 200 https://brianustas.com/emoji-soup/ } # legacy
 
-  data << %w{ https://brianustas.com/free-donut/ 200 }
-  data << %w{ https://brianustas.com/free-donut  301 200 https://brianustas.com/free-donut/ }
-  data << %w{ https://brianustas.com/freedonut/  301 200 https://brianustas.com/free-donut/ } # legacy
-  data << %w{ https://brianustas.com/freedonut   301 200 https://brianustas.com/free-donut/ } # legacy
+  data << %w{ https://brianustas.com/dunkin-donuts-auto-survey/ 200 }
+  data << %w{ https://brianustas.com/dunkin-donuts-auto-survey  301 200 https://brianustas.com/dunkin-donuts-auto-survey/ }
+  data << %w{ https://brianustas.com/free-donut/                301 200 https://brianustas.com/dunkin-donuts-auto-survey/ } # legacy
+  data << %w{ https://brianustas.com/free-donut                 301 200 https://brianustas.com/dunkin-donuts-auto-survey/ } # legacy
+  data << %w{ https://brianustas.com/freedonut/                 301 200 https://brianustas.com/dunkin-donuts-auto-survey/ } # legacy
+  data << %w{ https://brianustas.com/freedonut                  301 200 https://brianustas.com/dunkin-donuts-auto-survey/ } # legacy
 
   data << %w{ https://brianustas.com/cubecraft/  200 }
   data << %w{ https://brianustas.com/cubecraft   301 200 https://brianustas.com/cubecraft/ }
