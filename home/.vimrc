@@ -826,9 +826,14 @@
     \ 'coc-eslint',
     \ ]
 
-  " Use <Tab> and <S-Tab> for navigating the completion list.
-  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
+  " credit: https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#use-tab-or-custom-key-for-trigger-completion
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+  inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " Use <C-t> to force open the completion list.
   inoremap <silent><expr> <C-t> coc#refresh()

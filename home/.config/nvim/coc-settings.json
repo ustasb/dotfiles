@@ -1,6 +1,6 @@
 {
   "coc.preferences.timeout": 4000,
-  "coc.preferences.autoTrigger": "always",
+  "coc.preferences.autoTrigger": "none",
   "coc.preferences.minTriggerInputLength": 2,
   "coc.preferences.maxCompleteItemCount": 15,
   "coc.preferences.extensionUpdateCheck": "weekly",
