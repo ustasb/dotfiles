@@ -23,7 +23,7 @@
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
 
     " completion
-    Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': { -> coc#util#install() } }
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
     Plug 'sirver/UltiSnips'
 
     " colors
