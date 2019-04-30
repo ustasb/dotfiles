@@ -820,7 +820,7 @@
     \ 'coc-dictionary',
     \ 'coc-tag',
     \ 'coc-ultisnips',
-    \ 'coc-pyls',
+    \ 'coc-python',
     \ 'coc-solargraph',
     \ 'coc-tsserver',
     \ 'coc-eslint',
