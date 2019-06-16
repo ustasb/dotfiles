@@ -13,6 +13,12 @@ def build_url_test_data
   data << %w{ https://hub3.co     200 }
   data << %w{ https://www.hub3.co 301 200 https://hub3.co/ }
 
+  # hub3solutions.com
+  data << %w{ http://hub3solutions.com      301 200 https://hub3.co/ }
+  data << %w{ http://www.hub3solutions.com  301 200 https://hub3.co/ }
+  data << %w{ https://hub3solutions.com     301 200 https://hub3.co/ }
+  data << %w{ https://www.hub3solutions.com 301 200 https://hub3.co/ }
+
   # officesnake.com
   data << %w{ http://officesnake.com      301 200 https://officesnake.com/ }
   data << %w{ http://www.officesnake.com  301 200 https://officesnake.com/ }
