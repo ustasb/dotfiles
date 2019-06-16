@@ -237,3 +237,8 @@ bu_list_git_blobs() {
   | cut -c 1-12,41- \
   | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
+
+# Scrape Eventbrite for events that match keywords.
+bu_eventbrite_events() {
+  ruby ~/dotfiles/scripts/eventbrite_scraper.rb $*
+}
