@@ -377,7 +377,7 @@
 
     if expand('%:t') == 'todo.md'
       setlocal textwidth=0
-      command! -buffer -nargs=* Done call LogCompletedTask(<f-args>)
+      command! -buffer -nargs=? Done call LogCompletedTask(<f-args>)
     end
   endfunction
 
@@ -598,9 +598,54 @@
   command! Todo call OpenTodo()
   command! T Todo
 
-  " scratch.md
-  command! Scratch :e $USTASB_DOCS_DIR_PATH/scratch.md
-  command! S Scratch
+  " scratch files
+  function! OpenScratch(...)
+    let title = (a:0 == 0) ? 'Scratch Pad' : a:1
+
+    " collapse multiple spaces
+    let title = substitute(title, '\s\+', ' ', 'g')
+    " remove trailing whitespace
+    let title = substitute(title, '\s*$', '', '')
+
+    " replace spaces with underscores
+    let scratch_file = tolower(substitute(title, '\s', '_', 'g'))
+    if a:0 != 0
+      " preprend today's date
+      let scratch_file = strftime('%F') . '_' . scratch_file
+    endif
+    " build full path
+    let scratch_file = $USTASB_DOCS_DIR_PATH . '/scratch/' . scratch_file . '.md'
+
+    silent exec('e ' . scratch_file)
+
+    " If the file doesn't exist, add a header.
+    if empty(glob(scratch_file))
+      " capitalize title
+      let title = substitute(title, '\<.', '\u&', 'g')
+      silent exec("call append(line('^'), '% " . title . "')")
+    endif
+  endfunction
+  command! -nargs=? Scratch call OpenScratch(<f-args>)
+  command! -nargs=? S call OpenScratch(<f-args>)
+
+  function! Archive()
+    let curr_path = expand('%')
+    let new_path = $USTASB_DOCS_DIR_PATH . '/archive/' . strftime('%Y')
+
+    " Ensure the archive directory exists.
+    silent exec('!mkdir -p ' . shellescape(new_path))
+    " Append the current file name.
+    let new_path = new_path . '/' . expand('%:t')
+    " Move current file to the archive.
+    silent exec('!mv ' . shellescape(curr_path) . ' ' . shellescape(new_path))
+    " Delete the current file buffer.
+    bd
+    " Refresh NERDTree if active.
+    silent! NERDTreeRefreshRoot
+
+    echom 'Archived! New path: ' . new_path
+  endfunction
+  command! Archive call Archive()
 
   " quickly quit
   command! Q :qa
