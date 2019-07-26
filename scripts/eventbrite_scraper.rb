@@ -1,7 +1,7 @@
 # Scrape Eventbrite for events that match keywords.
 # Usage:
 # - gem install oga
-# - ruby eventbrite_scraper.rb --city ma--boston --date this-month --keywords startup,pitch --output ~/Desktop/events.md
+# - ruby eventbrite_scraper.rb --city ma--boston --date this-month --keywords startup,pitch,"demo day" --output ~/Desktop/events.md
 
 require 'tmpdir'
 require 'date'
@@ -105,7 +105,9 @@ class EventbriteScraper
         end
       end
 
-      new_events.select! { |e| filter_keywords_regex.match?(e[:title]) && e[:date] > DateTime.now }
+      new_events.select! do |e|
+        (filter_keywords_regex.match?(e[:title]) || filter_keywords_regex.match?(e[:location])) && e[:date] > DateTime.now
+      end
       puts "==> Found #{new_events.count} relevant events."
 
       @filtered_events += new_events
@@ -145,6 +147,7 @@ class EventbriteScraper
     events = doc.css(".search-main-content__events-list > li").map do |node|
       {
         title: node.at_css('.eds-media-card-content__action-link .eds-is-hidden-accessible').text.strip,
+        location: node.at_css('.eds-media-card-content__sub-content .eds-media-card-content__sub-content-cropped > div:first-child').text.strip,
         link: node.at_css('.eds-media-card-content__action-link')['href'].strip,
         date: DateTime.parse(node.at_css('.eds-media-card-content__sub-content > div:first-child').text.strip),
       }
