@@ -581,6 +581,9 @@
   " .zshrc
   command! Zshrc :e ~/dotfiles/home/.zshrc
   command! Z Zshrc
+  " .zshrc.local
+  command! ZLshrc :e ~/.zshrc.local
+  command! ZL ZLshrc
 
   " todo.md
   function! OpenTodo()
