@@ -927,7 +927,7 @@
   \     'right': [
   \       ['lineinfo'],
   \       ['percent'],
-  \       ['fileformat', 'fileencoding', 'filetype']
+  \       ['cocstatus', 'fileformat', 'fileencoding', 'filetype']
   \     ]
   \   },
   \   'component_function': {
@@ -937,6 +937,7 @@
   \     'fileformat': 'LightlineFileformat',
   \     'fileencoding': 'LightlineFileencoding',
   \     'filetype': 'LightlineFiletype',
+  \     'cocstatus': 'coc#status'
   \   },
   \   'subseparator': {
   \     'left': '│',
