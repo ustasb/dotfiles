@@ -190,11 +190,14 @@
   set title
   set titlestring=%t
 
+  " The default is 4000 which is rather slow. coc.nvim recommends 300.
+  set updatetime=300
+
   " Don't show Vim's welcome message.
   set shortmess=I
   " Make the save message shorter. Helps avoid the 'Hit ENTER to continue' message.
   set shortmess+=at
-  " Don't show completion messages.
+  " Don't show completion messages. coc.nvim recommends this.
   set shortmess+=c
 
   " Always show the status line.
@@ -875,10 +878,10 @@
   " credit: https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#use-tab-or-custom-key-for-trigger-completion
   function! s:check_back_space() abort
     let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
+    return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
   inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   " Use <C-t> to force open the completion list.
   inoremap <silent><expr> <C-t> coc#refresh()
@@ -896,8 +899,8 @@
 
   " Show documentation for the current word.
   function! s:showDocumentation()
-    if &filetype == 'vim'
-      execute 'h ' . expand('<cword>')
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
     else
       call CocAction('doHover')
     endif
