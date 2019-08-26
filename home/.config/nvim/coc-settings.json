@@ -1,24 +1,68 @@
-{
-  "coc.preferences.timeout": 4000,
-  "coc.preferences.autoTrigger": "none",
-  "coc.preferences.minTriggerInputLength": 2,
-  "coc.preferences.maxCompleteItemCount": 15,
-  "coc.preferences.extensionUpdateCheck": "weekly",
-  "coc.preferences.diagnostic.displayByAle": true,
-  "coc.preferences.triggerCompletionWait": 300,
+// coc.nvim options: https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
 
+{
+  "coc.preferences.extensionUpdateCheck": "weekly",
+
+  "suggest.timeout": 5000,
+  "suggest.autoTrigger": "always",
+  "suggest.minTriggerInputLength": 2,
+  "suggest.maxCompleteItemCount": 15,
+  "suggest.localityBonus": true,
+  "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help"],
+
+  // Requires Neovim with floating window support.
+  "suggest.floatEnable": true,
+  "diagnostic.messageTarget": "float",
+  "signature.target": "float",
+  "coc.preferences.hoverTarget": "echo",
+
+  "diagnostic.enable": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+
+  // Git
+  // https://github.com/neoclide/coc-git
+  "git.enableGutters": true,
+  "git.realtimeGutters": false,
+  "coc.source.issues.enable": false,
+
+  // Ruby
+  // https://github.com/neoclide/coc-solargraph
+  "solargraph.completion": true,
+  "solargraph.checkGemVersion": false,
+  "solargraph.diagnostics": true,
+  "solargraph.autoformat": false,
+
+  // JavaScript
+  // https://github.com/neoclide/coc-tsserver
+  // https://github.com/neoclide/coc-eslint
+  "tsserver.enable": true,
+  "tsserver.enableJavascript": true,
+  "eslint.enable": true,
+  "eslint.autoFix": false,
+  "eslint.autoFixOnSave": false,
+
+  // Python (via Conda)
+  // https://github.com/neoclide/coc-python
+  "python.pythonPath": "/usr/local/anaconda3/bin/python",
+  "python.jediEnabled": true,
+  "python.analysis.diagnosticEnabled": true,
+  "python.analysis.openFilesOnly": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintUseMinimalCheckers": true,
+  "python.workspaceSymbols.enabled": false,
+  "python.workspaceSymbols.rebuildOnFileSave": false,
+  "python.workspaceSymbols.rebuildOnStart": false,
+
+  // misc
   "css.enable": true,
   "json.enable": true,
   "coc.source.dictionary.enable": true,
   "coc.source.tag.enable": true,
-  "coc.source.ultisnips.enable": true,
-  "solargraph.enable": true,
-  "tsserver.enable": true,
-
-  "eslint.enable": true,
-  "eslint.run": "onSave",
-
-  "python.jediEnabled": true,
-  "python.linting.enabled": true,
-  "python.linting.lintOnSave": true
+  "coc.source.ultisnips.enable": true
 }

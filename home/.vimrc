@@ -30,9 +30,8 @@
     Plug 'ustasb/gruvbox'
 
     " git
-    Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rhubarb'
+    Plug 'tpope/vim-rhubarb' " GitHub support
 
     " prose
     Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
@@ -67,7 +66,6 @@
     Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 
     " misc
-    Plug 'w0rp/ale'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown'
@@ -713,11 +711,6 @@
   nnoremap <Leader>g :NERDTreeFind<CR>
   " }}}
 
-  " Vim Signify {{{
-  let g:signify_vcs_list = ['git']
-  let g:signify_realtime = 0
-  " }}}
-
   " Vim Fugitive {{{
   " Slows down my C-r command mode mapping.
   let g:fugitive_no_maps = 1
@@ -794,21 +787,6 @@
   let g:GPGDefaultRecipients = ['Brian Ustas <brianustas@gmail.com>']
   " }}}
 
-  " ALE {{{
-  let g:ale_enabled = 1
-  let g:ale_completion_enabled = 0
-  let g:ale_sign_error = 'E'
-  let g:ale_sign_warning = 'W'
-  let g:ale_sign_info = 'I'
-  let g:ale_lint_on_text_changed = 0
-  let g:ale_lint_on_insert_leave = 0
-  let g:ale_lint_on_enter = 0
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_filetype_changed = 0
-  let g:ale_linters_explicit = 1
-  let g:ale_linters = {} " NOTE: coc.nvim uses ALE to display linting issues.
-  " }}}
-
   " fzf.vim {{{
   let g:fzf_command_prefix = 'Fzf'
   let g:fzf_layout = { 'up': '~35%' }
@@ -866,6 +844,7 @@
   let g:coc_start_at_startup = 1
   let g:coc_enable_locationlist = 1  " needed for <Plug>(coc-references)
   let g:coc_global_extensions = [
+    \ 'coc-git',
     \ 'coc-css',
     \ 'coc-json',
     \ 'coc-dictionary',

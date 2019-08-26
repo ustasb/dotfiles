@@ -1,7 +1,7 @@
 # [Brian Ustas's](http://brianustas.com) Configuration Files
 
 - shell: [zsh](http://www.zsh.org/)
-- editor: [Neovim](https://neovim.io/)
+- editor: [Neovim (with floating window support)](https://github.com/neovim/neovim/releases/tag/nightly)
 - terminal emulator: [iTerm2](http://www.iterm2.com/)
 
 ## Usage
