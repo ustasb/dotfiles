@@ -25,9 +25,14 @@
 
   // Git
   // https://github.com/neoclide/coc-git
+  "coc.source.issues.enable": false,
   "git.enableGutters": true,
   "git.realtimeGutters": false,
-  "coc.source.issues.enable": false,
+  "git.changedSign.hlGroup": "GruvboxAquaSign",
+  "git.addedSign.hlGroup": "GruvboxGreenSign",
+  "git.removedSign.hlGroup": "GruvboxRedSign",
+  "git.topRemovedSign.hlGroup": "GruvboxRedSign",
+  "git.changeRemovedSign.hlGroup": "GruvboxPurpleSign",
 
   // Ruby
   // https://github.com/neoclide/coc-solargraph
