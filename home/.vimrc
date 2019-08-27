@@ -877,6 +877,7 @@
   nmap <silent> gr <Plug>(coc-references)
   " Format the entire buffer.
   command! -nargs=0 Format :call CocAction('format')
+  command! -nargs=0 Rename :call CocAction('rename')
 
   " Use [c and ]c for navigating diagnostics.
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
