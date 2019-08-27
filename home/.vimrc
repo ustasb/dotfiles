@@ -850,6 +850,8 @@
     \ 'coc-git',
     \ 'coc-css',
     \ 'coc-json',
+    \ 'coc-yaml',
+    \ 'coc-html',
     \ 'coc-dictionary',
     \ 'coc-tag',
     \ 'coc-ultisnips',

@@ -64,6 +64,15 @@
   "python.workspaceSymbols.rebuildOnFileSave": false,
   "python.workspaceSymbols.rebuildOnStart": false,
 
+  // YAML
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": true,
+  "yaml.format.proseWrap": "never",
+
+  // HTML
+  "html.enable": true,
+  "html.format.enable": true,
+
   // misc
   "css.enable": true,
   "json.enable": true,
