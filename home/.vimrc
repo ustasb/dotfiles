@@ -615,7 +615,7 @@
     let scratch_file = tolower(substitute(title, '\s', '_', 'g'))
     if a:0 != 0
       " preprend today's date
-      let scratch_file = strftime('%F') . '_' . scratch_file
+      let scratch_file = strftime('%F_%H-%M') . '_' . scratch_file
     endif
     " build full path
     let scratch_file = $USTASB_DOCS_DIR_PATH . '/scratch/' . scratch_file . '.md'
