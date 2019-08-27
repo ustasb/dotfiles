@@ -841,9 +841,9 @@
   set complete=.,w,b
   set completeopt=menu,menuone,noselect
 
-  let g:coc_status_error_sign = 'E: '
-  let g:coc_status_warning_sign = 'W: '
-  let g:coc_status_info_sign = 'I: '
+  let g:coc_status_error_sign = 'E:'
+  let g:coc_status_warning_sign = 'W:'
+  let g:coc_status_info_sign = 'I:'
   let g:coc_start_at_startup = 1
   let g:coc_enable_locationlist = 1  " needed for <Plug>(coc-references)
   let g:coc_global_extensions = [
@@ -878,6 +878,7 @@
   " Format the entire buffer.
   command! -nargs=0 Format :call CocAction('format')
   command! -nargs=0 Rename :call CocAction('rename')
+  command! -nargs=0 AutoFixJS :call CocAction('runCommand', 'eslint.executeAutofix')
 
   " Use [c and ]c for navigating diagnostics.
   nmap <silent> [c <Plug>(coc-diagnostic-prev)

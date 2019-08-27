@@ -47,7 +47,7 @@
   "tsserver.enable": true,
   "tsserver.enableJavascript": true,
   "eslint.enable": true,
-  "eslint.autoFix": false,
+  "eslint.autoFix": true,
   "eslint.autoFixOnSave": false,
 
   // Python (via Conda)
