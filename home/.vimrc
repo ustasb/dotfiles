@@ -834,13 +834,16 @@
   let g:AutoPairsMultilineClose = 0
   " }}}
 
-  " coc.nvm (Conquer of Completion) {{{
+  " coc.nvim (Conquer of Completion) {{{
   " . : current buffer
   " w : buffers from other windows
   " b : buffers from buffer list
   set complete=.,w,b
   set completeopt=menu,menuone,noselect
 
+  let g:coc_status_error_sign = 'E: '
+  let g:coc_status_warning_sign = 'W: '
+  let g:coc_status_info_sign = 'I: '
   let g:coc_start_at_startup = 1
   let g:coc_enable_locationlist = 1  " needed for <Plug>(coc-references)
   let g:coc_global_extensions = [
