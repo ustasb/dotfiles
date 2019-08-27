@@ -39,6 +39,7 @@
   "solargraph.completion": true,
   "solargraph.checkGemVersion": false,
   "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
   "solargraph.autoformat": false,
 
   // JavaScript
