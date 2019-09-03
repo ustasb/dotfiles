@@ -550,10 +550,9 @@
   endfunction
 
   function! RenderMarkdownInChrome()
-    call system('ruby $HOME/dotfiles/pandoc/markdown_to_html.rb'
-      \ . ' --input ' . expand('%:p')
-      \ . ' --output /tmp/pandoc-markdown-output.html --open-in-chrome --title-h1-only'
-      \ )
+    !ruby $HOME/dotfiles/pandoc/markdown_to_html.rb
+      \ --input %:p --output /tmp/pandoc-markdown-output.html
+      \ --open-in-chrome --title-h1-only
   endfunction
 
   " Open the cursor's word in Dash using Search Profiles.
