@@ -1,55 +1,7 @@
 # tested with ripgrep
 # https://github.com/BurntSushi/ripgrep
 
-# common
-.git
-log
-tags
-tmp
-plugins
-cache
+.DS_Store
 
-# Node.js
-node_modules
-
-# Bower
-bower_components
-
-# SASS
-.sass-cache
-
-# Rails
-spec/cassettes
-vendor/bundle
-
-# Python
-*.pyc
-
-# images
-*.tif
-*.tiff
-*.gif
-*.jpeg
-*.jpg
-*.png
-*.svg
-
-# fonts
-*.ttf
-*.eot
-*.woff
-*.otf
-
-# misc
-*.pdf
-*.DS_Store
-*.h4
-*.h5
-*.db
-*.sketch
-*.ogg
-*.m4a
-
-# encrypted audio files
-*.ogg.gpg
-*.m4a.gpg
+# Google Drive Icon files
+Icon?

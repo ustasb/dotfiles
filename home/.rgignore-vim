@@ -1,0 +1,72 @@
+# tested with ripgrep
+# https://github.com/BurntSushi/ripgrep
+
+# common
+.git
+log
+tags
+tmp
+plugins
+cache
+
+# Node.js
+node_modules
+
+# Bower
+bower_components
+
+# SASS
+.sass-cache
+
+# Rails
+spec/cassettes
+vendor/bundle
+
+# Python
+*.pyc
+
+# images
+*.tif
+*.tiff
+*.gif
+*.jpeg
+*.jpg
+*.png
+*.svg
+
+# fonts
+*.ttf
+*.eot
+*.woff
+*.otf
+
+# misc
+*.pdf
+*.h4
+*.h5
+*.db
+*.sketch
+*.ogg
+*.m4a
+*.mp4
+*.bin
+
+# docs
+*.doc
+*.docx
+*.gdoc
+*.gslides
+*.gsheet
+
+# graphics misc
+*.obj
+*.ply
+*.pcd
+# OpenMVS
+*.mvs
+# depth maps
+*.dmap
+
+# encrypted audio files
+*.ogg.gpg
+*.m4a.gpg

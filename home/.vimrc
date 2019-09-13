@@ -787,6 +787,7 @@
   " }}}
 
   " fzf.vim {{{
+  let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND . " --ignore-file-case-insensitive --ignore-file $HOME/.rgignore-vim"
   let g:fzf_command_prefix = 'Fzf'
   let g:fzf_layout = { 'up': '~35%' }
   let g:fzf_colors = {

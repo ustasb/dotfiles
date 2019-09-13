@@ -67,7 +67,7 @@
 # === Environment Variables === {{{
 
   # Ripgrep
-  export RIPGREP_ARGS="--no-ignore-vcs --hidden --follow --ignore-file $HOME/.rgignore"
+  export RIPGREP_ARGS="--no-ignore-vcs --hidden --follow --smart-case --ignore-file-case-insensitive --ignore-file $HOME/.rgignore"
 
   # Use Neovim as the default editor.
   export BU_EDITOR="nvim"
