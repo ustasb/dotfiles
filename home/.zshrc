@@ -250,7 +250,10 @@
     # Kill gpg-agent
     gpgconf --kill gpg-agent
     # Launch gpg-agent
-    gpg-connect-agent /bye
+    gpg-connect-agent /bye &>/dev/null
+    if [ $? -eq 0 ]; then
+      printf "\033[1;32m\ngpg-agent has started!\n\033[0m"
+    fi
     set_gpg_agent_env_vars
   }
 
@@ -270,6 +273,7 @@
       if [ $? -ne 1 ]; then
         echo "Restarting gpg-agent..."
         restart_gpg_agent &>/dev/null
+        echo "==> Done!"
       fi
     fi
 
