@@ -6,7 +6,7 @@
   "suggest.timeout": 5000,
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
-  "suggest.maxCompleteItemCount": 15,
+  "suggest.maxCompleteItemCount": 25,
   "suggest.localityBonus": true,
   "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help"],
 
@@ -17,7 +17,7 @@
   "coc.preferences.hoverTarget": "echo",
 
   "diagnostic.enable": true,
-  "diagnostic.checkCurrentLine": true,
+  "diagnostic.checkCurrentLine": false,  // too annoying
   "diagnostic.errorSign": "E",
   "diagnostic.warningSign": "W",
   "diagnostic.infoSign": "I",
@@ -60,6 +60,12 @@
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
   "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": [
+    // "--errors-only",
+    "--disable=E1101",  // no-member
+    "--disable=C0301",  // line length
+    "--disable=C0111" // doc strings
+  ],
   "python.linting.pylintUseMinimalCheckers": true,
   "python.workspaceSymbols.enabled": false,
   "python.workspaceSymbols.rebuildOnFileSave": false,
