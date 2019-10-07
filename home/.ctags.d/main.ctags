@@ -6,6 +6,7 @@
 --exclude=tmp
 --exclude=db/migrate
 --exclude=vendor/assets
+--exclude=vendor/bundle
 --exclude=lib/assets
 --exclude=node_modules
 --exclude=*.md
