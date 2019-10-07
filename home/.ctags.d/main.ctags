@@ -8,6 +8,8 @@
 --exclude=vendor/assets
 --exclude=lib/assets
 --exclude=node_modules
+--exclude=vendor/bundle
+--exclude=public
 --exclude=*.md
 --exclude=*.txt
 --exclude=*.xml
