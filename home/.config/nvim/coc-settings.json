@@ -48,6 +48,10 @@
   "tsserver.enable": true,
   "tsserver.enableJavascript": true,
   "tsserver.formatOnType": false,
+  "typescript.suggest.enabled": false, // Disable linting in favor of ESLint. (https://github.com/neoclide/coc-tsserver/issues/12)
+  "typescript.validate.enable": false, // ^^
+  "javascript.suggest.enabled": false, // ^^
+  "javascript.validate.enable": false, // ^^
   "eslint.enable": true,
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": false,
@@ -83,6 +87,7 @@
 
   // misc
   "css.enable": true,
+  "css.validate": false,  // Disable linting in favor of Stylelint.
   "json.enable": true,
   "coc.source.dictionary.enable": true,
   "coc.source.tag.enable": true,
