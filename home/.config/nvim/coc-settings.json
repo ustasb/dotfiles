@@ -47,6 +47,7 @@
   // https://github.com/neoclide/coc-eslint
   "tsserver.enable": true,
   "tsserver.enableJavascript": true,
+  "tsserver.formatOnType": false,
   "eslint.enable": true,
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": false,
@@ -72,7 +73,7 @@
   "python.workspaceSymbols.rebuildOnStart": false,
 
   // YAML
-  "yaml.format.enable": true,
+  "yaml.format.enable": false,
   "yaml.format.singleQuote": true,
   "yaml.format.proseWrap": "never",
 
