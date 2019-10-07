@@ -21,6 +21,8 @@ bower_components
 # Rails
 spec/cassettes
 vendor/bundle
+# Webpack bundles
+public/packs*
 
 # Python
 *.pyc
