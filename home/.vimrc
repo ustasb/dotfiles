@@ -720,7 +720,8 @@
   " }}}
 
   " Ack.vim {{{
-  let g:ackprg = 'rg --hidden --vimgrep --smart-case'
+  let $RIPGREP_VIM_ARGS = ' --hidden --smart-case --ignore-file $HOME/.rgignore-vim'
+  let g:ackprg = 'rg --vimgrep ' . $RIPGREP_VIM_ARGS
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
   cnoreabbrev Ag Ack!
@@ -787,7 +788,7 @@
   " }}}
 
   " fzf.vim {{{
-  let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND . " --ignore-file-case-insensitive --ignore-file $HOME/.rgignore-vim"
+  let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND . $RIPGREP_VIM_ARGS
   let g:fzf_command_prefix = 'Fzf'
   let g:fzf_layout = { 'up': '~35%' }
   let g:fzf_colors = {
