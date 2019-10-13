@@ -11,6 +11,11 @@ cache
 
 # Node.js
 node_modules
+# NPM
+package-lock.json
+# Yarn
+yarn.lock
+yarn-error.log
 
 # Bower
 bower_components
