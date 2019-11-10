@@ -616,13 +616,20 @@
       " preprend today's date
       let scratch_file = strftime('%F_%H-%M') . '_' . scratch_file
     endif
+
+    " Don't add an extension if the filename includes one.
+    let extension = '.md'
+    if match(scratch_file, '\..*$') != -1
+      let extension = ''
+    endif
+
     " build full path
-    let scratch_file = $USTASB_DOCS_DIR_PATH . '/scratch/' . scratch_file . '.md'
+    let scratch_file = $USTASB_DOCS_DIR_PATH . '/scratch/' . scratch_file . extension
 
     silent exec('e ' . scratch_file)
 
     " If the file doesn't exist, add a header.
-    if empty(glob(scratch_file))
+    if empty(glob(scratch_file)) && extension == '.md'
       " capitalize title
       let title = substitute(title, '\<.', '\u&', 'g')
       silent exec("call append(line('^'), '% " . title . "')")
