@@ -699,7 +699,7 @@
   " }}}
 
   " NERD Tree {{{
-  let g:NERDTreeIgnore = ['.git', '.DS_Store', 'Icon', '__pycache__', '\.o$']
+  let g:NERDTreeIgnore = ['\.git', '.DS_Store', 'Icon', '__pycache__', '\.o$']
   let g:NERDTreeMinimalUI = 1
   let g:NERDTreeShowHidden = 1
   let g:NERDTreeAutoDeleteBuffer = 1
