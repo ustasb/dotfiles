@@ -435,6 +435,9 @@
   " Open a file in Google Chrome.
   command! Chrome :!open -a "Google Chrome" %:p
 
+  " Open the file's folder in Finder.
+  command! Finder :!open -a "Finder" %:p:h
+
   " Create a tags file.
   function! CreateCtagsFile()
     let cwd = getcwd()
