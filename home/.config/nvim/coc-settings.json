@@ -53,7 +53,7 @@
   "javascript.suggest.enabled": false, // ^^
   "javascript.validate.enable": false, // ^^
   "eslint.enable": true,
-  "eslint.autoFix": true,
+  "eslint.autoFix": false, // Let ALE fix files via :Fix.
   "eslint.autoFixOnSave": false,
 
   // Python (via Conda)

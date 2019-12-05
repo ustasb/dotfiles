@@ -21,6 +21,7 @@
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+    Plug 'dense-analysis/ale'
 
     " completion
     Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
@@ -845,6 +846,34 @@
   let g:AutoPairsMultilineClose = 0
   " }}}
 
+  " ALE (Used for the :Fix command and linting what coc.nvim can't.) {{{
+  let g:ale_enabled = 1
+  let g:ale_history_enabled = 0
+  let g:ale_history_log_output = 0
+  let g:ale_completion_enabled = 0
+
+  let g:ale_sign_error = 'E'
+  let g:ale_sign_warning = 'W'
+  let g:ale_sign_info = 'I'
+
+  let g:ale_linters_explicit = 1
+  let g:ale_linters = {
+    \  'css': ['stylelint'],
+    \  'scss': ['stylelint'],
+    \ }
+
+  let g:ale_fix_on_save = 0
+  let g:ale_fixers = {
+    \  '*': ['remove_trailing_lines'],
+    \  'ruby': ['rubocop'],
+    \  'javascript': ['eslint'],
+    \  'css': ['stylelint'],
+    \  'scss': ['stylelint'],
+    \ }
+
+  command! -nargs=0 Fix :ALEFix
+  " }}}
+
   " coc.nvim (Conquer of Completion) {{{
   " . : current buffer
   " w : buffers from other windows
@@ -888,10 +917,7 @@
   nmap <silent> gd <Plug>(coc-definition)
   " Jump to references of current symbol.
   nmap <silent> gr <Plug>(coc-references)
-  " Format the entire buffer.
-  command! -nargs=0 Format :call CocAction('format')
   command! -nargs=0 Rename :call CocAction('rename')
-  command! -nargs=0 AutoFixJS :call CocAction('runCommand', 'eslint.executeAutofix')
 
   " Use [c and ]c for navigating diagnostics.
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
