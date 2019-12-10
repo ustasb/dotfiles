@@ -146,10 +146,10 @@ class EventbriteScraper
 
     events = doc.css(".search-main-content__events-list > li").map do |node|
       {
-        title: node.at_css('.eds-media-card-content__action-link .eds-is-hidden-accessible').text.strip,
-        location: node.at_css('.eds-media-card-content__sub-content .eds-media-card-content__sub-content-cropped > div:first-child').text.strip,
-        link: node.at_css('.eds-media-card-content__action-link')['href'].strip,
-        date: DateTime.parse(node.at_css('.eds-media-card-content__sub-content > div:first-child').text.strip),
+        title: node.at_css('.eds-media-card-content__action-link .eds-is-hidden-accessible')&.text&.strip,
+        location: node.at_css('.eds-media-card-content__sub-content .eds-media-card-content__sub--cropped > div:first-child')&.text&.strip,
+        link: node.at_css('.eds-media-card-content__action-link')&.get('href')&.strip,
+        date: DateTime.parse(node.at_css('.eds-media-card-content__primary-content > div:first-child')&.text&.strip&.match(/.*(AM|PM)/)[0]),
       }
     end
 
