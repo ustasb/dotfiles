@@ -875,6 +875,8 @@
     \ }
 
   command! -nargs=0 Fix :ALEFix
+  " For JS files, coc-eslint's executeAutofix is faster than ALE's.
+  autocmd FileType javascript.jsx command! -nargs=0 Fix :CocCommand eslint.executeAutofix
   " }}}
 
   " coc.nvim (Conquer of Completion) {{{
