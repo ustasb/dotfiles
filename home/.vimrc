@@ -586,6 +586,9 @@
   command! ZLshrc :e ~/.zshrc.local
   command! ZL ZLshrc
 
+  " notes
+  command! Notes :cd $USTASB_DOCS_DIR_PATH | NERDTreeToggle
+
   " todo.md
   function! OpenTodo()
     if expand('%:t') == 'todo.md'
