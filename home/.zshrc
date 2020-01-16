@@ -140,7 +140,8 @@
   alias tmuxk='tmux kill-server'
   alias pt="ptpython"
   alias jp="jupyter notebook"
-  alias vnew="cd $USTASB_DOCS_DIR_PATH && vim -c NERDTreeToggle"
+  alias notes="vim -c Notes"
+  alias pyserver="python -m http.server"
 
 # }}}
 
