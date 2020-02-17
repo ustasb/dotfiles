@@ -365,22 +365,11 @@
 
     syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
 
-    " Help distinguish valid TODO item tags. Positive lookbehind: \@<=
-    " Supports tags separated by a comma.
-    let tag_regex = '\(^- \)\@<=\(,\?\(' . substitute($USTASB_TODO_ITEM_TAGS, ',', '\\|', 'g') . '\)\)\+:'
-    silent exec("syntax match TODOItemTag '" . tag_regex . "'")
-    highlight def link TODOItemTag WildMenu
-
     " YAML frontmatter (Jekyll)
     silent! unlet b:current_syntax
     syntax include @yaml syntax/yaml.vim
     syntax region yamlfrontmatter start=/\%^---$/ end=/^---$/ keepend contains=@yaml
     let b:current_syntax = &filetype
-
-    if expand('%:t') == 'todo.md'
-      setlocal textwidth=0
-      command! -buffer -nargs=? Done call LogCompletedTask(<f-args>)
-    end
   endfunction
 
   augroup AG_ProseOptions
@@ -528,31 +517,6 @@
     normal zz
   endfunction
 
-  " Timestamp, log and delete the task at the cursor.
-  function! LogCompletedTask(...)
-    let task = getline('.')
-    " remove list markers
-    let task = substitute(task, '^\s*[-+]\s*', '', '')
-    " remove trailing whitespace
-    let task = substitute(task, '\s*$', '', '')
-
-    " ISO8601
-    let days_ago = (a:0 == 0) ? 0 : a:1
-    let epoch_secs = system('date -v-' . days_ago . 'd +%s')
-    let timestamp = strftime('%FT%T%z', epoch_secs)
-    let json = json_encode({ 'task': task, 'timestamp': timestamp })
-
-    " log the task
-    let done_log = $USTASB_DOCS_DIR_PATH . '/ustasb/done.log'
-    silent exec('!echo ' . shellescape(json, 1) . ' >> ' . done_log)
-    silent exec('!ruby ~/dotfiles/scripts/create_done_md.rb')
-
-    " delete the task (don't cut)
-    normal "_dd
-
-    echomsg 'Task Done! ' . json
-  endfunction
-
   function! RenderMarkdownInChrome()
     !ruby $HOME/dotfiles/pandoc/markdown_to_html.rb
       \ --input %:p --output /tmp/pandoc-markdown-output.html
@@ -588,25 +552,6 @@
 
   " notes
   command! Notes :cd $USTASB_DOCS_DIR_PATH | NERDTreeToggle
-
-  " todo.md
-  function! OpenTodo()
-    if expand('%:t') == 'todo.md'
-      return
-    endif
-
-    let is_open = bufexists(bufname('todo.md'))
-
-    e $USTASB_DOCS_DIR_PATH/ustasb/todo.md
-
-    if !is_open
-      call search('^## Today', 'cw')
-      " center vertically
-      normal zz
-    endif
-  endfunction
-  command! Todo call OpenTodo()
-  command! T Todo
 
   " scratch files
   function! OpenScratch(...)
