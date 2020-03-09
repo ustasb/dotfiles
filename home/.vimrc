@@ -609,6 +609,17 @@
   endfunction
   command! Archive call Archive()
 
+  " Use linters to 'fix' files when possible.
+  function! AutoFix()
+    if &filetype == 'javascript.jsx'
+      " For JS files, coc-eslint's executeAutofix is faster than ALE's.
+      :CocCommand eslint.executeAutofix
+    else
+      :ALEFix
+    endif
+  endfunction
+  command! -nargs=0 Fix call AutoFix()
+
   " quickly quit
   command! Q :qa
   nnoremap Q :qa<CR>
@@ -818,10 +829,6 @@
     \  'css': ['stylelint'],
     \  'scss': ['stylelint'],
     \ }
-
-  command! -nargs=0 Fix :ALEFix
-  " For JS files, coc-eslint's executeAutofix is faster than ALE's.
-  autocmd FileType javascript.jsx command! -nargs=0 Fix :CocCommand eslint.executeAutofix
   " }}}
 
   " coc.nvim (Conquer of Completion) {{{
