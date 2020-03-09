@@ -4,12 +4,13 @@
 --exclude=.git
 --exclude=log
 --exclude=tmp
---exclude=db/migrate
---exclude=vendor/assets
---exclude=lib/assets
---exclude=node_modules
---exclude=vendor/bundle
+--exclude=dist
 --exclude=public
+--exclude=node_modules
+--exclude=*/db/migrate/*
+--exclude=*/vendor/assets/*
+--exclude=*/lib/assets/*
+--exclude=*/vendor/bundle/*
 --exclude=*.md
 --exclude=*.txt
 --exclude=*.xml
@@ -19,5 +20,6 @@
 --exclude=*.min.js
 --exclude=*.csv
 --exclude=*.tsv
+--exclude=*.svg
 --exclude=*.json
 --exclude=*.lock
