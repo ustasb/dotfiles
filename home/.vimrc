@@ -849,6 +849,7 @@
     \ 'coc-solargraph',
     \ 'coc-tsserver',
     \ 'coc-eslint',
+    \ 'coc-tailwindcss',
     \ ]
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
