@@ -1,5 +1,6 @@
 # ptpython: https://github.com/jonathanslenders/ptpython
 # options: https://github.com/jonathanslenders/ptpython/blob/master/examples/ptpython_config/config.py
+# TODO: "~/.ptpython/config.py is deprecated, move your configuration to /Users/ustasb/Library/Application Support/ptpython/config.py"
 
 def configure(repl):
     repl.true_color = True
