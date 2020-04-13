@@ -17,7 +17,6 @@
     Plug 'itchyny/lightline.vim'
 
     " editing
-    Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
     Plug 'tpope/vim-surround'
     Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
@@ -796,15 +795,6 @@
   nnoremap <silent> q: :FzfHistory:<CR>
   " }}}
 
-  " auto-pairs {{{
-  let g:AutoPairsShortcutToggle = '' " disable
-  let g:AutoPairsMapCR = 0
-  let g:AutoPairsMapCh = 0
-  let g:AutoPairsMapSpace = 0
-  let g:AutoPairsCenterLine = 0
-  let g:AutoPairsMultilineClose = 0
-  " }}}
-
   " ALE (Used for the :Fix command and linting what coc.nvim can't.) {{{
   let g:ale_enabled = 1
   let g:ale_history_enabled = 0
@@ -857,6 +847,7 @@
     \ 'coc-tsserver',
     \ 'coc-eslint',
     \ 'coc-tailwindcss',
+    \ 'coc-pairs',
     \ ]
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
