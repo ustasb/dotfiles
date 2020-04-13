@@ -58,7 +58,7 @@ def main
   # no-highlight: brianustas.com's post.js handles syntax highlighting.
   md_to_html_cmd = <<-EOF
     pandoc
-      --from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji
+      --from markdown+smart+autolink_bare_uris+lists_without_preceding_blankline+emoji+task_lists
       --to=html5
       --self-contained
       --table-of-contents
