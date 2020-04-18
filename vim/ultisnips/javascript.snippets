@@ -1,3 +1,42 @@
 snippet p "console.log()"
 console.log($1)
 endsnippet
+
+snippet eslint "eslint disable line"
+eslint-disable-line ${1:rule_name}
+endsnippet
+
+snippet import_lodash "import lodash"
+import _ from 'lodash';
+endsnippet
+
+snippet import_react "import React"
+import React from 'react';
+import PropTypes from 'prop-types';
+endsnippet
+
+snippet class_react "React component"
+class ${1:class_name} extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			$0
+		);
+	}
+}
+
+$1.propTypes = {
+};
+
+$1.defaultProps = {
+};
+
+export default $1;
+endsnippet
+
+snippet debug "debugger"
+debugger
+endsnippet

@@ -13,10 +13,6 @@ snippet datetime "YYYY-MM-DD hh:mm"
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
 
-snippet diso "ISO datetime"
-`!v strftime("%F %H:%M:%S%z")`
-endsnippet
-
 snippet uuid "random UUID"
 `!p if not snip.c: import uuid; snip.rv = uuid.uuid4()`
 endsnippet

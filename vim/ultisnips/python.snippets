@@ -1,6 +1,5 @@
-snippet shebang "#!/usr/bin/env python"
-#!/usr/bin/env python
-$0
+snippet p "print()"
+print($1)
 endsnippet
 
 snippet ifmain "if __main__"
@@ -8,22 +7,12 @@ if __name__ == "__main__":
 	$0
 endsnippet
 
-snippet for "for loop"
-for ${1:item} in ${2:iterable}:
-	${3:pass}
-endsnippet
-
-snippet p "print()"
-print($1)$0
-endsnippet
-
-snippet ids "import numpy, pandas, matplotlib"
+snippet import_datascience "import numpy, pandas, matplotlib"
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-$0
 endsnippet
 
-snippet pdb "debugger"
+snippet debug "pdb debugger"
 import pdb; pdb.set_trace()
 endsnippet

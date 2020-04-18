@@ -1,29 +1,27 @@
 snippet link "link"
-[$1](${2:path})$0
+[$1](${2:path})
 endsnippet
 
 snippet img "image"
-![$1](${2:path})$0
+![$1](${2:path})
 endsnippet
 
 snippet cbl "code block"
-\`\`\`
-$1
+\`\`\`${1:lang}
+$2
 \`\`\`
 $0
 endsnippet
 
 ### math ###
 
-snippet eqb "tex equation block"
+snippet tex "tex equation block"
 $$
 $1
 $$
 $0
 endsnippet
 
-snippet frac "tex fraction"
+snippet tex_frac "tex fraction"
 \frac{${1:num}}{${2:denom}}
 endsnippet
-
-### misc ###

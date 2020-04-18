@@ -1,6 +1,5 @@
-snippet shebang "#!/usr/bin/env ruby"
-#!/usr/bin/env ruby
-$0
+snippet p "puts"
+puts $1
 endsnippet
 
 snippet class "class declaration"
@@ -16,4 +15,12 @@ case ${1:variable}
 when ${2:expression}
 	$0
 end
+endsnippet
+
+snippet rubocop "rubocop disable line"
+rubocop:disable ${1:rule_name}
+endsnippet
+
+snippet debug "byebug debugger"
+byebug
 endsnippet
