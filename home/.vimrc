@@ -848,6 +848,7 @@
     \ 'coc-eslint',
     \ 'coc-tailwindcss',
     \ 'coc-pairs',
+    \ 'coc-highlight',
     \ ]
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
