@@ -759,7 +759,7 @@
   " fzf.vim {{{
   let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND . $RIPGREP_VIM_ARGS
   let g:fzf_command_prefix = 'Fzf'
-  let g:fzf_layout = { 'up': '~35%' }
+  let g:fzf_layout = { 'up': '~50%' }
   let g:fzf_colors = {
     \ 'prompt':   ['fg', 'GruvboxAquaBold'],
     \ 'spinner':  ['fg', 'Comment'],
