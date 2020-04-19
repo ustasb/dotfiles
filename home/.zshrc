@@ -14,6 +14,7 @@
 # - z ( https://github.com/rupa/z)
 # - gpg2 (https://www.gnupg.org)
 # - rg (https://github.com/BurntSushi/ripgrep)
+# - bat (https://github.com/sharkdp/bat): Used by fzf.vim's preview.
 
 # === zsh Settings === {{{
 
@@ -55,6 +56,85 @@
 
 # }}}
 
+# === Helper Functions === {{{
+
+  # no arguments: `git status`
+  # with arguments: acts like `git`
+  # credit: thoughtbot
+  g() {
+    if [[ $# > 0 ]]; then
+      git $@
+    else
+      git status -s
+    fi
+  }
+  compdef g=git  # Complete `g` like `git`
+
+  # Create a new named tmux session.
+  # Without arguments, the session name is the basename of the current directory.
+  tnew() { tmux new-session -s ${1:-$(basename $(pwd))} }
+
+  # Checkout a Git branch with fzf.
+  fbr() {
+    local branches branch
+    branches=$(git branch) &&
+    branch=$(echo "$branches" | fzf +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //")
+  }
+
+  todo() {
+    vim \
+    -c 'cd $USTASB_DOCS_DIR_PATH' \
+    -c Todo
+  }
+  alias t=todo
+
+  # Ensure that bat syntax highlighting looks good regardless of the terminal theme.
+  # https://github.com/sharkdp/bat
+  set_bat_theme_env_var() {
+    if [[ "$ITERM_PROFILE" == "GruvboxLight" ]]; then
+      export BAT_THEME="ansi-light"
+    else
+      export BAT_THEME="ansi-dark"
+    fi
+  }
+
+  # Changes the iTerm profile.
+  update_iterm_color_profile() {
+    if [ -n "$TMUX" ]; then
+      # Inspired by: https://github.com/sjl/vitality.vim/blob/4bb8c078c3a9a23f8af5db1dd95832faa802a1a9/doc/vitality.txt#L199
+      echo "\033Ptmux;\033\033]50;SetProfile=$1\007\033\\"
+    else
+      echo "\033]50;SetProfile=$1\a"
+    fi
+  }
+
+  dark_theme() {
+    export ITERM_PROFILE=GruvboxDark
+    if [ -n "$TMUX" ]; then
+      tmux set-environment ITERM_PROFILE $ITERM_PROFILE
+      tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
+    fi
+    set_bat_theme_env_var
+    update_iterm_color_profile $ITERM_PROFILE
+  }
+
+  light_theme() {
+    export ITERM_PROFILE=GruvboxLight
+    if [ -n "$TMUX" ]; then
+      tmux set-environment ITERM_PROFILE $ITERM_PROFILE
+      tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
+    fi
+    set_bat_theme_env_var
+    update_iterm_color_profile $ITERM_PROFILE
+  }
+
+  # Enable access to my personal scripts.
+  # Helper functions are prefixed with `bu_`.
+  source ~/dotfiles/scripts/shell_functions.sh
+
+# }}}
+
 # === Prompt === {{{
 
   fpath=("$HOME/.pure_prompt" $fpath) # dependencies
@@ -80,6 +160,8 @@
 
   # Conda via Anaconda
   export PATH=/usr/local/anaconda3/bin:"$PATH"
+
+  set_bat_theme_env_var
 
 # }}}
 
@@ -139,73 +221,6 @@
   alias jp="jupyter notebook"
   alias notes="vim -c Notes"
   alias pyserver="python -m http.server"
-
-# }}}
-
-# === Helper Functions === {{{
-
-  # no arguments: `git status`
-  # with arguments: acts like `git`
-  # credit: thoughtbot
-  g() {
-    if [[ $# > 0 ]]; then
-      git $@
-    else
-      git status -s
-    fi
-  }
-  compdef g=git  # Complete `g` like `git`
-
-  # Create a new named tmux session.
-  # Without arguments, the session name is the basename of the current directory.
-  tnew() { tmux new-session -s ${1:-$(basename $(pwd))} }
-
-  # Checkout a Git branch with fzf.
-  fbr() {
-    local branches branch
-    branches=$(git branch) &&
-    branch=$(echo "$branches" | fzf +m) &&
-    git checkout $(echo "$branch" | sed "s/.* //")
-  }
-
-  todo() {
-    vim \
-    -c 'cd $USTASB_DOCS_DIR_PATH' \
-    -c Todo
-  }
-  alias t=todo
-
-  # Changes the iTerm profile.
-  update_iterm_color_profile() {
-    if [ -n "$TMUX" ]; then
-      # Inspired by: https://github.com/sjl/vitality.vim/blob/4bb8c078c3a9a23f8af5db1dd95832faa802a1a9/doc/vitality.txt#L199
-      echo "\033Ptmux;\033\033]50;SetProfile=$1\007\033\\"
-    else
-      echo "\033]50;SetProfile=$1\a"
-    fi
-  }
-
-  dark_theme() {
-    export ITERM_PROFILE=GruvboxDark
-    if [ -n "$TMUX" ]; then
-      tmux set-environment ITERM_PROFILE $ITERM_PROFILE
-      tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
-    fi
-    update_iterm_color_profile $ITERM_PROFILE
-  }
-
-  light_theme() {
-    export ITERM_PROFILE=GruvboxLight
-    if [ -n "$TMUX" ]; then
-      tmux set-environment ITERM_PROFILE $ITERM_PROFILE
-      tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
-    fi
-    update_iterm_color_profile $ITERM_PROFILE
-  }
-
-  # Enable access to my personal scripts.
-  # Helper functions are prefixed with `bu_`.
-  source ~/dotfiles/scripts/shell_functions.sh
 
 # }}}
 
