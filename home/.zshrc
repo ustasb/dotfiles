@@ -176,7 +176,7 @@
   alias t=todo
 
   # Changes the iTerm profile.
-  it2_profile() {
+  update_iterm_color_profile() {
     if [ -n "$TMUX" ]; then
       # Inspired by: https://github.com/sjl/vitality.vim/blob/4bb8c078c3a9a23f8af5db1dd95832faa802a1a9/doc/vitality.txt#L199
       echo "\033Ptmux;\033\033]50;SetProfile=$1\007\033\\"
@@ -191,7 +191,7 @@
       tmux set-environment ITERM_PROFILE $ITERM_PROFILE
       tmux source-file ~/dotfiles/tmux/gruvbox_dark_theme.conf
     fi
-    it2_profile $ITERM_PROFILE
+    update_iterm_color_profile $ITERM_PROFILE
   }
 
   light_theme() {
@@ -200,7 +200,7 @@
       tmux set-environment ITERM_PROFILE $ITERM_PROFILE
       tmux source-file ~/dotfiles/tmux/gruvbox_light_theme.conf
     fi
-    it2_profile $ITERM_PROFILE
+    update_iterm_color_profile $ITERM_PROFILE
   }
 
   # Enable access to my personal scripts.
