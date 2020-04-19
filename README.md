@@ -18,12 +18,12 @@ Use the zsh functions `dark_theme` and `light_theme` to change color profiles.
 
 ### Gruvbox Dark
 
-- 13pt SF Mono Light
+- 13pt iA Writer Mono
 - [Vim theme](https://github.com/ustasb/gruvbox)
 - [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/bu_gruvbox_dark.itermcolors)
 
 ### Gruvbox Light (default)
 
-- 13pt SF Mono Regular
+- 13pt iA Writer Mono
 - [Vim theme](https://github.com/ustasb/gruvbox)
 - [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/bu_gruvbox_light.itermcolors)
