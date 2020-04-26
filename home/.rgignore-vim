@@ -45,6 +45,7 @@ public/packs*
 *.ttf
 *.eot
 *.woff
+*.woff2
 *.otf
 
 # misc
