@@ -6,7 +6,6 @@
 log
 tags
 tmp
-plugins
 cache
 
 # Node.js
