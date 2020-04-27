@@ -67,7 +67,7 @@ def main
       --mathjax=""
       --wrap=none
       --no-highlight
-      --resource-path #{ENV['USTASB_DOCS_IMAGE_DIR_PATH']}:#{Dir.home}/Desktop
+      --resource-path #{Shellwords.escape(ENV['USTASB_DOCS_IMAGE_DIR_PATH'])}:#{Dir.home}/Desktop
       --output #{Shellwords.escape($argv[:output_path])}
       #{Shellwords.escape(temp_file.path)}
   EOF
