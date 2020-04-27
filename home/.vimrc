@@ -689,7 +689,7 @@
   " }}}
 
   " Ack.vim {{{
-  let $RIPGREP_VIM_ARGS = ' --hidden --smart-case --ignore-file $HOME/.rgignore-vim'
+  let $RIPGREP_VIM_ARGS = " --hidden --smart-case --ignore-file $HOME/.rgignore-vim"
   let g:ackprg = 'rg --vimgrep ' . $RIPGREP_VIM_ARGS
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
@@ -703,7 +703,7 @@
 
   " Goyo.vim {{{
   nnoremap <Leader>z :Goyo<CR>
-  let g:goyo_width = 120
+  let g:goyo_width = 100
   let g:goyo_height = '90%'
   " }}}
 
