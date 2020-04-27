@@ -673,7 +673,7 @@
   let g:NERDTreeShowHidden = 1
   let g:NERDTreeAutoDeleteBuffer = 1
   let g:NERDTreeWinSize = 30
-  let g:NERDTreeStatusline = '​' " zero width space
+  let g:NERDTreeStatusline = -1
   let g:NERDTreeMapActivateNode = '<Space>'
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
