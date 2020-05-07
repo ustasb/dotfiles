@@ -23,7 +23,7 @@
     Plug 'dense-analysis/ale'
 
     " completion
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'sirver/UltiSnips'
 
     " colors
