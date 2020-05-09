@@ -768,16 +768,23 @@ scriptencoding utf-8
     \ ]
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
-  " credit: https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#use-tab-or-custom-key-for-trigger-completion
+  function! s:CocTab()
+    if pumvisible()
+      return "\<C-n>"
+    elseif <SID>check_back_space()
+      return "\<TAB>"
+    elseif get(b:, 'coc_suggest_disable', 0)
+      return "\<TAB>"
+    else
+      return coc#refresh()
+    endif
+  endfunction
   function! s:check_back_space() abort
     let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+    return !col || getline('.')[col - 1] =~# '\s'
   endfunction
-  inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+  inoremap <silent><expr> <TAB> <SID>CocTab()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-  " Use <C-t> to force open the completion list.
-  inoremap <silent><expr> <C-t> coc#refresh()
 
   " Jump to definition of current symbol.
   nmap <silent> gd <Plug>(coc-definition)
