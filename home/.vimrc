@@ -36,8 +36,9 @@ scriptencoding utf-8
     Plug 'tpope/vim-rhubarb' " GitHub support
 
     " prose
-    Plug 'ustasb/vim-markdown', { 'for': 'markdown' }
-    Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'text'] }
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'reedes/vim-litecorrect', { 'for': ['text', 'markdown', 'pandoc'] }
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
     " search
@@ -70,7 +71,6 @@ scriptencoding utf-8
     " misc
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-    Plug 'lvht/tagbar-markdown'
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
@@ -620,10 +620,6 @@ scriptencoding utf-8
   nnoremap <Leader>c :Commentary<CR>
   " }}}
 
-  " Vim Markdown {{{
-  let g:markdown_folding = 1
-  " }}}
-
   " Tagbar {{{
   let g:tagbar_width = 30
   let g:tagbar_silent = 1
@@ -807,6 +803,66 @@ scriptencoding utf-8
   let g:python_highlight_all = 1
   let g:python_highlight_space_errors = 0
   let g:python_highlight_indent_errors = 0
+  " }}}
+
+  " vim-pandoc {{{
+  " NOTE: Makes Markdown files have the filetype of 'pandoc' (which I don't like...)
+  let g:pandoc#modules#enabled = [
+    \ 'formatting',
+    \ 'folding',
+    \ 'metadata',
+    \ 'toc',
+    \ ]
+    " Disabled:
+    " \ 'menu',
+    " \ 'executors',
+    " \ 'keyboard',
+    " \ 'spell',
+    " \ 'hypertext'
+    " \ 'completion',
+    " \ 'bibliographies',
+
+  let g:pandoc#keyboard#use_default_mappings = 0
+  " let g:pandoc#keyboard#enabled_submodules = ['lists', 'references', 'styles', 'sections', 'links', 'checkboxes']
+
+  " 'hA' is recommended but it doesn't let me create new list items without weirdness.
+  let g:pandoc#formatting#mode = 'ha'
+  " h: use hard wraps
+  " a: autoformat
+  " A: smart autoformatting
+  " s: use soft wraps
+  let g:pandoc#formatting#textwidth = 80
+  let g:pandoc#formatting#smart_autoformat_on_cursormoved = 0
+
+  " :TOC (table of contents)
+  let g:pandoc#toc#shift = 2
+  let g:pandoc#toc#position = 'left'
+  let g:pandoc#toc#close_after_navigating = 1
+
+  let g:pandoc#folding#fdc = 0
+  let g:pandoc#folding#fold_yaml = 0
+  let g:pandoc#folding#fold_vim_markers = 0
+  " My experience with folds isn't slow enough to warrant fastfolds.
+  let g:pandoc#folding#fastfolds = 0
+
+  " vim-pandoc-syntax
+  let g:pandoc#syntax#conceal#use = 1
+  let g:pandoc#syntax#conceal#urls = 0
+  let g:pandoc#syntax#conceal#blacklist = [
+    \ 'titleblock',
+    \ 'inlinecode',
+    \ 'codeblock_start',
+    \ 'codeblock_delim',
+    \ ]
+  let g:pandoc#syntax#codeblocks#embeds#use = 1
+  let g:pandoc#syntax#codeblocks#embeds#langs = [
+    \ 'bash=sh',
+    \ 'vim',
+    \ 'c',
+    \ 'ruby',
+    \ 'python',
+    \ 'javascript'
+    \ ]
   " }}}
 
   " UltiSnips {{{
