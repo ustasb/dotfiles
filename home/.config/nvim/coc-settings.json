@@ -6,7 +6,7 @@
   "suggest.timeout": 5000,
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
-  "suggest.maxCompleteItemCount": 25,
+  "suggest.maxCompleteItemCount": 15,
   "suggest.localityBonus": true,
   "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help"],
 
