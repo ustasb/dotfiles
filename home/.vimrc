@@ -289,6 +289,7 @@ scriptencoding utf-8
 
   " Change the leader key from \ to ,
   let mapleader=','
+  let maplocalleader = "\\"
 
   " Use jk instead of <Esc> to enter Normal mode.
   inoremap jk <Esc>
