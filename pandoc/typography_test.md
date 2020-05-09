@@ -1,4 +1,6 @@
-% Typography Test
+---
+title: Typography Test
+---
 
 # Header 1
 
