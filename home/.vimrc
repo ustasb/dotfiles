@@ -12,7 +12,6 @@ scriptencoding utf-8
 " - rg (https://github.com/BurntSushi/ripgrep)
 " - ctags (https://github.com/universal-ctags/ctags)
 " - fzf (https://github.com/junegunn/fzf)
-" - pandoc (https://pandoc.org)
 
 " === vim-plug === {{{
 
@@ -471,29 +470,6 @@ scriptencoding utf-8
   endfunction
   nnoremap <Leader>e :call ExecuteFile()<CR>
 
-  " Daily Journal
-  function! TodaysJournalEntry(encrypt)
-    let journal_entry_dir = $USTASB_DOCS_DIR_PATH . '/ustasb/journal/entries/'
-    let entry_path = journal_entry_dir . strftime('%Y-%m-%d') . '.md' . (a:encrypt ? '.gpg' : '')
-    " `resolve` to follow symbolic links.
-    " Quiets NERDTree's findAndRevealPath exception.
-    exec 'e ' . resolve(entry_path)
-  endfunction
-  command! J call TodaysJournalEntry(0)
-  command! JE call TodaysJournalEntry(1)
-
-  " Convert Pandoc markdown to Github flavored markdown.
-  function! PandocMarkdownToGFM()
-    if &filetype == "markdown"
-      %s/^#/##/g " Increase heading levels.
-      %s/^%/#/g " Convert the title header.
-      echomsg "Converted to Github flavored Markdown!"
-    else
-      echomsg "You're not in a Markdown file!"
-    endif
-  endfunction
-  command! PandocMarkdownToGFM call PandocMarkdownToGFM()
-
   " credit: https://github.com/arithran/vim-delete-hidden-buffers
   function! CloseHiddenBuffers()
     let tpbl=[]
@@ -514,12 +490,6 @@ scriptencoding utf-8
       normal! zR
     endif
     " center the cursor
-  endfunction
-
-  function! RenderMarkdownInChrome()
-    !ruby $HOME/dotfiles/pandoc/markdown_to_html.rb
-      \ --input "%:p" --output /tmp/pandoc-markdown-output.html
-      \ --open-in-chrome --title-h1-only
     normal! zz
   endfunction
 
@@ -549,65 +519,6 @@ scriptencoding utf-8
   " .zshrc.local
   command! ZLshrc :e ~/.zshrc.local
   command! ZL ZLshrc
-
-  " notes
-  command! Notes :cd $USTASB_DOCS_DIR_PATH | NERDTreeToggle
-
-  " scratch files
-  function! OpenScratch(...)
-    let title = (a:0 == 0) ? 'Scratch Pad' : a:1
-
-    " collapse multiple spaces
-    let title = substitute(title, '\s\+', ' ', 'g')
-    " remove trailing whitespace
-    let title = substitute(title, '\s*$', '', '')
-
-    " replace spaces with underscores
-    let scratch_file = tolower(substitute(title, '\s', '_', 'g'))
-    if a:0 != 0
-      " preprend today's date
-      let scratch_file = strftime('%F_%H-%M') . '_' . scratch_file
-    endif
-
-    " Don't add an extension if the filename includes one.
-    let extension = '.md'
-    if match(scratch_file, '\..*$') != -1
-      let extension = ''
-    endif
-
-    " build full path
-    let scratch_file = $USTASB_DOCS_DIR_PATH . '/scratch/' . scratch_file . extension
-
-    silent exec('e ' . scratch_file)
-
-    " If the file doesn't exist, add a header.
-    if empty(glob(scratch_file)) && extension == '.md'
-      " capitalize title
-      let title = substitute(title, '\<.', '\u&', 'g')
-      silent exec("call append(line('^'), '% " . title . "')")
-    endif
-  endfunction
-  command! -nargs=? Scratch call OpenScratch(<f-args>)
-  command! -nargs=? S call OpenScratch(<f-args>)
-
-  function! Archive()
-    let curr_path = expand('%')
-    let new_path = $USTASB_DOCS_DIR_PATH . '/archive/' . strftime('%Y')
-
-    " Ensure the archive directory exists.
-    silent exec('!mkdir -p ' . shellescape(new_path))
-    " Append the current file name.
-    let new_path = new_path . '/' . expand('%:t')
-    " Move current file to the archive.
-    silent exec('!mv ' . shellescape(curr_path) . ' ' . shellescape(new_path))
-    " Delete the current file buffer.
-    bd
-    " Refresh NERDTree if active.
-    silent! NERDTreeRefreshRoot
-
-    echom 'Archived! New path: ' . new_path
-  endfunction
-  command! Archive call Archive()
 
   " Use linters to 'fix' files when possible.
   function! AutoFix()
@@ -697,9 +608,6 @@ scriptencoding utf-8
   cnoreabbrev Ag Ack!
   cnoreabbrev AG Ack!
   cnoreabbrev ag Ack!
-  " Agn to search my documents.
-  command! -nargs=1 Agn Ack! <f-args> $USTASB_DOCS_DIR_PATH
-  cnoreabbrev AGn Agn
   " }}}
 
   " Goyo.vim {{{
