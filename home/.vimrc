@@ -315,10 +315,6 @@ scriptencoding utf-8
   inoremap <C-a> <Esc>I
   inoremap <C-e> <Esc>A
 
-  " Fix the previous misspelling.
-  nnoremap <C-f> [s1z=<C-o>
-  inoremap <C-f> <C-g>u<Esc>[s1z=`]A<C-g>u
-
   " Allows pasting over content without changing the copy buffer.
   " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
   xnoremap p "_dP
@@ -327,53 +323,6 @@ scriptencoding utf-8
     " Exit the Neovim terminal via jk.
     tnoremap jk <C-\><C-n>
   endif
-
-" }}}
-
-" === Prose === {{{
-
-  function! SetProseOptions()
-    " Fix common typos.
-    call litecorrect#init()
-
-    " For dictionary completion with coc.nvim.
-    setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
-
-    setlocal spell textwidth=65 softtabstop=4 tabstop=4 shiftwidth=4
-
-    " Open a word in Dictionary.app.
-    nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
-
-    " Surround cursor word with backticks indicating code.
-    " create mark x, add backticks, go back to mark x, move right one char
-    nnoremap <buffer> <Leader>C :normal mxysiW``xl<CR>
-
-    " Text to Speech on the current visual selection.
-    vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
-
-    " Preface each line with '- ' for quickly creating lists.
-    vnoremap <buffer> <Leader>l :s/^\(\s*\)/\1- /<CR>
-
-    " Adds periods and capitalization.
-    " create mark x, select line, professionalize, go back to mark x
-    nnoremap <buffer> <Leader>t :execute('normal mxV,t`x')<CR>
-    vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
-
-    nnoremap <buffer> <C-p> :call RenderMarkdownInChrome()<CR>
-
-    syntax match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
-
-    " YAML frontmatter (Jekyll)
-    silent! unlet b:current_syntax
-    syntax include @yaml syntax/yaml.vim
-    syntax region yamlfrontmatter start=/\%^---$/ end=/^---$/ keepend contains=@yaml
-    let b:current_syntax = &filetype
-  endfunction
-
-  augroup AG_ProseOptions
-    autocmd!
-    autocmd Filetype {text,markdown} call SetProseOptions()
-  augroup END
 
 " }}}
 
@@ -774,7 +723,12 @@ scriptencoding utf-8
     elseif <SID>check_back_space()
       return "\<TAB>"
     elseif get(b:, 'coc_suggest_disable', 0)
-      return "\<TAB>"
+      if get(b:, 'coc_suggest_disable_use_dict', 0)
+        " dictionary completion
+        return "\<C-x>\<C-k>\<C-n>"
+      else
+        return "\<TAB>"
+      endif
     else
       return coc#refresh()
     endif
@@ -950,6 +904,58 @@ scriptencoding utf-8
     return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
   " }}}
+
+
+" }}}
+
+" === Prose === {{{
+
+  function! SetProseOptions()
+    " Fix common typos.
+    call litecorrect#init()
+
+    " Disable COC's autocompletion—it's too noisy while writing.
+    let b:coc_suggest_disable = 1
+    " Dictionary completion when <Tab> is pressed.
+    let b:coc_suggest_disable_use_dict = 1
+
+    " For dictionary completion with coc.nvim.
+    setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
+
+    setlocal spell softtabstop=4 tabstop=4 shiftwidth=4
+
+    " Fix the previous misspelling.
+    nnoremap <buffer> <C-f> [s1z=<C-o>
+    inoremap <buffer> <C-f> <C-g>u<Esc>[s1z=`]A<C-g>u
+
+    " Open a word in Dictionary.app.
+    nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
+
+    " Surround cursor word with backticks indicating code.
+    " create mark x, add backticks, go back to mark x, move right one char
+    nnoremap <buffer> <Leader>C :normal mxysiW``xl<CR>
+
+    " Preface each line with '- ' for quickly creating lists.
+    vnoremap <buffer> <Leader>l :s/^\(\s*\)/\1- /<CR>
+
+    " Text to Speech on the current visual selection.
+    vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
+
+    " TODO: remove this
+    " Adds periods and capitalization.
+    " create mark x, select line, professionalize, go back to mark x
+    nnoremap <buffer> <Leader>t :execute('normal mxV,t`x')<CR>
+    vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
+
+    " highlight bare URLs
+    syn match markdownExtendedAutolink "\(http:\|https:\|ftp:\)\?//[^\t "'<>|]\+[A-Za-z0-9/]"
+    hi def link markdownExtendedAutolink pandocReferenceURL
+  endfunction
+
+  augroup AG_ProseOptions
+    autocmd!
+    autocmd Filetype {text,markdown,pandoc} call SetProseOptions()
+  augroup END
 
 " }}}
 
