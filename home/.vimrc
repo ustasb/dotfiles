@@ -76,6 +76,7 @@ scriptencoding utf-8
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
     Plug 'tyru/open-browser.vim'
+    Plug 'mhinz/vim-startify'
   call plug#end()
 
 " }}}
@@ -742,6 +743,30 @@ scriptencoding utf-8
   let g:GPGUsePipes = 1
   let g:GPGFilePattern = '*.\(gpg\|asc\)'
   let g:GPGDefaultRecipients = ['Brian Ustas <brianustas@gmail.com>']
+  " }}}
+
+  " vim-startify {{{
+  let g:startify_lists = [
+    \ { 'type': 'files', 'header': ['  MRU'] },
+    \ { 'type': 'dir', 'header': ['  MRU ' . getcwd()] },
+    \ ]
+    " TODO: implement
+    " \ { 'type': function('s:my_recent_notes'), 'header': ['  MRU Notes'] },
+  let g:startify_padding_left = 2
+  let g:startify_update_oldfiles = 1
+  let g:startify_fortune_use_unicode = 1
+  let g:startify_custom_header = 'startify#pad(startify#fortune#boxed())'
+  let g:startify_change_to_dir = 0
+  let g:startify_files_number = 10
+  let g:startify_enable_special = 0
+  let g:startify_custom_indices = ['f', 'g', 'h']
+  let g:startify_skiplist = [
+    \ 'spec/fixtures/.*.yml',
+    \ ]
+  " highlight the line on the cursor.
+  " autocmd User Startified setlocal cursorline
+  command! Welcome :Startify
+  command! W Welcome
   " }}}
 
   " fzf.vim {{{
