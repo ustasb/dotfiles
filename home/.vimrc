@@ -833,6 +833,7 @@ scriptencoding utf-8
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
   let g:UltiSnipsSnippetDirectories = [$HOME . '/dotfiles/vim/ultisnips']
+  command! Ulti :UltiSnipsEdit
   " }}}
 
   " lightline.vim {{{
