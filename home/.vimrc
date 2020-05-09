@@ -509,6 +509,17 @@ scriptencoding utf-8
   endfunction
   nnoremap <Leader>d :call OpenInDash()<CR>
 
+  " Use linters to 'fix' files when possible.
+  function! AutoFix()
+    if &filetype ==# 'javascript.jsx'
+      " For JS files, coc-eslint's executeAutofix is faster than ALE's.
+      :CocCommand eslint.executeAutofix
+    else
+      :ALEFix
+    endif
+  endfunction
+  command! -nargs=0 Fix call AutoFix()
+
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
@@ -519,17 +530,6 @@ scriptencoding utf-8
   " .zshrc.local
   command! ZLshrc :e ~/.zshrc.local
   command! ZL ZLshrc
-
-  " Use linters to 'fix' files when possible.
-  function! AutoFix()
-    if &filetype == 'javascript.jsx'
-      " For JS files, coc-eslint's executeAutofix is faster than ALE's.
-      :CocCommand eslint.executeAutofix
-    else
-      :ALEFix
-    endif
-  endfunction
-  command! -nargs=0 Fix call AutoFix()
 
   " quickly quit
   command! Q :qa
