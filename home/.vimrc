@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 " Brian Ustas's .vimrc
 "
 " Tested with Neovim on OS X.
@@ -84,8 +87,6 @@
 
   " file format (relevant to line ending type)
   " Unix based systems and Mac OS X+.
-  " Set default encoding to UTF-8.
-  set encoding=utf-8
   set fileformats=unix,dos
   " English spelling
   set spelllang=en
