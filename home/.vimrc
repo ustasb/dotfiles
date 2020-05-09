@@ -471,13 +471,12 @@ scriptencoding utf-8
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
+  command! VL :e ~/.vimrc.local
 
   " .zshrc
   command! Zshrc :e ~/dotfiles/home/.zshrc
   command! Z Zshrc
-  " .zshrc.local
-  command! ZLshrc :e ~/.zshrc.local
-  command! ZL ZLshrc
+  command! ZL :e ~/.zshrc.local
 
   " quickly quit
   command! Q :qa
