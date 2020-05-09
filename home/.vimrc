@@ -697,18 +697,16 @@ scriptencoding utf-8
     autocmd!
     autocmd User FzfStatusLine setlocal statusline=%#CursorLine#
   augroup END
-  " Search recursively through all files in CWD.
+  " pwd files
   nnoremap <silent> <Leader>f :FzfFiles<CR>
+  " MRU
+  nnoremap <silent> <Leader>F :FzfHistory<CR>
+  " Vim help
+  nnoremap <silent> <Leader>h :FzfHelptags<CR>
   " buffers
-  nnoremap <silent> <Leader>F :FzfBuffers<CR>
-  " most recently used
-  nnoremap <silent> <Leader>m :FzfHistory<CR>
+  nnoremap <silent> <Leader>b :FzfBuffers<CR>
   " ctags
   nnoremap <silent> <Leader>t :FzfTags<CR>
-  " documents
-  nnoremap <silent> <Leader>n :FzfFiles $USTASB_DOCS_DIR_PATH<CR>
-  " snippets via UltiSnips
-  nnoremap <silent> <Leader>u :FzfSnippets<CR>
   " search history
   nnoremap <silent> q/ :FzfHistory/<CR>
   " command history
