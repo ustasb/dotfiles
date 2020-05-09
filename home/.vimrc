@@ -84,13 +84,13 @@
 
   " file format (relevant to line ending type)
   " Unix based systems and Mac OS X+.
-  set ffs=unix,dos
   " Set default encoding to UTF-8.
   set encoding=utf-8
+  set fileformats=unix,dos
   " English spelling
   set spelllang=en
   " Custom spellfile for `zg` and `zw`.
-  set spellfile=$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add
+  set spellfile="$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add"
   " Default spellfile is located at: ~/.vim/spell/en.utf-8.spl
 
   " Enable mouse support for all modes.
@@ -325,7 +325,7 @@
   xnoremap p "_dP
 
   if has('nvim')
-    " Neovim terminal
+    " Exit the Neovim terminal via jk.
     tnoremap jk <C-\><C-n>
   endif
 
@@ -408,7 +408,7 @@
   " Don't do it when the position is invalid or when inside an event handler.
   " (happens when dropping a file on gvim).
   function! ResetCursorPosition()
-    if line("'\"") > 0 && line("'\"") <= line("$")
+    if line("'\"") > 0 && line("'\"") <= line('$')
       exe "normal g`\""
     endif
   endfunction
@@ -430,21 +430,21 @@
   " Create a tags file.
   function! CreateCtagsFile()
     let cwd = getcwd()
-    silent exec('silent !ctags ' . cwd)
+    silent execute('silent !ctags ' . cwd)
     echom 'Created tags file at: ' . cwd . '/tags'
   endfunction
   command! Ctags call CreateCtagsFile()
 
   " Allow saving with sudo permission.
   function! SudoSaveFile()
-    exec 'silent :w !sudo tee > /dev/null %'
+    execute 'silent :w !sudo tee > /dev/null %'
   endfunction
   command! SudoSave call SudoSaveFile()
 
   function! RefreshAllBuffers()
     " Temporarily disable syntax highlighting to speed things up.
     syntax off
-    let currBuff = bufnr("%")
+    let currBuff = bufnr('%')
     " refresh buffers
     execute 'silent! bufdo e!'
     " Go back to the original buffer.
@@ -456,16 +456,16 @@
 
   " Execute the current file with the correct interpreter.
   function! ExecuteFile()
-    let interpreter = &filetype == 'ruby' ? 'ruby' :
-      \ &filetype == 'python' ? 'python' :
-      \ &filetype == 'javascript' ? 'node' :
-      \ &filetype == 'javascript.jsx' ? 'node' :
-      \ &filetype == 'sh' ? 'bash' : ''
+    let interpreter = &filetype ==# 'ruby' ? 'ruby' :
+      \ &filetype ==# 'python' ? 'python' :
+      \ &filetype ==# 'javascript' ? 'node' :
+      \ &filetype ==# 'javascript.jsx' ? 'node' :
+      \ &filetype ==# 'sh' ? 'bash' : ''
 
-    if interpreter == ''
+    if interpreter ==# ''
       echom "No interpreter found for filetype '" . &filetype . "'!"
     else
-      exec '!' . interpreter . ' %'
+      execute '!' . interpreter . ' %'
     endif
   endfunction
   nnoremap <Leader>e :call ExecuteFile()<CR>
@@ -507,19 +507,19 @@
   function! ToggleAllFolds()
     if get(g:, 'folds_open', 1) == 1
       let g:folds_open = 0
-      normal zM
+      normal! zM
     else
       let g:folds_open = 1
-      normal zR
+      normal! zR
     endif
     " center the cursor
-    normal zz
   endfunction
 
   function! RenderMarkdownInChrome()
     !ruby $HOME/dotfiles/pandoc/markdown_to_html.rb
       \ --input "%:p" --output /tmp/pandoc-markdown-output.html
       \ --open-in-chrome --title-h1-only
+    normal! zz
   endfunction
 
   " Open the cursor's word in Dash using Search Profiles.
@@ -534,7 +534,7 @@
       \ })
     let dash_profile = get(g:ft_dash_profile_map, &filetype, 'default')
     let dash_uri = 'dash://' . dash_profile . ':' . expand('<cword>')
-    silent exec('!open ' . dash_uri)
+    silent execute('!open ' . dash_uri)
   endfunction
   nnoremap <Leader>d :call OpenInDash()<CR>
 
@@ -689,7 +689,7 @@
   " }}}
 
   " Ack.vim {{{
-  let $RIPGREP_VIM_ARGS = " --hidden --smart-case --ignore-file $HOME/.rgignore-vim"
+  let $RIPGREP_VIM_ARGS = ' --hidden --smart-case --ignore-file $HOME/.rgignore-vim'
   let g:ackprg = 'rg --vimgrep ' . $RIPGREP_VIM_ARGS
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
@@ -797,15 +797,15 @@
   let g:ale_linters = {
     \  'css': ['stylelint'],
     \  'scss': ['stylelint'],
+    \  'vim': ['vint'],
     \ }
 
   let g:ale_fix_on_save = 0
   let g:ale_fixers = {
-    \  '*': ['remove_trailing_lines'],
-    \  'ruby': ['rubocop'],
-    \  'javascript': ['eslint'],
-    \  'css': ['stylelint'],
-    \  'scss': ['stylelint'],
+    \ 'ruby': ['rubocop'],
+    \ 'javascript': ['eslint'],
+    \ 'css': ['stylelint'],
+    \ 'scss': ['stylelint'],
     \ }
   " }}}
 
@@ -929,24 +929,24 @@
 
   function! LightlineMode()
     let fname = expand('%:t')
-    return &filetype == 'nerdtree' ? '' :
-      \ &filetype == 'tagbar' ? '' :
-      \ &filetype == 'qf' ? '' :
-      \ &filetype == 'fzf' ? '' :
+    return &filetype ==# 'nerdtree' ? '' :
+      \ &filetype ==# 'tagbar' ? '' :
+      \ &filetype ==# 'qf' ? '' :
+      \ &filetype ==# 'fzf' ? '' :
       \ winwidth(0) > 60 ? lightline#mode() : ''
   endfunction
 
   function! LightlineFilename()
     let fname = expand('%:t')
-    return &filetype == 'nerdtree' ? 'NERDTree' :
-      \ &filetype == 'tagbar' ? 'Tagbar' :
-      \ &filetype == 'qf' ? 'QuickFix' :
-      \ &filetype == 'fzf' ? 'fzf' :
-      \ fname != '' ? fname : '[No Name]'
+    return &filetype ==# 'nerdtree' ? 'NERDTree' :
+      \ &filetype ==# 'tagbar' ? 'Tagbar' :
+      \ &filetype ==# 'qf' ? 'QuickFix' :
+      \ &filetype ==# 'fzf' ? 'fzf' :
+      \ fname !=# '' ? fname : '[No Name]'
   endfunction
 
   function! LightlineModified()
-    return &modified ? "+" : ""
+    return &modified ? '+' : ''
   endfunction
 
   function! LightlineFileformat()
@@ -954,7 +954,7 @@
   endfunction
 
   function! LightlineFileencoding()
-    return winwidth(0) > 80 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    return winwidth(0) > 80 ? (strlen(&fileencoding) ? &fileencoding : &encoding) : ''
   endfunction
 
   function! LightlineFiletype()
@@ -966,7 +966,7 @@
 
 " === Local Customizations === {{{
 
-  if filereadable(glob("~/.vimrc.local"))
+  if filereadable(glob('~/.vimrc.local'))
     source ~/.vimrc.local
   endif
 
