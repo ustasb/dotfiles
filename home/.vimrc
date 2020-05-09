@@ -225,7 +225,7 @@ scriptencoding utf-8
   if has('gui_running')
     set antialias
     set linespace=1 " line height
-    set guifont=SF\ Mono\ Regular:h12
+    set guifont=iA\ Writer\ Mono\ S:h15
     " remove toolbar, menubar and scrollbar
     set guioptions=
     " disable cursor blinking
