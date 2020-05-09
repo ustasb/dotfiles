@@ -74,7 +74,6 @@ scriptencoding utf-8
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
-    Plug 'tyru/open-browser.vim'
     Plug 'mhinz/vim-startify'
   call plug#end()
 
@@ -817,12 +816,6 @@ scriptencoding utf-8
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
   let g:UltiSnipsSnippetDirectories = [$HOME . '/dotfiles/vim/ultisnips']
-  " }}}
-
-  " openbrowser.vim {{{
-  let g:netrw_nogx = 1 " Disable netrw's gx mapping.
-  nmap gx <Plug>(openbrowser-smart-search)
-  vmap gx <Plug>(openbrowser-smart-search)
   " }}}
 
   " lightline.vim {{{
