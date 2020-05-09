@@ -764,6 +764,7 @@ scriptencoding utf-8
     \ 'coc-tailwindcss',
     \ 'coc-pairs',
     \ 'coc-highlight',
+    \ 'coc-vimlsp',
     \ ]
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
