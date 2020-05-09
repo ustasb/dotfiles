@@ -141,8 +141,6 @@ scriptencoding utf-8
   set backupcopy=auto
   " Make a backup before overwriting the current buffer.
   set writebackup
-  " Don't back up my documents.
-  set backupskip+=*/documents/*
   " Don't back up OS X's tmp/.
   set backupskip+=/private/tmp/*
 
