@@ -476,6 +476,11 @@ scriptencoding utf-8
   endfunction
   command! PrintSyntaxGroupAtCursor call PrintSyntaxGroupAtCursor()
 
+  function! HighlightGroupsTest()
+    so $VIMRUNTIME/syntax/hitest.vim
+  endfunction
+  command! HighlightGroupsTest call HighlightGroupsTest()
+
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
   command! V Vimrc
