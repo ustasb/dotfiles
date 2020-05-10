@@ -36,8 +36,7 @@ scriptencoding utf-8
     Plug 'tpope/vim-rhubarb' " GitHub support
 
     " prose
-    Plug 'vim-pandoc/vim-pandoc'
-    Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'plasticboy/vim-markdown'
     Plug 'reedes/vim-litecorrect', { 'for': ['text', 'markdown', 'pandoc'] }
     Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
@@ -781,64 +780,26 @@ scriptencoding utf-8
   let g:python_highlight_indent_errors = 0
   " }}}
 
-  " vim-pandoc {{{
-  " NOTE: Makes Markdown files have the filetype of 'pandoc' (which I don't like...)
-  let g:pandoc#modules#enabled = [
-    \ 'formatting',
-    \ 'folding',
-    \ 'metadata',
-    \ 'toc',
-    \ ]
-    " Disabled:
-    " \ 'menu',
-    " \ 'executors',
-    " \ 'keyboard',
-    " \ 'spell',
-    " \ 'hypertext'
-    " \ 'completion',
-    " \ 'bibliographies',
+  " vim-markdown {{{
+  let g:vim_markdown_no_default_key_mappings = 1
+  let g:vim_markdown_strikethrough = 1
+  let g:vim_markdown_emphasis_multiline = 1
+  let g:vim_markdown_autowrite = 0
+  let g:vim_markdown_edit_url_in = 'current'
+  let g:vim_markdown_no_extensions_in_markdown = 0
+  " this is annoying
+  let g:vim_markdown_new_list_item_indent = 0
+  " and this
+  let g:vim_markdown_auto_insert_bullets = 0
 
-  let g:pandoc#keyboard#use_default_mappings = 0
-  " let g:pandoc#keyboard#enabled_submodules = ['lists', 'references', 'styles', 'sections', 'links', 'checkboxes']
+  let g:vim_markdown_conceal = 0
+  let g:vim_markdown_conceal_code_blocks = 0
+  let g:tex_conceal = '' " disables Latex concealing
 
-  " 'hA' is recommended but it doesn't let me create new list items without weirdness.
-  let g:pandoc#formatting#mode = 'ha'
-  " h: use hard wraps
-  " a: autoformat
-  " A: smart autoformatting
-  " s: use soft wraps
-  let g:pandoc#formatting#textwidth = 80
-  let g:pandoc#formatting#smart_autoformat_on_cursormoved = 0
-
-  " :TOC (table of contents)
-  let g:pandoc#toc#shift = 2
-  let g:pandoc#toc#position = 'left'
-  let g:pandoc#toc#close_after_navigating = 1
-
-  let g:pandoc#folding#fdc = 0
-  let g:pandoc#folding#fold_yaml = 0
-  let g:pandoc#folding#fold_vim_markers = 0
-  " My experience with folds isn't slow enough to warrant fastfolds.
-  let g:pandoc#folding#fastfolds = 0
-
-  " vim-pandoc-syntax
-  let g:pandoc#syntax#conceal#use = 1
-  let g:pandoc#syntax#conceal#urls = 0
-  let g:pandoc#syntax#conceal#blacklist = [
-    \ 'titleblock',
-    \ 'inlinecode',
-    \ 'codeblock_start',
-    \ 'codeblock_delim',
-    \ ]
-  let g:pandoc#syntax#codeblocks#embeds#use = 1
-  let g:pandoc#syntax#codeblocks#embeds#langs = [
-    \ 'bash=sh',
-    \ 'vim',
-    \ 'c',
-    \ 'ruby',
-    \ 'python',
-    \ 'javascript'
-    \ ]
+  let g:vim_markdown_math = 1
+  let g:vim_markdown_frontmatter = 1 " jekyll
+  let g:vim_markdown_toml_frontmatter = 0 " hugo
+  let g:vim_markdown_json_frontmatter = 0 " hugo
   " }}}
 
   " UltiSnips {{{
@@ -961,10 +922,6 @@ scriptencoding utf-8
     " create mark x, select line, professionalize, go back to mark x
     nnoremap <buffer> <Leader>t :execute('normal mxV,t`x')<CR>
     vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
-
-    " highlight bare URLs
-    syn match markdownExtendedAutolink "\(http:\|https:\|ftp:\)\?//[^\t "'<>|]\+[A-Za-z0-9/]"
-    hi def link markdownExtendedAutolink pandocReferenceURL
   endfunction
 
   augroup AG_ProseOptions
