@@ -71,6 +71,7 @@ scriptencoding utf-8
     " misc
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+    Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
     Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
@@ -586,6 +587,7 @@ scriptencoding utf-8
   let g:tagbar_silent = 1
   let g:tagbar_compact = 1
   let g:tagbar_autofocus = 1
+  let g:tagbar_autoclose = 1
   let g:tagbar_iconchars = ['▸', '▾']
   let g:tagbar_sort = 0 " Don't sort alphabetically.
   let g:tagbar_map_togglefold = '<Space>'
