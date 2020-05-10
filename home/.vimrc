@@ -81,6 +81,8 @@ scriptencoding utf-8
 
 " === Basic === {{{
 
+  let g:bu_spell_file = expand('$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add')
+
   filetype plugin indent on
   syntax enable
 
@@ -90,7 +92,7 @@ scriptencoding utf-8
   " English spelling
   set spelllang=en
   " Custom spellfile for `zg` and `zw`.
-  set spellfile="$USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/settings/vim/vim-spell-en.utf-8.add"
+  execute('set spellfile=' . fnameescape(g:bu_spell_file))
   " Default spellfile is located at: ~/.vim/spell/en.utf-8.spl
 
   " Enable mouse support for all modes.
@@ -480,6 +482,8 @@ scriptencoding utf-8
     so $VIMRUNTIME/syntax/hitest.vim
   endfunction
   command! HighlightGroupsTest call HighlightGroupsTest()
+
+  command! EditSpellFile execute('e ' . g:bu_spell_file)
 
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
