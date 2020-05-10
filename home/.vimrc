@@ -186,6 +186,9 @@ scriptencoding utf-8
   set title
   set titlestring=%t
 
+  " Disable text concealing.
+  set conceallevel=0
+
   " The default is 4000 which is rather slow. coc.nvim recommends 300.
   set updatetime=300
 
