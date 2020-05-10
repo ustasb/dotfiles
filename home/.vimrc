@@ -469,7 +469,12 @@ scriptencoding utf-8
       :ALEFix
     endif
   endfunction
-  command! -nargs=0 Fix call AutoFix()
+  command! Fix call AutoFix()
+
+  function! PrintSyntaxGroupAtCursor()
+    echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+  endfunction
+  command! PrintSyntaxGroupAtCursor call PrintSyntaxGroupAtCursor()
 
   " .vimrc
   command! Vimrc :e ~/dotfiles/home/.vimrc
