@@ -375,10 +375,10 @@ scriptencoding utf-8
   endfunction
 
   " Open a file in Google Chrome.
-  command! Chrome :!open -a "Google Chrome" %:p
+  command! Chrome !open -a "Google Chrome" %:p
 
   " Open the file's folder in Finder.
-  command! Finder :!open -a "Finder" %:p:h
+  command! Finder !open -a "Finder" %:p:h
 
   " Create a tags file.
   function! CreateCtagsFile()
@@ -486,18 +486,18 @@ scriptencoding utf-8
   command! EditSpellFile execute('e ' . g:bu_spell_file)
 
   " .vimrc
-  command! Vimrc :e ~/dotfiles/home/.vimrc
+  command! Vimrc e ~/dotfiles/home/.vimrc
   command! V Vimrc
-  command! VL :e ~/.vimrc.local
+  command! VL e ~/.vimrc.local
 
   " .zshrc
-  command! Zshrc :e ~/dotfiles/home/.zshrc
+  command! Zshrc e ~/dotfiles/home/.zshrc
   command! Z Zshrc
-  command! ZL :e ~/.zshrc.local
+  command! ZL e ~/.zshrc.local
 
   " quickly quit
-  command! Q :qa
-  nnoremap Q :qa<CR>
+  command! Q qa
+  nnoremap Q qa<CR>
 
   augroup AG_Misc
     autocmd!
@@ -634,7 +634,7 @@ scriptencoding utf-8
     \ ]
   " highlight the line on the cursor.
   " autocmd User Startified setlocal cursorline
-  command! Welcome :Startify
+  command! Welcome Startify
   command! W Welcome
   " }}}
 
@@ -761,7 +761,7 @@ scriptencoding utf-8
   nmap <silent> gd <Plug>(coc-definition)
   " Jump to references of current symbol.
   nmap <silent> gr <Plug>(coc-references)
-  command! -nargs=0 Rename :call CocAction('rename')
+  command! -nargs=0 Rename call CocAction('rename')
 
   " Use [c and ]c for navigating diagnostics.
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -812,7 +812,7 @@ scriptencoding utf-8
   let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
   let g:UltiSnipsListSnippets = '<Nop>' " use FzfSnippets
   let g:UltiSnipsSnippetDirectories = [$HOME . '/dotfiles/vim/ultisnips']
-  command! Ulti :UltiSnipsEdit
+  command! Ulti UltiSnipsEdit
   " }}}
 
   " lightline.vim {{{
@@ -884,7 +884,6 @@ scriptencoding utf-8
     return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endfunction
   " }}}
-
 
 " }}}
 
