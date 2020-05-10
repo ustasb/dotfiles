@@ -898,7 +898,58 @@ scriptencoding utf-8
     " For dictionary completion with coc.nvim.
     setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
 
+    setlocal textwidth=70
     setlocal spell softtabstop=4 tabstop=4 shiftwidth=4
+
+    " Ignore vim-markdown's indentexpr
+    setlocal indentexpr=""
+    " Format list bullets like Vim formats comments.
+    setlocal comments=fb:*,fb:-,fb:+,n:>
+    " quote syntax
+    setlocal commentstring=>\ %s
+
+    " docs: Where it makes sense, remove a comment leader when joining lines
+    setlocal formatoptions=j
+    " docs: Automatic formatting for text and comments
+    setlocal formatoptions+=tc
+    " docs: Allow formatting of comments with "gq"
+    setlocal formatoptions+=q
+    " docs: Long lines are not broken in insert mode
+    setlocal formatoptions+=l
+    " docs: When formatting text, recognize numbered lists (doesn't work well with 2)
+    setlocal formatoptions+=n
+    " docs: Don't break lines at single spaces that follow periods.
+    setlocal formatoptions+=p
+    " " disable: Automatically insert the current comment leader
+    " setlocal formatoptions-=r
+    " " disable: Automatically insert the current comment leader after hitting
+    " setlocal formatoptions-=o
+
+    " improved gq formatting (credit: https://github.com/jparise/dotfiles/blob/90a2a6baa01b92f11d9673ecd8176f3bc9aaa36e/vim/after/ftplugin/text.vim#L6-L17)
+    setlocal formatlistpat=^\\s*                    " Optional leading whitespace
+    setlocal formatlistpat+=[                       " Start class
+    setlocal formatlistpat+=\\[({]\\?               " |  Optionally match opening punctuation
+    setlocal formatlistpat+=\\(                     " |  Start group
+    setlocal formatlistpat+=[0-9]\\+                " |  |  A number
+    setlocal formatlistpat+=\\\|[iIvVxXlLcCdDmM]\\+ " |  |  Roman numerals
+    setlocal formatlistpat+=\\\|[a-zA-Z]            " |  |  A single letter
+    setlocal formatlistpat+=\\)                     " |  End group
+    setlocal formatlistpat+=[\\]:.)}                " |  Closing punctuation
+    setlocal formatlistpat+=]                       " End class
+    setlocal formatlistpat+=\\s\\+                  " One or more spaces
+    setlocal formatlistpat+=\\\|^\\s*[-–+o*]\\s\\+  " Or ASCII style bullet points
+
+    " visual tweaks
+    highlight link mkdListItem GruvboxGreenBold
+    highlight link mkdLink markdownUrl
+    highlight link mkdInlineUrl markdownUrl
+    highlight link mkdHeading GruvboxBlue
+    highlight link htmlH1 GruvboxGreenBold
+    highlight link htmlH2 GruvboxGreenBold
+    highlight link htmlH3 GruvboxGreenBold
+    highlight link htmlH4 GruvboxGreenBold
+    highlight link htmlH5 GruvboxGreenBold
+    highlight link htmlH6 GruvboxGreenBold
 
     " Fix the previous misspelling.
     nnoremap <buffer> <C-f> [s1z=<C-o>
