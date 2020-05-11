@@ -92,7 +92,7 @@ scriptencoding utf-8
   " English spelling
   set spelllang=en
   " Custom spellfile for `zg` and `zw`.
-  execute('set spellfile=' . fnameescape(g:bu_spell_file))
+  execute('set spellfile="' . g:bu_spell_file . '"')
   " Default spellfile is located at: ~/.vim/spell/en.utf-8.spl
 
   " Enable mouse support for all modes.
