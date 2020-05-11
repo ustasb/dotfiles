@@ -234,6 +234,12 @@ scriptencoding utf-8
     set guicursor+=a:blinkon0
     " disable all error whistles
     set noerrorbells visualbell t_vb=
+
+    " MacVim padding tweaks:
+    " defaults write org.vim.MacVim MMTextInsetTop '5'
+    " defaults write org.vim.MacVim MMTextInsetLeft '5'
+    " defaults write org.vim.MacVim MMTextInsetBottom '5'
+    " defaults write org.vim.MacVim MMTextInsetRight '5'
   else
     " Performance tweaks for terminal Vim...
 
