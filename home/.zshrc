@@ -82,13 +82,6 @@
     git checkout $(echo "$branch" | sed "s/.* //")
   }
 
-  todo() {
-    vim \
-    -c 'cd $USTASB_DOCS_DIR_PATH' \
-    -c Todo
-  }
-  alias t=todo
-
   # Ensure that bat syntax highlighting looks good regardless of the terminal theme.
   # https://github.com/sharkdp/bat
   set_bat_theme_env_var() {
