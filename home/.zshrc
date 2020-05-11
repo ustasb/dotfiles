@@ -189,7 +189,6 @@
   alias c='clear'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
-  alias dot='cd ~/dotfiles'
 
   # Vim
   alias sysvim='/usr/bin/vim'
@@ -209,11 +208,12 @@
   alias bu_encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
   alias bu_decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
-  # misc tools
+  # misc
+  alias dot='cd ~/dotfiles'
+  alias notes='cd "$USTASB_DOCS_DIR_PATH"'
   alias tmuxk='tmux kill-server'
   alias pt="ptpython"
   alias jp="jupyter notebook"
-  alias notes="vim -c Notes"
   alias pyserver="python -m http.server"
 
 # }}}
