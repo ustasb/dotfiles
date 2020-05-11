@@ -635,8 +635,11 @@ scriptencoding utf-8
     \ { 'type': function('s:StartifyMruNotes'), 'header': ['  MRU Notes'] },
     \ { 'type': 'dir',                          'header': ['  MRU ' . getcwd()] },
     \ ]
-  " highlight the line on the cursor.
-  " autocmd User Startified setlocal cursorline
+  augroup AG_Startify
+    autocmd!
+    " Highlight the cursor's line.
+    autocmd User Startified setlocal cursorline
+  augroup END
   command! Welcome Startify
   command! W Welcome
   " }}}
