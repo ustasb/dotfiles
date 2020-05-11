@@ -967,8 +967,7 @@ scriptencoding utf-8
     highlight link htmlH6 GruvboxGreenBold
 
     " Fix the previous misspelling.
-    nnoremap <buffer> <C-f> [s1z=<C-o>
-    inoremap <buffer> <C-f> <C-g>u<Esc>[s1z=`]A<C-g>u
+    nnoremap <buffer> <C-f> [s1z=
 
     " Open a word in Dictionary.app.
     nnoremap <buffer> <Leader>d :silent !open dict://<cword><CR>
