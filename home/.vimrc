@@ -628,7 +628,6 @@ scriptencoding utf-8
   let g:startify_change_to_dir = 0
   let g:startify_files_number = 5
   let g:startify_enable_special = 0
-  let g:startify_custom_indices = ['f', 'g', 'h']
   let g:startify_skiplist = [
     \ 'spec/fixtures/.*.yml',
     \ ]
