@@ -615,22 +615,25 @@ scriptencoding utf-8
   " }}}
 
   " vim-startify {{{
-  let g:startify_lists = [
-    \ { 'type': 'files', 'header': ['  MRU'] },
-    \ { 'type': 'dir', 'header': ['  MRU ' . getcwd()] },
-    \ ]
-    " TODO: implement
-    " \ { 'type': function('s:my_recent_notes'), 'header': ['  MRU Notes'] },
   let g:startify_padding_left = 2
   let g:startify_update_oldfiles = 1
   let g:startify_fortune_use_unicode = 1
   let g:startify_custom_header = 'startify#pad(startify#fortune#boxed())'
   let g:startify_change_to_dir = 0
-  let g:startify_files_number = 10
+  let g:startify_files_number = 5
   let g:startify_enable_special = 0
   let g:startify_custom_indices = ['f', 'g', 'h']
   let g:startify_skiplist = [
     \ 'spec/fixtures/.*.yml',
+    \ ]
+  function! s:StartifyMruNotes()
+    let l:mru_notes = MruNotes(g:startify_files_number)
+    return map(l:mru_notes, { i, path -> { 'line': fnamemodify(path, ':t'), 'path': path } })
+  endfunction
+  let g:startify_lists = [
+    \ { 'type': 'files',                        'header': ['  MRU'] },
+    \ { 'type': function('s:StartifyMruNotes'), 'header': ['  MRU Notes'] },
+    \ { 'type': 'dir',                          'header': ['  MRU ' . getcwd()] },
     \ ]
   " highlight the line on the cursor.
   " autocmd User Startified setlocal cursorline
