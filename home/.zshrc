@@ -196,6 +196,7 @@
   alias c='clear'
   alias ll='ls -alh'
   alias cdd='cd ~/Desktop'
+  alias dot='cd ~/dotfiles'
 
   # Vim
   alias sysvim='/usr/bin/vim'
