@@ -198,7 +198,6 @@
 
   # Ripgrep
   alias rg="rg $RIPGREP_ARGS"
-  alias ag=rg
 
   # GPG
   # As of 11/08/17, Homebrew's gpg is version 2.x by default.
