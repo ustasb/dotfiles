@@ -310,10 +310,6 @@
       restart_gpg_agent
 
       bu_customize_finder_sidebar &> /dev/null
-
-      if [ -f ~/.shell_quote ]; then
-        echo -e "\n\e[3;32m$(cat ~/.shell_quote)\e[0m"
-      fi
     else
       set_gpg_agent_env_vars
     fi
