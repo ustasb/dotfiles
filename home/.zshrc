@@ -28,8 +28,8 @@
 
   # Keep lots of history.
   export HISTFILE=~/.zsh_history
-  export HISTSIZE=1000
-  export SAVEHIST=1000
+  export HISTSIZE=5000
+  export SAVEHIST=5000
 
   setopt inc_append_history
   setopt hist_find_no_dups
