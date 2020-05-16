@@ -130,8 +130,8 @@
 
 # === Prompt === {{{
 
-  fpath=("$HOME/.pure_prompt" $fpath) # dependencies
   export PURE_GIT_PULL=0
+  fpath+=$HOME/.zsh/pure
   autoload -U promptinit && promptinit
   prompt pure
 

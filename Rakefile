@@ -10,17 +10,15 @@ def neovim_execute(options)
   system("nvim #{options}", out: $stdout, err: :out)
 end
 
+# https://github.com/sindresorhus/pure#manually
 task :install_pure_prompt do
   log "Installing Pure prompt..."
 
-  pure_path = "#{Dir.home}/.pure_prompt"
-  FileUtils.mkdir(pure_path) unless File.directory?(pure_path)
+  zsh_path = File.join(Dir.home, '.zsh')
+  FileUtils.mkdir(zsh_path) unless File.directory?(zsh_path)
 
-  `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/pure.zsh' \
-   -o #{pure_path}/prompt_pure_setup`
-
-  `curl 'https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh' \
-   -o #{pure_path}/async`
+  pure_path = File.join(zsh_path, 'pure')
+  `git clone https://github.com/sindresorhus/pure.git "#{pure_path}"`
 end
 
 task :install_config_files => [:install_pure_prompt] do
