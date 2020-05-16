@@ -164,9 +164,9 @@ bu_chrome_hist() {
   cols=$(( COLUMNS / 3 ))
   sep='{::}'
 
-  cp -f ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/chrome_history
+  cp -f ~/Library/Application\ Support/Google/Chrome/Default/History $TMPDIR/chrome_history
 
-  sqlite3 -separator $sep /tmp/chrome_history \
+  sqlite3 -separator $sep $TMPDIR/chrome_history \
     "select substr(title, 1, $cols), url
      from urls order by last_visit_time desc" |
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |

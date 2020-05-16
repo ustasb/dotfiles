@@ -304,8 +304,8 @@
   startup_tasks() {
     # Things to happen after booting.
     # OS X cleans this directory upon shutdown.
-    if [ ! -f /tmp/bu_machine_booted ]; then
-      touch /tmp/bu_machine_booted
+    if [ ! -f $TMPDIR/bu_machine_booted ]; then
+      touch $TMPDIR/bu_machine_booted
 
       restart_gpg_agent
 
