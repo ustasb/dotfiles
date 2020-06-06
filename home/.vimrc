@@ -910,7 +910,7 @@ scriptencoding utf-8
     let b:coc_suggest_disable_use_dict = 1
 
     " For dictionary completion with coc.nvim.
-    setlocal dictionary=$HOME/dotfiles/vim/en_popular.txt
+    setlocal dictionary=/usr/share/dict/words
 
     setlocal textwidth=70
     setlocal spell softtabstop=4 tabstop=4 shiftwidth=4
