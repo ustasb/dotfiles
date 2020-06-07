@@ -160,7 +160,7 @@ scriptencoding utf-8
   set t_Co=256
   set termguicolors
 
-  if $ITERM_PROFILE == 'GruvboxLight' || has('gui_running')
+  if $ITERM_PROFILE ==# 'GruvboxLight' || has('gui_running')
     set background=light
   else
     set background=dark
@@ -626,7 +626,7 @@ scriptencoding utf-8
   let g:startify_fortune_use_unicode = 1
   let g:startify_custom_header = 'startify#pad(startify#fortune#boxed())'
   let g:startify_change_to_dir = 0
-  let g:startify_files_number = 5
+  let g:startify_files_number = 10
   let g:startify_enable_special = 0
   let g:startify_skiplist = [
     \ 'spec/fixtures/.*.yml',
