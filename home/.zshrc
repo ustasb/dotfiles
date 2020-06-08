@@ -214,7 +214,10 @@
   # misc
   alias dot='cd ~/dotfiles'
   alias notes='cd "$USTASB_DOCS_DIR_PATH"'
+  # kill tmux
   alias tmuxk='tmux kill-server'
+  # kill all other tmux windows
+  alias tmuxo='tmux kill-window -a'
   alias pt="ptpython"
   alias jp="jupyter notebook"
   alias pyserver="python -m http.server"
