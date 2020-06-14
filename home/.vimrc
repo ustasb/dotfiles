@@ -57,6 +57,8 @@ scriptencoding utf-8
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'yuezk/vim-js', { 'for': ['javascript', 'javascriptreact'] }
     Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascriptreact'] }
+    Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
+    Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript', 'typescript.tsx'] }
     Plug 'chr4/nginx.vim', { 'for' : 'nginx' }
 
     " elixir
