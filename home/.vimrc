@@ -327,7 +327,7 @@ scriptencoding utf-8
   nnoremap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
   " Quickly reload .vimrc.
-  nnoremap <Leader>r :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
+  nnoremap <Leader>R :source $MYVIMRC<CR>:echo "~/.vimrc reloaded"<CR>
 
   " beginning of line / end of line
   inoremap <C-a> <Esc>I
@@ -690,6 +690,8 @@ scriptencoding utf-8
   nnoremap <silent> <Leader>f :FzfFiles<CR>
   " MRU
   nnoremap <silent> <Leader>F :FzfHistory<CR>
+  " ripgrep
+  nnoremap <silent> <Leader>r :FzfRg<CR>
   " Vim help
   nnoremap <silent> <Leader>h :FzfHelptags<CR>
   " buffers
