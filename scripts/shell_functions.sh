@@ -9,7 +9,7 @@ bu_update_system() {
 
 # Back up everything at once.
 bu_back_up_system() {
-  bu_back_up_docs && \
+  bu_back_up_notes && \
   bu_back_up_photo_booth && \
   bu_back_up_1p && \
   bu_create_small_s3_backup
@@ -25,7 +25,7 @@ bu_create_small_s3_backup() {
   mkdir -p $backup_path
 
   # back up docs
-  cp $USTASB_UNENCRYPTED_DIR_PATH/backups/documents.zip $backup_path
+  cp $USTASB_UNENCRYPTED_DIR_PATH/backups/notes.zip $backup_path
 
   # back up 1p (most recent backup)
   (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/1password && \
@@ -41,6 +41,12 @@ bu_create_small_s3_backup() {
 
   # clean up
   rm -rf $backup_path "$backup_path.zip"
+}
+
+bu_back_up_notes() {
+  # Updates the archive in-place.
+  (cd $(dirname $USTASB_DOCS_DIR_PATH) && \
+    zip --filesync --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/notes.zip $(basename $USTASB_DOCS_DIR_PATH))
 }
 
 # Back up Google Drive contents to S3.
