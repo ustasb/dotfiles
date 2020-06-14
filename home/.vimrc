@@ -975,7 +975,7 @@ scriptencoding utf-8
     nnoremap <buffer> <Leader>C :normal mxysiW``xl<CR>
 
     " Preface each line with '- ' for quickly creating lists.
-    vnoremap <buffer> <Leader>l :s/^\(\s*\)/\1- /<CR>
+    vnoremap <buffer> <localleader>l :s/\v^(\s*)([-*]?)(\s*)/\1- /<CR>
 
     " Text to Speech on the current visual selection.
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
