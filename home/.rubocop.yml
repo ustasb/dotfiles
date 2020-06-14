@@ -1,0 +1,177 @@
+# Inherits from: https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+# gem install rubocop-rails
+# gem install rubocop-rspec
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - '.git/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*' # Heroku CI
+
+# Naming {{{
+
+# `@_foo ||=` over `@foo ||=`
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+# }}}
+
+# Metrics {{{
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 250
+
+# number of conditionals
+Metrics/AbcSize:
+  Enabled: false
+
+# }}}
+
+# Style {{{
+
+# don't force %w[...]
+Style/WordArray:
+  Enabled: false
+
+# don't force %i[...]
+Style/SymbolArray:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+# hash.keys.each { |k| p k } -> hash.each_key { |k| p k }
+Style/HashEachMethods:
+  Enabled: true
+
+# {a: 1, b: 2}.map { |k, v| [k.to_s, v] } -> {a: 1, b: 2}.transform_keys { |k| k.to_s }
+Style/HashTransformKeys:
+  Enabled: true
+
+# {a: 1, b: 2}.map { |k, v| [k, v * v] } -> {a: 1, b: 2}.transform_values { |v| v * v }
+Style/HashTransformValues:
+  Enabled: true
+
+Lint/SuppressedException:
+  AllowComments: true
+
+# }}}
+
+# Layout {{{
+
+Layout/LineLength:
+  Max: 120
+  Enabled: true
+  AutoCorrect: true
+  Exclude:
+    - 'config/**/*'
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+Layout/MultilineHashBraceLayout:
+  Enabled: true
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+# }}}
+
+# {{{ Rails
+
+Rails:
+  Enabled: true
+  Exclude:
+    - sync_from_container.rb
+
+# Doesn't seem to work properly.
+Rails/FilePath:
+  Enabled: false
+
+# }}}
+
+# {{{ Bundler
+
+# We prefer grouping related gems together.
+Bundler/OrderedGems:
+  Enabled: false
+
+# }}}
+
+# {{{ RSpec
+
+RSpec:
+  Enabled: true
+
+# It's sometimes useful to verify a testing context this way.
+RSpec/ExpectInHook:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: have_received
+
+RSpec/HookArgument:
+  EnforcedStyle: each
+
+# It's too tedious to use instance doubles all the time.
+# https://www.rubydoc.info/gems/rubocop-rspec/1.6.0/RuboCop/Cop/RSpec/AnyInstance
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*'
+
+# }}}
