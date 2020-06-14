@@ -90,7 +90,8 @@ bu_back_up_github_repos() {
 
 # Customize the Finder sidebar defaults.
 bu_customize_finder_sidebar() {
-  ~/dotfiles/scripts/osx_finder_sidebar/main.sh
+  # pip install finder-sidebar-editor
+  python ~/dotfiles/scripts/customize_finder_sidebar.py
 }
 
 # Build my complete journal.
