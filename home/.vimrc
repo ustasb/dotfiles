@@ -54,9 +54,9 @@ scriptencoding utf-8
     " web
     Plug 'othree/html5-syntax.vim', { 'for': 'html' }
     Plug 'JulesWang/css.vim', { 'for': 'css' }
-    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-    Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+    Plug 'yuezk/vim-js', { 'for': ['javascript', 'javascriptreact'] }
+    Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascriptreact'] }
     Plug 'chr4/nginx.vim', { 'for' : 'nginx' }
 
     " ruby
@@ -418,7 +418,7 @@ scriptencoding utf-8
     let interpreter = &filetype ==# 'ruby' ? 'ruby' :
       \ &filetype ==# 'python' ? 'python' :
       \ &filetype ==# 'javascript' ? 'node' :
-      \ &filetype ==# 'javascript.jsx' ? 'node' :
+      \ &filetype ==# 'javascriptreact' ? 'node' :
       \ &filetype ==# 'sh' ? 'bash' : ''
 
     if interpreter ==# ''
@@ -460,7 +460,7 @@ scriptencoding utf-8
       \ 'python'         : 'py',
       \ 'ruby'           : 'rb',
       \ 'javascript'     : 'js',
-      \ 'javascript.jsx' : 'js',
+      \ 'javascriptreact' : 'js',
       \ })
     let dash_profile = get(g:ft_dash_profile_map, &filetype, 'default')
     let dash_uri = 'dash://' . dash_profile . ':' . expand('<cword>')
@@ -470,7 +470,7 @@ scriptencoding utf-8
 
   " Use linters to 'fix' files when possible.
   function! AutoFix()
-    if &filetype ==# 'javascript.jsx'
+    if &filetype ==# 'javascriptreact'
       " For JS files, coc-eslint's executeAutofix is faster than ALE's.
       :CocCommand eslint.executeAutofix
     else
@@ -519,14 +519,6 @@ scriptencoding utf-8
 " }}}
 
 " === Plugin Settings === {{{
-
-  " vim-javascript {{{
-  let g:javascript_ignore_javaScriptdoc = 1
-  augroup AG_JavaScriptFolding
-    autocmd!
-    autocmd FileType javascript,javascript.jsx setlocal foldmethod=syntax
-  augroup END
-  " }}}
 
   " vim-ruby {{{
   let g:ruby_spellcheck_strings = 0
@@ -708,6 +700,7 @@ scriptencoding utf-8
   let g:ale_fixers = {
     \ 'ruby': ['rubocop'],
     \ 'javascript': ['eslint'],
+    \ 'javascriptreact': ['eslint'],
     \ 'css': ['stylelint'],
     \ 'scss': ['stylelint'],
     \ }
