@@ -264,7 +264,9 @@ scriptencoding utf-8
   " Resize splits when Vim is resized.
   augroup AG_VimResize
     autocmd!
-    autocmd VimResized * wincmd =
+    autocmd VimResized * execute("normal \<C-w>=")
+    " NOTE: Why not just `autocmd VimResized * wincmd =`?
+    " It doesn't resize the Vim buffer when GoyoEnter+Tmux is enabled.
   augroup END
 
 " }}}
@@ -581,6 +583,22 @@ scriptencoding utf-8
   nnoremap <Leader>z :Goyo<CR>
   let g:goyo_width = 100
   let g:goyo_height = '90%'
+  function! s:GoyoEnter()
+    if executable('tmux') && strlen($TMUX)
+      " NOTE: I don't disable the tmux status line because I like having it around.
+      silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    endif
+  endfunction
+  function! s:GoyoLeave()
+    if executable('tmux') && strlen($TMUX)
+      silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+  endfunction
+  augroup AG_Goyo
+    autocmd!
+    autocmd User GoyoEnter nested call <SID>GoyoEnter()
+    autocmd User GoyoLeave nested call <SID>GoyoLeave()
+  augroup END
   " }}}
 
   " Vim-Commentary {{{
