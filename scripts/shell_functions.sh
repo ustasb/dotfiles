@@ -43,13 +43,6 @@ bu_create_small_s3_backup() {
   rm -rf $backup_path "$backup_path.zip"
 }
 
-# Back up Brian's documents via Git.
-bu_back_up_docs() {
-  bu_encrypt_journal
-  # Updates the archive in-place.
-  (cd $USTASB_UNENCRYPTED_DIR_PATH && zip --filesync --recurse-paths backups/documents.zip documents)
-}
-
 # Back up Google Drive contents to S3.
 bu_back_up_gdrive() {
   ruby ~/dotfiles/scripts/back_up_gdrive.rb $*
@@ -81,49 +74,15 @@ bu_back_up_1p() {
   fi
 }
 
-# Back up my source code.
-# FIXME: Back up into gzip archives.
-bu_back_up_github_repos() {
-  # ruby ~/dotfiles/scripts/back_up_github_repos.rb $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/backups/code
-  echo "see FIXME"
-}
-
 # Customize the Finder sidebar defaults.
 bu_customize_finder_sidebar() {
   # pip install finder-sidebar-editor
   python ~/dotfiles/scripts/customize_finder_sidebar.py
 }
 
-# Build my complete journal.
-bu_build_full_journal() {
-  bu_encrypt_journal
-  ruby ~/dotfiles/scripts/build_full_journal.rb
-}
-
-# Encrypt unencrypted journal entries.
-bu_encrypt_journal() {
-  for entry in $USTASB_DOCS_DIR_PATH/ustasb/journal/{entries/*.md,voice_memos/*.ogg,voice_memos/*.m4a}; do
-    # Does the file exist? https://stackoverflow.com/a/43606356/1575238
-    if [ -e $entry ]; then
-      # Don't need to sign when the recipient is myself.
-      gpg --encrypt --recipient brianustas@gmail.com $entry && rm $entry
-    fi
-  done
-}
-
-# Scans all Markdown documents and localizes images.
-bu_localize_doc_images() {
-  ruby ~/dotfiles/scripts/localize_markdown_images.rb $*
-}
-
 # Set the default program for file types.
 bu_set_file_type_app_defaults() {
   ~/dotfiles/scripts/set_file_type_app_defaults.sh
-}
-
-# See script for details.
-bu_tidy_up_pic_names() {
-  ruby ~/dotfiles/scripts/tidy_up_image_names.rb $USTASB_UNENCRYPTED_DIR_PATH/pictures
 }
 
 # Test Brian's internet links' behavior.
@@ -196,36 +155,6 @@ bu_slideshow() {
 bu_ebooks() {
   (cd $USTASB_CLOUD_DIR_PATH/ustasb_not_encrypted/ebooks && \
     open "$(find . -name '*.pdf' | fzf --height 30%)")
-}
-
-# Records a voice memo with `sox`.
-# `bu_voice_memo <optional-title>`
-# http://sox.sourceforge.net
-bu_voice_memo() {
-  tmp_path=$TMPDIR$(date '+%Y-%m-%d_%H-%M-%S_%Z')
-  if [ -n "$*" ]; then
-    title="${*// /_}"
-    tmp_path=$tmp_path"__"$title
-  fi
-  tmp_path=$tmp_path".ogg"
-
-  echo "Recording! Press Ctrl-C to stop."
-  # gain: increases volume
-  rec --guard $tmp_path gain +15
-
-  # Reason for \r: https://unix.stackexchange.com/a/26578
-  echo -n "\rDo you want to save that recording? [y/n] "
-  read answer
-  if [ "$answer" != "${answer#[Yy]}" ]; then
-    out_path="$USTASB_DOCS_DIR_PATH/ustasb/journal/voice_memos/$(basename $tmp_path)"
-    # sample rates: https://manual.audacityteam.org/man/sample_rates.html
-    sox $tmp_path --rate 22050 --channels 1 $out_path
-    rm $tmp_path
-    echo "Saved! Destination: $out_path"
-  else
-    rm $tmp_path
-    echo "Destroyed!"
-  fi
 }
 
 # Displays all blob objects in the repository, sorted from smallest to largest.
