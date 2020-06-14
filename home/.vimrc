@@ -903,10 +903,11 @@ scriptencoding utf-8
     " Fix common typos.
     call litecorrect#init()
 
-    " Disable COC's autocompletion—it's too noisy while writing.
-    let b:coc_suggest_disable = 1
-    " Dictionary completion when <Tab> is pressed.
-    let b:coc_suggest_disable_use_dict = 1
+    " NOTE: Enable the below flags when autocompletion is too noisy.
+    " " Disable COC's autocompletion—it's too noisy while writing.
+    " let b:coc_suggest_disable = 1
+    " " Dictionary completion when <Tab> is pressed.
+    " let b:coc_suggest_disable_use_dict = 1
 
     " For dictionary completion with coc.nvim.
     setlocal dictionary=/usr/share/dict/words
