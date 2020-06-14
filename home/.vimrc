@@ -978,11 +978,6 @@ scriptencoding utf-8
     " Text to Speech on the current visual selection.
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
-    " TODO: remove this
-    " Adds periods and capitalization.
-    " create mark x, select line, professionalize, go back to mark x
-    nnoremap <buffer> <Leader>t :execute('normal mxV,t`x')<CR>
-    vnoremap <buffer> <Leader>t :!ruby ~/dotfiles/scripts/professionalize_text.rb<CR>
   endfunction
 
   augroup AG_ProseOptions
