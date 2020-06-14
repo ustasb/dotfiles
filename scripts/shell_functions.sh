@@ -49,6 +49,10 @@ bu_back_up_notes() {
     zip --filesync --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/notes.zip $(basename $USTASB_DOCS_DIR_PATH))
 }
 
+bu_create_done_md() {
+  ruby ~/dotfiles/scripts/create_done_md.rb
+}
+
 # Back up Google Drive contents to S3.
 bu_back_up_gdrive() {
   ruby ~/dotfiles/scripts/back_up_gdrive.rb $*

@@ -7,8 +7,8 @@ TASK_ITEM_REGEX =/^ (.*?) ({(.*)})? \s* $/x
 Task = Struct.new(:task, :timestamp)
 TimeState = Struct.new(:year, :month, :week, :day)
 
-$done_log = File.open(ENV['USTASB_DOCS_DIR_PATH'] + '/ustasb/done.log', 'r')
-$done_md = File.open(ENV['USTASB_DOCS_DIR_PATH'] + '/ustasb/done.md', 'w')
+$done_log = File.open(ENV['USTASB_DOCS_DIR_PATH'] + '/notes/donelog__done.log', 'r')
+$done_md = File.open(ENV['USTASB_DOCS_DIR_PATH'] + '/notes/donemd___done.md', 'w')
 
 def print_header(txt, level:)
   $done_md.puts("\n#{'#' * level} #{txt}")
