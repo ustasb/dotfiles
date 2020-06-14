@@ -810,7 +810,7 @@ scriptencoding utf-8
   let g:vim_markdown_conceal_code_blocks = 0
   let g:tex_conceal = '' " disables Latex concealing
 
-  let g:vim_markdown_math = 1
+  let g:vim_markdown_math = 0 " requires me to escape every dollar sign :(
   let g:vim_markdown_frontmatter = 1 " jekyll
   let g:vim_markdown_toml_frontmatter = 0 " hugo
   let g:vim_markdown_json_frontmatter = 0 " hugo
