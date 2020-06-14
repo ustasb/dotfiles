@@ -117,10 +117,10 @@ bu_ip_address() {
 }
 
 # Test internet connection speed and ping using speedtest.net.
-# https://github.com/sindresorhus/speed-test
+# https://github.com/sivel/speedtest-cli
 bu_speed_test() {
-  which speed-test &> /dev/null || npm install --global speed-test
-  speed-test $*
+  which speedtest-cli &> /dev/null || brew install speedtest-cli
+  speedtest-cli $*
 }
 
 # Browse Chrome history with fzf.
