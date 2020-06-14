@@ -52,6 +52,14 @@ def main
   markdown.gsub!(/^#/, '##') if $argv[:title_h1_only]
   File.write(temp_file, markdown)
 
+  # Pandoc extensions enabled by default:
+  # - blank_before_header
+  # - space_in_atx_header
+  # - implicit_header_references
+  # - blank_before_blockquote
+  # - backtick_code_blocks
+  # - line_blocks
+  #
   # `wrap=none`: Without, Pandoc will add newlines between raw HTML tags. This
   # can cause unnecessary spacing in some tags, for instance. `wrap=none`
   # removes spacing between HTML elements.
