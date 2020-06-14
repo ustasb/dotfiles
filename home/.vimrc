@@ -59,6 +59,9 @@ scriptencoding utf-8
     Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['javascriptreact'] }
     Plug 'chr4/nginx.vim', { 'for' : 'nginx' }
 
+    " elixir
+    Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+
     " ruby
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
@@ -735,6 +738,7 @@ scriptencoding utf-8
     \ 'coc-pairs',
     \ 'coc-highlight',
     \ 'coc-vimlsp',
+    \ 'coc-elixir',
     \ ]
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
