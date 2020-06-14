@@ -26,4 +26,4 @@ Use the Zsh functions `dark_theme` and `light_theme` to change color profiles.
 
 - 15pt iA Writer Mono
 - [Vim theme](https://github.com/ustasb/gruvbox)
-- [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/bu_gruvbox_light.itermcolors)
+- [iTerm2 theme](https://github.com/ustasb/dotfiles/blob/master/iterm2/colors/bu_gruvbox_light_inverted_bright.itermcolors)
