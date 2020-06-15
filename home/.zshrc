@@ -6,7 +6,7 @@
 # - Homebrew (https://brew.sh)
 # - Neovim (https://neovim.io)
 # - Git
-# - chruby and a Ruby version (https://github.com/postmodern/chruby)
+# - rbenv (https://github.com/rbenv/rbenv)
 # - Conda via Anaconda (https://conda.io/docs/user-guide/install)
 # - n and a Node.js version (https://github.com/tj/n)
 # - Pure Prompt (https://github.com/sindresorhus/pure)
@@ -151,9 +151,8 @@
   export VISUAL=$BU_EDITOR
   export EDITOR=$BU_EDITOR
 
-  # chruby
-  source '/usr/local/share/chruby/chruby.sh'
-  source '/usr/local/share/chruby/auto.sh'
+  # Ruby via Rbenv
+  eval "$(rbenv init -)"
 
   # Conda via Anaconda
   export PATH=/usr/local/anaconda3/bin:"$PATH"
