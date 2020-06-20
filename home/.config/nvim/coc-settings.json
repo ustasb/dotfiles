@@ -36,6 +36,7 @@
 
   // Ruby
   // https://github.com/neoclide/coc-solargraph
+  "solargraph.commandPath": "/Users/ustasb/.rbenv/shims/solargraph",
   "solargraph.completion": true,
   "solargraph.checkGemVersion": false,
   "solargraph.diagnostics": true,
