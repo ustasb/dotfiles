@@ -157,7 +157,7 @@ bu_markdown_to_html() {
 # shortcuts: (s)peaker notes, (f)ullscreen, (o)utline
 bu_slideshow() {
   which reveal-md &> /dev/null || npm install --global reveal-md
-  (cd $USTASB_DOCS_DIR_PATH/talks/slides && \
+  (cd $USTASB_DOCS_DIR_PATH && \
    reveal-md --theme white $(find . -name '*.md' | fzf --height 30%))
 }
 
