@@ -106,18 +106,22 @@ bu_term_colors() {
   for code in {000..255}; do print -nP -- "$code: %F{$code}%K{$code}Test%k%f " ; (( ((code + 1) % 8) && code < 255 )) || printf '\n'; done
 }
 
+bu_local_ip_address() {
+  ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2
+}
+
 # Show both the public and private IP addresses.
 bu_ip_address() {
   public_ip=$(curl -s icanhazip.com)
   echo "public:\n$public_ip"
 
   if [ `uname -s` == "Darwin" ]; then
-    private_ip=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2)
+    local_ip=$(bu_local_ip_address)
   elif [ `uname -s` == "Linux" ]; then
-    private_ip=$(hostname -I)
+    local_ip=$(hostname -I)
   fi
 
-  echo "\nprivate:\n$private_ip"
+  echo "\nlocal:\n$local_ip"
 }
 
 # Test internet connection speed and ping using speedtest.net.
