@@ -77,7 +77,7 @@
   # Checkout a Git branch with fzf.
   fbr() {
     local branches branch
-    branches=$(git branch) &&
+    branches=$(git branch --sort=-committerdate) &&
     branch=$(echo "$branches" | fzf +m) &&
     git checkout $(echo "$branch" | sed "s/.* //")
   }
