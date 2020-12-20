@@ -143,6 +143,9 @@
 
 # === Environment Variables === {{{
 
+  # Homebrew
+  export PATH=/usr/local/bin:$PATH
+
   # Ripgrep
   export RIPGREP_ARGS="--no-ignore-vcs --hidden --follow --smart-case --ignore-file-case-insensitive --ignore-file $HOME/.rgignore"
 
