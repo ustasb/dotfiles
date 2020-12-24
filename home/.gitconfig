@@ -6,6 +6,7 @@
   user = ustasb
 [alias]
   co = checkout
+  cp = cherry-pick
   # Get the name of the current branch.
   branch-name = "!git rev-parse --abbrev-ref HEAD"
   # Push the current branch to origin.
