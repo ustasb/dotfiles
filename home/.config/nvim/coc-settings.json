@@ -92,5 +92,7 @@
   "json.enable": true,
   "coc.source.dictionary.enable": true,
   "coc.source.tag.enable": true,
-  "coc.source.ultisnips.enable": true
+  "coc.source.ultisnips.enable": true,
+
+  "tailwindCSS.headwind.runOnSave": false
 }
