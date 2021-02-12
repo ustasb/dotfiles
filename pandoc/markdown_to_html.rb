@@ -33,7 +33,7 @@ def parse_args
 
   parser.parse!
 
-  if $argv[:input_path].nil? || !File.exists?($argv[:input_path])
+  if $argv[:input_path].nil? || !File.exist?($argv[:input_path])
     puts 'Missing input Markdown path! Exiting...'
     abort
   end
@@ -47,7 +47,7 @@ end
 def main
   parse_args
 
-  temp_file = Tempfile.new  # Gets cleaned up automatically.
+  temp_file = Tempfile.new # Gets cleaned up automatically.
   markdown = File.read($argv[:input_path])
   markdown.gsub!(/^#/, '##') if $argv[:title_h1_only]
   File.write(temp_file, markdown)
