@@ -9,25 +9,25 @@ def build_url_test_data
 
   # hub3.com
   data << %w{ http://hub3.com      301 200 https://hub3.com/ }
-  data << %w{ http://www.hub3.com  301 200 https://hub3.com/ }
+  data << %w{ http://www.hub3.com  301 301 200 https://hub3.com/ }
   data << %w{ https://hub3.com     200 }
   data << %w{ https://www.hub3.com 301 200 https://hub3.com/ }
 
   # hub3.co
-  data << %w{ http://hub3.co      301 200 https://hub3.com/ }
-  data << %w{ http://www.hub3.co  301 200 https://hub3.com/ }
+  data << %w{ http://hub3.co      301 301 200 https://hub3.com/ }
+  data << %w{ http://www.hub3.co  301 301 200 https://hub3.com/ }
   data << %w{ https://hub3.co     301 200 https://hub3.com/ }
   data << %w{ https://www.hub3.co 301 200 https://hub3.com/ }
 
   # hub3solutions.com
-  data << %w{ http://hub3solutions.com      301 200 https://hub3.com/ }
-  data << %w{ http://www.hub3solutions.com  301 200 https://hub3.com/ }
+  data << %w{ http://hub3solutions.com      301 301 200 https://hub3.com/ }
+  data << %w{ http://www.hub3solutions.com  301 301 200 https://hub3.com/ }
   data << %w{ https://hub3solutions.com     301 200 https://hub3.com/ }
   data << %w{ https://www.hub3solutions.com 301 200 https://hub3.com/ }
 
   # hub3.solutions
-  data << %w{ http://hub3.solutions      301 200 https://hub3.com/ }
-  data << %w{ http://www.hub3.solutions  301 200 https://hub3.com/ }
+  data << %w{ http://hub3.solutions      301 301 200 https://hub3.com/ }
+  data << %w{ http://www.hub3.solutions  301 301 200 https://hub3.com/ }
   data << %w{ https://hub3.solutions     301 200 https://hub3.com/ }
   data << %w{ https://www.hub3.solutions 301 200 https://hub3.com/ }
 
