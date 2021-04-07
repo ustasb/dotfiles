@@ -1,13 +1,12 @@
 # Scrape Eventbrite for events that match keywords.
 # Usage:
-# - gem install oga
 # - ruby eventbrite_scraper.rb --city ma--boston --date this-month --keywords startup,pitch,"demo day" --output ~/Desktop/events.md
 
+require 'json'
 require 'tmpdir'
 require 'date'
 require 'optparse'
 require 'open-uri'
-require 'oga'
 
 DEFAULT_CITY = 'ma--boston'
 DEFAULT_DATE_FILTERS = %w{ this-month next-month }
@@ -82,7 +81,7 @@ class EventbriteScraper
     while true do
       begin
         puts "Scraping #{current_date}'s events for page #{current_page}..."
-        new_events = events_for_page(@filter_city, current_date, current_page)
+        new_events = format_events(events_for_page(@filter_city, current_date, current_page))
       rescue OpenURI::HTTPError => e
         if e.message.include?('rate')
           puts "Rate Limited: Sleeping for #{sleep_delay_seconds} seconds and then retrying..."
@@ -106,7 +105,11 @@ class EventbriteScraper
       end
 
       new_events.select! do |e|
-        (filter_keywords_regex.match?(e[:title]) || filter_keywords_regex.match?(e[:location])) && e[:date] > DateTime.now
+        (
+          filter_keywords_regex.match?(e[:title]) ||
+          filter_keywords_regex.match?(e[:summary]) ||
+          filter_keywords_regex.match?(e[:location])
+        ) && e[:date] > DateTime.now
       end
       puts "==> Found #{new_events.count} relevant events."
 
@@ -124,10 +127,34 @@ class EventbriteScraper
 
     @filtered_events.each do |event|
       date = event[:date].strftime('%a, %e %b %H:%M %p')
-      out_file.puts("- [#{event[:title]} | #{date}](#{event[:link]})")
+      out_file.puts(
+        <<~EOS
+        - [#{event[:title]}](#{event[:link]})
+          - **Date:** #{date}
+          - **Summary:** #{event[:summary]}
+          - **Tags:** #{event[:tags].join(', ')}
+          - **Is Online?:** #{event[:is_online]}
+          - **Image:** ![](#{event[:image_url]})
+        EOS
+      )
     end
 
     puts "Done! #{out_file.path}"
+  end
+
+  def format_events(events)
+    events.map do |event|
+      {
+        title: event['name'],
+        summary: event['summary'],
+        image_url: event['image'] && event['image']['url'],
+        tags: event['tags'].map { |t| t['display_name'] },
+        is_online: event['is_online_event'],
+        location: event['primary_venue']['name'],
+        link: event['url'],
+        date: DateTime.parse(event['start_date']),
+      }
+    end
   end
 
   def events_for_page(city, date, page)
@@ -140,18 +167,12 @@ class EventbriteScraper
 
     puts "==> Making request to Eventbrite..."
     url = "https://www.eventbrite.com/d/#{city.downcase}/events--#{date.downcase}/?page=#{page}"
-    doc = Oga.parse_xml(open(url).read)
+    doc = URI.open(url).read
 
-    return [] if doc.at_css('.search-no-results')
-
-    events = doc.css(".search-main-content__events-list > li").map do |node|
-      {
-        title: node.at_css('.eds-media-card-content__action-link .eds-is-hidden-accessible')&.text&.strip,
-        location: node.at_css('.eds-media-card-content__sub-content .eds-media-card-content__sub--cropped > div:first-child')&.text&.strip,
-        link: node.at_css('.eds-media-card-content__action-link')&.get('href')&.strip,
-        date: DateTime.parse(node.at_css('.eds-media-card-content__primary-content > div:first-child')&.text&.strip&.match(/.*(AM|PM)/)[0]),
-      }
-    end
+    # Take advantage of the `window.__SERVER_DATA__` variable which has a ton of useful data.
+    server_data = doc.match(/window.__SERVER_DATA__ = (.+)\;$/)[1].strip
+    server_data = JSON.parse(server_data)
+    events = server_data['search_data']['events']['results']
 
     File.binwrite(cached_events_dump, Marshal.dump(events)) # cache events
 
