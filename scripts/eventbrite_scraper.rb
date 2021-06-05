@@ -12,7 +12,7 @@ DEFAULT_CITY = 'ma--boston'
 DEFAULT_DATE_FILTERS = %w{ this-month next-month }
 DEFAULT_KEYWORDS = %w{ startup start-up founder co-founder entrepreneur entrepreneurs entrepreneurship pitch networking mixer tech technology }
 DEFAULT_OUTPUT_PATH = File.expand_path('~/Desktop/eventbrite_events.md')
-VALID_DATE_FILTERS = %w{ today tomorrow this-weekend this-week next-week this-month next-month }
+VALID_DATE_FILTERS = %w{ today tomorrow this-weekend this-week next-week this-month next-month all-events }
 INIT_SLEEP_DELAY_SECONDS = 2
 
 # Ensure the cache directory exists.
