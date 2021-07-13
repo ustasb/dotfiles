@@ -126,18 +126,21 @@ class EventbriteScraper
   def output_events
     out_file = File.open(@output_path, 'w')
 
-    @filtered_events.each do |event|
+    @filtered_events.each_with_index do |event, index|
       date = event[:date].strftime('%a, %e %b %H:%M %p')
+
       out_file.puts(
         <<~EOS
-        - [#{event[:title]}](#{event[:link]})
-          - **Date:** #{date}
-          - **Summary:** #{event[:summary]}
-          - **Tags:** #{event[:tags].join(', ')}
-          - **Is Online?:** #{event[:is_online]}
-          - **Image:** ![](#{event[:image_url]})
+         ## #{index + 1}. [#{event[:title]}](#{event[:link]})
+         - **Image:** #{ event[:image_url] && "![](#{event[:image_url]})" }
+         - **Date:** #{date}
+         - **Summary:** #{event[:summary]}
+         - **Tags:** #{event[:tags].join(', ')}
+         - **Is Online?:** #{event[:is_online]}
         EOS
       )
+
+      out_file.puts("\n")
     end
 
     puts "Done! #{out_file.path}"
