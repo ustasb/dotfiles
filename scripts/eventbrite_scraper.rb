@@ -10,7 +10,7 @@ require 'open-uri'
 
 DEFAULT_CITY = 'ma--boston'
 # TODO: all-events returns less results than 'this-month next-month'. Look into why...
-DEFAULT_DATE_FILTERS = %w{ this-month next-month }
+DEFAULT_DATE_FILTERS = %w{ this-month next-month all-events }
 DEFAULT_KEYWORDS = %w{ startup start-up founder co-founder entrepreneur entrepreneurs entrepreneurship pitch networking mixer tech technology }
 DEFAULT_OUTPUT_PATH = File.expand_path('~/Desktop/eventbrite_events.md')
 VALID_DATE_FILTERS = %w{ today tomorrow this-weekend this-week next-week this-month next-month all-events }
