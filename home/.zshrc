@@ -85,6 +85,10 @@
   # Ensure that bat syntax highlighting looks good regardless of the terminal theme.
   # https://github.com/sharkdp/bat
   set_bat_theme_env_var() {
+    if ! command -v bat &> /dev/null; then
+      echo "The bat command is not installed!"
+    fi
+
     # NOTE: ansi-light/dark have issues where the --highlight-line is unreadable (it's all black).
     # The temporary fix is to use the OneHalfLight and base16 themes which highlight lines properly (during fzf's :Rg in Vim, for instance)
     if [[ "$ITERM_PROFILE" == "GruvboxLight" ]]; then
