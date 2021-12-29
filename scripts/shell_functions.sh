@@ -49,10 +49,6 @@ bu_back_up_notes() {
     zip --filesync --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/notes.zip $(basename $USTASB_DOCS_DIR_PATH))
 }
 
-bu_create_done_md() {
-  ruby ~/dotfiles/scripts/create_done_md.rb
-}
-
 # Back up Google Drive contents to S3.
 bu_back_up_gdrive() {
   ruby ~/dotfiles/scripts/back_up_gdrive.rb $*
@@ -106,10 +102,6 @@ bu_term_colors() {
   for code in {000..255}; do print -nP -- "$code: %F{$code}%K{$code}Test%k%f " ; (( ((code + 1) % 8) && code < 255 )) || printf '\n'; done
 }
 
-bu_local_ip_address() {
-  ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2
-}
-
 # Show both the public and private IP addresses.
 bu_ip_address() {
   public_ip=$(curl -s icanhazip.com)
@@ -122,13 +114,6 @@ bu_ip_address() {
   fi
 
   echo "\nlocal:\n$local_ip"
-}
-
-# Test internet connection speed and ping using speedtest.net.
-# https://github.com/sivel/speedtest-cli
-bu_speed_test() {
-  which speedtest-cli &> /dev/null || brew install speedtest-cli
-  speedtest-cli $*
 }
 
 # Browse Chrome history with fzf.
