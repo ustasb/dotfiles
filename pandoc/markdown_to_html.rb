@@ -84,7 +84,7 @@ def main
 
   if $argv[:open_in_chrome]
     chrome_uri = "file://#{$argv[:output_path]}"
-    cmd("osascript #{Dir.home}/dotfiles/scripts/chrome_reload_path.scpt #{chrome_uri}")
+    cmd("osascript #{Dir.home}/dotfiles/pandoc/chrome_reload_path.scpt #{chrome_uri}")
   end
 end
 
