@@ -45,7 +45,7 @@ bu_create_small_s3_backup() {
 
 bu_back_up_notes() {
   # Updates the archive in-place.
-  (cd $(dirname $USTASB_DOCS_DIR_PATH) && \
+  (cd "$(dirname $USTASB_DOCS_DIR_PATH)" && \
     zip --filesync --recurse-paths $USTASB_UNENCRYPTED_DIR_PATH/backups/notes.zip $(basename $USTASB_DOCS_DIR_PATH))
 }
 
