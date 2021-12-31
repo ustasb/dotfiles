@@ -89,6 +89,8 @@
   // misc
   "css.enable": true,
   "css.validate": false,  // Disable linting in favor of Stylelint.
+  "scss.validate": false,
+  "less.validate": false,
   "json.enable": true,
   "coc.source.dictionary.enable": true,
   "coc.source.tag.enable": true,
