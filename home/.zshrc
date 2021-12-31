@@ -162,8 +162,8 @@
   eval "$(rbenv init -)"
 
   # Node.js via https://github.com/tj/n
-  # Added by n-install (see http://git.io/n-install-repo).
-  export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+  export N_PREFIX="$HOME/n"
+  export PATH="$N_PREFIX/bin:$PATH"
 
   # Python via Anaconda
   export PATH=/usr/local/anaconda3/bin:"$PATH"
