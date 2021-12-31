@@ -9,6 +9,9 @@ tmp
 cache
 dist
 
+# Obsidian's vault
+.obsidian
+
 # Node.js
 node_modules
 # NPM
