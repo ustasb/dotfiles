@@ -431,7 +431,7 @@ scriptencoding utf-8
     if interpreter ==# ''
       echom "No interpreter found for filetype '" . &filetype . "'!"
     else
-      execute '!' . interpreter . ' %'
+      execute '!' . interpreter . ' "%"'
     endif
   endfunction
   nnoremap <Leader>e :call ExecuteFile()<CR>
