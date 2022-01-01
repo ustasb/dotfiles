@@ -12,7 +12,7 @@
 # - Pure Prompt (https://github.com/sindresorhus/pure)
 # - fzf (https://github.com/junegunn/fzf)
 # - z ( https://github.com/rupa/z)
-# - gpg2 (https://www.gnupg.org)
+# - gpg (https://www.gnupg.org)
 # - rg (https://github.com/BurntSushi/ripgrep)
 # - bat (https://github.com/sharkdp/bat): Used by fzf.vim's preview.
 
@@ -214,10 +214,6 @@
   alias rg="rg $RIPGREP_ARGS"
 
   # GPG
-  # As of 11/08/17, Homebrew's gpg is version 2.x by default.
-  if type gpg2 > /dev/null; then
-    alias gpg='gpg2'
-  fi
   alias bu_encrypt="gpg --encrypt --sign --local-user brianustas@gmail.com --recipient brianustas@gmail.com"
   alias bu_decrypt="gpg --decrypt --local-user brianustas@gmail.com"
 
@@ -231,6 +227,9 @@
   alias pt="ptpython"
   alias jp="jupyter notebook"
   alias pyserver="python -m http.server"
+
+  # The remote system might not have TERM=tmux-256color in its database.
+  alias ssh="TERM=xterm-256color ssh"
 
 # }}}
 
@@ -253,53 +252,9 @@
 
 # }}}
 
-# === GPG + SSH === {{{
-
-  # The remote system might not have TERM=tmux-256color in its database.
-  alias ssh="TERM=xterm-256color ssh"
-
-  set_gpg_agent_env_vars() {
-    export GPG_TTY=$(tty)
-
-    # Point the SSH_AUTH_SOCK to the one handled by gpg-agent.
-    if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    else
-      echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running?"
-    fi
-  }
-
-  restart_gpg_agent() {
-    # Kill gpg-agent
-    gpgconf --kill gpg-agent
-    # Launch gpg-agent
-    gpg-connect-agent /bye &>/dev/null
-    if [ $? -eq 0 ]; then
-      printf "\033[1;32m\ngpg-agent has started!\n\033[0m"
-    fi
-    set_gpg_agent_env_vars
-  }
-
-# }}}
-
 # === Hacks === {{{
 
   preexec() {
-    # workaround: https://github.com/Yubico/yubico-piv-tool/issues/88
-    # On OSX, after sleeping or being locked, GPG operations with YubiKey will
-    # throw `signing failed: agent refused operation`. This hack detects that
-    # error during *some* commands and restarts the agent if necessary.
-    if [[ $1 =~ "^(g|git) (publish|pull|push|fetch)" ]] || [[ $1 =~ '^ssh ' ]]; then
-      ssh -T git@github.com &>/dev/null
-
-      # Did that command fail?
-      if [ $? -ne 1 ]; then
-        echo "Restarting gpg-agent..."
-        restart_gpg_agent &>/dev/null
-        echo "==> Done!"
-      fi
-    fi
-
     # If in a tmux pane, ensure that the local session has the correct
     # ITERM_PROFILE value. `light_theme` and `dark_theme` will set the
     # variable for the global tmux environment (which this hack reads from).
@@ -324,11 +279,7 @@
     if [ ! -f $TMPDIR/bu_machine_booted ]; then
       touch $TMPDIR/bu_machine_booted
 
-      restart_gpg_agent
-
       bu_customize_finder_sidebar &> /dev/null
-    else
-      set_gpg_agent_env_vars
     fi
 
     if [ -d $USTASB_UNENCRYPTED_DIR_PATH ]; then
