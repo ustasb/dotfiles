@@ -76,7 +76,7 @@ scriptencoding utf-8
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
     Plug 'lvht/tagbar-markdown', { 'for': 'markdown' }
-    Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'preservim/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'jamessan/vim-gnupg'
     Plug 'tpope/vim-repeat'
     Plug 'mhinz/vim-startify'
