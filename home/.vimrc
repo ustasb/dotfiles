@@ -932,7 +932,6 @@ scriptencoding utf-8
     " For dictionary completion with coc.nvim.
     setlocal dictionary=/usr/share/dict/words
 
-    setlocal textwidth=70
     setlocal spell softtabstop=4 tabstop=4 shiftwidth=4
 
     " Ignore vim-markdown's indentexpr
@@ -1001,6 +1000,14 @@ scriptencoding utf-8
     " Text to Speech on the current visual selection.
     vnoremap <buffer> <Leader>s :w<Home>silent <End> !say<CR>
 
+    " Line wrap settings
+    setlocal wrap
+    setlocal linebreak
+    nnoremap <buffer> j gj
+    nnoremap <buffer> k gk
+    nnoremap <buffer> 0 g0
+    nnoremap <buffer> $ g$
+    nnoremap <buffer> $ g$
   endfunction
 
   augroup AG_ProseOptions
