@@ -570,7 +570,7 @@ scriptencoding utf-8
   " }}}
 
   " Ack.vim {{{
-  let $RIPGREP_VIM_ARGS = ' --hidden --smart-case --ignore-file $HOME/.rgignore-vim'
+  let $RIPGREP_VIM_ARGS = ' --hidden --smart-case --ignore-file $HOME/.rgignore-vim --max-count 3'
   let g:ackprg = 'rg --vimgrep ' . $RIPGREP_VIM_ARGS
   let g:ack_lhandler = 'topleft lopen'
   let g:ack_qhandler = 'topleft copen'
