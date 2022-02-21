@@ -581,7 +581,7 @@ scriptencoding utf-8
 
   " Goyo.vim {{{
   nnoremap <Leader>z :Goyo<CR>
-  let g:goyo_width = 100
+  let g:goyo_width = 80
   let g:goyo_height = '90%'
   function! s:GoyoEnter()
     if executable('tmux') && strlen($TMUX)
