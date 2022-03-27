@@ -976,13 +976,16 @@ scriptencoding utf-8
     highlight link mkdListItem GruvboxGreenBold
     highlight link mkdLink markdownUrl
     highlight link mkdInlineUrl markdownUrl
-    highlight link mkdHeading GruvboxBlue
-    highlight link htmlH1 GruvboxGreenBold
-    highlight link htmlH2 GruvboxGreenBold
-    highlight link htmlH3 GruvboxGreenBold
-    highlight link htmlH4 GruvboxGreenBold
-    highlight link htmlH5 GruvboxGreenBold
-    highlight link htmlH6 GruvboxGreenBold
+    highlight link mkdHeading GruvboxPurpleBold
+    highlight link htmlH1 GruvboxBlueBold
+    highlight link htmlH2 GruvboxGreen
+    highlight link htmlH3 GruvboxGreen
+    highlight link htmlH4 GruvboxGreen
+    highlight link htmlH5 GruvboxGreen
+    highlight link htmlH6 GruvboxGreen
+    " Dim the body text color.
+    highlight link mkdNonListItemBlock GruvboxFg2
+    highlight link mkdListItemLine GruvboxFg2
 
     " Fix the previous misspelling.
     nnoremap <buffer> <C-f> [s1z=
