@@ -13,6 +13,18 @@ snippet datetime "YYYY-MM-DD hh:mm"
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
 
+snippet tomorrow "tomorrow"
+`!v strftime("%F", localtime()+60*60*24*1)`${1}
+endsnippet
+
+snippet today "today"
+`!v strftime("%F")`
+endsnippet
+
+snippet yesterday "yesterday"
+`!v strftime("%F", localtime()-60*60*24*1)`${1}
+endsnippet
+
 snippet uuid "random UUID"
 `!p if not snip.c: import uuid; snip.rv = uuid.uuid4()`
 endsnippet
