@@ -765,8 +765,8 @@ scriptencoding utf-8
 
   " Use <Tab> and <S-Tab> for triggering and navigating the completion list.
   function! s:CocTab()
-    if pumvisible()
-      return "\<C-n>"
+    if coc#pum#visible()
+      return coc#pum#next(1)
     elseif <SID>check_back_space()
       return "\<TAB>"
     elseif get(b:, 'coc_suggest_disable', 0)
@@ -785,12 +785,18 @@ scriptencoding utf-8
     return !col || getline('.')[col - 1] =~# '\s'
   endfunction
   inoremap <silent><expr> <TAB> <SID>CocTab()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+  " Make <CR> to accept selected completion item or notify coc.nvim to format
+  " <C-g>u breaks current undo, please make your own choice.
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
   " Jump to definition of current symbol.
   nmap <silent> gd <Plug>(coc-definition)
   " Jump to references of current symbol.
   nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> gi <Plug>(coc-implementation)
   command! -nargs=0 Rename call CocAction('rename')
 
   " Use [c and ]c for navigating diagnostics.
@@ -802,10 +808,11 @@ scriptencoding utf-8
     if (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
     else
-      call CocAction('doHover')
+      call CocActionAsync('doHover')
     endif
   endfunction
   nnoremap <silent> K :call <SID>showDocumentation()<CR>
+
   " }}}
 
   " python-syntax {{{
