@@ -556,6 +556,7 @@ scriptencoding utf-8
   let g:NERDTreeWinSize = 30
   let g:NERDTreeStatusline = -1
   let g:NERDTreeMapActivateNode = '<Space>'
+  let g:NERDTreeMinimalMenu = 1 " fixes https://github.com/preservim/nerdtree/issues/1321
   nnoremap <C-n> :NERDTreeToggle<CR>
   nnoremap <Leader>g :NERDTreeFind<CR>
   " }}}
