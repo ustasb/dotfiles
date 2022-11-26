@@ -1018,7 +1018,6 @@ scriptencoding utf-8
     nnoremap <buffer> k gk
     nnoremap <buffer> 0 g0
     nnoremap <buffer> $ g$
-    nnoremap <buffer> $ g$
   endfunction
 
   augroup AG_ProseOptions
